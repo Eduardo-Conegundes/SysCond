@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package DAO.Interface;
 
-import Models.Espaco;
+import Models.Estoque;
 import java.util.List;
 
 /**
  *
- * @author admin
+ * @author flavi
  */
-public interface InterfaceEspaco {
-    
-    void salvar(Espaco ep);
+public interface InterfaceEstoque {
+    void salvar(Estoque est);
     List listar();
-    void atualizar(Espaco ep);
-    void deletar(Espaco ep);
+    void atualizar(Estoque est);
+    void deletar(Estoque est);
     
 }

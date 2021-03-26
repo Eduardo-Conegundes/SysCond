@@ -13,65 +13,67 @@ import javax.persistence.Persistence;
 
 
 public class MoradorDAO{
-	 
-    private static MoradorDAO instance;
-    protected EntityManager em;
 
-    public static MoradorDAO getInstance() {
-        if (instance == null) {
-            instance = new MoradorDAO();
-        }
-        return instance;
-    }
+	private static MoradorDAO instance;
+	protected EntityManager em;
 
-    private MoradorDAO() {
-        em = getEntityManager();
-    }
+	public static MoradorDAO getInstance() {
+		if (instance == null) {
+			instance = new MoradorDAO();
+		}
+		return instance;
+	}
 
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
-        if (em == null) {
-            em = factory.createEntityManager();
-        }
-        return em;
-    }
+	private MoradorDAO() {
+		em = getEntityManager();
+	}
 
-    public void salvar(Morador morador) {
-        try {
-            em.getTransaction().begin();
-            em.persist(morador);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-        }
-    }
+	private EntityManager getEntityManager() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+		if (em == null) {
+			em = factory.createEntityManager();
+		}
+		return em;
+	}
 
-    public void atualizar(Morador morador) {
-        try {
-            em.getTransaction().begin();
-            em.merge(morador);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-        }
-    }
+	public void salvar(Morador morador) {
+		try {
+			em.getTransaction().begin();
+			em.persist(morador);
+			em.getTransaction().commit();
+			System.out.println("Salvo morador com sucesso");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			em.getTransaction().rollback();
+			System.out.println("Erro ao salvar morador");
+		}
+	}
 
-    public void deletar(String cpf) {
-        Morador m = null;
-        try {
-            em.getTransaction().begin();
-            m = em.find(Morador.class, cpf);
-            em.remove(m);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-        }
-    }
+	public void atualizar(Morador morador) {
+		try {
+			em.getTransaction().begin();
+			em.merge(morador);
+			em.getTransaction().commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			em.getTransaction().rollback();
+		}
+	}
 
-    public List<Morador> listar() {
-        return (em.createQuery("from " + Morador.class.getName()).getResultList());
-    }
+	public void deletar(String cpf) {
+		Morador m = null;
+		try {
+			em.getTransaction().begin();
+			m = em.find(Morador.class, cpf);
+			em.remove(m);
+			em.getTransaction().commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			em.getTransaction().rollback();
+		}
+	}
+
+	public List<Morador> listar() {
+		return (em.createQuery("from " + Morador.class.getName()).getResultList());
+	}
 }

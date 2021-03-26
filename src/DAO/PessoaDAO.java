@@ -51,9 +51,11 @@ public class PessoaDAO {
             em.getTransaction().begin();
             em.persist(p);
             em.getTransaction().commit();
+            System.out.println("Salvo com sucesso: " + p);
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar:");
         }
     }
 

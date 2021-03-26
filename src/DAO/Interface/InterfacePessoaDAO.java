@@ -1,4 +1,4 @@
-package Interfaces;
+package DAO.Interface;
 
 import Models.Pessoa;
 import java.util.List;

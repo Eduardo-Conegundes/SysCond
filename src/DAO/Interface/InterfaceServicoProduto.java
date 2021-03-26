@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package DAO.Interface;
 
-
-import Models.Empresa;
+import Models.ServicoProduto;
 import java.util.List;
 
 /**
  *
- * @author admin
+ * @author flavi
  */
-public interface InterfaceEmpresa {
+public interface InterfaceServicoProduto {
     
-    void salvar(Empresa e);
+    void salvar(ServicoProduto sp);
     List listar();
-    void atualizar(Empresa e);
-    void deletar(Empresa e);
+    void atualizar(ServicoProduto sp);
+    void deletar(ServicoProduto sp);
     
 }

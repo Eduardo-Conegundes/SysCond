@@ -44,9 +44,11 @@ public class UsuarioDAO {
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();
+            System.out.println("Salvo Usuario com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar Usuario");
         }
     }
 

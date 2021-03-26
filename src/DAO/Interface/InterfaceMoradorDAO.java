@@ -1,4 +1,4 @@
-package Interfaces;
+package DAO.Interface;
 
 import Models.Morador;
 import java.util.List;

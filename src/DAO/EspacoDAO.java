@@ -44,9 +44,11 @@ public class EspacoDAO {
             em.getTransaction().begin();
             em.persist(esp);
             em.getTransaction().commit();
+            System.out.println("Salvo Espaço com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar Espaço");
         }
     }
 

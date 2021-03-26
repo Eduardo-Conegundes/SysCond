@@ -44,9 +44,11 @@ public class ServicoProdutoDAO {
             em.getTransaction().begin();
             em.persist(SP);
             em.getTransaction().commit();
+            System.out.println("Salvo Servico/Produto com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao Salvar Seviço/Produto");
         }
     }
 

@@ -5,45 +5,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class Espaco implements Serializable {
+	@Id
+	@GeneratedValue(generator = "idEspaco")
+	private long id;
+	private String nome;
+	private int qtdPessoa;
 
-    @Id ///(Acredito que essa entidade fica melhor tendo o ID como chave Primaria)
-    @GeneratedValue(generator = "idGenerator")
-    private long id;
-    private String nome;
-    private int qtdPessoa;
+	public Espaco() {
+	}
 
-    public Espaco() {
-    }
+	public Espaco(String nome, int qtdPessoa) {
+		this.nome = nome;
+		this.qtdPessoa = qtdPessoa;
+	}
 
-    public Espaco(String nome, int qtdPessoa) {
-        this.nome = nome;
-        this.qtdPessoa = qtdPessoa;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public int getQtdPessoa() {
+		return qtdPessoa;
+	}
 
-    public int getQtdPessoa() {
-        return qtdPessoa;
-    }
-
-    public void setQtdPessoa(int qtdPessoa) {
-        this.qtdPessoa = qtdPessoa;
-    }
+	public void setQtdPessoa(int qtdPessoa) {
+		this.qtdPessoa = qtdPessoa;
+	}
 
 }

@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package DAO.Interface;
 
-import Models.Funcionario;
+import Models.Locacao;
 import java.util.List;
 
 /**
  *
- * @author admin
+ * @author flavi
  */
-public interface InterfaceFuncionario {
-    void salvar(Funcionario func);
+public interface InterfaceLocacao {
+    
+    void salvar(Locacao l);
     List listar();
-    void atualizar(Funcionario func);
-    void deletar(Funcionario func);
+    void atualizar(Locacao l);
+    void deletar(Locacao l);
     
 }

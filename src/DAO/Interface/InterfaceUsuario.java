@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package DAO.Interface;
 
-import Models.Locacao;
+import Models.Morador;
+import Models.Usuario;
 import java.util.List;
 
 /**
  *
  * @author flavi
  */
-public interface InterfaceLocacao {
+public interface InterfaceUsuario {
     
-    void salvar(Locacao l);
+    void salvar(Usuario u);
     List listar();
-    void atualizar(Locacao l);
-    void deletar(Locacao l);
+    void atualizar(Usuario u);
+    void deletar(Usuario u);
     
 }

@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package DAO.Interface;
 
-import Models.FuncionarioExterno;
+import Models.Funcionario;
 import java.util.List;
 
 /**
  *
- * @author flavi
+ * @author admin
  */
-public interface InterfaceFuncionarioExterno {
-    void salvar(FuncionarioExterno fe);
+public interface InterfaceFuncionario {
+    void salvar(Funcionario func);
     List listar();
-    void atualizar(FuncionarioExterno fe);
-    void deletar(FuncionarioExterno fe);
+    void atualizar(Funcionario func);
+    void deletar(Funcionario func);
+    
 }

@@ -48,9 +48,11 @@ public class ApartamentoDAO{
     		em.getTransaction().begin();
     		em.persist(apartamento);
     		em.getTransaction().commit();
+    		System.out.println("Salvo Apartamento com sucesso");
     	}catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		System.out.println("Erro ao salvar Apartamento");
     	}
     }
     

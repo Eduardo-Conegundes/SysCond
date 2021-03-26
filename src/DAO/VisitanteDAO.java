@@ -45,9 +45,11 @@ public class VisitanteDAO {
             em.getTransaction().begin();
             em.persist(vis);
             em.getTransaction().commit();
+            System.out.println("Salvo Visitante com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar Visitante");
         }
     }
 

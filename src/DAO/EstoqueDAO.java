@@ -44,9 +44,11 @@ public class EstoqueDAO {
             em.getTransaction().begin();
             em.persist(est);
             em.getTransaction().commit();
+            System.out.println("Salvo estoque com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar estoque com sucesso");
         }
     }
 

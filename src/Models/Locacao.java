@@ -1,22 +1,24 @@
 package Models;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 //@Entity
 public class Locacao implements Serializable {
     @Id
-    @GeneratedValue(generator = "idGenerator")
-    private long id;///(Acredito que essa entidade fica melhor tendo o ID como chave Primaria)
+    @GeneratedValue(generator = "idLocacao")
+    private long id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
-    
     @OneToOne
     private Apartamento apartamento;
-    
     @OneToOne
     private Espaco espaco;
     private float valor;
@@ -24,7 +26,7 @@ public class Locacao implements Serializable {
     public Locacao() {
     }
 
-    public Locacao(Apartamento apartamento, Espaco espaco, float valor){
+    public Locacao(Date data, Apartamento apartamento, Espaco espaco, float valor){
         this.data = data;
         this.apartamento = apartamento;
         this.espaco = espaco;

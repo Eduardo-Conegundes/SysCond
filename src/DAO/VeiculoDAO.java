@@ -35,9 +35,11 @@ public class VeiculoDAO {
             em.getTransaction().begin();
             em.persist(veiculo);
             em.getTransaction().commit();
+            System.out.println("Salvo Veiculo com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar Veiculo");
         }
     }
 

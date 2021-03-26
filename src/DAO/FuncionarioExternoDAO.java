@@ -43,9 +43,11 @@ public class FuncionarioExternoDAO {
             em.getTransaction().begin();
             em.persist(FuncEx);
             em.getTransaction().commit();
+            System.out.println("Salvo Funcionario Externo com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar Funcionario Externo");
         }
     }
 

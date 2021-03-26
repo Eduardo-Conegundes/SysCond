@@ -3,21 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package DAO.Interface;
 
-import Models.Morador;
-import Models.Usuario;
+import Models.FuncionarioExterno;
 import java.util.List;
 
 /**
  *
  * @author flavi
  */
-public interface InterfaceUsuario {
-    
-    void salvar(Usuario u);
+public interface InterfaceFuncionarioExterno {
+    void salvar(FuncionarioExterno fe);
     List listar();
-    void atualizar(Usuario u);
-    void deletar(Usuario u);
-    
+    void atualizar(FuncionarioExterno fe);
+    void deletar(FuncionarioExterno fe);
 }

@@ -43,9 +43,11 @@ public class EmpresaDAO {
             em.getTransaction().begin();
             em.persist(E);
             em.getTransaction().commit();
+            System.out.println("Salvo Empresa com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao Salvar Empresa");
         }
     }
 

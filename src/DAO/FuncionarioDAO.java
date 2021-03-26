@@ -43,9 +43,11 @@ public class FuncionarioDAO {
             em.getTransaction().begin();
             em.persist(funcionario);
             em.getTransaction().commit();
+            System.out.println("Salvo Funcionario com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            System.out.println("Erro ao salvar Funcionario");
         }
     }
 
