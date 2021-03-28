@@ -1,40 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package syscond;
 
 import java.util.List;
 
-import DAO.ApartamentoDAO;
-import DAO.EmpresaDAO;
-import DAO.EspacoDAO;
-import DAO.EstoqueDAO;
-import DAO.FuncionarioDAO;
-import DAO.FuncionarioExternoDAO;
-import DAO.LocacaoDAO;
-import DAO.MoradorDAO;
-import DAO.PessoaDAO;
-import DAO.ServicoProdutoDAO;
-import DAO.UsuarioDAO;
-import DAO.VeiculoDAO;
-import DAO.VisitanteDAO;
-import Models.Apartamento;
-import Models.Veiculo;
-import Models.Empresa;
-import Models.Espaco;
-import Models.Estoque;
-import Models.Funcionario;
-import Models.FuncionarioExterno;
-import Models.Locacao;
-import Models.Morador;
-import Models.Pessoa;
-import Models.ServicoProduto;
-import Models.Usuario;
-import Models.Visitante;
+import DAO.*;
+import DAO.Interface.*;
+import Models.*;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -42,15 +13,17 @@ public class Syscond {
 
 	public static void main(String[] args) {
 
+		// O que falta= fazer fluxo de estoque(Augusto?)
+		
 		//######## SALVAR PESSOA ########
 		Pessoa p = new Pessoa("LUCASo", "43521", "234", "FLM@gmail.com");
-		//PessoaDAO.getInstance().salvar(p); //metodo de salvar
+		//InterfacePessoa pessoa = new InterfacePessoa();
 
 		//############### SALVAR APARTAMENTO  #############
 		Apartamento j = new Apartamento("R", 2, 1);
 		//ApartamentoDAO.getInstance().salvar(j);
 
-		//############### SALVAR VEICULO  #############            erro em locacao /fazer fluxo de estoque/implementar interfaces 
+		//############### SALVAR VEICULO  #############            
 		Veiculo v = new Veiculo("YTG56", j);
 		//VeiculoDAO.getInstance().salvar(v);
 

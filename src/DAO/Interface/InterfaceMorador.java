@@ -3,7 +3,7 @@ package DAO.Interface;
 import Models.Morador;
 import java.util.List;
 
-public interface InterfaceMoradorDAO {
+public interface InterfaceMorador{
 
     void salvar(Morador m);
     List listar();

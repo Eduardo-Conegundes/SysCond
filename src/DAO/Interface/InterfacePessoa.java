@@ -3,7 +3,7 @@ package DAO.Interface;
 import Models.Pessoa;
 import java.util.List;
 
-public interface InterfacePessoaDAO {
+public interface InterfacePessoa {
 
     void salvar(Pessoa p);
     List listar();
