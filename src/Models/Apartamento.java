@@ -8,7 +8,7 @@ import javax.persistence.IdClass;
 @Entity
 @IdClass(ApartamentoPK.class)
 public class Apartamento implements Serializable {
-   @Id
+	@Id
     private int numero;
     @Id
     private String bloco;

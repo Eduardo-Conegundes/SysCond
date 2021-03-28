@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Models.Espaco;
@@ -11,11 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author admin
- */
-public class EspacoDAO {
+import DAO.Interface.InterfaceEspaco;
+
+public class EspacoDAO implements InterfaceEspaco {
 
     private static EspacoDAO instance;
     protected EntityManager em;
@@ -63,11 +56,11 @@ public class EspacoDAO {
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(Long id) {
         Espaco esp = null;
         try {
             em.getTransaction().begin();
-            esp = em.find(Espaco.class, cpf);
+            esp = em.find(Espaco.class, id);
             em.remove(esp);
             em.getTransaction().commit();
         } catch (Exception ex) {

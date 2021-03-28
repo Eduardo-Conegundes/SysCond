@@ -11,11 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author flavi
- */
-public class EmpresaDAO {
+import DAO.Interface.InterfaceEmpresa;
+
+public class EmpresaDAO implements InterfaceEmpresa {
   private static EmpresaDAO instance;
     protected EntityManager em;
 
@@ -62,11 +60,11 @@ public class EmpresaDAO {
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(String cnpj) {
         Empresa E = null;
         try {
             em.getTransaction().begin();
-            E = em.find(Empresa.class, cpf);
+            E = em.find(Empresa.class, cnpj);
             em.remove(E);
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -77,9 +75,5 @@ public class EmpresaDAO {
 
     public List<Empresa> listar() {
         return (em.createQuery("from " + Empresa.class.getName()).getResultList());
-    }
-
-
-
-    
+    } 
 }

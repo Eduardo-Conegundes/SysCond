@@ -1,21 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Models.Estoque;
+import Models.Funcionario;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author flavi
- */
-public class EstoqueDAO {
+import DAO.Interface.InterfaceEstoque;
+
+public class EstoqueDAO implements InterfaceEstoque {
 
     private static EstoqueDAO instance;
     protected EntityManager em;
@@ -39,10 +34,10 @@ public class EstoqueDAO {
         return em;
     }
 
-    public void salvar(Estoque est) {
+    public void salvar(Funcionario F) {
         try {
             em.getTransaction().begin();
-            em.persist(est);
+            em.persist(F);
             em.getTransaction().commit();
             System.out.println("Salvo estoque com sucesso");
         } catch (Exception ex) {
@@ -52,10 +47,10 @@ public class EstoqueDAO {
         }
     }
 
-    public void atualizar(Estoque est) {
+    public void atualizar(Funcionario F) {
         try {
             em.getTransaction().begin();
-            em.merge(est);
+            em.merge(F);
             em.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -63,11 +58,11 @@ public class EstoqueDAO {
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(Funcionario F) {
         Estoque est = null;
         try {
             em.getTransaction().begin();
-            est = em.find(Estoque.class, cpf);
+            est = em.find(Estoque.class, F);
             em.remove(est);
             em.getTransaction().commit();
         } catch (Exception ex) {

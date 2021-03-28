@@ -36,6 +36,7 @@ import Models.Visitante;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Syscond {
 
@@ -49,7 +50,7 @@ public class Syscond {
 		Apartamento j = new Apartamento("R", 2, 1);
 		//ApartamentoDAO.getInstance().salvar(j);
 
-		//############### SALVAR VEICULO  #############            erro em locacao/fazer fluxo de estoque/implementar interfaces 
+		//############### SALVAR VEICULO  #############            erro em locacao /fazer fluxo de estoque/implementar interfaces 
 		Veiculo v = new Veiculo("YTG56", j);
 		//VeiculoDAO.getInstance().salvar(v);
 
@@ -65,7 +66,7 @@ public class Syscond {
 		Usuario U = new Usuario(p, "COZINHEIRO");
 		//UsuarioDAO.getInstance().salvar(U);
 
-		//######## SALVAR SERVIÃ‡OPRODUTO ########
+		//######## SALVAR SERVIÇO PRODUTO ########
 		List<ServicoProduto> l = new ArrayList<ServicoProduto>();
 		ServicoProduto sp = new ServicoProduto("jesus", (float) 3.50, "Refri");
 		//ServicoProdutoDAO.getInstance().salvar(sp);
@@ -99,7 +100,8 @@ public class Syscond {
 		/*criar classe e metodos e relacionamentos*/
 
 		//######## SALVAR LOCAÇÃO ########
-		//falta data
+		Calendar data = Calendar.getInstance();
+		data.set(2021,3,27);
 		Locacao L = new Locacao(data, j, Es, (float)500.00);
 		//LocacaoDAO.getInstance().salvar(L);
 
