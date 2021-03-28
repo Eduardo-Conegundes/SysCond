@@ -14,17 +14,51 @@ public class Syscond {
 	public static void main(String[] args) {
 
 		// O que falta= fazer fluxo de estoque(Augusto?)
+
+		//CRIA INSTANCIAS
+		ContabilDAO contabil = ContabilDAO.getInstance();
+		ContasDAO contas = ContasDAO.getInstance();
+		EmpresaDAO empresa = EmpresaDAO.getInstance();
+		EspacoDAO espaco = EspacoDAO.getInstance();
+		EstoqueDAO estoque = EstoqueDAO.getInstance();
+		FuncionarioDAO funcionario = FuncionarioDAO.getInstance();
+		FuncionarioExternoDAO funcionarioExterno = FuncionarioExternoDAO.getInstance();
+		LocacaoDAO locacao = LocacaoDAO.getInstance();
+		MoradorDAO morador = MoradorDAO.getInstance();
+		PessoaDAO pessoa = PessoaDAO.getInstance();
+		ServicoProdutoDAO servProd = ServicoProdutoDAO.getInstance();
+		UsuarioDAO usuario = UsuarioDAO.getInstance();
+		VeiculoDAO veiculo = VeiculoDAO.getInstance();
+		VisitanteDAO visitante = VisitanteDAO.getInstance();
+
+		//############### APARTAMENTO  #############
+		InterfaceApartamento apartamento = ApartamentoDAO.getInstance();
+		Apartamento ap1 = new Apartamento("A", 01, 02);
+		Apartamento ap2 = new Apartamento("B", 01, 03);
+		Apartamento ap3 = new Apartamento("A", 01, 03);
 		
+		//apartamento.salvar(ap1);//salva apartamento
+		//apartamento.salvar(ap2);//salva apartamento
+		//apartamento.atualizar(ap3);//precisa revisar como vai ser a atualização
+		//apartamento.deletar("A", 01);//deleta apartamento
+		List<Apartamento> listap = apartamento.listar();
+		for (Apartamento a : listap) {
+			System.out.println(a.getBloco());
+		}
+	    
+		//############ CONTAS ####################
+
+		Contas conta = new Contas("Água", (float)89.90);
+
+
 		//######## SALVAR PESSOA ########
 		Pessoa p = new Pessoa("LUCASo", "43521", "234", "FLM@gmail.com");
 		//InterfacePessoa pessoa = new InterfacePessoa();
 
-		//############### SALVAR APARTAMENTO  #############
-		Apartamento j = new Apartamento("R", 2, 1);
-		//ApartamentoDAO.getInstance().salvar(j);
+
 
 		//############### SALVAR VEICULO  #############            
-		Veiculo v = new Veiculo("YTG56", j);
+		//Veiculo v = new Veiculo("YTG56", j);
 		//VeiculoDAO.getInstance().salvar(v);
 
 		//######## SALVAR FUNCIONARIO ########
@@ -32,7 +66,7 @@ public class Syscond {
 		//FuncionarioDAO.getInstance().salvar(F);
 
 		//######## SALVAR VISITANTE ########
-		Visitante VI = new Visitante(p, j);
+		//Visitante VI = new Visitante(p, j);
 		//VisitanteDAO.getInstance().salvar(VI);
 
 		//######## SALVAR USUARIO ########
@@ -62,20 +96,20 @@ public class Syscond {
 		//EspacoDAO.getInstance().salvar(Es);
 
 		//######## SALVAR MORADOR ########
-		Morador M = new Morador(p, j);
+		//Morador M = new Morador(p, j);
 		//MoradorDAO.getInstance().salvar(M);
 
 		//######## ESTOQUE ########
 		Estoque ES = new Estoque(F);
 		//EstoqueDAO.getInstance().salvar(ES);
-		
+
 		//######## FLUXO DE ESTOQUE ########
 		/*criar classe e metodos e relacionamentos*/
 
 		//######## SALVAR LOCAÇÃO ########
 		Calendar data = Calendar.getInstance();
 		data.set(2021,3,27);
-		Locacao L = new Locacao(data, j, Es, (float)500.00);
+		//Locacao L = new Locacao(data, j, Es, (float)500.00);
 		//LocacaoDAO.getInstance().salvar(L);
 
 

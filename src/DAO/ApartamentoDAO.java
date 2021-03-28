@@ -14,9 +14,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import DAO.Interface.InterfaceApartamentoDAO;
+import DAO.Interface.InterfaceApartamento;
 
-public class ApartamentoDAO implements InterfaceApartamentoDAO {
+public class ApartamentoDAO implements InterfaceApartamento {
     
 	private static ApartamentoDAO instance;
     protected EntityManager em;
