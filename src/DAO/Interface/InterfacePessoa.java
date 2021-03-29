@@ -8,6 +8,6 @@ public interface InterfacePessoa {
     void salvar(Pessoa p);
     List listar();
     void atualizar(Pessoa p);
-    void deletar(Pessoa p);
+    void deletarPorId(String cpf);
     
 }
