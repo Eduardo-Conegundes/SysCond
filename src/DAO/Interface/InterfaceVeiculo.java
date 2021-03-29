@@ -16,6 +16,7 @@ public interface InterfaceVeiculo {
     
     void salvar(Veiculo c);
     List<Veiculo> listar();
+    Veiculo listarId(int id);
     void atualizar(Veiculo c);
     void deletar(Veiculo c);
     

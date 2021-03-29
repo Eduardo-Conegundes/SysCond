@@ -17,6 +17,7 @@ public interface InterfaceUsuario {
     
     void salvar(Usuario u);
     List listar();
+    Usuario listarId(int id);
     void atualizar(Usuario u);
     void deletar(Usuario u);
     

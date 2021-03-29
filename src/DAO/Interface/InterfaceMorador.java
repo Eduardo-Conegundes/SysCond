@@ -7,6 +7,7 @@ public interface InterfaceMorador{
 
     void salvar(Morador m);
     List listar();
+    Morador listarId(int id);
     void atualizar(Morador m);
     void deletar(Morador m);
     

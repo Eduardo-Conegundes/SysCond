@@ -7,7 +7,8 @@ public interface InterfacePessoa {
 
     void salvar(Pessoa p);
     List listar();
+    Pessoa listarId(int id);
     void atualizar(Pessoa p);
-    void deletar(Pessoa p);
+    void deletarPorId(String cpf);
     
 }
