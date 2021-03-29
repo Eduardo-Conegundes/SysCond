@@ -16,6 +16,7 @@ public interface InterfaceServicoProduto {
     
     void salvar(ServicoProduto sp);
     List listar();
+    ServicoProduto listarId(int id);
     void atualizar(ServicoProduto sp);
     void deletar(ServicoProduto sp);
     

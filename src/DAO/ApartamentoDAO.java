@@ -77,6 +77,20 @@ public class ApartamentoDAO implements InterfaceApartamento {
     	}
     }
     
+    public Apartamento listarId(String bloco, int numero){
+    	Apartamento p = null;
+    	try {
+    		em.getTransaction().begin();
+    		p = em.find(Apartamento.class, new ApartamentoPK(numero,bloco));
+    		em.getTransaction().commit();
+    		return p;
+    	} catch(Exception ex) {
+    		ex.printStackTrace();
+    		em.getTransaction().rollback();
+    	}
+    	return p;
+    }
+    
     public List<Apartamento> listar(){
         return (em.createQuery("from " + Apartamento.class.getName()).getResultList());
     }

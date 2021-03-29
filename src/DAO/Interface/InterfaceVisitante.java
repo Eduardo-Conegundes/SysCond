@@ -5,7 +5,6 @@
  */
 package DAO.Interface;
 
-import Models.Morador;
 import Models.Visitante;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import java.util.List;
 public interface InterfaceVisitante {
     void salvar(Visitante v);
     List listar();
+    Visitante listarId(int id);
     void atualizar(Visitante v);
     void deletar(Visitante v);
 }

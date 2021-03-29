@@ -16,6 +16,7 @@ public interface InterfaceLocacao {
     
     void salvar(Locacao l);
     List listar();
+    Locacao listarId(int id);
     void atualizar(Locacao l);
     void deletar(Locacao l);
     
