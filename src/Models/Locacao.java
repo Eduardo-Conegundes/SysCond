@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 public class Locacao implements Serializable {
     @Id
     @GeneratedValue(generator = "idLocacao")
-    private long id;
+    private int id;
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar data;
     @OneToOne
@@ -70,7 +70,7 @@ public class Locacao implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

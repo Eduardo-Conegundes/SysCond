@@ -46,14 +46,9 @@ public class ContasDAO implements InterfaceContas{
     }
     
     public void atualizar(Contas contas){
-    	//Contas p = null;
     	try {
     		em.getTransaction().begin();
-    		//p = em.find(Contas.class, id);
-    		//contas.setId(p.getId());
-    		//if(p!=null) {
-    			em.merge(contas);
-    		//}
+    		em.merge(contas);
     		em.getTransaction().commit();
     	}catch(Exception ex) {
     		ex.printStackTrace();

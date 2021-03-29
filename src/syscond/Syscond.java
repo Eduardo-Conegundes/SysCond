@@ -104,13 +104,14 @@ public class Syscond {
 		Espaco esp2 = new Espaco("cinema", 32);
 		
 		//espaco.salvar(esp1);
-		espaco.salvar(esp2);
-		//espaco.atualizar(esp1);// FALTA TESTAR
-		//espaco.deletar(0);//remove a empresa com id fornecido
-		List<Espaco> listaEspaco = espaco.listar();
-		for (Espaco a : listaEspaco) {
-			System.out.println(a.getNome());
-		}
-		
+		//espaco.salvar(esp2);
+		//Espaco espatt = espaco.listarId(2);
+		//espatt.setNome("casa");
+		//espaco.atualizar(espatt);
+		//espaco.deletar(1);//remove a empresa com id fornecido
+//		List<Espaco> listaEspaco = espaco.listar();
+//		for (Espaco a : listaEspaco) {
+//			System.out.println(a.getNome());
+//		}	
 	}
 }

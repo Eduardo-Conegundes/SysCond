@@ -7,6 +7,7 @@ public interface InterfaceEspaco {
     
     void salvar(Espaco ep);
     List listar();
+    Espaco listarId(int id); 
     void atualizar(Espaco ep);
-    void deletar(long id);
+    void deletar(int id);
 }
