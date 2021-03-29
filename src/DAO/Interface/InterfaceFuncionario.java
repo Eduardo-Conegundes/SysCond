@@ -15,6 +15,7 @@ import java.util.List;
 public interface InterfaceFuncionario {
     void salvar(Funcionario func);
     List listar();
+    Funcionario listarId(int id);
     void atualizar(Funcionario func);
     void deletar(Funcionario func);
     

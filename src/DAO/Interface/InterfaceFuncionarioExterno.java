@@ -15,6 +15,7 @@ import java.util.List;
 public interface InterfaceFuncionarioExterno {
     void salvar(FuncionarioExterno fe);
     List listar();
+    FuncionarioExterno listarId(int id);
     void atualizar(FuncionarioExterno fe);
     void deletar(FuncionarioExterno fe);
 }
