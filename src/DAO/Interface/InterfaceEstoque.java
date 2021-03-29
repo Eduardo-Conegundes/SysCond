@@ -1,14 +1,14 @@
 
 package DAO.Interface;
 
-import Models.Funcionario;
+import Models.Estoque;
 
 import java.util.List;
 
 public interface InterfaceEstoque {
-    void salvar(Funcionario F);
+    void salvar(Estoque F);
     List listar();
-    void atualizar(Funcionario F);
-    void deletar(Funcionario F);
+    void atualizar(Estoque F);
+    void deletar(Estoque F);
     
 }

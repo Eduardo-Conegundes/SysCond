@@ -11,7 +11,7 @@ public class Funcionario implements Serializable {
     @Id
     @OneToOne
     private Pessoa pessoa;
-    private String tipo;
+    private String tipo; // profissao / cargo
     private float salario;
 
     public Funcionario(){}

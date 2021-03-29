@@ -13,7 +13,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-
 public class FuncionarioDAO {
     
     private static FuncionarioDAO instance;

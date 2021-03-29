@@ -17,12 +17,8 @@ public class Syscond {
 
 		//CRIA INSTANCIAS
 		
-		EstoqueDAO estoque = EstoqueDAO.getInstance();
-		FuncionarioDAO funcionario = FuncionarioDAO.getInstance();
-		FuncionarioExternoDAO funcionarioExterno = FuncionarioExternoDAO.getInstance();
 		LocacaoDAO locacao = LocacaoDAO.getInstance();
 		MoradorDAO morador = MoradorDAO.getInstance();
-		PessoaDAO pessoa = PessoaDAO.getInstance();
 		ServicoProdutoDAO servProd = ServicoProdutoDAO.getInstance();
 		UsuarioDAO usuario = UsuarioDAO.getInstance();
 		VeiculoDAO veiculo = VeiculoDAO.getInstance();
@@ -81,6 +77,8 @@ public class Syscond {
 		//		for (Empresa a : listaEmpresa) {
 		//			System.out.println(a.getNome());
 		//		}
+		
+		
 		//######### CONTABIL ##############
 		InterfaceContabil contabilidade = ContabilDAO.getInstance();//instancia contabil
 		//List<Contas> arraycontas = new ArrayList();
@@ -110,7 +108,68 @@ public class Syscond {
 		List<Espaco> listaEspaco = espaco.listar();
 		for (Espaco a : listaEspaco) {
 			System.out.println(a.getNome());
+		}		
+		
+		//######## PESSOA ###############
+		PessoaDAO pessoa = PessoaDAO.getInstance();
+		Pessoa pessoa1 = new Pessoa("Joao", "099.999.999-00", "81991919191", "joao@email.com.br");
+		Pessoa pessoa2 = new Pessoa("Luiz", "699.699.699-60", "81992929292", "luiz@email.com.br");
+		Pessoa pessoa3 = new Pessoa("Flavio", "299.299.299-20", "81993939393", "flavio@email.com.br");
+		Pessoa pessoa4 = new Pessoa("Andre", "399.399.399-30", "81994949494", "andre@email.com.br");
+		Pessoa pessoa5 = new Pessoa("Augusto", "499.499.499-40", "81995959595", "augusto@email.com.br");
+		
+		//pessoa.salvar(pessoa1);
+		pessoa.salvar(pessoa2);
+		//pessoa.atualizar(pessoa1);
+		//pessoa.deletarPorId("699.699.699-60");
+		List<Pessoa> listaPessoas = pessoa.listar();
+		for (Pessoa a : listaPessoas) {
+			System.out.println(a.getNome());
 		}
+		
+		
+		//######## FUNCIONARIO ###############
+		FuncionarioDAO funcionario = FuncionarioDAO.getInstance();
+		Funcionario funcionario1 = new Funcionario(pessoa1, "porteiro", (float) 1045.00);
+		Funcionario funcionario2 = new Funcionario(pessoa2, "vigilante", (float) 1245.00);
+		Funcionario funcionario3 = new Funcionario(pessoa5, "auxiliar de estoque", (float) 1245.00);
+		
+		//funcionario.salvar(funcionario1);
+		//funcionario.salvar(funcionario2);
+		//funcionario.atualizar(funcionario1);
+		//funcionario.deletar("099.999.999-00");
+		List<Funcionario> listaFuncionario = funcionario.listar();
+		for (Funcionario a : listaFuncionario) {
+			System.out.println(a.getPessoa().getNome());
+		}
+		
+		//######## FUNCIONARIO EXTERNO ###############
+		FuncionarioExternoDAO funcionarioExterno = FuncionarioExternoDAO.getInstance();
+		FuncionarioExterno funcionarioExt1 = new FuncionarioExterno(pessoa3, empresa1);
+		FuncionarioExterno funcionarioExt2 = new FuncionarioExterno(pessoa4, empresa2);
+				
+		//funcionarioExterno.salvar(funcionarioExt1);
+		funcionarioExterno.salvar(funcionarioExt1);
+		funcionarioExterno.salvar(funcionarioExt2);
+		//funcionarioExterno.atualizar(funcionarioExt1);
+		//funcionarioExterno.deletar("299.299.299-20");
+		List<FuncionarioExterno> listaFuncExt = funcionarioExterno.listar();
+		for (FuncionarioExterno a : listaFuncExt) {
+			System.out.println(a.getPessoa().getNome());
+		}
+		
+		//######## ESTOQUE ###############
+		EstoqueDAO estoque = EstoqueDAO.getInstance();
+		Estoque estoque1 = new Estoque(funcionario3);
+		
+		//estoque.salvar(estoque1);
+		estoque.atualizar(estoque1);
+		//estoque.deletar(estoque1);
+		List<Estoque> listaEstoque = estoque.listar();
+		for (Estoque a : listaEstoque) {
+			System.out.println(a.getPessoa().getPessoa().getNome());
+		}
+		
 		
 	}
 }
