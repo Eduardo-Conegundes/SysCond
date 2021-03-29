@@ -9,6 +9,6 @@ public interface InterfacePessoa {
     List listar();
     Pessoa listarId(int id);
     void atualizar(Pessoa p);
-    void deletar(Pessoa p);
+    void deletarPorId(String cpf);
     
 }

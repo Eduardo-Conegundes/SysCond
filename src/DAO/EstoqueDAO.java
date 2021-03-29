@@ -34,20 +34,18 @@ public class EstoqueDAO implements InterfaceEstoque {
         return em;
     }
 
-    public void salvar(Funcionario F) {
+    public void salvar(Estoque F) {
         try {
             em.getTransaction().begin();
             em.persist(F);
             em.getTransaction().commit();
-            System.out.println("Salvo estoque com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
-            System.out.println("Erro ao salvar estoque com sucesso");
         }
     }
 
-    public void atualizar(Funcionario F) {
+    public void atualizar(Estoque F) {
         try {
             em.getTransaction().begin();
             em.merge(F);
@@ -58,7 +56,7 @@ public class EstoqueDAO implements InterfaceEstoque {
         }
     }
 
-    public void deletar(Funcionario F) {
+    public void deletar(Estoque F) {
         Estoque est = null;
         try {
             em.getTransaction().begin();
