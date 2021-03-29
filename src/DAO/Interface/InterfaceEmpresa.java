@@ -6,6 +6,7 @@ public interface InterfaceEmpresa {
     
     void salvar(Empresa e);
     List listar();
+    Empresa listarId(String id);
     void atualizar(Empresa e);
     void deletar(String cnpj);
     

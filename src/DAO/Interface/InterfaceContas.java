@@ -5,7 +5,8 @@ import java.util.List;
 public interface InterfaceContas {
 	void salvar(Contas e);
     List listar();
-    void atualizar(Contas e);
+    Contas listarId(int id);
+    void atualizar(Contas conta);
     void deletar(int id);
     
 }

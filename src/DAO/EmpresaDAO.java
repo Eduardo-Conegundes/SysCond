@@ -41,11 +41,9 @@ public class EmpresaDAO implements InterfaceEmpresa {
             em.getTransaction().begin();
             em.persist(E);
             em.getTransaction().commit();
-            System.out.println("Salvo Empresa com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
-            System.out.println("Erro ao Salvar Empresa");
         }
     }
 
@@ -59,6 +57,7 @@ public class EmpresaDAO implements InterfaceEmpresa {
             em.getTransaction().rollback();
         }
     }
+    
 
     public void deletar(String cnpj) {
         Empresa E = null;
@@ -71,6 +70,20 @@ public class EmpresaDAO implements InterfaceEmpresa {
             ex.printStackTrace();
             em.getTransaction().rollback();
         }
+    }
+    
+    public Empresa listarId(String id) {
+        Empresa e = null;
+        try {
+            em.getTransaction().begin();
+            e = em.find(Empresa.class, id);
+            em.getTransaction().commit();
+            return e;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        return e;
     }
 
     public List<Empresa> listar() {

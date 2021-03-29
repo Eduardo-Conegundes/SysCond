@@ -16,10 +16,7 @@ public class Syscond {
 		// O que falta= fazer fluxo de estoque(Augusto?)
 
 		//CRIA INSTANCIAS
-		ContabilDAO contabil = ContabilDAO.getInstance();
-		ContasDAO contas = ContasDAO.getInstance();
-		EmpresaDAO empresa = EmpresaDAO.getInstance();
-		EspacoDAO espaco = EspacoDAO.getInstance();
+		
 		EstoqueDAO estoque = EstoqueDAO.getInstance();
 		FuncionarioDAO funcionario = FuncionarioDAO.getInstance();
 		FuncionarioExternoDAO funcionarioExterno = FuncionarioExternoDAO.getInstance();
@@ -36,108 +33,84 @@ public class Syscond {
 		Apartamento ap1 = new Apartamento("A", 01, 02);
 		Apartamento ap2 = new Apartamento("B", 01, 03);
 		Apartamento ap3 = new Apartamento("A", 01, 03);
-		
+
 		//apartamento.salvar(ap1);//salva apartamento
 		//apartamento.salvar(ap2);//salva apartamento
 		//apartamento.atualizar(ap3);//precisa revisar como vai ser a atualização
 		//apartamento.deletar("A", 01);//deleta apartamento
-		List<Apartamento> listap = apartamento.listar();
-		for (Apartamento a : listap) {
-			System.out.println(a.getBloco());
-		}
-	    
+		//List<Apartamento> listap = apartamento.listar();
+		//for (Apartamento a : listap) {
+		//	System.out.println(a.getBloco());
+		//}
+
 		//############ CONTAS ####################
+		InterfaceContas contas = ContasDAO.getInstance();//instancia contas
 
-		Contas conta = new Contas("Água", (float)89.90);
-
-
-		//######## SALVAR PESSOA ########
-		Pessoa p = new Pessoa("LUCASo", "43521", "234", "FLM@gmail.com");
-		//InterfacePessoa pessoa = new InterfacePessoa();
-
-
-
-		//############### SALVAR VEICULO  #############            
-		//Veiculo v = new Veiculo("YTG56", j);
-		//VeiculoDAO.getInstance().salvar(v);
-
-		//######## SALVAR FUNCIONARIO ########
-		Funcionario F = new Funcionario(p, "conciege", (float) 3000.00);
-		//FuncionarioDAO.getInstance().salvar(F);
-
-		//######## SALVAR VISITANTE ########
-		//Visitante VI = new Visitante(p, j);
-		//VisitanteDAO.getInstance().salvar(VI);
-
-		//######## SALVAR USUARIO ########
-		Usuario U = new Usuario(p, "COZINHEIRO");
-		//UsuarioDAO.getInstance().salvar(U);
-
-		//######## SALVAR SERVIÇO PRODUTO ########
-		List<ServicoProduto> l = new ArrayList<ServicoProduto>();
-		ServicoProduto sp = new ServicoProduto("jesus", (float) 3.50, "Refri");
-		//ServicoProdutoDAO.getInstance().salvar(sp);
-
-		ServicoProduto t = new ServicoProduto("coca", (float) 5.50, "Refri");
-		//ServicoProdutoDAO.getInstance().salvar(t);
-		l.add(sp);
-		l.add(t);
-
-		//######## SALVAR EMPRESA ########
-		Empresa E = new Empresa("12345", l, "Empresa", "mercado", "8137228922");
-		//EmpresaDAO.getInstance().salvar(E);
-
-		//######## SALVAR FUNCIONARIO EXTERNO ########
-		FuncionarioExterno FF = new FuncionarioExterno(p, E);
-		//FuncionarioExternoDAO.getInstance().salvar(FF);
-
-		//######## SALVAR ESPAÃ‡O ########
-		Espaco Es = new Espaco("Salão", 56);
-		//EspacoDAO.getInstance().salvar(Es);
-
-		//######## SALVAR MORADOR ########
-		//Morador M = new Morador(p, j);
-		//MoradorDAO.getInstance().salvar(M);
-
-		//######## ESTOQUE ########
-		Estoque ES = new Estoque(F);
-		//EstoqueDAO.getInstance().salvar(ES);
-
-		//######## FLUXO DE ESTOQUE ########
-		/*criar classe e metodos e relacionamentos*/
-
-		//######## SALVAR LOCAÇÃO ########
 		Calendar data = Calendar.getInstance();
 		data.set(2021,3,27);
-		//Locacao L = new Locacao(data, j, Es, (float)500.00);
-		//LocacaoDAO.getInstance().salvar(L);
 
+		Contas conta1 = new Contas("a pagar", "Água", "Usuario", "Compesa", (float)89.90, data);
+		Contas conta2 = new Contas("a pagar","Energia", "Pessoa", "Celpe", (float)85.50, data);
+		Contas conta3 = new Contas("a pagar","Internet", "Morador", "GVT", (float)55.50, data);
 
-		//######## OUTRAS COISAS ########
-		//    	Morador m = new Morador(p,j);
-		//    	MoradorDAO.getInstance().salvar(m);
-		//    	List<Morador> mor = MoradorDAO.getInstance().listar();
-		//    	for(Morador a : mor){
-		//    		System.out.print("nome: " + a.getPessoa().getNome() + " ");
-		//    		System.out.println();
-		//    	}
-		// List<Pessoa> pes = PessoaDAO.getInstance().listar();
-		//        for(Pessoa a : pes){
-		//        	System.out.println(a.getNome());
-		//        	System.out.println(a.getCpf());
-		//        }
-		//    	
-		//        PessoaDAO.getInstance().atualizar(p);
-		//    	  PessoaDAO.getInstance().deletar(p);
-		//        PessoaDAO.getInstance().deletarPorId("321");
-		//    	ApartamentoDAO.getInstance().atualizar(l);
-		//    	List<Apartamento> ap = ApartamentoDAO.getInstance().listar();
-		//    	List<Apartamento> ap = ApartamentoDAO.getInstance().listarPorBloco("b");
-		//    	for(Apartamento a : ap){
-		//    		System.out.print("numero do ap: " + a.getNumero() + " ");
-		//    		System.out.print(" vagas: " + a.getVagas());
-		//    		System.out.println();
-		//    	}
-		//
+		//Contas contaAtualizar = contas.listarId(1);
+		//contaAtualizar.setBeneficiario("jbvslvd");
+		//contas.salvar(conta1);
+		//contas.salvar(conta2);
+		//contas.salvar(conta3);
+		//contas.atualizar(contaAtualizar);
+		//contas.deletar(3);//remove a conta do id fornecido
+		//		List<Contas> listaConta = contas.listar();
+		//		for (Contas a : listaConta) {
+		//			System.out.println(a.getValor());
+		//		}
+		//######## EMPRESA ##############'
+		InterfaceEmpresa empresa = EmpresaDAO.getInstance();//instancia contas
+
+		Empresa empresa1 = new Empresa("12345","Vivo","prestador de servico", "8137225544");
+		Empresa empresa2 = new Empresa("12346","GVT","prestador de servico", "1234567890");
+
+		//Empresa empresaAtt = empresa.listarId("12345");
+		//empresaAtt.setTipo("servi");
+
+		//empresa.salvar(empresa1);
+		//empresa.salvar(empresa2);
+		//empresa.atualizar(empresaAtt);
+		//empresa.deletar("12345");//remove a empresa com id fornecido
+		//		List<Empresa> listaEmpresa = empresa.listar();
+		//		for (Empresa a : listaEmpresa) {
+		//			System.out.println(a.getNome());
+		//		}
+		//######### CONTABIL ##############
+		InterfaceContabil contabilidade = ContabilDAO.getInstance();//instancia contabil
+		//List<Contas> arraycontas = new ArrayList();
+		//arraycontas.add(conta1);
+		//arraycontas.add(conta2);
+		//arraycontas.add(conta3);
+		
+		//Contabil contab = new Contabil(arraycontas, (float)1000.00);
+
+		//contabilidade.salvar(contab);
+		//contabilidade.atualizar(contab);// FALTA TESTAR
+		//contabilidade.deletar(8);//remove a empresa com id fornecido
+//		List<Contabil> listaContabil = contabilidade.listar();
+//		for (Contabil a : listaContabil) {
+//			System.out.println(a.getSaldo());
+//		}
+		
+		//######## ESPAÇO ###############
+		EspacoDAO espaco = EspacoDAO.getInstance();
+		Espaco esp1 = new Espaco("Salao", 65);
+		Espaco esp2 = new Espaco("cinema", 32);
+		
+		//espaco.salvar(esp1);
+		espaco.salvar(esp2);
+		//espaco.atualizar(esp1);// FALTA TESTAR
+		//espaco.deletar(0);//remove a empresa com id fornecido
+		List<Espaco> listaEspaco = espaco.listar();
+		for (Espaco a : listaEspaco) {
+			System.out.println(a.getNome());
+		}
+		
 	}
 }

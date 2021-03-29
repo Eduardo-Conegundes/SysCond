@@ -46,9 +46,14 @@ public class ContasDAO implements InterfaceContas{
     }
     
     public void atualizar(Contas contas){
+    	//Contas p = null;
     	try {
     		em.getTransaction().begin();
-    		em.merge(contas);
+    		//p = em.find(Contas.class, id);
+    		//contas.setId(p.getId());
+    		//if(p!=null) {
+    			em.merge(contas);
+    		//}
     		em.getTransaction().commit();
     	}catch(Exception ex) {
     		ex.printStackTrace();
@@ -67,6 +72,20 @@ public class ContasDAO implements InterfaceContas{
     		ex.printStackTrace();
     		em.getTransaction().rollback();
     	}
+    }
+    
+    public Contas listarId(int id) {
+    	Contas p = null;
+    	try {
+    		em.getTransaction().begin();
+    		p = em.find(Contas.class, id);
+    		em.getTransaction().commit();
+    		return p;
+    	} catch(Exception ex) {
+    		ex.printStackTrace();
+    		em.getTransaction().rollback();
+    	}
+		return p;
     }
     
     public List<Contas> listar(){
