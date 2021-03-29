@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Espaco implements Serializable {
 	@Id
 	@GeneratedValue(generator = "idEspaco")
-	private long id;
+	private int id;
 	private String nome;
 	private int qtdPessoa;
 

@@ -9,5 +9,5 @@ public interface InterfaceEspaco {
     List listar();
     Espaco listarId(int id);
     void atualizar(Espaco ep);
-    void deletar(long id);
+    void deletar(int id);
 }

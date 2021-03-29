@@ -37,11 +37,9 @@ public class EspacoDAO implements InterfaceEspaco {
             em.getTransaction().begin();
             em.persist(esp);
             em.getTransaction().commit();
-            System.out.println("Salvo Espaço com sucesso");
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
-            System.out.println("Erro ao salvar Espaço");
         }
     }
 
@@ -56,7 +54,7 @@ public class EspacoDAO implements InterfaceEspaco {
         }
     }
 
-    public void deletar(Long id) {
+    public void deletar(int id) {
         Espaco esp = null;
         try {
             em.getTransaction().begin();
@@ -67,6 +65,20 @@ public class EspacoDAO implements InterfaceEspaco {
             ex.printStackTrace();
             em.getTransaction().rollback();
         }
+    }
+    
+    public Espaco listarId(int id) {
+        Espaco esp = null;
+        try {
+            em.getTransaction().begin();
+            esp = em.find(Espaco.class, id);
+            em.getTransaction().commit();
+            return esp;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        return esp;
     }
 
     public List<Espaco> listar() {

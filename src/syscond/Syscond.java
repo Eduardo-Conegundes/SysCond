@@ -32,7 +32,7 @@ public class Syscond {
 
 		//apartamento.salvar(ap1);//salva apartamento
 		//apartamento.salvar(ap2);//salva apartamento
-		//apartamento.atualizar(ap3);//precisa revisar como vai ser a atualizaÁ„o
+		//apartamento.atualizar(ap3);//precisa revisar como vai ser a atualiza√ß√£o
 		//apartamento.deletar("A", 01);//deleta apartamento
 		//List<Apartamento> listap = apartamento.listar();
 		//for (Apartamento a : listap) {
@@ -45,7 +45,7 @@ public class Syscond {
 		Calendar data = Calendar.getInstance();
 		data.set(2021,3,27);
 
-		Contas conta1 = new Contas("a pagar", "¡gua", "Usuario", "Compesa", (float)89.90, data);
+		Contas conta1 = new Contas("a pagar", "√Ågua", "Usuario", "Compesa", (float)89.90, data);
 		Contas conta2 = new Contas("a pagar","Energia", "Pessoa", "Celpe", (float)85.50, data);
 		Contas conta3 = new Contas("a pagar","Internet", "Morador", "GVT", (float)55.50, data);
 
@@ -96,12 +96,12 @@ public class Syscond {
 //			System.out.println(a.getSaldo());
 //		}
 		
-		//######## ESPA«O ###############
+		//######## ESPA√áO ###############
 		EspacoDAO espaco = EspacoDAO.getInstance();
 		Espaco esp1 = new Espaco("Salao", 65);
 		Espaco esp2 = new Espaco("cinema", 32);
 		
-		//espaco.salvar(esp1);
+
 		espaco.salvar(esp2);
 		//espaco.atualizar(esp1);// FALTA TESTAR
 		//espaco.deletar(0);//remove a empresa com id fornecido
@@ -169,7 +169,6 @@ public class Syscond {
 		for (Estoque a : listaEstoque) {
 			System.out.println(a.getPessoa().getPessoa().getNome());
 		}
-		
 		
 	}
 }
