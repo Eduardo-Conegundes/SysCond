@@ -6,7 +6,6 @@
 package DAO;
 
 import Models.Apartamento;
-import Models.ApartamentoPK;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -40,66 +39,87 @@ public class ApartamentoDAO implements InterfaceApartamento {
     	return em;
     }
 	
-    public void salvar(Apartamento apartamento){
+    public Apartamento salvar(Apartamento apartamento) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.persist(apartamento);
     		em.getTransaction().commit();
-    		System.out.println("Salvo Apartamento com sucesso");
-    	}catch(Exception ex) {
-    		ex.printStackTrace();
+    		return buscar(apartamento.getId());
+    	}catch(Exception eSalvar) {
+    		eSalvar.printStackTrace();
     		em.getTransaction().rollback();
-    		System.out.println("Erro ao salvar Apartamento");
+    		throw new Exception();
     	}
     }
     
-    public void atualizar(Apartamento apartamento){
+    public Apartamento atualizar(Apartamento apartamento) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.merge(apartamento);
     		em.getTransaction().commit();
-    	}catch(Exception ex) {
-    		ex.printStackTrace();
+    		return buscar(apartamento.getId());
+    	}catch(Exception eAtualizar) {
+    		eAtualizar.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
-    public void deletar(String bloco, int numero){
+    public Apartamento buscar(int id) throws Exception{
     	Apartamento p = null;
     	try {
     		em.getTransaction().begin();
-    		p = em.find(Apartamento.class, new ApartamentoPK(numero,bloco));
-    		em.remove(p);
-    		em.getTransaction().commit();
-    	} catch(Exception ex) {
-    		ex.printStackTrace();
-    		em.getTransaction().rollback();
-    	}
-    }
-    
-    public Apartamento listarId(String bloco, int numero){
-    	Apartamento p = null;
-    	try {
-    		em.getTransaction().begin();
-    		p = em.find(Apartamento.class, new ApartamentoPK(numero,bloco));
+    		p = em.find(Apartamento.class, id);
     		em.getTransaction().commit();
     		return p;
-    	} catch(Exception ex) {
-    		ex.printStackTrace();
+    	} catch(Exception eBuscar) {
+    		eBuscar.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
-    	return p;
     }
     
-    public List<Apartamento> listar(){
-        return (em.createQuery("from " + Apartamento.class.getName()).getResultList());
+    public void deletarPorId(int id) throws Exception {
+        try {
+            Apartamento p = buscar(id);
+            deletar(p);
+        } catch (Exception eDeletarId) {
+        	eDeletarId.printStackTrace();
+        	throw new Exception();
+        }
     }
     
-    public List<Apartamento> listarPorBloco(String bloco){
-    	String jpql = "select a from Apartamento a where a.bloco = :nomeBloco";
-    	Query query = em.createQuery(jpql, Apartamento.class);
-    	query.setParameter("nomeBloco", bloco);
-    	return (query.getResultList());
+    private void deletar(Apartamento apartamento) throws Exception{
+    	Apartamento p = null;
+    	try {
+    		em.getTransaction().begin();
+    		p = em.find(Apartamento.class, apartamento.getId());
+    		em.remove(p);
+    		em.getTransaction().commit();
+    	} catch(Exception eDeletar) {
+    		eDeletar.printStackTrace();
+    		em.getTransaction().rollback();
+    		throw new Exception();
+    	}
+    }
+    
+    public List<Apartamento> listar() throws Exception{
+    	try {
+    		return (em.createQuery("from " + Apartamento.class.getName()).getResultList());			
+		} catch (Exception eListar) {
+			throw new Exception();
+		}
+    }
+    
+    public List<Apartamento> listarPorBloco(String bloco) throws Exception{
+    	try {
+    		String jpql = "select a from Apartamento a where a.bloco = :nomeBloco";
+    		Query query = em.createQuery(jpql, Apartamento.class);
+    		query.setParameter("nomeBloco", bloco);
+    		return (query.getResultList());
+    	} catch (Exception eListarBloco) {
+    		throw new Exception();
+		}
     }
     
 }

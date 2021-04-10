@@ -21,7 +21,7 @@ public class Espaco implements Serializable {
 		this.qtdPessoa = qtdPessoa;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

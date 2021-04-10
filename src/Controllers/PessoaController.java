@@ -19,7 +19,7 @@ public class PessoaController {
 		}
 	}
 
-	public List listar(){
+	public List<Pessoa> listar(){
 		try {
 			List<Pessoa> l = PessoaDAO.getInstance().listar();
 			System.out.println("Listar com sucesso: " + l);

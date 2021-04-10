@@ -2,15 +2,16 @@ package Models;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
-@IdClass(ApartamentoPK.class)
 public class Apartamento implements Serializable {
 	@Id
+	@GeneratedValue(generator = "idApartamento")
+	private int id;
     private int numero;
-    @Id
     private String bloco;
     private int vagas;
 
@@ -22,6 +23,14 @@ public class Apartamento implements Serializable {
         this.vagas = vagas;
     }
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
     public int getVagas() {
         return vagas;
     }

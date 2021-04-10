@@ -6,7 +6,7 @@ import java.util.List;
 public interface InterfacePessoa {
 
     Pessoa salvar(Pessoa p);
-    List listar();
+    List<Pessoa> listar();
     Pessoa buscar(String cpf);
     void atualizar(Pessoa p);
     void deletarPorId(String cpf);

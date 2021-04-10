@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface InterfaceApartamento {
 
-    void salvar(Apartamento a);
-    List<Apartamento> listar();
-    Apartamento listarId(String bloco, int numero);
-    void atualizar(Apartamento a);
-    void deletar(String bloco, int numero);
+    Apartamento salvar(Apartamento a) throws Exception;
+    List<Apartamento> listar() throws Exception;
+    Apartamento buscar(int id) throws Exception;
+    Apartamento atualizar(Apartamento a) throws Exception;
+    void deletarPorId(int id) throws Exception;
     
 }
