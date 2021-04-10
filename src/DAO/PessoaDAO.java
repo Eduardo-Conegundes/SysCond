@@ -46,31 +46,43 @@ public class PessoaDAO {
                 + Pessoa.class.getName()).getResultList();
     }
 
-    public void salvar(Pessoa p) {
+    public Pessoa salvar(Pessoa p) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(p);
             em.getTransaction().commit();
-            System.out.println("Salvo com sucesso: " + p);
+            return buscar(p.getCpf());
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
-            System.out.println("Erro ao salvar:");
+            throw new Exception();
         }
     }
 
-    public void atualizar(Pessoa p) {
+    public Pessoa atualizar(Pessoa p) {
         try {
             em.getTransaction().begin();
             em.merge(p);
             em.getTransaction().commit();
+            return p;
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            return null;
+        }
+    }
+    
+    public void deletarPorId(String cpf) {
+        try {
+            Pessoa p = buscar(cpf);
+            deletar(p);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
-    public void deletar(Pessoa p) {
+
+    private void deletar(Pessoa p) {
         try {
             em.getTransaction().begin();
             p = em.find(Pessoa.class, p.getCpf());
@@ -82,13 +94,5 @@ public class PessoaDAO {
         }
     }
 
-    public void deletarPorId(String cpf) {
-        try {
-            Pessoa p = buscar(cpf);
-            deletar(p);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    
 }

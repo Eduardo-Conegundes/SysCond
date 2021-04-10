@@ -17,8 +17,8 @@ public class Apartamento implements Serializable {
     public Apartamento(){}
 
     public Apartamento(String bloco, int numero,  int vagas) {
-        this.numero = numero;
-        this.bloco = bloco;
+    	this.bloco = bloco;
+    	this.numero = numero;
         this.vagas = vagas;
     }
 
