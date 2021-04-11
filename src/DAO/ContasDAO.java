@@ -34,7 +34,7 @@ public class ContasDAO implements InterfaceContas{
     	return em;
     }
 	
-    public void salvar(Contas contas){
+    public void salvar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.persist(contas);
@@ -42,10 +42,11 @@ public class ContasDAO implements InterfaceContas{
     	}catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
-    public void atualizar(Contas contas){
+    public void atualizar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.merge(contas);
@@ -53,10 +54,11 @@ public class ContasDAO implements InterfaceContas{
     	}catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
-    public void deletar(int id){
+    public void deletar(int id) throws Exception{
     	Contas p = null;
     	try {
     		em.getTransaction().begin();
@@ -66,10 +68,11 @@ public class ContasDAO implements InterfaceContas{
     	} catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
-    public Contas listarId(int id) {
+    public Contas listarId(int id) throws Exception {
     	Contas p = null;
     	try {
     		em.getTransaction().begin();
@@ -79,8 +82,8 @@ public class ContasDAO implements InterfaceContas{
     	} catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
-		return p;
     }
     
     public List<Contas> listar(){

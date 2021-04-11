@@ -39,7 +39,7 @@ public class ServicoProdutoDAO {
         return em;
     }
 
-    public void salvar(ServicoProduto SP) {
+    public void salvar(ServicoProduto SP) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(SP);
@@ -49,10 +49,11 @@ public class ServicoProdutoDAO {
             ex.printStackTrace();
             em.getTransaction().rollback();
             System.out.println("Erro ao Salvar Seviço/Produto");
+            throw new Exception();
         }
     }
 
-    public void atualizar(ServicoProduto SP) {
+    public void atualizar(ServicoProduto SP) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(SP);
@@ -60,10 +61,11 @@ public class ServicoProdutoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(String Id) {
+    public void deletar(String Id) throws Exception {
         ServicoProduto SP = null;
         try {
             em.getTransaction().begin();
@@ -73,6 +75,7 @@ public class ServicoProdutoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 

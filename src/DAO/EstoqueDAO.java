@@ -34,7 +34,7 @@ public class EstoqueDAO implements InterfaceEstoque {
         return em;
     }
 
-    public void salvar(Estoque F) {
+    public void salvar(Estoque F) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(F);
@@ -42,10 +42,11 @@ public class EstoqueDAO implements InterfaceEstoque {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void atualizar(Estoque F) {
+    public void atualizar(Estoque F) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(F);
@@ -53,10 +54,11 @@ public class EstoqueDAO implements InterfaceEstoque {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(Estoque F) {
+    public void deletar(Estoque F) throws Exception {
         Estoque est = null;
         try {
             em.getTransaction().begin();
@@ -66,6 +68,7 @@ public class EstoqueDAO implements InterfaceEstoque {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 

@@ -36,7 +36,7 @@ public class MoradorDAO{
 		return em;
 	}
 
-	public void salvar(Morador morador) {
+	public void salvar(Morador morador) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.persist(morador);
@@ -46,10 +46,11 @@ public class MoradorDAO{
 			ex.printStackTrace();
 			em.getTransaction().rollback();
 			System.out.println("Erro ao salvar morador");
+			throw new Exception();
 		}
 	}
 
-	public void atualizar(Morador morador) {
+	public void atualizar(Morador morador) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.merge(morador);
@@ -57,10 +58,11 @@ public class MoradorDAO{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			em.getTransaction().rollback();
+			throw new Exception();
 		}
 	}
 
-	public void deletar(String cpf) {
+	public void deletar(String cpf) throws Exception {
 		Morador m = null;
 		try {
 			em.getTransaction().begin();
@@ -70,6 +72,7 @@ public class MoradorDAO{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			em.getTransaction().rollback();
+			throw new Exception();
 		}
 	}
 

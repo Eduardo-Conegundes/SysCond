@@ -40,7 +40,7 @@ public class VisitanteDAO {
         return em;
     }
 
-    public void salvar(Visitante vis) {
+    public void salvar(Visitante vis) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(vis);
@@ -50,10 +50,11 @@ public class VisitanteDAO {
             ex.printStackTrace();
             em.getTransaction().rollback();
             System.out.println("Erro ao salvar Visitante");
+            throw new Exception();
         }
     }
 
-    public void atualizar(Visitante vis) {
+    public void atualizar(Visitante vis) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(vis);
@@ -61,10 +62,11 @@ public class VisitanteDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(String cpf) throws Exception {
         Visitante vis = null;
         try {
             em.getTransaction().begin();
@@ -74,6 +76,7 @@ public class VisitanteDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 

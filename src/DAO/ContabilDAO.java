@@ -32,7 +32,7 @@ public class ContabilDAO implements InterfaceContabil{
     	return em;
     }
 	
-    public void salvar(Contabil contabil){
+    public void salvar(Contabil contabil) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.persist(contabil);
@@ -40,10 +40,11 @@ public class ContabilDAO implements InterfaceContabil{
     	}catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
-    public void atualizar(Contabil contabil){
+    public void atualizar(Contabil contabil) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.merge(contabil);
@@ -51,10 +52,11 @@ public class ContabilDAO implements InterfaceContabil{
     	}catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
-    public void deletar(int id){
+    public void deletar(int id) throws Exception{
     	Contabil p = null;
     	try {
     		em.getTransaction().begin();
@@ -64,10 +66,17 @@ public class ContabilDAO implements InterfaceContabil{
     	} catch(Exception ex) {
     		ex.printStackTrace();
     		em.getTransaction().rollback();
+    		throw new Exception();
     	}
     }
     
     public List<Contabil> listar(){
         return (em.createQuery("from " + Contabil.class.getName()).getResultList());
     }
+
+	@Override
+	public Contabil listarId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

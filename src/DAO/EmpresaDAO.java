@@ -36,7 +36,7 @@ public class EmpresaDAO implements InterfaceEmpresa {
         return em;
     }
 
-    public void salvar(Empresa E) {
+    public void salvar(Empresa E) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(E);
@@ -44,10 +44,11 @@ public class EmpresaDAO implements InterfaceEmpresa {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void atualizar(Empresa E) {
+    public void atualizar(Empresa E) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(E);
@@ -55,11 +56,12 @@ public class EmpresaDAO implements InterfaceEmpresa {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
     
 
-    public void deletar(String cnpj) {
+    public void deletar(String cnpj) throws Exception {
         Empresa E = null;
         try {
             em.getTransaction().begin();
@@ -69,10 +71,11 @@ public class EmpresaDAO implements InterfaceEmpresa {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
     
-    public Empresa listarId(String id) {
+    public Empresa listarId(String id) throws Exception {
         Empresa e = null;
         try {
             em.getTransaction().begin();
@@ -82,8 +85,8 @@ public class EmpresaDAO implements InterfaceEmpresa {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
-        return e;
     }
 
     public List<Empresa> listar() {
