@@ -7,10 +7,6 @@ import javax.persistence.Persistence;
 
 import Models.Pessoa;
 
-/**
- *
- * @author andre
- */
 public class PessoaDAO {
 
     private static PessoaDAO instance;
@@ -43,9 +39,8 @@ public class PessoaDAO {
     		em.getTransaction().commit();
     		return p;
     	} catch(Exception eBuscar) {
-    		eBuscar.printStackTrace();
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eBuscar;
     	}
     }
 
@@ -55,7 +50,7 @@ public class PessoaDAO {
     		return em.createQuery("FROM "
                     + Pessoa.class.getName()).getResultList();
 		} catch (Exception eListar) {
-			throw new Exception();
+			throw eListar;
 		}
         
     }
@@ -67,9 +62,8 @@ public class PessoaDAO {
             em.getTransaction().commit();
             return buscar(p.getCpf());
         } catch (Exception eSalvar) {
-        	eSalvar.printStackTrace();
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eSalvar;
         }
     }
 
@@ -80,9 +74,8 @@ public class PessoaDAO {
             em.getTransaction().commit();
             return buscar(p.getCpf());
         } catch (Exception eAtualizar) {
-        	eAtualizar.printStackTrace();
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eAtualizar;
         }
     }
     
@@ -91,8 +84,7 @@ public class PessoaDAO {
             Pessoa p = buscar(cpf);
             deletar(p);
         } catch (Exception eDeletarId) {
-        	eDeletarId.printStackTrace();
-        	throw new Exception();
+        	throw eDeletarId;
         }
     }
 
@@ -104,9 +96,8 @@ public class PessoaDAO {
             em.remove(p);
             em.getTransaction().commit();
         } catch (Exception eDeletar) {
-        	eDeletar.printStackTrace();
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eDeletar;
         }
     }
 
