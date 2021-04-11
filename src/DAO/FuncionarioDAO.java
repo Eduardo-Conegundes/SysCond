@@ -37,7 +37,7 @@ public class FuncionarioDAO {
         return em;
     }
 
-    public void salvar(Funcionario funcionario) {
+    public void salvar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(funcionario);
@@ -47,10 +47,11 @@ public class FuncionarioDAO {
             ex.printStackTrace();
             em.getTransaction().rollback();
             System.out.println("Erro ao salvar Funcionario");
+            throw new Exception();
         }
     }
 
-    public void atualizar(Funcionario funcionario) {
+    public void atualizar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(funcionario);
@@ -58,10 +59,11 @@ public class FuncionarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(String cpf) throws Exception {
         Funcionario f = null;
         try {
             em.getTransaction().begin();
@@ -71,6 +73,7 @@ public class FuncionarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 

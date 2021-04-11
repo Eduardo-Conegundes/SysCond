@@ -39,7 +39,7 @@ public class UsuarioDAO {
         return em;
     }
 
-    public void salvar(Usuario user) {
+    public void salvar(Usuario user) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(user);
@@ -49,10 +49,11 @@ public class UsuarioDAO {
             ex.printStackTrace();
             em.getTransaction().rollback();
             System.out.println("Erro ao salvar Usuario");
+            throw new Exception();
         }
     }
 
-    public void atualizar(Usuario user) {
+    public void atualizar(Usuario user) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(user);
@@ -60,10 +61,11 @@ public class UsuarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(String cpf) throws Exception {
         Usuario user = null;
         try {
             em.getTransaction().begin();
@@ -73,6 +75,7 @@ public class UsuarioDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 

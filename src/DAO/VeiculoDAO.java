@@ -30,7 +30,7 @@ public class VeiculoDAO {
         return em;
     }
 
-    public void salvar(Veiculo veiculo) {
+    public void salvar(Veiculo veiculo) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(veiculo);
@@ -40,10 +40,11 @@ public class VeiculoDAO {
             ex.printStackTrace();
             em.getTransaction().rollback();
             System.out.println("Erro ao salvar Veiculo");
+            throw new Exception();
         }
     }
 
-    public void atualizar(Veiculo veiculo) {
+    public void atualizar(Veiculo veiculo) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(veiculo);
@@ -51,10 +52,11 @@ public class VeiculoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(String placa) {
+    public void deletar(String placa) throws Exception {
         Veiculo v = null;
         try {
             em.getTransaction().begin();
@@ -64,6 +66,7 @@ public class VeiculoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 

@@ -39,7 +39,7 @@ public class LocacaoDAO {
         return em;
     }
 
-    public void salvar(Locacao l) {
+    public void salvar(Locacao l) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(l);
@@ -47,10 +47,11 @@ public class LocacaoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void atualizar(Locacao l) {
+    public void atualizar(Locacao l) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(l);
@@ -58,10 +59,11 @@ public class LocacaoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
-    public void deletar(String cpf) {
+    public void deletar(String cpf) throws Exception {
         Locacao l = null;
         try {
             em.getTransaction().begin();
@@ -71,6 +73,7 @@ public class LocacaoDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
+            throw new Exception();
         }
     }
 
