@@ -6,9 +6,21 @@ import DAO.ApartamentoDAO;
 import Models.Apartamento;
 
 public class ApartamentoController {
-	public Apartamento criar(String bloco, int numero,  int vagas){
-		Apartamento Apartamento1 = new Apartamento(bloco,numero,vagas);
 
+	public Apartamento criar(String bloco, int numero,  int vagas){
+
+		//retorna a lista de apartamentos cadastrados
+		List<Apartamento> ap = this.listar();
+
+		for (int i = 0; i < ap.size(); i++) {
+
+			//procura se existe algum apartamento com o bloco e numero já cadastrado
+			if(ap.get(i).getBloco().compareTo(bloco) == 0 && ap.get(i).getNumero() == numero) {
+				System.out.println("Erro ao salvar Apartamento, já existe cadastrado com os mesmos dados");
+				return null;
+			}
+		}
+		Apartamento Apartamento1 = new Apartamento(bloco,numero,vagas);
 		try {
 			Apartamento p = ApartamentoDAO.getInstance().salvar(Apartamento1);
 			System.out.println("Salvo com sucesso: " + p.getNumero() + p.getBloco());
@@ -16,8 +28,10 @@ public class ApartamentoController {
 		} catch (Exception eSalvar) {
 			System.out.println("Erro ao salvar Apartamento!");
 			return null;
-		}
+		}	
 	}
+
+
 
 	public List<Apartamento> listar(){
 		try {
@@ -52,12 +66,12 @@ public class ApartamentoController {
 			System.out.println("Erro ao buscar apartamento!");
 			return null;
 		}
-		
+
 		if (b==null) {
 			System.out.println("Apartamento não encontrado.");
 			return null;
 		}		
-		
+
 		try {
 			Apartamento a = ApartamentoDAO.getInstance().atualizar(Apartamento2);
 			System.out.println("Atualizado com sucesso!" + a.getBloco() + a.getNumero() + a.getVagas());
