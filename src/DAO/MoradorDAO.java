@@ -81,6 +81,7 @@ public class MoradorDAO{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Morador> listar() throws Exception {
 		try {
 			return (em.createQuery("from " + Morador.class.getName()).getResultList());			
