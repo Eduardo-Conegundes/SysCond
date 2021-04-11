@@ -46,9 +46,8 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		em.getTransaction().commit();
     		return buscar(apartamento.getId());
     	}catch(Exception eSalvar) {
-    		eSalvar.printStackTrace();
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eSalvar;
     	}
     }
     
@@ -59,12 +58,12 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		em.getTransaction().commit();
     		return buscar(apartamento.getId());
     	}catch(Exception eAtualizar) {
-    		eAtualizar.printStackTrace();
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eAtualizar;
     	}
     }
     
+    //esse metodo retorna null caso não encontre
     public Apartamento buscar(int id) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -72,9 +71,8 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		em.getTransaction().commit();
     		return p;
     	} catch(Exception eBuscar) {
-    		eBuscar.printStackTrace();
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eBuscar;
     	}
     }
     
@@ -84,40 +82,40 @@ public class ApartamentoDAO implements InterfaceApartamento {
             deletar(p);
         } catch (Exception eDeletarId) {
         	eDeletarId.printStackTrace();
-        	throw new Exception();
+        	throw eDeletarId;
         }
     }
     
     private void deletar(Apartamento apartamento) throws Exception{
-    	Apartamento p = null;
     	try {
     		em.getTransaction().begin();
-    		p = em.find(Apartamento.class, apartamento.getId());
+    		Apartamento p = em.find(Apartamento.class, apartamento.getId());
     		em.remove(p);
     		em.getTransaction().commit();
     	} catch(Exception eDeletar) {
-    		eDeletar.printStackTrace();
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eDeletar;
     	}
     }
     
-    public List<Apartamento> listar() throws Exception{
+    @SuppressWarnings("unchecked")
+	public List<Apartamento> listar() throws Exception{
     	try {
     		return (em.createQuery("from " + Apartamento.class.getName()).getResultList());			
 		} catch (Exception eListar) {
-			throw new Exception();
+			throw eListar;
 		}
     }
     
-    public List<Apartamento> listarPorBloco(String bloco) throws Exception{
+    @SuppressWarnings("unchecked")
+	public List<Apartamento> listarPorBloco(String bloco) throws Exception{
     	try {
     		String jpql = "select a from Apartamento a where a.bloco = :nomeBloco";
     		Query query = em.createQuery(jpql, Apartamento.class);
     		query.setParameter("nomeBloco", bloco);
     		return (query.getResultList());
     	} catch (Exception eListarBloco) {
-    		throw new Exception();
+    		throw eListarBloco;
 		}
     }
     
