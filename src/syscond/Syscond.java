@@ -32,7 +32,7 @@ public class Syscond {
 		MoradorController moradorController = new MoradorController();
 //		moradorController.criar("299.299.299-20", 2);
 //		moradorController.atualizar("299.299.299-20", 2);
-		moradorController.deletar("299.299.299-20");
+//		moradorController.deletar("299.299.299-20");
 		
 	}
 }

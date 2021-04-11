@@ -100,6 +100,4 @@ public class PessoaDAO {
             throw eDeletar;
         }
     }
-
-    
 }
