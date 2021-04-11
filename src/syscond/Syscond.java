@@ -3,6 +3,7 @@ package syscond;
 import Controllers.*;
 import Models.Apartamento;
 import Models.Pessoa;
+import Models.Veiculo;
 
 public class Syscond {
 
@@ -16,8 +17,15 @@ public class Syscond {
 		Apartamento ap;
 		ApartamentoController apartamentoController = new ApartamentoController();
 //		apartamentoController.criar("A",202,1);
+//		apartamentoController.criar("A",404,1);
 //		ap = apartamentoController.atualizar(1, "B", 202, 1);
 //		apartamentoController.deletarPorId(1);
+		
+		Veiculo vei1;
+		VeiculoController veiculoController = new VeiculoController();
+//		veiculoController.criar("PCS6969", 1);
+//		veiculoController.criar("PAU6969", 2);
+//		vei1 = veiculoController.atualizar("PCS6969", 3);
 		
 	}
 }
