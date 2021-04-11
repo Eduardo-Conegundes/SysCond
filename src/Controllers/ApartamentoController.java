@@ -31,8 +31,6 @@ public class ApartamentoController {
 		}	
 	}
 
-
-
 	public List<Apartamento> listar(){
 		try {
 			List<Apartamento> l = ApartamentoDAO.getInstance().listar();
@@ -82,7 +80,7 @@ public class ApartamentoController {
 		}
 	}
 
-	public void deletarPorId(int id){
+	public void deletar(int id){
 		try {
 			ApartamentoDAO.getInstance().deletarPorId(id);
 			System.out.println("Excluído com sucesso");

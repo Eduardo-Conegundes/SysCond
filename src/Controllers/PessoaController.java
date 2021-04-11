@@ -11,7 +11,7 @@ public class PessoaController {
 
 		try {
 			Pessoa p = PessoaDAO.getInstance().salvar(pessoa1);
-			System.out.println("Salvo com sucesso: " + p);
+			System.out.println("Salvo " + p.getNome() + " com sucesso");
 			return p;
 		} catch (Exception eSalvar) {
 			System.out.println("Erro ao salvar pessoa!");
@@ -22,7 +22,7 @@ public class PessoaController {
 	public List<Pessoa> listar(){
 		try {
 			List<Pessoa> l = PessoaDAO.getInstance().listar();
-			System.out.println("Listar com sucesso: " + l);
+			System.out.println("Listar com sucesso: " + l.size());
 			return l;
 		} catch (Exception eListar) {
 			System.out.println("Erro ao listar pessoa(s)!");

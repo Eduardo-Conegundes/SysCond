@@ -66,10 +66,9 @@ public class ApartamentoDAO implements InterfaceApartamento {
     }
     
     public Apartamento buscar(int id) throws Exception{
-    	Apartamento p = null;
     	try {
     		em.getTransaction().begin();
-    		p = em.find(Apartamento.class, id);
+    		Apartamento p = em.find(Apartamento.class, id);
     		em.getTransaction().commit();
     		return p;
     	} catch(Exception eBuscar) {

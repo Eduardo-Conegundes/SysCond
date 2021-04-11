@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Models.Morador;
@@ -36,29 +31,40 @@ public class MoradorDAO{
 		return em;
 	}
 
-	public void salvar(Morador morador) throws Exception {
+	public Morador salvar(Morador morador) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.persist(morador);
 			em.getTransaction().commit();
-			System.out.println("Salvo morador com sucesso");
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			return buscar(morador.getPessoa().getCpf());
+		} catch (Exception e) {
 			em.getTransaction().rollback();
-			System.out.println("Erro ao salvar morador");
-			throw new Exception();
+			throw e;
+		}
+	}
+	
+	public Morador buscar(String cpf) throws Exception {
+		Morador m = null;
+		try {
+			em.getTransaction().begin();
+			m = em.find(Morador.class, cpf);
+			em.getTransaction().commit();
+			return m;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw e;
 		}
 	}
 
-	public void atualizar(Morador morador) throws Exception {
+	public Morador atualizar(Morador morador) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.merge(morador);
 			em.getTransaction().commit();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			return buscar(morador.getPessoa().getCpf());
+		} catch (Exception e) {
 			em.getTransaction().rollback();
-			throw new Exception();
+			throw e;
 		}
 	}
 
@@ -69,14 +75,17 @@ public class MoradorDAO{
 			m = em.find(Morador.class, cpf);
 			em.remove(m);
 			em.getTransaction().commit();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
 			em.getTransaction().rollback();
-			throw new Exception();
+			throw e;
 		}
 	}
 
-	public List<Morador> listar() {
-		return (em.createQuery("from " + Morador.class.getName()).getResultList());
+	public List<Morador> listar() throws Exception {
+		try {
+			return (em.createQuery("from " + Morador.class.getName()).getResultList());			
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }
