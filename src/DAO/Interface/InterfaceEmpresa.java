@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface InterfaceEmpresa {
     
-    void salvar(Empresa e) throws Exception;
-    List listar();
-    Empresa listarId(String id) throws Exception;
-    void atualizar(Empresa e) throws Exception;
+    Empresa salvar(Empresa e) throws Exception;
+    List<Empresa> listar();
+    Empresa buscar(String id) throws Exception;
+    Empresa atualizar(Empresa e) throws Exception;
     void deletar(String cnpj) throws Exception;
     
 }

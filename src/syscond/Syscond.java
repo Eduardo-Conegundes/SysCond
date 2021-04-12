@@ -1,10 +1,7 @@
 package syscond;
 
 import Controllers.*;
-import Models.Apartamento;
-import Models.Morador;
-import Models.Pessoa;
-import Models.Veiculo;
+import Models.*;
 
 public class Syscond {
 
@@ -33,6 +30,13 @@ public class Syscond {
 //		moradorController.criar("299.299.299-20", 2);
 //		moradorController.atualizar("299.299.299-20", 2);
 //		moradorController.deletar("299.299.299-20");
+		
+		Empresa emp1;
+		EmpresaController empresaController = new EmpresaController();
+//		empresaController.criar("123456789-10", "UPE", "Educação", "81-37215060");
+//		empresaController.criar("123456789-20", "UFPE", "Educação", "81-37215065");
+//		empresaController.atualizar("123456789-10", "FACULDADE", "Educação", "81-37215060");
+//		empresaController.deletar("123456789-10");
 		
 	}
 }
