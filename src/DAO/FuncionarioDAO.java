@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package DAO;
 
+package DAO;
 
 import Models.Funcionario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 
 public class FuncionarioDAO {
     
@@ -36,30 +30,41 @@ public class FuncionarioDAO {
         }
         return em;
     }
+    
+    public Funcionario buscar(String cpf) throws Exception {
+        Funcionario f = null;
+        try {
+            em.getTransaction().begin();
+            f = em.find(Funcionario.class, cpf);
+            em.getTransaction().commit();
+            return f;
+        } catch (Exception eAtualizar) {
+            em.getTransaction().rollback();
+            throw eAtualizar;
+        }
+    }
 
-    public void salvar(Funcionario funcionario) throws Exception {
+    public Funcionario salvar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(funcionario);
             em.getTransaction().commit();
-            System.out.println("Salvo Funcionario com sucesso");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return buscar(funcionario.getPessoa().getCpf());
+        } catch (Exception eSalvar) {
             em.getTransaction().rollback();
-            System.out.println("Erro ao salvar Funcionario");
-            throw new Exception();
+            throw eSalvar;
         }
     }
 
-    public void atualizar(Funcionario funcionario) throws Exception {
+    public Funcionario atualizar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(funcionario);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return buscar(funcionario.getPessoa().getCpf());
+        } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eAtualizar;
         }
     }
 
@@ -70,15 +75,19 @@ public class FuncionarioDAO {
             f = em.find(Funcionario.class, cpf);
             em.remove(f);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception eDeletar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eDeletar;
         }
     }
 
-    public List<Funcionario> listar() {
-        return (em.createQuery("from " + Funcionario.class.getName()).getResultList());
+    @SuppressWarnings("unchecked")
+	public List<Funcionario> listar() {
+        try {
+        	return (em.createQuery("from " + Funcionario.class.getName()).getResultList());
+		} catch (Exception eListar) {
+			 throw eListar;
+		}
     }
 
 }

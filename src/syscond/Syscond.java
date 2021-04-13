@@ -38,5 +38,13 @@ public class Syscond {
 //		empresaController.atualizar("123456789-10", "FACULDADE", "Educação", "81-37215060");
 //		empresaController.deletar("123456789-10");
 		
+		Funcionario fun1;
+		FuncionarioController funcionarioController = new FuncionarioController();
+//		funcionarioController.criar("299.299.299-20", "interno", "jardineiro", 0);
+//		funcionarioController.atualizar("299.299.299-20", "interno", "copeiro", 0);
+		funcionarioController.deletar("299.299.299-20");
+		
+		
+		
 	}
 }

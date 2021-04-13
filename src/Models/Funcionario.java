@@ -7,20 +7,29 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Funcionario implements Serializable {
-    
     @Id
     @OneToOne
     private Pessoa pessoa;
-    private String tipo; // profissao / cargo
+    private String interno_externo;
+    private String cargo;
     private float salario;
 
     public Funcionario(){}
     
-    public Funcionario(Pessoa pessoa, String tipo, float salario) {
+    public Funcionario(Pessoa pessoa, String interno_externo, String cargo, float salario) {
         this.pessoa = pessoa;
-        this.tipo = tipo;
+        this.interno_externo = interno_externo;
         this.salario = salario;
+        this.cargo = cargo;
     }
+    
+    public String getCargo() {
+		return cargo;
+	}
+    
+    public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 
     public Pessoa getPessoa() {
 		return pessoa;
@@ -30,12 +39,12 @@ public class Funcionario implements Serializable {
 	this.pessoa = pessoa;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getInterno_externo() {
+        return interno_externo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setInterno_externo(String interno_externo) {
+        this.interno_externo = interno_externo;
     }
 
     public float getSalario() {
