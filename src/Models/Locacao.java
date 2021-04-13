@@ -11,71 +11,67 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Locacao implements Serializable {
-    @Id
-    @GeneratedValue(generator = "idLocacao")
-    private int id;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar data;
-    @OneToOne
-    private Apartamento apartamento;
-    @OneToOne
-    private Espaco espaco;
-    private float valor;
-
-    public Locacao() {
-    }
-
-    public Locacao(Calendar data, Apartamento apartamento, Espaco espaco, float valor){
-        this.data = data;
-        this.apartamento = apartamento;
-        this.espaco = espaco;
-        this.valor = valor;
-    }
-
-    public Apartamento getApartamento() {
-        return apartamento;
-    }
+	@Id
+	@GeneratedValue(generator = "idLocacao")
+	private int id;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar data;
+	@OneToOne
+	private Morador morador;
+	@OneToOne
+	private String espaco;
+	private float valor;
 
 
-    public void setApartamento(Apartamento apartamento) {
-        this.apartamento = apartamento;
-    }
+	public Locacao() {
+	}
 
-    public Espaco getEspaco() {
-        return espaco;
-    }
+	public Locacao(Calendar data, Morador morador, String espaco, float valor){
+		this.data = data;
+		this.morador = morador;
+		this.espaco = espaco;
+		this.valor = valor;
+	}
 
+	public Morador getMorador() {
+		return morador;
+	}
+	public void setMorador(Morador morador) {
+		this.morador = morador;
+	}
+	public String getEspaco() {
+		return espaco;
+	}
+	public void setEspaco(String espaco) {
+		this.espaco = espaco;
+	} 
 
-    public void setEspaco(Espaco espaco) {
-        this.espaco = espaco;
-    }
+	public float getValor() {
+		return valor;
+	}
 
-    public float getValor() {
-        return valor;
-    }
+	public void setValor(int valor) {
+		this.valor = valor;
+	}    
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }    
+	public void setData(Calendar data) {
+		this.data = data;
+	}
 
-    public void setData(Calendar data) {
-        this.data = data;
-    }
+	public Calendar getData() {
+		return data;
+	}
 
-    public Calendar getData() {
-        return data;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
 
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-    
 }

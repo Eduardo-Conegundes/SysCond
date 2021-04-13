@@ -17,68 +17,86 @@ import javax.persistence.Persistence;
  */
 public class LocacaoDAO {
 
-    private static LocacaoDAO instance;
-    protected EntityManager em;
+	private static LocacaoDAO instance;
+	protected EntityManager em;
 
-    public static LocacaoDAO getInstance() {
-        if (instance == null) {
-            instance = new LocacaoDAO();
-        }
-        return instance;
-    }
+	public static LocacaoDAO getInstance() {
+		if (instance == null) {
+			instance = new LocacaoDAO();
+		}
+		return instance;
+	}
 
-    private LocacaoDAO() {
-        em = getEntityManager();
-    }
+	private LocacaoDAO() {
+		em = getEntityManager();
+	}
 
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
-        if (em == null) {
-            em = factory.createEntityManager();
-        }
-        return em;
-    }
+	private EntityManager getEntityManager() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+		if (em == null) {
+			em = factory.createEntityManager();
+		}
+		return em;
+	}
 
-    public void salvar(Locacao l) throws Exception {
-        try {
-            em.getTransaction().begin();
-            em.persist(l);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            throw new Exception();
-        }
-    }
+	public Locacao buscar(int id) throws Exception {
+		Locacao l = null;
+		try {
+			em.getTransaction().begin();
+			l = em.find(Locacao.class, id);
+			em.getTransaction().commit();
+			return l;
+		} catch (Exception eBuscar) {
+			em.getTransaction().rollback();
+			throw eBuscar;
+		}
+	}
 
-    public void atualizar(Locacao l) throws Exception {
-        try {
-            em.getTransaction().begin();
-            em.merge(l);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            throw new Exception();
-        }
-    }
+	public Locacao salvar(Locacao l) throws Exception {
+		try {
+			em.getTransaction().begin();
+			em.persist(l);
+			em.getTransaction().commit();
+			return buscar(l.getId());
+		} catch (Exception eSalvar) {
+			em.getTransaction().rollback();
+			throw eSalvar;
+		}
+	}
 
-    public void deletar(String cpf) throws Exception {
-        Locacao l = null;
-        try {
-            em.getTransaction().begin();
-            l = em.find(Locacao.class, cpf);
-            em.remove(l);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            throw new Exception();
-        }
-    }
+	public Locacao atualizar(Locacao l) throws Exception {
+		try {
+			em.getTransaction().begin();
+			em.merge(l);
+			em.getTransaction().commit();
+			return buscar(l.getId());
+		} catch (Exception eAtualizar) {
+			em.getTransaction().rollback();
+			throw eAtualizar;
+		}
+	}
 
-    public List<Locacao> listar() {
-        return (em.createQuery("from " + Locacao.class.getName()).getResultList());
-    }
+	public void deletar(int id) throws Exception {
+		Locacao l = null;
+		try {
+			em.getTransaction().begin();
+			l = em.find(Locacao.class, id);
+			em.remove(l);
+			em.getTransaction().commit();
+		} catch (Exception eDeletar) {
+			em.getTransaction().rollback();
+			throw eDeletar;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Locacao> listar() {
+		try {
+			return (em.createQuery("from " + Locacao.class.getName()).getResultList());
+		} catch (Exception eListar) {
+			throw eListar;
+		}
+
+	}
 
 }
