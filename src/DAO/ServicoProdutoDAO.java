@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Models.ServicoProduto;
@@ -11,10 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author flavi
- */
 public class ServicoProdutoDAO {
 
     private static ServicoProdutoDAO instance;
@@ -39,48 +30,62 @@ public class ServicoProdutoDAO {
         return em;
     }
 
-    public void salvar(ServicoProduto SP) throws Exception {
+    public ServicoProduto buscar(int id) throws Exception {
+        ServicoProduto SP = null;
+        try {
+            em.getTransaction().begin();
+            SP = em.find(ServicoProduto.class, id);
+            em.getTransaction().commit();
+            return SP;
+        } catch (Exception eBuscar) {
+            em.getTransaction().rollback();
+            throw eBuscar;
+        }
+    }
+    
+    public ServicoProduto salvar(ServicoProduto SP) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(SP);
             em.getTransaction().commit();
-            System.out.println("Salvo Servico/Produto com sucesso");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return buscar(SP.getId());
+        } catch (Exception eSalvar) {
             em.getTransaction().rollback();
-            System.out.println("Erro ao Salvar Seviço/Produto");
-            throw new Exception();
+            throw eSalvar;
         }
     }
 
-    public void atualizar(ServicoProduto SP) throws Exception {
+    public ServicoProduto atualizar(ServicoProduto SP) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(SP);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            return buscar(SP.getId());
+        } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eAtualizar;
         }
     }
 
-    public void deletar(String Id) throws Exception {
+    public void deletar(int id) throws Exception {
         ServicoProduto SP = null;
         try {
             em.getTransaction().begin();
-            SP = em.find(ServicoProduto.class, Id);
+            SP = em.find(ServicoProduto.class, id);
             em.remove(SP);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception eDeletar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eDeletar;
         }
     }
 
     public List<ServicoProduto> listar() {
-        return (em.createQuery("from " + ServicoProduto.class.getName()).getResultList());
+        try {
+        	return (em.createQuery("from " + ServicoProduto.class.getName()).getResultList());
+		} catch (Exception eListar) {
+			throw eListar;
+		}
     }
 
 }

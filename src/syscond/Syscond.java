@@ -42,9 +42,12 @@ public class Syscond {
 		FuncionarioController funcionarioController = new FuncionarioController();
 //		funcionarioController.criar("299.299.299-20", "interno", "jardineiro", 0);
 //		funcionarioController.atualizar("299.299.299-20", "interno", "copeiro", 0);
-		funcionarioController.deletar("299.299.299-20");
+//		funcionarioController.deletar("299.299.299-20");
 		
-		
-		
+		ServicoProduto serpro1;
+		ServicoProdutoController servCont = new ServicoProdutoController();
+//		servCont.criar("Jardinagem", 0, "123456789-20", "teste");
+//		servCont.atualizar(1, "teste", 0, "123456789-21", "test");
+		servCont.deletar(1);
 	}
 }

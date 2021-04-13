@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface InterfaceServicoProduto {
     
-    void salvar(ServicoProduto sp);
-    List listar();
-    ServicoProduto listarId(int id);
-    void atualizar(ServicoProduto sp);
+	ServicoProduto salvar(ServicoProduto sp);
+    List<ServicoProduto> listar();
+    ServicoProduto buscar(int id);
+    ServicoProduto atualizar(ServicoProduto sp);
     void deletar(ServicoProduto sp);
     
 }

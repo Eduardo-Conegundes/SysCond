@@ -8,15 +8,12 @@ package DAO.Interface;
 import Models.Funcionario;
 import java.util.List;
 
-/**
- *
- * @author admin
- */
+
 public interface InterfaceFuncionario {
-    void salvar(Funcionario func);
-    List listar();
-    Funcionario listarId(int id);
-    void atualizar(Funcionario func);
-    void deletar(Funcionario func);
+    Funcionario salvar(Funcionario func);
+    List<Funcionario> listar();
+    Funcionario buscar(String cpf);
+    Funcionario atualizar(String cpf);
+    void deletar(String cpf);
     
 }

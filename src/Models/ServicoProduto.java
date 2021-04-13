@@ -1,18 +1,18 @@
 package Models;
 
 import java.io.Serializable;
-import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ServicoProduto implements Serializable {
 	@Id
 	@GeneratedValue(generator = "idServicoProduto")
 	private int id;
+	@OneToOne
 	private Empresa empresa;
 	private String categoria;
 	private String nome; 
@@ -60,7 +60,7 @@ public class ServicoProduto implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

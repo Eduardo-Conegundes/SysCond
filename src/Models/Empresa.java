@@ -2,15 +2,16 @@ package Models;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Empresa implements Serializable {
 	@Id
 	private String cnpj;
-	@ManyToMany
+	@OneToMany
 	private List<ServicoProduto> servicoproduto;
 	private String nome;
 	private String telefone;
