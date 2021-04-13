@@ -4,12 +4,13 @@ import java.util.List;
 
 import DAO.EmpresaDAO;
 import Models.Empresa;
+import Models.ServicoProduto;
 
 public class EmpresaController {
-	
-	public Empresa criar(String cnpj, String nome, String tipo, String telefone){
+	//RESOLVER TUDO
+	public Empresa criar(String cnpj, List<ServicoProduto> servicoproduto, String nome, String telefone){
 		
-		Empresa Empresa = new Empresa(cnpj, nome, tipo, telefone);
+		Empresa Empresa = new Empresa(cnpj, servicoproduto, nome, telefone);
 
 		try {
 			Empresa p = EmpresaDAO.getInstance().salvar(Empresa);
@@ -45,7 +46,7 @@ public class EmpresaController {
 	}
 	
 	//atualiza qualquer campo da empresa, menos o cnpj
-	public Empresa atualizar(String cnpj, String nome, String tipo, String telefone){
+	public Empresa atualizar(String cnpj, String nome, List<ServicoProduto> servicoproduto, String telefone){
 		Empresa empresa_encontrada = null;
 		
 		try {
@@ -59,7 +60,7 @@ public class EmpresaController {
 			System.out.println("Erro, não encontrada empresa com cnpj informado!");
 			return null;
 		}else {
-			Empresa empresa = new Empresa(cnpj, nome, tipo, telefone);
+			Empresa empresa = new Empresa(cnpj, servicoproduto, nome, telefone);
 			try {
 				Empresa atualizada = EmpresaDAO.getInstance().atualizar(empresa);
 				System.out.println("Empresa atualizada com sucesso: " + atualizada.getNome());

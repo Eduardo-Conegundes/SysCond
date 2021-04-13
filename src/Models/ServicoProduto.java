@@ -11,26 +11,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class ServicoProduto implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private long id;
-
-	@ManyToMany(mappedBy="servicoproduto")
-	private List<Empresa> empresa;
+	@GeneratedValue(generator = "idServicoProduto")
+	private int id;
+	private Empresa empresa;
 	private String categoria;
-	private String nome;
+	private String nome; 
 	private float valor;
 
 	public ServicoProduto() {
 	}
 
-
-	public ServicoProduto( String nome, float valor, String categoria){
-		this.nome = nome;
-		this.valor = valor;
-		this.categoria = categoria;       
-	}
-
-	public ServicoProduto(String nome, float valor, List<Empresa> empresa, String categoria) {
+	public ServicoProduto(String nome, float valor, Empresa empresa, String categoria) {
 		this.nome = nome;
 		this.valor = valor;
 		this.empresa = empresa;
@@ -53,11 +44,11 @@ public class ServicoProduto implements Serializable {
 		this.valor = valor;
 	}
 
-	public List<Empresa> getEmpresa() {
+	public Empresa getEmpresa() {
 		return empresa;
 	}
 
-	public void setEmpresa(List<Empresa> empresa) {
+	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
 
@@ -73,7 +64,7 @@ public class ServicoProduto implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
