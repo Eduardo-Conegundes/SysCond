@@ -6,16 +6,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @SuppressWarnings("serial")
 @Entity
 public class Estoque implements Serializable {
-	
-	@Id
-	@GeneratedValue(generator = "idEstoque")
+	@Id @GeneratedValue(generator = "idEstoque")
 	private int id;
-
-	private FluxoEstoque estoque;
+	@OneToMany
+	private List<FluxoEstoque> estoque;
 
 	public Estoque() {
 	}
@@ -37,14 +36,14 @@ public class Estoque implements Serializable {
 	/**
 	 * @return the estoque
 	 */
-	public FluxoEstoque getEstoque() {
+	public List<FluxoEstoque> getEstoque() {
 		return estoque;
 	}
 
 	/**
 	 * @param estoque the estoque to set
 	 */
-	public void setEstoque(FluxoEstoque estoque) {
+	public void setEstoque(List<FluxoEstoque> estoque) {
 		this.estoque = estoque;
 	}
 

@@ -23,7 +23,7 @@ public class ApartamentoController {
 
 			//procura se existe algum apartamento com o bloco e numero já cadastrado
 			if(ap.get(i).getBloco().compareTo(bloco) == 0 && ap.get(i).getNumero() == numero) {
-				System.out.println("Erro ao salvar Apartamento" + ap.get(i).getNumero() + ap.get(i).getBloco()+ ", já existe.");
+				System.out.println("Erro ao salvar Apartamento " + ap.get(i).getNumero() +" "+ ap.get(i).getBloco()+ ", já existe.");
 				return null;
 			}
 		}

@@ -7,15 +7,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class FluxoEstoque {
-    @Id
-    @GeneratedValue(generator = "idFluxoEstoque")
+    @Id @GeneratedValue(generator = "idFluxoEstoque")
     private int id;
-    
     private ServicoProduto produto;
     private int qtd;
     private String tipoTransacao;
-    
-    @ManyToOne
     private Estoque estoque;
     
 

@@ -16,13 +16,13 @@ public class Syscond {
 		
 		Apartamento ap;
 		ApartamentoController apartamentoController = new ApartamentoController();
-		apartamentoController.criar("A",202,1);
-		apartamentoController.criar("A",404,1);
-		apartamentoController.criar("B",504,1);
-		apartamentoController.criar("B",504,1);
+//		apartamentoController.criar("A",202,1);
+//		apartamentoController.criar("A",404,1);
+//		apartamentoController.criar("B",504,1);
+//		apartamentoController.criar("B",504,1);
 //		ap = apartamentoController.atualizar(1, "B", 202, 1);
 //		apartamentoController.deletarPorId(1);
-		ArrayList<Apartamento> listarAps = (ArrayList<Apartamento>) apartamentoController.listar();
+//		ArrayList<Apartamento> listarAps = (ArrayList<Apartamento>) apartamentoController.listar();
 		
 		
 		Veiculo vei1;
