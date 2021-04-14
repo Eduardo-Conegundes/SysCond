@@ -1,19 +1,20 @@
 package Models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @SuppressWarnings("serial")
 @Entity
 public class Estoque implements Serializable {
 	
 	@Id
+	@GeneratedValue(generator = "idEstoque")
 	private int id;
 
-	@OneToMany
 	private FluxoEstoque estoque;
 
 	public Estoque() {

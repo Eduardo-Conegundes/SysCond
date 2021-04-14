@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAO.ApartamentoDAO;
@@ -10,16 +11,23 @@ public class ApartamentoController {
 	public Apartamento criar(String bloco, int numero,  int vagas){
 
 		//retorna a lista de apartamentos cadastrados
-		List<Apartamento> ap = this.listar();
+		List<Apartamento> ap = new ArrayList<Apartamento>();
+		try {
+			ap = ApartamentoDAO.getInstance().listar();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		for (int i = 0; i < ap.size(); i++) {
 
 			//procura se existe algum apartamento com o bloco e numero já cadastrado
 			if(ap.get(i).getBloco().compareTo(bloco) == 0 && ap.get(i).getNumero() == numero) {
-				System.out.println("Erro ao salvar Apartamento, já existe cadastrado com os mesmos dados");
+				System.out.println("Erro ao salvar Apartamento" + ap.get(i).getNumero() + ap.get(i).getBloco()+ ", já existe.");
 				return null;
 			}
 		}
+		
 		Apartamento Apartamento1 = new Apartamento(bloco,numero,vagas);
 		try {
 			Apartamento p = ApartamentoDAO.getInstance().salvar(Apartamento1);
@@ -34,9 +42,10 @@ public class ApartamentoController {
 	public List<Apartamento> listar(){
 		try {
 			List<Apartamento> l = ApartamentoDAO.getInstance().listar();
-			System.out.println("Lido com sucesso! Resultados: " + l);
+			System.out.println("Lido com sucesso! Resultados: " + l.size());
 			return l;
 		} catch (Exception eListar) {
+			eListar.printStackTrace();
 			System.out.println("Erro ao listar Apartamento(s)!");
 			return null;
 		}

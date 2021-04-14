@@ -1,17 +1,23 @@
 package Models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class FluxoEstoque {
     @Id
-    @GeneratedValue(generator = "idGenerator")
-    private long id;
+    @GeneratedValue(generator = "idFluxoEstoque")
+    private int id;
     
     private ServicoProduto produto;
     private int qtd;
     private String tipoTransacao;
+    
+    @ManyToOne
     private Estoque estoque;
+    
 
     public FluxoEstoque(ServicoProduto produto, int qtd, String tipoTransacao, Estoque estoque){
         this.produto = produto;
