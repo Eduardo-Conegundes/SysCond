@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@SuppressWarnings("serial")
 @Entity
 public class Locacao implements Serializable {
 	@Id
@@ -32,43 +33,72 @@ public class Locacao implements Serializable {
 		this.valor = valor;
 	}
 
-	public Morador getMorador() {
-		return morador;
-	}
-	public void setMorador(Morador morador) {
-		this.morador = morador;
-	}
-	public String getEspaco() {
-		return espaco;
-	}
-	public void setEspaco(String espaco) {
-		this.espaco = espaco;
-	} 
-
-	public float getValor() {
-		return valor;
-	}
-
-	public void setValor(int valor) {
-		this.valor = valor;
-	}    
-
-	public void setData(Calendar data) {
-		this.data = data;
-	}
-
-	public Calendar getData() {
-		return data;
-	}
-
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the data
+	 */
+	public Calendar getData() {
+		return data;
+	}
+
+	/**
+	 * @param data the data to set
+	 */
+	public void setData(Calendar data) {
+		this.data = data;
+	}
+
+	/**
+	 * @return the morador
+	 */
+	public Morador getMorador() {
+		return morador;
+	}
+
+	/**
+	 * @param morador the morador to set
+	 */
+	public void setMorador(Morador morador) {
+		this.morador = morador;
+	}
+
+	/**
+	 * @return the espaco
+	 */
+	public String getEspaco() {
+		return espaco;
+	}
+
+	/**
+	 * @param espaco the espaco to set
+	 */
+	public void setEspaco(String espaco) {
+		this.espaco = espaco;
+	}
+
+	/**
+	 * @return the valor
+	 */
+	public float getValor() {
+		return valor;
+	}
+
+	/**
+	 * @param valor the valor to set
+	 */
 	public void setValor(float valor) {
 		this.valor = valor;
 	}

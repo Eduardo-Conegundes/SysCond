@@ -1,24 +1,50 @@
 package Models;
 
 import java.io.Serializable;
-import javax.persistence.ManyToOne;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@SuppressWarnings("serial")
+@Entity
 public class Estoque implements Serializable {
-	private Funcionario pessoa;
+	
+	@Id
+	private int id;
+
+	@OneToMany
+	private FluxoEstoque estoque;
 
 	public Estoque() {
 	}
 
-	public Estoque (Funcionario pessoa){
-		this.pessoa = pessoa;
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
-	public Funcionario getPessoa() {
-		return pessoa;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setPessoa(Funcionario pessoa) {
-		this.pessoa = pessoa;
+	/**
+	 * @return the estoque
+	 */
+	public FluxoEstoque getEstoque() {
+		return estoque;
+	}
+
+	/**
+	 * @param estoque the estoque to set
+	 */
+	public void setEstoque(FluxoEstoque estoque) {
+		this.estoque = estoque;
 	}
 
 }

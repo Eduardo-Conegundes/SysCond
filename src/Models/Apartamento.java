@@ -23,36 +23,61 @@ public class Apartamento implements Serializable {
         this.vagas = vagas;
     }
 
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	/**
+	 * @return the numero
+	 */
+	public int getNumero() {
+		return numero;
+	}
+
+	/**
+	 * @param numero the numero to set
+	 */
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	/**
+	 * @return the bloco
+	 */
+	public String getBloco() {
+		return bloco;
+	}
+
+	/**
+	 * @param bloco the bloco to set
+	 */
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
+	}
+
+	/**
+	 * @return the vagas
+	 */
+	public int getVagas() {
+		return vagas;
+	}
+
+	/**
+	 * @param vagas the vagas to set
+	 */
+	public void setVagas(int vagas) {
+		this.vagas = vagas;
+	}
+
 	
-    public int getVagas() {
-        return vagas;
-    }
-
-    public void setVagas(int vagas) {
-        this.vagas = vagas;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public String getBloco() {
-        return bloco;
-    }
-
-    public void setBloco(String bloco) {
-        this.bloco = bloco;
-    }
-
 }

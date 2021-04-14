@@ -3,7 +3,7 @@ package Models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-public class fluxoEstoque {
+public class FluxoEstoque {
     @Id
     @GeneratedValue(generator = "idGenerator")
     private long id;
@@ -13,7 +13,7 @@ public class fluxoEstoque {
     private String tipoTransacao;
     private Estoque estoque;
 
-    public fluxoEstoque(ServicoProduto produto, int qtd, String tipoTransacao, Estoque estoque){
+    public FluxoEstoque(ServicoProduto produto, int qtd, String tipoTransacao, Estoque estoque){
         this.produto = produto;
         this.qtd = qtd;
         this.tipoTransacao = tipoTransacao;

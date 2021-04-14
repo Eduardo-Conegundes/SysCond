@@ -31,45 +31,100 @@ public class Contas {
 		this.status = status;
 	}
 
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	/**
+	 * @return the identificador
+	 */
 	public String getIdentificador() {
 		return identificador;
 	}
+
+	/**
+	 * @param identificador the identificador to set
+	 */
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
 	}
+
+	/**
+	 * @return the pagador
+	 */
 	public String getPagador() {
 		return pagador;
 	}
+
+	/**
+	 * @param pagador the pagador to set
+	 */
 	public void setPagador(String pagador) {
 		this.pagador = pagador;
 	}
+
+	/**
+	 * @return the beneficiario
+	 */
 	public String getBeneficiario() {
 		return beneficiario;
 	}
+
+	/**
+	 * @param beneficiario the beneficiario to set
+	 */
 	public void setBeneficiario(String beneficiario) {
 		this.beneficiario = beneficiario;
 	}
+
+	/**
+	 * @return the valor
+	 */
 	public float getValor() {
 		return valor;
 	}
+
+	/**
+	 * @param valor the valor to set
+	 */
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+
+	/**
+	 * @return the data
+	 */
 	public Calendar getData() {
 		return data;
 	}
+
+	/**
+	 * @param data the data to set
+	 */
 	public void setData(Calendar data) {
 		this.data = data;
 	}
+
+	/**
+	 * @return the status
+	 */
 	public String getStatus() {
 		return status;
 	}
+
+	/**
+	 * @param status the status to set
+	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}

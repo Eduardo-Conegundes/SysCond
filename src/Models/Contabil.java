@@ -20,28 +20,42 @@ public class Contabil {
 		this.Contas = contas;
 		this.saldo = saldo;
 	}
-	
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
-	
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public List<Contas> getContasAPagar() {
+	/**
+	 * @return the contas
+	 */
+	public List<Contas> getContas() {
 		return Contas;
 	}
-	
+	/**
+	 * @param contas the contas to set
+	 */
 	public void setContas(List<Contas> contas) {
 		Contas = contas;
 	}
-
+	/**
+	 * @return the saldo
+	 */
 	public float getSaldo() {
 		return saldo;
 	}
+	/**
+	 * @param saldo the saldo to set
+	 */
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
 	}
-
+	
+	
 }

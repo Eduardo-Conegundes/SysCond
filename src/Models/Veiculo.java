@@ -20,20 +20,34 @@ public class Veiculo implements Serializable {
         this.apartamento = apartamento;
     }
 
-    public String getPlaca() {
-        return placa;
-    }
+	/**
+	 * @return the placa
+	 */
+	public String getPlaca() {
+		return placa;
+	}
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
+	/**
+	 * @param placa the placa to set
+	 */
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
 
-    public Apartamento getApartamento() {
-        return apartamento;
-    }
+	/**
+	 * @return the apartamento
+	 */
+	public Apartamento getApartamento() {
+		return apartamento;
+	}
 
-    public void setApartamento(Apartamento apartamento) {
-        this.apartamento = apartamento;
-    }
+	/**
+	 * @param apartamento the apartamento to set
+	 */
+	public void setApartamento(Apartamento apartamento) {
+		this.apartamento = apartamento;
+	}
+
+    
     
 }

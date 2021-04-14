@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+@SuppressWarnings("serial")
 @Entity
 public class Visitante implements Serializable {
     @Id
@@ -21,21 +22,34 @@ public class Visitante implements Serializable {
         this.apartamento = apartamento;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
+	/**
+	 * @return the pessoa
+	 */
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-    
-    public Apartamento getApartamento() {
-        return apartamento;
-    }
+	/**
+	 * @param pessoa the pessoa to set
+	 */
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 
-    public void setApartamento(Apartamento apartamento) {
-        this.apartamento = apartamento;
-    }
+	/**
+	 * @return the apartamento
+	 */
+	public Apartamento getApartamento() {
+		return apartamento;
+	}
+
+	/**
+	 * @param apartamento the apartamento to set
+	 */
+	public void setApartamento(Apartamento apartamento) {
+		this.apartamento = apartamento;
+	}
+
     
     
 }

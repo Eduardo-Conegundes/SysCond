@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@SuppressWarnings("serial")
 @Entity
 public class Funcionario implements Serializable {
     @Id
@@ -22,37 +23,61 @@ public class Funcionario implements Serializable {
         this.salario = salario;
         this.cargo = cargo;
     }
-    
-    public String getCargo() {
+
+	/**
+	 * @return the pessoa
+	 */
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	/**
+	 * @param pessoa the pessoa to set
+	 */
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	/**
+	 * @return the interno_externo
+	 */
+	public String getInterno_externo() {
+		return interno_externo;
+	}
+
+	/**
+	 * @param interno_externo the interno_externo to set
+	 */
+	public void setInterno_externo(String interno_externo) {
+		this.interno_externo = interno_externo;
+	}
+
+	/**
+	 * @return the cargo
+	 */
+	public String getCargo() {
 		return cargo;
 	}
-    
-    public void setCargo(String cargo) {
+
+	/**
+	 * @param cargo the cargo to set
+	 */
+	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
 
-    public Pessoa getPessoa() {
-		return pessoa;
-    }
+	/**
+	 * @return the salario
+	 */
+	public float getSalario() {
+		return salario;
+	}
 
-    public void setPessoa(Pessoa pessoa) {
-	this.pessoa = pessoa;
-    }
-
-    public String getInterno_externo() {
-        return interno_externo;
-    }
-
-    public void setInterno_externo(String interno_externo) {
-        this.interno_externo = interno_externo;
-    }
-
-    public float getSalario() {
-        return salario;
-    }
-
-    public void setSalario(float salario) {
-        this.salario = salario;
-    }
-
+	/**
+	 * @param salario the salario to set
+	 */
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+    
 }
