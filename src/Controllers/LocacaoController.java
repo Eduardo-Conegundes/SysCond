@@ -10,7 +10,7 @@ import Models.Morador;
 
 public class LocacaoController {
 	public Locacao criar(Calendar data, String cpf, String espaco, float valor) {
-		Morador morador = null;
+		Morador morador = null; 
 		try {
 			morador = MoradorDAO.getInstance().buscar(cpf);	
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class LocacaoController {
 		return null;		
 	}
 	
-	/*public Locacao buscar(int id){
+	public Locacao buscar(int id){
 		try {
 			Locacao loc = LocacaoDAO.getInstance().buscar(id);
 			System.out.println("Locacão Encontrada: " + loc);
@@ -41,7 +41,7 @@ public class LocacaoController {
 			return null;
 		}
 	}
-	*/
+	
 	public Locacao atualizar(int id, Calendar data, String cpf, String espaco, float valor){
 		Morador morador = null;
 		try {

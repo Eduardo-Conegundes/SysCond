@@ -15,7 +15,7 @@ import java.util.List;
 public interface InterfaceLocacao {
     
     void salvar(Locacao l);
-    List listar();
+    List<Locacao> listar();
     Locacao listarId(int id);
     void atualizar(Locacao l);
     void deletar(Locacao l);

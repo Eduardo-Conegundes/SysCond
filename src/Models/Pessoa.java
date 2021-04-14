@@ -37,9 +37,6 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	/**
-	 * @return the cpf
-	 */
 	public String getCpf() {
 		return cpf;
 	}

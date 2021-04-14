@@ -13,7 +13,7 @@ public class Syscond {
 //		pessoaController.criar("Flavio", "299.299.299-20", "81993939393", "flavio@email.com.br");
 //		p = pessoaController.atualizar("Flávio", "299.299.299-20", "81993939290", "flavio@upe.br");
 //		pessoaController.deletarPorId("299.299.299-20");
-		pessoaController.listar();
+//		pessoaController.listar();
 		
 		Apartamento ap;
 		ApartamentoController apartamentoController = new ApartamentoController();
@@ -68,9 +68,15 @@ public class Syscond {
 //		locCont.criar(null, "299.299.299-20", "Jabuti", (float)500.00);
 //		locCont.atualizar(1, null, "299.299.299-20", "NAJA", (float)10000.00);
 //		locCont.deletar(3);
-		locCont.listar();
-
+//		locCont.listar();
 		
-		
+		Visitante vst1;
+		VisitanteController vCont = new VisitanteController();
+//		vCont.criar("299.299.299-20", 1);
+//		vCont.buscar("299.299.299-20");
+//		vCont.deletar("299.299.299-20");
+//		vCont.listar();
+//		vCont.atualizar("299.299.299-20", 2);
+	
 	}
 }
