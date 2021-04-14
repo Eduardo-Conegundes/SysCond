@@ -18,7 +18,6 @@ public class Locacao implements Serializable {
 	private Calendar data;
 	@OneToOne
 	private Morador morador;
-	@OneToOne
 	private String espaco;
 	private float valor;
 

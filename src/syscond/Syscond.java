@@ -52,7 +52,9 @@ public class Syscond {
 		
 		Usuario user1;
 		UsuarioController userCont = new UsuarioController();
-		userCont.criar("augustotrabalhador@upe.br", "fazdetudo", "cornoPleno");
+//		userCont.criar("augustotrabalhador@upe.br", "fazdetudo", "cornoPleno");
+//		userCont.atualizar(2, "augustotrabalhador@upe.br", "fazdetudo", "cornoMaster");
+//		userCont.deletar(2);
 		
 		
 	}

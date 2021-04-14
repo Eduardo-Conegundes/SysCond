@@ -54,7 +54,7 @@ public class UsuarioController {
 		}
 		
 		if (b==null) {
-			System.out.println("Usuário não encontrada pelo e-mail");
+			System.out.println("Usuário não encontrada pelo ID");
 			return null;
 		}		
 		
@@ -62,7 +62,7 @@ public class UsuarioController {
 				
 		try {
 			Usuario a = UsuarioDAO.getInstance().atualizar(Usuario2);
-			System.out.println("Atualizado com sucesso: " + a);
+			System.out.println("Atualizado com sucesso: " + a.getEmail());
 			return a;
 		} catch (Exception eSalvar) {
 			System.out.println("Erro ao atualizar usuário!");
