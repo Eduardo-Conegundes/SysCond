@@ -11,76 +11,87 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author flavi
- */
 public class UsuarioDAO {
-    
-   private static UsuarioDAO instance;
-    protected EntityManager em;
 
-    public static UsuarioDAO getInstance() {
-        if (instance == null) {
-            instance = new UsuarioDAO();
-        }
-        return instance;
-    }
+	private static UsuarioDAO instance;
+	protected EntityManager em;
 
-    private UsuarioDAO() {
-        em = getEntityManager();
-    }
+	public static UsuarioDAO getInstance() {
+		if (instance == null) {
+			instance = new UsuarioDAO();
+		}
+		return instance;
+	}
 
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
-        if (em == null) {
-            em = factory.createEntityManager();
-        }
-        return em;
-    }
+	private UsuarioDAO() {
+		em = getEntityManager();
+	}
 
-    public void salvar(Usuario user) throws Exception {
-        try {
-            em.getTransaction().begin();
-            em.persist(user);
-            em.getTransaction().commit();
-            System.out.println("Salvo Usuario com sucesso");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            System.out.println("Erro ao salvar Usuario");
-            throw new Exception();
-        }
-    }
+	private EntityManager getEntityManager() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+		if (em == null) {
+			em = factory.createEntityManager();
+		}
+		return em;
+	}
 
-    public void atualizar(Usuario user) throws Exception {
-        try {
-            em.getTransaction().begin();
-            em.merge(user);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            throw new Exception();
-        }
-    }
+	public Usuario buscar(int id) throws Exception {
+		Usuario user = null;
+		try {
+			em.getTransaction().begin();
+			user = em.find(Usuario.class, id);
+			em.getTransaction().commit();
+			return user;
+		} catch (Exception eBuscar) {
+			em.getTransaction().rollback();
+			throw eBuscar;
+		}
+	}
 
-    public void deletar(String cpf) throws Exception {
-        Usuario user = null;
-        try {
-            em.getTransaction().begin();
-            user = em.find(Usuario.class, cpf);
-            em.remove(user);
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-            throw new Exception();
-        }
-    }
+	public Usuario salvar(Usuario user) throws Exception {
+		try {
+			em.getTransaction().begin();
+			em.persist(user);
+			em.getTransaction().commit();
+			return this.buscar(user.getId());
+		} catch (Exception eSalvar) {
+			em.getTransaction().rollback();
+			throw eSalvar;
+		}
+	}
 
-    public List<Usuario> listar() {
-        return (em.createQuery("from " + Usuario.class.getName()).getResultList());
-    }
-    
+	public Usuario atualizar(Usuario user) throws Exception {
+		try {
+			em.getTransaction().begin();
+			em.merge(user);
+			em.getTransaction().commit();
+			return this.buscar(user.getId());
+		} catch (Exception eAtualizar) {
+			em.getTransaction().rollback();
+			throw eAtualizar;
+		}
+	}
+
+	public void deletar(int id) throws Exception {
+		Usuario user = null;
+		try {
+			em.getTransaction().begin();
+			user = em.find(Usuario.class, id);
+			em.remove(user);
+			em.getTransaction().commit();
+		} catch (Exception eDeletar) {
+			em.getTransaction().rollback();
+			throw eDeletar;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usuario> listar() {
+		try {
+			return (em.createQuery("from " + Usuario.class.getName()).getResultList());		
+		} catch (Exception eListar) {
+			throw eListar;
+		}
+	}
+
 }

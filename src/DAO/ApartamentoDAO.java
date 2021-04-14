@@ -44,7 +44,7 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		em.getTransaction().begin();
     		em.persist(apartamento);
     		em.getTransaction().commit();
-    		return buscar(apartamento.getId());
+    		return this.buscar(apartamento.getId());
     	}catch(Exception eSalvar) {
     		em.getTransaction().rollback();
     		throw eSalvar;
@@ -56,7 +56,7 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		em.getTransaction().begin();
     		em.merge(apartamento);
     		em.getTransaction().commit();
-    		return buscar(apartamento.getId());
+    		return this.buscar(apartamento.getId());
     	}catch(Exception eAtualizar) {
     		em.getTransaction().rollback();
     		throw eAtualizar;

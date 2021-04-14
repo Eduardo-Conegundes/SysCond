@@ -4,8 +4,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
+@SuppressWarnings("serial")
 @Entity
 public class Apartamento implements Serializable {
 	@Id
