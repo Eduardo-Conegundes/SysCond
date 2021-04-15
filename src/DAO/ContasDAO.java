@@ -1,12 +1,9 @@
 package DAO;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-
 import DAO.Interface.InterfaceContas;
 import Models.Contas;
 
@@ -39,10 +36,9 @@ public class ContasDAO implements InterfaceContas{
     		em.getTransaction().begin();
     		em.persist(contas);
     		em.getTransaction().commit();
-    	}catch(Exception ex) {
-    		ex.printStackTrace();
+    	}catch(Exception eSalvar) {
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eSalvar;
     	}
     }
     
@@ -51,10 +47,9 @@ public class ContasDAO implements InterfaceContas{
     		em.getTransaction().begin();
     		em.merge(contas);
     		em.getTransaction().commit();
-    	}catch(Exception ex) {
-    		ex.printStackTrace();
+    	}catch(Exception eAtualizar) {
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eAtualizar;
     	}
     }
     
@@ -65,10 +60,9 @@ public class ContasDAO implements InterfaceContas{
     		p = em.find(Contas.class, id);
     		em.remove(p);
     		em.getTransaction().commit();
-    	} catch(Exception ex) {
-    		ex.printStackTrace();
+    	} catch(Exception eDeletar) {
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eDeletar;
     	}
     }
     
@@ -79,15 +73,19 @@ public class ContasDAO implements InterfaceContas{
     		p = em.find(Contas.class, id);
     		em.getTransaction().commit();
     		return p;
-    	} catch(Exception ex) {
-    		ex.printStackTrace();
+    	} catch(Exception eListarId) {
     		em.getTransaction().rollback();
-    		throw new Exception();
+    		throw eListarId;
     	}
     }
     
-    public List<Contas> listar(){
-        return (em.createQuery("from " + Contas.class.getName()).getResultList());
+    @SuppressWarnings("unchecked")
+	public List<Contas> listar(){
+    	try {
+    		return (em.createQuery("from " + Contas.class.getName()).getResultList());
+		} catch (Exception eListar) {
+			throw eListar;
+		}
     }
     
 }
