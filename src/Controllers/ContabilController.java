@@ -8,17 +8,46 @@ import Models.Contas;
 
 public class ContabilController {
 
-	public Contabil criar(List<Contas> contas, float saldo){
+	public Contabil criar(Contabil contabil){
+		ContasController controlador = new ContasController();
+		List<Contas> contas = contabil.getContas();
+		List<Contas> contBank = controlador.listar();
+		Contabil p = null;
+		
 
-		Contabil Contabil1 = new Contabil(contas, saldo);
-		try {
-			Contabil p = ContabilDAO.getInstance().salvar(Contabil1);
-			System.out.println("Salvo com sucesso!!!" );
-			return p;
-		} catch (Exception eSalvar) {
-			System.out.println("Erro ao salvar Contabil!");
-			return null;
-		}	
+
+		if(contBank.size() == 0) {
+			System.out.println("Não há nenhuma conta cadastrada no banco de dados!!! "); //caso não exista contas no BD
+			if(contas.size() == 0) {
+				System.out.println("Não há nenhuma conta para cadastrar!!! ");
+				return null;
+			}else {
+				for(int i = 0; i < contas.size(); i++) {
+					controlador.criar(contas.get(i));
+				}
+			}
+
+		}else {
+			for (int i = 0; i < contBank.size(); i++) {
+
+				//procura se existe algum apartamento com o bloco e numero já cadastrado
+				if(!(contBank.contains(contas.get(i)))) {
+					controlador.criar(contas.get(i));
+				} else {
+					System.out.println("Conta já existe!!! ");
+				}
+
+			}
+			try {
+				p = ContabilDAO.getInstance().salvar(contabil);
+				System.out.println("Salvo com sucesso!!!" );
+				return p;
+			} catch (Exception eSalvar) {
+				System.out.println("Erro ao salvar Contabil!");
+				return null;
+			}	
+		}
+		return p;
 	}
 
 	public List<Contabil> listar(){
@@ -58,7 +87,7 @@ public class ContabilController {
 			System.out.println("Contabil não encontrado.");
 			return null;
 		}
-		
+
 		Contabil Contabil2 = new Contabil(contas, b.getSaldo());
 		Contabil2.setId(id);
 		try {

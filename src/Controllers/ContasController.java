@@ -8,12 +8,10 @@ import Models.Contas;
 
 public class ContasController {
 
-	public Contas criar(String identificador, String pagador, String beneficiario, float valor, Calendar dataEmissao,
-			Calendar dataVencimento, Boolean AReceber){
+	public Contas criar(Contas contas){
 
-		Contas Contas = new Contas(identificador, pagador, beneficiario, valor, dataEmissao, dataVencimento, AReceber);
 		try {
-			Contas cadastrado = ContasDAO.getInstance().salvar(Contas);
+			Contas cadastrado = ContasDAO.getInstance().salvar(contas);
 			System.out.println("Salvo " + cadastrado.getIdentificador() + " com sucesso.");
 			return cadastrado;
 		} catch (Exception eSalvar) {

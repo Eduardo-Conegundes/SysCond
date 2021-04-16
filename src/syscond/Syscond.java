@@ -16,14 +16,15 @@ public class Syscond {
 //		pessoaController.deletarPorId("299.299.299-20");
 //		pessoaController.listar();
 		
-		Apartamento ap;
+		Apartamento ap = new Apartamento("B",203,1);
 		ApartamentoController apartamentoController = new ApartamentoController();
-//		apartamentoController.criar("A",202,1);
+		ap.setId(1); //???
+//		apartamentoController.criar(ap);
 //		apartamentoController.criar("A",404,1);
 //		apartamentoController.criar("B",504,1);
 //		apartamentoController.criar("B",504,1);
-//		ap = apartamentoController.atualizar(1, "B", 202, 1);
-//		apartamentoController.deletarPorId(1);
+//		ap = apartamentoController.atualizar(ap);
+//		apartamentoController.deletar(ap);
 //		ArrayList<Apartamento> listarAps = (ArrayList<Apartamento>) apartamentoController.listar();
 		
 		
@@ -102,12 +103,14 @@ public class Syscond {
 //		c1.deletar(1);
 		
 		ArrayList<Contas> contas = new ArrayList<Contas>();
+//	
 		ContabilController a1 = new ContabilController();
-//		a1.criar(contas, (float)100.0); FALTA AJUSTAR CONTROLLER (VERIFICAR SE CONTA EXISTE NO BANCO PARA SALVAR) 
+		a1.criar(new Contabil(contas, (float)100.0)); //FALTA AJUSTAR CONTROLLER (VERIFICAR SE CONTA EXISTE NO BANCO PARA SALVAR) 
 //		a1.buscar(1);
 //		a1.atualizar(1, contas);
 //		a1.deletar(1);
 		
+//		Contas Contas = new Contas(identificador, pagador, beneficiario, valor, dataEmissao, dataVencimento, AReceber);
 		
 	}
 }
