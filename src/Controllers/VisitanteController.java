@@ -47,7 +47,6 @@ public class VisitanteController {
 	}
 
 	public Visitante atualizar(String cpf, int id){
-		Pessoa pessoa1 = null;
 		Apartamento apartamento1 = null;
 		Visitante vst = null;
 		try {

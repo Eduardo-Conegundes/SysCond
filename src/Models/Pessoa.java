@@ -6,10 +6,9 @@ import javax.persistence.MappedSuperclass;
 
 @Entity
 public class Pessoa {
-   
-    private String nome;
-    @Id
+	@Id
     private String cpf;
+    private String nome;
     private String telefone;
     private String email;
 

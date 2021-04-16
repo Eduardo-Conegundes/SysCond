@@ -8,8 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Contas {
-	@Id
-	@GeneratedValue(generator = "idConta")
+	@Id @GeneratedValue(generator = "idConta")
 	private int id;
 	private String identificador;
 	private String pagador; //quando recebemos

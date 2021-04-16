@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Contabil {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(generator = "idContabil")
 	private int id;
 	@OneToMany
 	private List<Contas> Contas;

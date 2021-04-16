@@ -5,9 +5,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import DAO.Interface.InterfacePessoa;
 import Models.Pessoa;
 
-public class PessoaDAO {
+public class PessoaDAO implements InterfacePessoa {
 
     private static PessoaDAO instance;
     protected EntityManager em;
@@ -79,7 +80,7 @@ public class PessoaDAO {
         }
     }
     
-    public void deletarPorId(String cpf) throws Exception {
+    public void deletar(String cpf) throws Exception {
         try {
             Pessoa p = buscar(cpf);
             deletar(p);

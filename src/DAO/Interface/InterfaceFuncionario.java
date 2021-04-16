@@ -10,10 +10,10 @@ import java.util.List;
 
 
 public interface InterfaceFuncionario {
-    Funcionario salvar(Funcionario func);
-    List<Funcionario> listar();
-    Funcionario buscar(String cpf);
-    Funcionario atualizar(String cpf);
-    void deletar(String cpf);
+    Funcionario salvar(Funcionario func) throws Exception;
+    List<Funcionario> listar() throws Exception;
+    Funcionario buscar(String cpf) throws Exception;
+    Funcionario atualizar(Funcionario func) throws Exception;
+    void deletar(String cpf) throws Exception;
     
 }

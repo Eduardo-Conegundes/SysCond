@@ -12,8 +12,7 @@ import javax.persistence.TemporalType;
 @SuppressWarnings("serial")
 @Entity
 public class Locacao implements Serializable {
-	@Id
-	@GeneratedValue(generator = "idLocacao")
+	@Id @GeneratedValue(generator = "idLocacao")
 	private int id;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar data;

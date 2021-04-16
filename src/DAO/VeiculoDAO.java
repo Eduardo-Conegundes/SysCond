@@ -6,10 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import Models.Pessoa;
+import DAO.Interface.InterfaceVeiculo;
 import Models.Veiculo;
 
-public class VeiculoDAO {
+public class VeiculoDAO implements InterfaceVeiculo{
 	private static VeiculoDAO instance;
 	protected EntityManager em;
 

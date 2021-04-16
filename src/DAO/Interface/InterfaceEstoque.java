@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface InterfaceEstoque {
     void salvar(Estoque F) throws Exception;
-    List listar();
+    List listar() throws Exception;
     void atualizar(Estoque F) throws Exception;
     void deletar(Estoque F) throws Exception;
     

@@ -13,9 +13,9 @@ import java.util.List;
  * @author flavi
  */
 public interface InterfaceVisitante {
-    void salvar(Visitante v);
-    List listar();
-    Visitante listarId(int id);
-    void atualizar(Visitante v);
-    void deletar(Visitante v);
+	Visitante salvar(Visitante v) throws Exception;
+    List<Visitante> listar() throws Exception;
+    Visitante buscar(String cpf) throws Exception;
+    Visitante atualizar(Visitante v) throws Exception;
+    void deletar(String cpf) throws Exception;
 }

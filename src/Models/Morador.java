@@ -10,8 +10,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Morador implements Serializable {
 
-    @Id
-    @OneToOne
+    @Id @OneToOne
     private Pessoa pessoa;
     @ManyToOne
     private Apartamento apartamento;

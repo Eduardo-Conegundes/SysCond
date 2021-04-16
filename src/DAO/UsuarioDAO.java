@@ -11,7 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class UsuarioDAO {
+import DAO.Interface.InterfaceUsuario;
+
+public class UsuarioDAO implements InterfaceUsuario {
 
 	private static UsuarioDAO instance;
 	protected EntityManager em;

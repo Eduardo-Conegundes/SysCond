@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class FuncionarioDAO {
+import DAO.Interface.InterfaceFuncionario;
+
+public class FuncionarioDAO implements InterfaceFuncionario {
     
     private static FuncionarioDAO instance;
     protected EntityManager em;
@@ -89,5 +91,6 @@ public class FuncionarioDAO {
 			 throw eListar;
 		}
     }
+
 
 }

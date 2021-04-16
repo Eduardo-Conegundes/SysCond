@@ -5,7 +5,6 @@
  */
 package DAO.Interface;
 
-import Models.Morador;
 import Models.Usuario;
 import java.util.List;
 
@@ -15,10 +14,10 @@ import java.util.List;
  */
 public interface InterfaceUsuario {
     
-    void salvar(Usuario u);
-    List listar();
-    Usuario listarId(int id);
-    void atualizar(Usuario u);
-    void deletar(Usuario u);
+    Usuario salvar(Usuario u) throws Exception;
+    List<Usuario> listar() throws Exception;
+    Usuario buscar(int id) throws Exception;
+    Usuario atualizar(Usuario u) throws Exception;
+    void deletar(int id) throws Exception;
     
 }

@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface InterfaceVeiculo {
     
-    void salvar(Veiculo c);
-    List<Veiculo> listar();
-    Veiculo listarId(int id);
-    void atualizar(Veiculo c);
-    void deletar(Veiculo c);
+	Veiculo salvar(Veiculo c) throws Exception;
+    List<Veiculo> listar() throws Exception;
+    Veiculo buscar(String placa) throws Exception;
+    Veiculo atualizar(Veiculo c) throws Exception;
+    void deletar(String placa) throws Exception;
     
 }

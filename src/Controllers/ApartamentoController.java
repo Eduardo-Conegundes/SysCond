@@ -91,7 +91,7 @@ public class ApartamentoController {
 
 	public void deletar(int id){
 		try {
-			ApartamentoDAO.getInstance().deletarPorId(id);
+			ApartamentoDAO.getInstance().deletar(id);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir Apartamento!");

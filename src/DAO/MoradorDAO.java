@@ -6,8 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import DAO.Interface.InterfaceMorador;
 
-public class MoradorDAO{
+
+public class MoradorDAO implements InterfaceMorador{
 
 	private static MoradorDAO instance;
 	protected EntityManager em;

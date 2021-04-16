@@ -8,8 +8,7 @@ import javax.persistence.Id;
 @SuppressWarnings("serial")
 @Entity
 public class Apartamento implements Serializable {
-	@Id
-	@GeneratedValue(generator = "idApartamento")
+	@Id @GeneratedValue(generator = "idApartamento")
 	private int id;
     private int numero;
     private String bloco;

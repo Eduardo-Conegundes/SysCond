@@ -10,8 +10,7 @@ import javax.persistence.OneToOne;
 @SuppressWarnings("serial")
 @Entity
 public class ServicoProduto implements Serializable {
-	@Id
-	@GeneratedValue(generator = "idServicoProduto")
+	@Id @GeneratedValue(generator = "idServicoProduto")
 	private int id;
 	@OneToOne
 	private Empresa empresa;

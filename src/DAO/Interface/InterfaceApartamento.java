@@ -10,6 +10,6 @@ public interface InterfaceApartamento {
     List<Apartamento> listar() throws Exception;
     Apartamento buscar(int id) throws Exception;
     Apartamento atualizar(Apartamento a) throws Exception;
-    void deletarPorId(int id) throws Exception;
+    void deletar(int id) throws Exception;
     
 }

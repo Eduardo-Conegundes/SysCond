@@ -12,8 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import DAO.Interface.InterfaceVisitante;
 
-public class VisitanteDAO {
+
+public class VisitanteDAO implements InterfaceVisitante {
 
 	private static VisitanteDAO instance;
 	protected EntityManager em;

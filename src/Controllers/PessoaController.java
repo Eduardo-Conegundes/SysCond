@@ -69,7 +69,7 @@ public class PessoaController {
 
 	public void deletarPorId(String cpf){
 		try {
-			PessoaDAO.getInstance().deletarPorId(cpf);
+			PessoaDAO.getInstance().deletar(cpf);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
 			System.out.println("Erro ao excluir pessoa!");

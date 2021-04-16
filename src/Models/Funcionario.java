@@ -8,8 +8,7 @@ import javax.persistence.OneToOne;
 @SuppressWarnings("serial")
 @Entity
 public class Funcionario implements Serializable {
-    @Id
-    @OneToOne
+    @Id @OneToOne
     private Pessoa pessoa;
     private String interno_externo;
     private String cargo;

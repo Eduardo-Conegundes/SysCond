@@ -9,8 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Usuario implements Serializable {
     
-    @Id
-    @GeneratedValue(generator = "idUsuario")
+    @Id @GeneratedValue(generator = "idUsuario")
     private int id;
     private String email;
     private String senha;

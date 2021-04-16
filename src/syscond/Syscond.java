@@ -1,5 +1,6 @@
 package syscond;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import Controllers.*;
@@ -76,10 +77,10 @@ public class Syscond {
 //		vCont.buscar("299.299.299-20");
 //		vCont.deletar("299.299.299-20");
 //		vCont.listar();
-//		vCont.atualizar("299.299.299-20", 2);
-	
-		Contas cont1;
-		ContasController c1 = new ContasController();
+//		vCont.atualizar("299.299.299-20", 2);^
+		
+//		Contas cont1;
+//		ContasController c1 = new ContasController();
 		
 //		Calendar dataEmissao = Calendar.getInstance();
 //		dataEmissao.set(Calendar.YEAR, 2019);
@@ -87,18 +88,25 @@ public class Syscond {
 //		dataEmissao.set(Calendar.DAY_OF_MONTH, 30);
 //		
 //		Calendar dataVencimento = Calendar.getInstance();
-//		dataVencimento.set(Calendar.YEAR, 2025);
+//	    dataVencimento.set(Calendar.YEAR, 2025);
 //		dataVencimento.set(Calendar.MONTH, Calendar.DECEMBER);
 //		dataVencimento.set(Calendar.DAY_OF_MONTH, 31);
-//		
+
 //		cont1 = c1.criar("aviao", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, dataEmissao, dataVencimento, false);
+//		cont1 = c1.criar("FLAVIO", "NAO PEGUE NO MEU PEITO", "UPE", (float) 500000.0, dataEmissao, dataVencimento, false);
 		
 //		cont1 = c1.buscar(1);
-		
+
 //		cont1 = c1.atualizar(2, "Carrinho de Golf", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, dataEmissao, dataVencimento, false);
 		
 //		c1.deletar(1);
 		
+		ArrayList<Contas> contas = new ArrayList<Contas>();
+		ContabilController a1 = new ContabilController();
+//		a1.criar(contas, (float)100.0); FALTA AJUSTAR CONTROLLER (VERIFICAR SE CONTA EXISTE NO BANCO PARA SALVAR) 
+//		a1.buscar(1);
+//		a1.atualizar(1, contas);
+//		a1.deletar(1);
 		
 		
 	}
