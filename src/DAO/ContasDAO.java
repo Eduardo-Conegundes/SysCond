@@ -31,22 +31,24 @@ public class ContasDAO implements InterfaceContas{
     	return em;
     }
 	
-    public void salvar(Contas contas) throws Exception{
+    public Contas salvar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.persist(contas);
     		em.getTransaction().commit();
+    		return this.buscar(contas.getId());
     	}catch(Exception eSalvar) {
     		em.getTransaction().rollback();
     		throw eSalvar;
     	}
     }
     
-    public void atualizar(Contas contas) throws Exception{
+    public Contas atualizar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
     		em.merge(contas);
     		em.getTransaction().commit();
+    		return this.buscar(contas.getId());
     	}catch(Exception eAtualizar) {
     		em.getTransaction().rollback();
     		throw eAtualizar;
@@ -66,16 +68,16 @@ public class ContasDAO implements InterfaceContas{
     	}
     }
     
-    public Contas listarId(int id) throws Exception {
+    public Contas buscar(int id) throws Exception {
     	Contas p = null;
     	try {
     		em.getTransaction().begin();
     		p = em.find(Contas.class, id);
     		em.getTransaction().commit();
     		return p;
-    	} catch(Exception eListarId) {
+    	} catch(Exception eBuscar) {
     		em.getTransaction().rollback();
-    		throw eListarId;
+    		throw eBuscar;
     	}
     }
     

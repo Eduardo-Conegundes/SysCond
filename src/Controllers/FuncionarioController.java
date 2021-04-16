@@ -8,19 +8,16 @@ import Models.Funcionario;
 import Models.Pessoa;
 
 public class FuncionarioController {
-	private Pessoa buscarPessoa(String cpf) {
+	
+	public Funcionario criar(String cpf, String interno_externo, String cargo, float salario){
 		Pessoa p = null;
 		try {
 			p = PessoaDAO.getInstance().buscar(cpf);
-			return p;
 		} catch (Exception e) {
 			System.out.println("Erro ao encontrar pessoa");
-			return p;
+			return null;
 		}
-	}
-	
-	public Funcionario criar(String cpf, String interno_externo, String cargo, float salario){
-		Pessoa p = buscarPessoa(cpf);
+		
 		if (p==null) {
 			System.out.println("Erro ao encontrar pessoa");
 		}else {

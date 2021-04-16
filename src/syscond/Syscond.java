@@ -1,5 +1,7 @@
 package syscond;
 
+import java.util.Calendar;
+
 import Controllers.*;
 import Models.*;
 
@@ -8,7 +10,7 @@ public class Syscond {
 	public static void main(String[] args) {
 		Pessoa p;
 		PessoaController pessoaController = new PessoaController();
-		pessoaController.criar("Flavio", "299.299.299-20", "81993939393", "flavio@email.com.br");
+//		pessoaController.criar("Flavio", "299.299.299-20", "81993939393", "flavio@email.com.br");
 //		p = pessoaController.atualizar("Flávio", "299.299.299-20", "81993939290", "flavio@upe.br");
 //		pessoaController.deletarPorId("299.299.299-20");
 //		pessoaController.listar();
@@ -76,5 +78,28 @@ public class Syscond {
 //		vCont.listar();
 //		vCont.atualizar("299.299.299-20", 2);
 	
+		Contas cont1;
+		ContasController c1 = new ContasController();
+		
+//		Calendar dataEmissao = Calendar.getInstance();
+//		dataEmissao.set(Calendar.YEAR, 2019);
+//		dataEmissao.set(Calendar.MONTH, Calendar.AUGUST);
+//		dataEmissao.set(Calendar.DAY_OF_MONTH, 30);
+//		
+//		Calendar dataVencimento = Calendar.getInstance();
+//		dataVencimento.set(Calendar.YEAR, 2025);
+//		dataVencimento.set(Calendar.MONTH, Calendar.DECEMBER);
+//		dataVencimento.set(Calendar.DAY_OF_MONTH, 31);
+//		
+//		cont1 = c1.criar("aviao", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, dataEmissao, dataVencimento, false);
+		
+//		cont1 = c1.buscar(1);
+		
+//		cont1 = c1.atualizar(2, "Carrinho de Golf", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, dataEmissao, dataVencimento, false);
+		
+//		c1.deletar(1);
+		
+		
+		
 	}
 }

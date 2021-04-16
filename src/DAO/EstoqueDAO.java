@@ -39,10 +39,9 @@ public class EstoqueDAO implements InterfaceEstoque {
             em.getTransaction().begin();
             em.persist(F);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception eSalvar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eSalvar;
         }
     }
 
@@ -51,10 +50,9 @@ public class EstoqueDAO implements InterfaceEstoque {
             em.getTransaction().begin();
             em.merge(F);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eAtualizar;
         }
     }
 
@@ -65,15 +63,18 @@ public class EstoqueDAO implements InterfaceEstoque {
             est = em.find(Estoque.class, F);
             em.remove(est);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception eDeletar) {
             em.getTransaction().rollback();
-            throw new Exception();
+            throw eDeletar;
         }
     }
 
     public List<Estoque> listar() {
-        return (em.createQuery("from " + Estoque.class.getName()).getResultList());
+    	try {
+    		return (em.createQuery("from " + Estoque.class.getName()).getResultList());	
+		} catch (Exception eListar) {
+			throw eListar;
+		}
     }
 
 }

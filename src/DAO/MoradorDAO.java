@@ -37,9 +37,9 @@ public class MoradorDAO{
 			em.persist(morador);
 			em.getTransaction().commit();
 			return buscar(morador.getPessoa().getCpf());
-		} catch (Exception e) {
+		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
-			throw e;
+			throw eSalvar;
 		}
 	}
 	
@@ -50,9 +50,9 @@ public class MoradorDAO{
 			m = em.find(Morador.class, cpf);
 			em.getTransaction().commit();
 			return m;
-		} catch (Exception e) {
+		} catch (Exception eBuscar) {
 			em.getTransaction().rollback();
-			throw e;
+			throw eBuscar;
 		}
 	}
 
@@ -62,9 +62,9 @@ public class MoradorDAO{
 			em.merge(morador);
 			em.getTransaction().commit();
 			return buscar(morador.getPessoa().getCpf());
-		} catch (Exception e) {
+		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
-			throw e;
+			throw eAtualizar;
 		}
 	}
 
@@ -75,9 +75,9 @@ public class MoradorDAO{
 			m = em.find(Morador.class, cpf);
 			em.remove(m);
 			em.getTransaction().commit();
-		} catch (Exception e) {
+		} catch (Exception eDeletar) {
 			em.getTransaction().rollback();
-			throw e;
+			throw eDeletar;
 		}
 	}
 
@@ -85,8 +85,8 @@ public class MoradorDAO{
 	public List<Morador> listar() throws Exception {
 		try {
 			return (em.createQuery("from " + Morador.class.getName()).getResultList());			
-		} catch (Exception e) {
-			throw e;
+		} catch (Exception eListar) {
+			throw eListar;
 		}
 	}
 }

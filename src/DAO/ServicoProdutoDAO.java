@@ -80,7 +80,8 @@ public class ServicoProdutoDAO {
         }
     }
 
-    public List<ServicoProduto> listar() {
+    @SuppressWarnings("unchecked")
+	public List<ServicoProduto> listar() {
         try {
         	return (em.createQuery("from " + ServicoProduto.class.getName()).getResultList());
 		} catch (Exception eListar) {
