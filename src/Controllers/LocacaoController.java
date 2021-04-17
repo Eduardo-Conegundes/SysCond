@@ -7,14 +7,13 @@ import DAO.MoradorDAO;
 import Models.Locacao;
 import Models.Morador;
 
-
 public class LocacaoController {
 	public Locacao criar(Calendar data, String cpf, String espaco, float valor) {
 		Morador morador = null; 
 		try {
 			morador = MoradorDAO.getInstance().buscar(cpf);	
 		} catch (Exception e) {
-			System.out.println("Erro ao encontrar morador!");
+			System.err.println("Erro ao encontrar morador!");
 		}
 		if(morador == null) {
 			System.out.println("Erro ao encontrar morador!");
@@ -26,7 +25,7 @@ public class LocacaoController {
 			System.out.println("Locação " + l.getEspaco() + " salva com sucesso!");
 			return salva;
 		} catch (Exception e) {
-			System.out.println("Erro ao Salvar locacao!");
+			System.err.println("Erro ao Salvar locacao!");
 		}
 		return null;		
 	}
@@ -37,7 +36,7 @@ public class LocacaoController {
 			System.out.println("Locacão Encontrada: " + loc);
 			return loc;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar locação!");
+			System.err.println("Erro ao buscar locação!");
 			return null;
 		}
 	}
@@ -47,7 +46,7 @@ public class LocacaoController {
 		try {
 			morador = MoradorDAO.getInstance().buscar(cpf);	
 		} catch (Exception e) {
-			System.out.println("Erro ao encontrar morador!");
+			System.err.println("Erro ao encontrar morador!");
 		}
 		if(morador == null) {
 			System.out.println("Erro ao encontrar morador!");
@@ -58,7 +57,7 @@ public class LocacaoController {
 		try {
 			l = LocacaoDAO.getInstance().buscar(id);
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar id!");
+			System.err.println("Erro ao buscar id!");
 			return null;
 		}
 		
@@ -74,7 +73,7 @@ public class LocacaoController {
 			System.out.println("Locação atualizada com sucesso: " + loca);
 			return loca;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao atualizar Locação!");
+			System.err.println("Erro ao atualizar Locação!");
 			return null;
 		}
 	}
@@ -85,7 +84,7 @@ public class LocacaoController {
 			LocacaoDAO.getInstance().deletar(id);
 			System.out.println("Locação excluída com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Locação!");
+			System.err.println("Erro ao excluir Locação!");
 		}
 	}
 	
@@ -95,7 +94,7 @@ public class LocacaoController {
 			System.out.println(" Locação listada com sucesso: " + loc.size());
 			return loc;
 		} catch (Exception eListar) {
-			System.out.println("Erro ao listar Locações)!");
+			System.err.println("Erro ao listar Locações)!");
 			return null;
 		}
 
