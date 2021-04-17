@@ -3,35 +3,39 @@ package Controllers;
 import java.util.List;
 
 import DAO.FuncionarioDAO;
-import DAO.PessoaDAO;
 import Models.Funcionario;
 import Models.Pessoa;
 
 public class FuncionarioController {
-	
-	public Funcionario criar(String cpf, String interno_externo, String cargo, float salario){
+
+	public Funcionario criar(Funcionario funcionario){
+
 		Pessoa p = null;
+		PessoaController pessoa = new PessoaController();
+
 		try {
-			p = PessoaDAO.getInstance().buscar(cpf);
+			p = pessoa.buscar(funcionario.getPessoa().getCpf());
 		} catch (Exception e) {
-			System.out.println("Erro ao encontrar pessoa");
+			System.err.println("Erro ao encontrar pessoa");
 			return null;
 		}
-		
-		if (p==null) {
-			System.out.println("Erro ao encontrar pessoa");
-		}else {
-			Funcionario Funcionario = new Funcionario(p, interno_externo, cargo, salario);
-			try {
-				Funcionario cadastrado = FuncionarioDAO.getInstance().salvar(Funcionario);
-				System.out.println("Salvo " + cadastrado.getPessoa().getNome() + " com sucesso");
-				return cadastrado;
-			} catch (Exception eSalvar) {
-				System.out.println("Erro ao salvar Funcionario!");
-				return null;
-			}
+
+		if (p == null) {
+
+			System.err.println("Erro ao encontrar pessoa");
+			pessoa.criar(funcionario.getPessoa());
+
 		}
-		return null;
+		
+		try {
+			Funcionario cadastrado = FuncionarioDAO.getInstance().salvar(funcionario);
+			System.out.println("Salvo " + cadastrado.getPessoa().getNome() + " com sucesso");
+			return cadastrado;
+		} catch (Exception eSalvar) {
+			System.err.println("Erro ao salvar Funcionario!");
+			return null;
+		}
+
 	}
 
 	public List<Funcionario> listar(){
@@ -40,7 +44,7 @@ public class FuncionarioController {
 			System.out.println("Listar com sucesso: " + l.size());
 			return l;
 		} catch (Exception eListar) {
-			System.out.println("Erro ao listar Funcionario(s)!");
+			System.err.println("Erro ao listar Funcionario(s)!");
 			return null;
 		}
 	}
@@ -51,38 +55,36 @@ public class FuncionarioController {
 			System.out.println("Achado com sucesso: " + b.getPessoa().getNome());
 			return b;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Funcionario!");
+			System.err.println("Erro ao buscar Funcionario!");
 			return null;
 		}
 	}
 
-	public Funcionario atualizar(String cpf, String interno_externo, String cargo, float salario){
-		
+	public Funcionario atualizar(Funcionario funcionario){
+
 		Funcionario b = null;
-		
+
 		try {
-			b = FuncionarioDAO.getInstance().buscar(cpf);
+			b = this.buscar(funcionario.getPessoa().getCpf());
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar cpf!");
+			System.err.println("Erro ao buscar cpf!");
 			return null;
 		}
 
-		if (b==null) {
-			System.out.println("Funcionario não encontrada pelo CPF");
+		if (b == null) {
+			System.err.println("Funcionario não encontrada pelo CPF");
 			return null;
-		}else {
-			b.setCargo(cargo);
-			b.setInterno_externo(interno_externo);
-			b.setSalario(salario);
+		}
+
 			try {
-				Funcionario atualizado = FuncionarioDAO.getInstance().atualizar(b);
+				Funcionario atualizado = FuncionarioDAO.getInstance().atualizar(funcionario);
 				System.out.println("Atualizado com sucesso: " + atualizado.getPessoa().getNome());
 				return atualizado;
 			} catch (Exception eSalvar) {
-				System.out.println("Erro ao atualizar Funcionario!");
+				System.err.println("Erro ao atualizar Funcionario!");
 				return null;
 			}
-		}
+		
 	}
 
 	public void deletar(String cpf){
@@ -90,7 +92,7 @@ public class FuncionarioController {
 			FuncionarioDAO.getInstance().deletar(cpf);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Funcionario!");
+			System.err.println("Erro ao excluir Funcionario!");
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package Controllers;
 
-import java.util.Calendar;
 import java.util.List;
 
 import DAO.ContasDAO;
@@ -43,13 +42,11 @@ public class ContasController {
 		}
 	}
 
-	public Contas atualizar(int id, String identificador, String pagador, String beneficiario, float valor, Calendar dataEmissao,
-			Calendar dataVencimento, Boolean AReceber){
-
+	public Contas atualizar(int id, Contas contas){
 		Contas b = null;
 
 		try {
-			b = ContasDAO.getInstance().buscar(id);
+			b = this.buscar(id);
 		} catch (Exception eBuscar) {
 			System.out.println("Erro ao buscar id!");
 			return null;
@@ -60,15 +57,13 @@ public class ContasController {
 			return null;
 		}else {
 			
-			Contas atualizado = new Contas(identificador, pagador, beneficiario, valor, dataEmissao,
-			dataVencimento, AReceber);
-			atualizado.setId(id);
-			
+			contas.setId(b.getId());
+	
 			try {
-				atualizado = ContasDAO.getInstance().atualizar(atualizado);
-				System.out.println("Atualizado com sucesso: " + atualizado.getIdentificador() + " | " +  atualizado.getDataVencimento());
-				return atualizado;
-			} catch (Exception eSalvar) {
+				contas = ContasDAO.getInstance().atualizar(contas);
+				System.out.println("Atualizado com sucesso: " + contas.getIdentificador() + " | " +  contas.getDataVencimento());
+				return contas;
+			} catch (Exception eAtualizar) {
 				System.out.println("Erro ao atualizar Contas!");
 				return null;
 			}

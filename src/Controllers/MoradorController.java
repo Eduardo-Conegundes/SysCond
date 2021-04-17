@@ -20,10 +20,10 @@ public class MoradorController {
 			if(p != null && a != null) {
 				Morador morador = new Morador(p, a);
 				MoradorDAO.getInstance().salvar(morador);
-				System.out.println("Salvo morador " + morador.getPessoa().getNome() +  " com sucesso: ");
+				System.out.println("Salvo morador " + morador.getPessoa().getNome() +  " com sucesso!!! ");
 				return morador;
 			}else {
-				System.out.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados");
+				System.out.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados!!!");
 				return null;
 			}
 
