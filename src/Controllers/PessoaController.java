@@ -135,7 +135,7 @@ public class PessoaController {
 			PessoaDAO.getInstance().deletar(cpf);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir pessoa!");
+			System.err.println("Erro ao excluir pessoa!");
 		}
 	}
 }
