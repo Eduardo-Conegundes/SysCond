@@ -17,8 +17,6 @@ public class ApartamentoController {
 		try {
 			ap = ApartamentoDAO.getInstance().listar();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 		for (int i = 0; i < ap.size(); i++) {
@@ -35,7 +33,7 @@ public class ApartamentoController {
 			System.out.println("Salvo com sucesso: " + p.getNumero() + p.getBloco());
 			return p;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao salvar Apartamento!");
+			System.err.println("Erro ao salvar Apartamento!");
 			return null;
 		}	
 	}
@@ -46,8 +44,7 @@ public class ApartamentoController {
 			System.out.println("Lido com sucesso! Resultados: " + l.size());
 			return l;
 		} catch (Exception eListar) {
-			eListar.printStackTrace();
-			System.out.println("Erro ao listar Apartamento(s)!");
+			System.err.println("Erro ao listar Apartamento(s)!");
 			return null;
 		}
 
@@ -59,7 +56,7 @@ public class ApartamentoController {
 			System.out.println("Apartamento achado com sucesso: " + b.getNumero() + b.getBloco());
 			return b;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Apartamento!");
+			System.err.println("Erro ao buscar Apartamento!");
 			return null;
 		}
 	}
@@ -70,7 +67,7 @@ public class ApartamentoController {
 		try {
 			buscar = this.buscar(apartamento.getId());
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar apartamento!");
+			System.err.println("Erro ao buscar apartamento!");
 			return null;
 		}
 
@@ -84,7 +81,7 @@ public class ApartamentoController {
 			System.out.println("Atualizado com sucesso! " + a.getBloco() + a.getNumero() + a.getVagas());
 			return a;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao atualizar Apartamento!");
+			System.err.println("Erro ao atualizar Apartamento!");
 			return null;
 		}
 	}
@@ -95,7 +92,7 @@ public class ApartamentoController {
 			ApartamentoDAO.getInstance().deletar(id);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Apartamento!");
+			System.err.println("Erro ao excluir Apartamento!");
 		}
 	}
 }
