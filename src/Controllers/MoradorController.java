@@ -22,12 +22,12 @@ public class MoradorController {
 				System.out.println("Salvo morador " + morador.getPessoa().getNome() +  " com sucesso!!! ");
 				return morador;
 			}else {
-				System.out.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados!!!");
+				System.err.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados!!!");
 				return null;
 			}
 
 		} catch (Exception eCriar) {
-			System.out.println("Erro ao salvar morador");
+			System.err.println("Erro ao salvar morador");
 			return null;
 		}
 	}
