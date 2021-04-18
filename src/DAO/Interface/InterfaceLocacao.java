@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface InterfaceLocacao {
     
-    void salvar(Locacao l) throws Exception;
+    Locacao salvar(Locacao l) throws Exception;
     List<Locacao> listar() throws Exception;
-    Locacao listarId(int id) throws Exception;
-    void atualizar(Locacao l) throws Exception;
-    void deletar(Locacao l) throws Exception;
+    Locacao buscar(int id) throws Exception;
+    Locacao atualizar(Locacao l) throws Exception;
+    void deletar(int id) throws Exception;
     
 }

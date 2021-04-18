@@ -10,8 +10,6 @@ import Models.Pessoa;
 import Models.Visitante;
 
 public class VisitanteController {
-
-
 	public Visitante criar(String cpf, int id) {
 
 		Pessoa pessoa1 = null;
@@ -22,14 +20,14 @@ public class VisitanteController {
 			apartamento1 = ApartamentoDAO.getInstance().buscar(id);
 			visitante1 = new Visitante(pessoa1, apartamento1);
 		} catch (Exception e) {
-			System.out.println("Erro ao encontrar apartamento relacionado ao visitante!");
+			System.err.println("Erro ao encontrar apartamento relacionado ao visitante!");
 		}
 		try {
 			Visitante visit = VisitanteDAO.getInstance().salvar(visitante1);
 			System.out.println("Visitante: " + visit.getPessoa().getNome() + " Está de visita no Aparatemento: " + visit.getApartamento().getNumero() + " do Bloco : " + visit.getApartamento().getBloco());
 			return visit;			
 		} catch (Exception e) {
-			System.out.println("Erro ao salvar visitante!");
+			System.err.println("Erro ao salvar visitante!");
 			return null;
 		}
 	}
@@ -41,7 +39,7 @@ public class VisitanteController {
 			System.out.println("Visitante encontrado com sucesso: " + vistitante);
 			return vistitante;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao encontrar Visitante!");
+			System.err.println("Erro ao encontrar Visitante!");
 			return null;
 		}
 	}
@@ -52,13 +50,13 @@ public class VisitanteController {
 		try {
 			vst = VisitanteDAO.getInstance().buscar(cpf);
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Visitante!");
+			System.err.println("Erro ao buscar Visitante!");
 			return null;
 		}
 		try {
 			apartamento1 = ApartamentoDAO.getInstance().buscar(id);
 		} catch (Exception e) {
-			System.out.println("Erro ao buscar Apartamento!");
+			System.err.println("Erro ao buscar Apartamento!");
 	
 		}
 
@@ -74,22 +72,19 @@ public class VisitanteController {
 			System.out.println("Apartamento de Bloco: " + v.getApartamento().getBloco() + "e Numero: " + v.getApartamento().getNumero() + "Foi atualizado para o visitante" + v.getPessoa().getNome());
 			return v;
 		} catch (Exception eAtualizar) {
-			System.out.println("Erro ao atualizar o apartamento do visitante!");
+			System.err.println("Erro ao atualizar o apartamento do visitante!");
 			return null;
 		}
 	}
-
 
 	public void deletar(String cpf){
 		try {
 			VisitanteDAO.getInstance().deletar(cpf);
 			System.out.println("Visitante excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Visitante!");
+			System.err.println("Erro ao excluir Visitante!");
 		}
 	}
-
-
 
 	public List<Visitante> listar(){
 		try {
@@ -97,7 +92,7 @@ public class VisitanteController {
 			System.out.println("Lista de Visitantes: " + visitante1.size());
 			return visitante1;
 		} catch (Exception eListar) {
-			System.out.println("Erro ao listar Visitantes!");
+			System.err.println("Erro ao listar Visitantes!");
 			return null;
 		}
 	}

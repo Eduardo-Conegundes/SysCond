@@ -15,8 +15,7 @@ public class VeiculoController {
 			ap = ApartamentoDAO.getInstance().buscar(id);
 			Veiculo1 = new Veiculo(placa, ap);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Erro ao buscar apartamento relacionado ao veículo!");
+			System.err.println("Erro ao buscar apartamento relacionado ao veículo!");
 		}
 		
 		try {
@@ -24,7 +23,7 @@ public class VeiculoController {
 			System.out.println("Veiculo de placa:" + p.getPlaca() + "salvo com sucesso!");
 			return p;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao salvar veiculo!");
+			System.err.println("Erro ao salvar veiculo!");
 			return null;
 		}
 	}
@@ -35,7 +34,7 @@ public class VeiculoController {
 			System.out.println("Listar com sucesso: " + l);
 			return l;
 		} catch (Exception eListar) {
-			System.out.println("Erro ao listar Veiculo(s)!");
+			System.err.println("Erro ao listar Veiculo(s)!");
 			return null;
 		}
 
@@ -47,7 +46,7 @@ public class VeiculoController {
 			System.out.println("Achado com sucesso!");
 			return b;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Veiculo!");
+			System.err.println("Erro ao buscar Veiculo!");
 			return null;
 		}
 	}
@@ -68,7 +67,7 @@ public class VeiculoController {
 		try {
 			b = VeiculoDAO.getInstance().buscar(placa);
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar veículo!");
+			System.err.println("Erro ao buscar veículo!");
 			return null;
 		}
 		
@@ -82,7 +81,7 @@ public class VeiculoController {
 			System.out.println("Veiculo atualizado com sucesso.");
 			return a;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao atualizar veiculo!");
+			System.err.println("Erro ao atualizar veiculo!");
 			return null;
 		}
 	}
@@ -92,7 +91,7 @@ public class VeiculoController {
 			VeiculoDAO.getInstance().deletar(placa);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Veiculo!");
+			System.err.println("Erro ao excluir Veiculo!");
 		}
 	}
 }

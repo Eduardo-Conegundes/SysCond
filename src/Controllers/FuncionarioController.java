@@ -7,7 +7,6 @@ import Models.Funcionario;
 import Models.Pessoa;
 
 public class FuncionarioController {
-
 	public Funcionario criar(Funcionario funcionario){
 
 		Pessoa p = null;
@@ -22,7 +21,7 @@ public class FuncionarioController {
 
 		if (p == null) {
 
-			System.err.println("Erro ao encontrar pessoa");
+			System.out.println("Erro ao encontrar pessoa");
 			pessoa.criar(funcionario.getPessoa());
 
 		}
@@ -72,7 +71,7 @@ public class FuncionarioController {
 		}
 
 		if (b == null) {
-			System.err.println("Funcionario não encontrada pelo CPF");
+			System.out.println("Funcionario não encontrada pelo CPF");
 			return null;
 		}
 

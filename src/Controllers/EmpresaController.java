@@ -87,7 +87,7 @@ public class EmpresaController {
 			System.out.println("Empresa atualizada com sucesso: " + atualizada.getNome());
 			return atualizada;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao atualizar Empresa!");
+			System.err.println("Erro ao atualizar Empresa!");
 			return null;
 		}
 
@@ -98,7 +98,7 @@ public class EmpresaController {
 			EmpresaDAO.getInstance().deletar(cnpj);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Empresa!");
+			System.err.println("Erro ao excluir Empresa!");
 		}
 	}
 }

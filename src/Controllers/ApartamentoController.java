@@ -22,9 +22,9 @@ public class ApartamentoController {
 
 		for (int i = 0; i < ap.size(); i++) {
 			
-            //procura se existe algum apartamento com o bloco e numero já cadastrado
+            //procura se existe algum apartamento com o bloco e numero jï¿½ cadastrado
             if(ap.get(i).getBloco().compareTo(bloco) == 0 && ap.get(i).getNumero() == numero) {
-                System.err.println("Erro ao salvar Apartamento " + ap.get(i).getNumero() +" "+ ap.get(i).getBloco()+ ", já existe.");
+                System.err.println("Erro ao salvar Apartamento " + ap.get(i).getNumero() +" "+ ap.get(i).getBloco()+ ", jï¿½ existe.");
                 return null;
             }
         }
@@ -45,7 +45,6 @@ public class ApartamentoController {
 			System.out.println("Lido com sucesso! Resultados: " + l.size());
 			return l;
 		} catch (Exception eListar) {
-			eListar.printStackTrace();
 			System.err.println("Erro ao listar Apartamento(s)!");
 			return null;
 		}
@@ -85,7 +84,7 @@ public class ApartamentoController {
 			return null;
 		}
 		if (buscar == null) {
-			System.err.println("Apartamento não encontrado.");
+			System.err.println("Apartamento nï¿½o encontrado.");
 			return null;
 		}
 		buscar.setVagas(vagas);
@@ -103,7 +102,7 @@ public class ApartamentoController {
 		int id = apartamento.getId();
 		try {
 			ApartamentoDAO.getInstance().deletar(id);
-			System.out.println("Excluído com sucesso");
+			System.out.println("Excluï¿½do com sucesso");
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Apartamento!");
 		}

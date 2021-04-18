@@ -68,7 +68,7 @@ public class PessoaController {
 		List<Pessoa> pessoas = this.listar();
 		
 		if(pessoas.contains(pessoa)) {
-			System.err.println("Pessoa já cadastrada!!! ");
+			System.out.println("Pessoa já cadastrada!!! ");
 			return null;
 		}
 		try {
@@ -87,7 +87,7 @@ public class PessoaController {
 			System.out.println("Listar com sucesso: " + l.size());
 			return l;
 		} catch (Exception eListar) {
-			System.out.println("Erro ao listar pessoa(s)!");
+			System.err.println("Erro ao listar pessoa(s)!");
 			return null;
 		}
 
@@ -99,7 +99,7 @@ public class PessoaController {
 			System.out.println("Achado com sucesso: " + b);
 			return b;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar pessoa!");
+			System.err.println("Erro ao buscar pessoa!");
 			return null;
 		}
 	}
@@ -116,7 +116,7 @@ public class PessoaController {
 		}
 		
 		if (b == null) {
-			System.err.println("Pessoa não encontrada pelo CPF");
+			System.out.println("Pessoa não encontrada pelo CPF");
 			return null;
 		}		
 		
@@ -135,7 +135,7 @@ public class PessoaController {
 			PessoaDAO.getInstance().deletar(cpf);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir pessoa!");
+			System.err.println("Erro ao excluir pessoa!");
 		}
 	}
 }

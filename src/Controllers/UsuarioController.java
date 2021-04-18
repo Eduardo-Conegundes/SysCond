@@ -14,7 +14,7 @@ public class UsuarioController {
 			System.out.println("Salvo " + p.getEmail() + " com sucesso");
 			return p;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao salvar usuário!");
+			System.err.println("Erro ao salvar usuário!");
 			return null;
 		}
 	}
@@ -25,7 +25,7 @@ public class UsuarioController {
 			System.out.println("Listar com sucesso: " + l.size());
 			return l;
 		} catch (Exception eListar) {
-			System.out.println("Erro ao listar usuário(s)!");
+			System.err.println("Erro ao listar usuário(s)!");
 			return null;
 		}
 
@@ -38,7 +38,7 @@ public class UsuarioController {
 			System.out.println("Achado com sucesso: " + b);
 			return b;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar usuário!");
+			System.err.println("Erro ao buscar usuário!");
 			return null;
 		}
 	}
@@ -49,7 +49,7 @@ public class UsuarioController {
 		try {
 			b = UsuarioDAO.getInstance().buscar(id);
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar usuário!");
+			System.err.println("Erro ao buscar usuário!");
 			return null;
 		}
 		
@@ -65,7 +65,7 @@ public class UsuarioController {
 			System.out.println("Atualizado com sucesso: " + a.getEmail());
 			return a;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao atualizar usuário!");
+			System.err.println("Erro ao atualizar usuário!");
 			return null;
 		}
 	}
@@ -75,7 +75,7 @@ public class UsuarioController {
 			UsuarioDAO.getInstance().deletar(id);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Usuario!");
+			System.err.println("Erro ao excluir Usuario!");
 		}
 	}
 }

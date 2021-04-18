@@ -114,7 +114,7 @@ public class ServicoProdutoController {
 		try {
 			ServicoProdutoDAO.getInstance().deletar(id);
 			System.out.println("Excluído com sucesso");
-		} catch (Exception e) {
+		} catch (Exception eDeletar) {
 			System.err.println("Erro ao excluir ServicoProduto!");
 		}
 	}

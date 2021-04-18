@@ -11,11 +11,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import DAO.Interface.InterfaceLocacao;
+
 /**
  *
  * @author flavi
  */
-public class LocacaoDAO {
+public class LocacaoDAO implements InterfaceLocacao {
 
 	private static LocacaoDAO instance;
 	protected EntityManager em;
