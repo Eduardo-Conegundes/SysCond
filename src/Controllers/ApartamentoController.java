@@ -15,17 +15,16 @@ public class ApartamentoController {
 		//retorna a lista de apartamentos cadastrados
 		List<Apartamento> ap = new ArrayList<Apartamento>();
 		try {
-			ap = ApartamentoDAO.getInstance().listar();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ap = this.listar();
+		} catch (Exception eListar) {
+			System.err.println("Erro ao listar apartamentos");
 		}
 
 		for (int i = 0; i < ap.size(); i++) {
 			
             //procura se existe algum apartamento com o bloco e numero já cadastrado
             if(ap.get(i).getBloco().compareTo(bloco) == 0 && ap.get(i).getNumero() == numero) {
-                System.out.println("Erro ao salvar Apartamento " + ap.get(i).getNumero() +" "+ ap.get(i).getBloco()+ ", já existe.");
+                System.err.println("Erro ao salvar Apartamento " + ap.get(i).getNumero() +" "+ ap.get(i).getBloco()+ ", já existe.");
                 return null;
             }
         }
@@ -35,7 +34,7 @@ public class ApartamentoController {
 			System.out.println("Salvo com sucesso: " + p.getNumero() + p.getBloco());
 			return p;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao salvar Apartamento!");
+			System.err.println("Erro ao salvar Apartamento!");
 			return null;
 		}	
 	}
@@ -47,44 +46,55 @@ public class ApartamentoController {
 			return l;
 		} catch (Exception eListar) {
 			eListar.printStackTrace();
-			System.out.println("Erro ao listar Apartamento(s)!");
+			System.err.println("Erro ao listar Apartamento(s)!");
 			return null;
 		}
 
 	}
 
+	public List<Apartamento> listar(String bloco) {
+		List<Apartamento>lista_apartamentos = this.listar();
+		List<Apartamento>lista_por_bloco = new ArrayList<Apartamento>();
+		
+		for (int i = 0; i < lista_apartamentos.size(); i++) {
+			if(lista_apartamentos.get(i).getBloco().compareTo(bloco)==0) {
+				lista_por_bloco.add(lista_apartamentos.get(i));
+			}
+		}
+		return lista_por_bloco;
+	}
+	
 	public Apartamento buscar(int id){
 		try {
 			Apartamento b = ApartamentoDAO.getInstance().buscar(id);
 			System.out.println("Apartamento achado com sucesso: " + b.getNumero() + b.getBloco());
 			return b;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Apartamento!");
+			System.err.println("Erro ao buscar Apartamento!");
 			return null;
 		}
 	}
 
-	public Apartamento atualizar(Apartamento apartamento){
-		
+	public Apartamento atualizar(int id, int vagas){
 		Apartamento buscar = null;
+
 		try {
-			buscar = this.buscar(apartamento.getId());
+			buscar = this.buscar(id);		
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar apartamento!");
+			System.err.println("Erro ao buscar apartamento!");
 			return null;
 		}
-
 		if (buscar == null) {
-			System.out.println("Apartamento não encontrado.");
+			System.err.println("Apartamento não encontrado.");
 			return null;
-		}		
-
+		}
+		buscar.setVagas(vagas);
 		try {
-			Apartamento a = ApartamentoDAO.getInstance().atualizar(apartamento);
+			Apartamento a = ApartamentoDAO.getInstance().atualizar(buscar);
 			System.out.println("Atualizado com sucesso! " + a.getBloco() + a.getNumero() + a.getVagas());
 			return a;
 		} catch (Exception eSalvar) {
-			System.out.println("Erro ao atualizar Apartamento!");
+			System.err.println("Erro ao atualizar Apartamento!");
 			return null;
 		}
 	}
@@ -95,7 +105,7 @@ public class ApartamentoController {
 			ApartamentoDAO.getInstance().deletar(id);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
-			System.out.println("Erro ao excluir Apartamento!");
+			System.err.println("Erro ao excluir Apartamento!");
 		}
 	}
 }

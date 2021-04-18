@@ -1,5 +1,7 @@
 package syscond;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -18,7 +20,6 @@ public class Syscond {
 		
 		Apartamento ap = new Apartamento("B",203,1);
 		ApartamentoController apartamentoController = new ApartamentoController();
-		ap.setId(1); //???
 //		apartamentoController.criar(ap);
 //		apartamentoController.criar("A",404,1);
 //		apartamentoController.criar("B",504,1);
@@ -26,7 +27,6 @@ public class Syscond {
 //		ap = apartamentoController.atualizar(ap);
 //		apartamentoController.deletar(ap);
 //		ArrayList<Apartamento> listarAps = (ArrayList<Apartamento>) apartamentoController.listar();
-		
 		
 		Veiculo vei1;
 		VeiculoController veiculoController = new VeiculoController();
@@ -80,36 +80,40 @@ public class Syscond {
 //		vCont.listar();
 //		vCont.atualizar("299.299.299-20", 2);^
 		
-//		Contas cont1;
-//		ContasController c1 = new ContasController();
 		
-//		Calendar dataEmissao = Calendar.getInstance();
-//		dataEmissao.set(Calendar.YEAR, 2019);
-//		dataEmissao.set(Calendar.MONTH, Calendar.AUGUST);
-//		dataEmissao.set(Calendar.DAY_OF_MONTH, 30);
-//		
-//		Calendar dataVencimento = Calendar.getInstance();
-//	    dataVencimento.set(Calendar.YEAR, 2025);
-//		dataVencimento.set(Calendar.MONTH, Calendar.DECEMBER);
-//		dataVencimento.set(Calendar.DAY_OF_MONTH, 31);
-
-//		cont1 = c1.criar("aviao", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, dataEmissao, dataVencimento, false);
-//		cont1 = c1.criar("FLAVIO", "NAO PEGUE NO MEU PEITO", "UPE", (float) 500000.0, dataEmissao, dataVencimento, false);
+		ContabilController contabil = ContabilController.getInstance();
 		
-//		cont1 = c1.buscar(1);
+		LocalDate myDate1 =LocalDate.parse("2014-02-14");
+		LocalDate myDate2 =LocalDate.parse("2014-02-16");
+		
 
+		Contas c1 = new Contas("ivgaigv", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, myDate1, myDate2, false, false);
+		Contas c2 = new Contas("FLAVIO", "NAO PEGUE NO MEU PEITO", "UPE", (float) 500000.0, myDate1, myDate2, false, true);
+		Contas c3 = new Contas("FLAVIO", "NAO PEGUE NO MEU PEITO", "UPE", (float) 500000.0, myDate1, myDate2, true, true);
+		Contas c4 = new Contas("FLAVIO", "NAO PEGUE NO MEU PEITO", "UPE", (float) 600000.0, myDate1, myDate2, false, true);
+		Contas c5 = new Contas("FLAVIO", "NAO PEGUE NO MEU PEITO", "UPE", (float) 600000.0, myDate1, myDate2, false, false);
+		Contas c6 = new Contas("dvbsuabvui", "NAO PEGUE NO MEU PEITO", "UPE", (float) 600000.0, myDate1, myDate2, false, true);
+		Contas c7 = new Contas("dvbvui", "NAO PEGUE NO MEU PEITO", "UPE", (float) 500000.0, myDate1, myDate2, false, true);
+		
+//		contabil.criar(c1);
+//		contabil.criar(c2);
+//		contabil.criar(c7);
+		
+//		Contas cont1 = contabil.buscar(2);
+		
+//
 //		cont1 = c1.atualizar(2, "Carrinho de Golf", "Sivonaldo Aeronautica", "Condominio", (float) 100000.0, dataEmissao, dataVencimento, false);
-		
-//		c1.deletar(1);
-		
-		ArrayList<Contas> contas = new ArrayList<Contas>();
+//		
+//		contabil.deletar(4);
+//		
+//		ArrayList<Contas> contas = new ArrayList<Contas>();
 //	
-		ContabilController a1 = new ContabilController();
-		a1.criar(new Contabil(contas, (float)100.0)); //FALTA AJUSTAR CONTROLLER (VERIFICAR SE CONTA EXISTE NO BANCO PARA SALVAR) 
+//		ContabilController a1 = new ContabilController();
+//		a1.criar(new Contabil(contas, (float)100.0)); //FALTA AJUSTAR CONTROLLER (VERIFICAR SE CONTA EXISTE NO BANCO PARA SALVAR) 
 //		a1.buscar(1);
 //		a1.atualizar(1, contas);
 //		a1.deletar(1);
-		
+//		
 //		Contas Contas = new Contas(identificador, pagador, beneficiario, valor, dataEmissao, dataVencimento, AReceber);
 		
 	}

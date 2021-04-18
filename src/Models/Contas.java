@@ -1,5 +1,7 @@
 package Models;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -14,14 +16,14 @@ public class Contas {
 	private String pagador; //quando recebemos
 	private String beneficiario;  //quando pagamos
 	private float valor;
-	private Calendar dataEmissao;
-	private Calendar dataVencimento;
+	private LocalDate dataEmissao;
+	private LocalDate dataVencimento;
 	private Boolean AReceber;//true=a receber / false=a pagar
-	
+	private Boolean statusPaga;
+
 	public Contas() {
-			
+
 	}
-	
 	/**
 	 * @param identificador
 	 * @param pagador
@@ -29,19 +31,24 @@ public class Contas {
 	 * @param valor
 	 * @param dataEmissao
 	 * @param dataVencimento
-	 * @param AReceber
+	 * @param aReceber
+	 * @param statusPaga
 	 */
-	public Contas(String identificador, String pagador, String beneficiario, float valor, Calendar dataEmissao,
-			Calendar dataVencimento, Boolean AReceber) {
+	public Contas(String identificador, String pagador, String beneficiario, float valor, LocalDate dataEmissao,
+			LocalDate dataVencimento, Boolean aReceber, Boolean statusPaga) {
+		super();
 		this.identificador = identificador;
 		this.pagador = pagador;
 		this.beneficiario = beneficiario;
 		this.valor = valor;
 		this.dataEmissao = dataEmissao;
 		this.dataVencimento = dataVencimento;
-		this.AReceber = AReceber;
+		AReceber = aReceber;
+		this.statusPaga = statusPaga;
 	}
+
 	
+
 	/**
 	 * @return the id
 	 */
@@ -105,39 +112,70 @@ public class Contas {
 	/**
 	 * @return the dataEmissao
 	 */
-	public Calendar getDataEmissao() {
+	public LocalDate getDataEmissao() {
 		return dataEmissao;
 	}
 	/**
 	 * @param dataEmissao the dataEmissao to set
 	 */
-	public void setDataEmissao(Calendar dataEmissao) {
+	public void setDataEmissao(LocalDate dataEmissao) {
 		this.dataEmissao = dataEmissao;
 	}
 	/**
 	 * @return the dataVencimento
 	 */
-	public Calendar getDataVencimento() {
+	public LocalDate getDataVencimento() {
 		return dataVencimento;
 	}
 	/**
 	 * @param dataVencimento the dataVencimento to set
 	 */
-	public void setDataVencimento(Calendar dataVencimento) {
+	public void setDataVencimento(LocalDate dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 	/**
-	 * @return the AReceber
+	 * @return the aReceber
 	 */
-	public Boolean AReceber() {
+	public Boolean getAReceber() {
 		return AReceber;
 	}
 	/**
-	 * @param AReceber the AReceber to set
+	 * @param aReceber the aReceber to set
 	 */
-	public void setAReceber(Boolean AReceber) {
-		this.AReceber = AReceber;
+	public void setAReceber(Boolean aReceber) {
+		AReceber = aReceber;
+	}
+	/**
+	 * @return the statusPaga
+	 */
+	public Boolean getStatusPaga() {
+		return statusPaga;
+	}
+	/**
+	 * @param statusPaga the statusPaga to set
+	 */
+	public void setStatusPaga(Boolean statusPaga) {
+		this.statusPaga = statusPaga;
 	}
 	
 	
+	public boolean equals(Object obj) {
+		Contas conta = (Contas)obj;
+		if(
+				(this.identificador.compareTo(conta.getIdentificador()) == 0) &&
+				(this.pagador.compareTo(conta.getPagador()) == 0) &&
+				(this.beneficiario.compareTo(conta.getBeneficiario()) == 0) &&
+				(this.valor == conta.getValor()) &&
+				(this.dataEmissao.compareTo(conta.getDataEmissao()) == 0) &&
+				(this.dataVencimento.compareTo(conta.getDataVencimento()) == 0) &&
+				(this.AReceber == conta.getAReceber()) &&
+				(this.statusPaga == (conta.getStatusPaga()))
+
+				) {
+			return true;
+		}else {
+			return false;			
+		}
+	}
+
 }

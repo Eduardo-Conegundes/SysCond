@@ -1,111 +1,184 @@
 package Controllers;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import DAO.ContabilDAO;
+import DAO.ContasDAO;
 import Models.Contabil;
 import Models.Contas;
+import syscond.Syscond;
 
 public class ContabilController {
+	private static ContabilController instance;
+	private Contabil contabil;
 
-	public Contabil criar(Contabil contabil){
-		ContasController controlador = new ContasController();
-		List<Contas> contas = contabil.getContas();
-		List<Contas> contBank = controlador.listar();
-		Contabil p = null;
-		
-
-
-		if(contBank.size() == 0) {
-			System.out.println("Não há nenhuma conta cadastrada no banco de dados!!! "); //caso não exista contas no BD
-			if(contas.size() == 0) {
-				System.out.println("Não há nenhuma conta para cadastrar!!! ");
-				return null;
-			}else {
-				for(int i = 0; i < contas.size(); i++) {
-					controlador.criar(contas.get(i));
-				}
-			}
-
-		}else {
-			for (int i = 0; i < contBank.size(); i++) {
-
-				//procura se existe algum apartamento com o bloco e numero já cadastrado
-				if(!(contBank.contains(contas.get(i)))) {
-					controlador.criar(contas.get(i));
-				} else {
-					System.out.println("Conta já existe!!! ");
-				}
-
-			}
-			try {
-				p = ContabilDAO.getInstance().salvar(contabil);
-				System.out.println("Salvo com sucesso!!!" );
-				return p;
-			} catch (Exception eSalvar) {
-				System.out.println("Erro ao salvar Contabil!");
-				return null;
-			}	
+	public static ContabilController getInstance() {
+		if(instance == null) {
+			instance = new ContabilController();
 		}
-		return p;
+		return instance;
 	}
 
-	public List<Contabil> listar(){
+	private ContabilController() {
+		if(ContabilDAO.getInstance().listar().size()==0) {
+			try {
+				this.contabil = ContabilDAO.getInstance().salvar(new Contabil(null, 0));
+			} catch (Exception e) {
+				System.out.println("Erro!");
+			}
+		}else {
+			this.contabil = ContabilDAO.getInstance().buscar(1);
+		}
+	}
+
+	public Contas criar(Contas conta){
+
+		Contas criada = null;
+
+		List<Contas> contasBD = this.listar();
+
+		if(contasBD.size()==0) {
+			try {
+				System.out.println("Conta Salva com Sucesso!");
+				criada = ContasDAO.getInstance().salvar(conta);
+				return criada;	
+			} catch (Exception eSalvar) {
+				System.err.println("Erro ao salvar conta");
+			}
+		}else{
+			for (int i = 0; i < contasBD.size(); i++) {
+				if(contasBD.get(i).equals(conta)) {
+					System.out.println("Conta ja existe!");
+					return null;
+				}
+			}
+			try {
+				if(atualizaSaldo(conta)) {
+					System.out.println("Conta Salva com Sucesso!");
+					criada = ContasDAO.getInstance().salvar(conta);					
+				}
+			} catch (Exception eSalvar) {
+				System.err.println("Erro ao salvar conta");
+			}
+		}
+		return criada;
+	}
+
+	public List<Contas> listar(){
 		try {
-			List<Contabil> l = ContabilDAO.getInstance().listar();
-			System.out.println("Lido com sucesso! Resultados: " + l.size());
+			List<Contas> l = ContasDAO.getInstance().listar();
+			System.out.println("Lido com sucesso!");
 			return l;
 		} catch (Exception eListar) {
 			eListar.printStackTrace();
-			System.out.println("Erro ao listar Contabil(s)!");
-			return null;
-		}
-
-	}
-
-	public Contabil buscar(int id){
-		try {
-			Contabil b = ContabilDAO.getInstance().buscar(id);
-			System.out.println("Contabil achado com sucesso: " + b.getId());
-			return b;
-		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Contabil!");
+			System.err.println("Erro ao listar Conta(s)!");
 			return null;
 		}
 	}
 
-	public Contabil atualizar(int id,List<Contas> contas){
-		Contabil b = null;
+	public Contas buscar(int id){
 		try {
-			b = ContabilDAO.getInstance().buscar(id);
+			Contas conta = ContasDAO.getInstance().buscar(id);
+			System.out.println("Conta encontrada com sucesso: " + conta.getId());
+			return conta;
 		} catch (Exception eBuscar) {
-			System.out.println("Erro ao buscar Contabil!");
+			System.err.println("Erro ao buscar Conta");
 			return null;
 		}
+	}
 
-		if (b==null) {
-			System.out.println("Contabil não encontrado.");
-			return null;
+	public List<Contas> buscar(LocalDate data_vencimento){
+
+		List<Contas> contasBD = this.listar();
+
+		List<Contas> contas_porData = new ArrayList<Contas>();
+
+		for (int i = 0; i < contasBD.size(); i++) {
+			if(contasBD.get(i).getDataVencimento().equals(data_vencimento)) {
+				contas_porData.add(contasBD.get(i));
+			}
 		}
+		return contas_porData;
+	}
 
-		Contabil Contabil2 = new Contabil(contas, b.getSaldo());
-		Contabil2.setId(id);
+	public Contas atualizar(int id, Contas conta){
+		this.buscar(id);
+		conta.setId(id);
 		try {
-			Contabil a = ContabilDAO.getInstance().atualizar(Contabil2);
-			System.out.println("Atualizado com sucesso!" + a.getId());
-			return a;
+			atualizaSaldo(conta);
+			Contas atualizada = ContasDAO.getInstance().atualizar(conta);
+			System.out.println("Atualizado com sucesso!" + atualizada.getId());
+			return atualizada;
 		} catch (Exception eAtualizar) {
-			System.out.println("Erro ao atualizar Contabil!");
+			System.err.println("Erro ao atualizar Contabil!");
 			return null;
 		}
 	}
 
 	public void deletar(int id){
+		Contas conta = this.buscar(id);
+
+		if(conta.getStatusPaga()) {
+			if(conta.getAReceber()) {
+				this.contabil.setSaldo(this.contabil.getSaldo()-conta.getValor());
+				try {
+					ContabilDAO.getInstance().atualizar(contabil);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				this.contabil.setSaldo(this.contabil.getSaldo()+conta.getValor());
+				try {
+					ContabilDAO.getInstance().atualizar(contabil);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
 		try {
-			ContabilDAO.getInstance().deletar(id);
+			ContasDAO.getInstance().deletar(id);
 			System.out.println("Excluído com sucesso");
 		} catch (Exception eDeletar) {
-			System.out.println("Erro ao excluir Contabil!");
+			System.err.println("Erro ao excluir Contabil!");
 		}
 	}
+
+	private Boolean atualizaSaldo(Contas conta) {
+		if(conta.getStatusPaga()) {
+			if(conta.getAReceber()) {
+				this.contabil.setSaldo(this.contabil.getSaldo()+conta.getValor());
+				try {
+					ContabilDAO.getInstance().atualizar(contabil);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				if(this.contabil.getSaldo() >= conta.getValor()) {
+					try {
+						this.contabil.setSaldo(this.contabil.getSaldo()-conta.getValor());
+						ContabilDAO.getInstance().atualizar(contabil);
+						return true;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}else {
+					System.out.println("Saldo insuficiente para efetuar o pagamento!");
+					return false;
+				}
+			}
+		}else {
+			return true;
+		}
+		return null;
+	}
+
 }

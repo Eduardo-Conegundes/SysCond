@@ -2,7 +2,6 @@ package Models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 
 @Entity
 public class Pessoa {
