@@ -37,7 +37,8 @@ public class Espaco implements Serializable {
 	 * @param espaco
 	 * @param valor
 	 */
-	public Espaco(java.util.Date data, java.util.Date horarioInicio, java.util.Date horarioFim, Morador morador, String espaco, float valor) {
+	public Espaco(java.util.Date data, java.util.Date horarioInicio, java.util.Date horarioFim,
+			Morador morador, String espaco, float valor) {
 		this.data = data;
 		this.horarioInicio = horarioInicio;
 		this.horarioFim = horarioFim;

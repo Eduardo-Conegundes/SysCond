@@ -1,60 +1,64 @@
 package Controllers;
 
-import java.sql.Time;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.LocacaoDAO;
-import DAO.MoradorDAO;
 import Models.Espaco;
 import Models.Morador;
 
 public class LocacaoController {
-	//VALIDAR
+
 	public Espaco criar(Espaco locacao) {
 		Morador morador = locacao.getMorador(); 
+		Morador moradorBd = null;
+		java.util.Date data = locacao.getData();
+		java.util.Date horarioInicio = locacao.getHorarioInicio();
+		java.util.Date horarioFim = locacao.getHorarioFim();
+		String espacoNome = locacao.getEspaco();
+		List<Espaco> espacos = this.listar();
+		
 		try {
-			morador = MoradorDAO.getInstance().buscar(morador.getPessoa().getCpf());	
+			moradorBd = new MoradorController().buscar(morador.getPessoa().getCpf());	
 		} catch (Exception e) {
-			System.err.println("Erro ao encontrar morador!");
+			System.err.println("Sistema - Erro ao buscar morador no banco de dados!");
 		}
-		if(morador == null) {
-			System.out.println("Erro ao encontrar morador!");
+		
+		if(moradorBd == null) {
+			System.out.println("Erro ao buscar CPF de morador!");
 			return null;
 		}
-
+		
+		for(Espaco espaco : espacos) {
+			if(!((espacoNome.compareTo(espaco.getEspaco()) == 0) &&
+					(data.compareTo(espaco.getData()) == 0) &&
+					horarioInicio.before(espaco.getHorarioFim()) &&
+							horarioFim.after(espaco.getHorarioInicio()))){
+				System.out.println("Espaço já alugado!");
+				return null;
+			}
+		}
+		
 		try {
 			Espaco salva = LocacaoDAO.getInstance().salvar(locacao);
 			System.out.println("Locação " + salva.getEspaco() + " salva com sucesso!");
 			return salva;
 		} catch (Exception e) {
 			System.err.println("Erro ao Salvar locacao!");
+			return null;		
 		}
-		return null;		
+
 	}
 
 	public Espaco buscar(int id){
 		try {
 			Espaco locacaoBuscar = LocacaoDAO.getInstance().buscar(id);
-			System.out.println("Locacão Encontrada: " + locacaoBuscar);
+			System.out.println("Locacão Encontrada: " + locacaoBuscar.getEspaco());
 			return locacaoBuscar;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar locação!");
 			return null;
 		}
-	}
-
-	public List<Espaco> buscar(Date data){
-
-		List<Espaco> todosEspacos = this.listar();
-		List<Espaco> espacosDia = new ArrayList<Espaco>();
-
-		for (int i = 0; i < todosEspacos.size(); i++) {
-			if(todosEspacos.get(i).getData().compareTo(data)==0) {
-				espacosDia.add(todosEspacos.get(i));
-			}
-		}
-		return espacosDia;
 	}
 
 	public Espaco atualizar(int id, Espaco locacao){
@@ -107,13 +111,28 @@ public class LocacaoController {
 
 	public List<Espaco> listar(){
 		try {
-			List<Espaco> loc = LocacaoDAO.getInstance().listar();
-			System.out.println(" Locação listada com sucesso: " + loc.size());
-			return loc;
+			List<Espaco> locacoes = LocacaoDAO.getInstance().listar();
+			System.out.println(" Locação listada com sucesso: " + locacoes.size());
+			return locacoes;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar Locações)!");
 			return null;
 		}
 
 	}
+	
+	public List<Espaco> listar(Date data){
+
+		List<Espaco> todosEspacos = this.listar();
+		List<Espaco> espacosDia = new ArrayList<Espaco>();
+
+		for (int i = 0; i < todosEspacos.size(); i++) {
+			if(todosEspacos.get(i).getData().compareTo(data)==0) {
+				espacosDia.add(todosEspacos.get(i));
+			}
+		}
+		
+		return espacosDia;
+	}
+
 }

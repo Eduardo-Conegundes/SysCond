@@ -34,7 +34,6 @@ public class UsuarioController {
 			System.out.println("Listar com sucesso: " + users.size());
 			return users;
 		} catch (Exception eListar) {
-			eListar.printStackTrace();
 			System.err.println("Erro ao listar usuário(s)!");
 			return null;
 		}
