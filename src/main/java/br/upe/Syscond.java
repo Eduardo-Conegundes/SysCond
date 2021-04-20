@@ -31,7 +31,7 @@ public class Syscond {
 		java.util.Date horarioInicio = null;
 		java.util.Date horarioFim = null;
 		try {
-			data = new SimpleDateFormat("yyyy-MM-dd").parse("2020-11-15");
+			data = new SimpleDateFormat("dd-MM-yyyy").parse("15-11-2020");
 			horarioInicio = new SimpleDateFormat("HH:mm:ss").parse("15:00:00");
 			horarioFim = new SimpleDateFormat("HH:mm:ss").parse("16:00:00");
 		} catch (ParseException e) {
