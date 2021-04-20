@@ -32,7 +32,7 @@ public class LocacaoController implements InterfaceLocacaoController {
 		}
 		
 		for(Espaco espaco : espacos) {
-			if(!((espacoNome.compareTo(espaco.getEspaco()) == 0) &&
+			if(((espacoNome.compareTo(espaco.getEspaco()) == 0) &&
 					(data.compareTo(espaco.getData()) == 0) &&
 					horarioInicio.before(espaco.getHorarioFim()) &&
 							horarioFim.after(espaco.getHorarioInicio()))){
