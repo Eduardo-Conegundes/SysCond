@@ -2,6 +2,7 @@ package Controllers;
 
 import java.util.List;
 
+import Controllers.Interface.InterfaceVisitanteController;
 import DAO.ApartamentoDAO;
 import DAO.PessoaDAO;
 import DAO.VisitanteDAO;
@@ -9,7 +10,7 @@ import Models.Apartamento;
 import Models.Pessoa;
 import Models.Visitante;
 
-public class VisitanteController {
+public class VisitanteController implements InterfaceVisitanteController{
 	public Visitante criar(String cpf, int id) {
 
 		Pessoa pessoa1 = null;

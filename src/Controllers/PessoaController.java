@@ -3,10 +3,11 @@ package Controllers;
 import java.util.InputMismatchException;
 import java.util.List;
 
+import Controllers.Interface.InterfacePessoaController;
 import DAO.PessoaDAO;
 import Models.Pessoa;
 
-public class PessoaController {
+public class PessoaController implements InterfacePessoaController {
 	
 	private static boolean isCPF(String CPF) {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais

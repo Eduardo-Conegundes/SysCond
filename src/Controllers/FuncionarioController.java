@@ -2,11 +2,12 @@ package Controllers;
 
 import java.util.List;
 
+import Controllers.Interface.InterfaceFuncionarioController;
 import DAO.FuncionarioDAO;
 import Models.Funcionario;
 import Models.Pessoa;
 
-public class FuncionarioController {
+public class FuncionarioController implements InterfaceFuncionarioController {
 	public Funcionario criar(Funcionario funcionario){
 
 		Pessoa p = null;

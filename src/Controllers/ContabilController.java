@@ -3,12 +3,14 @@ package Controllers;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import Controllers.Interface.InterfaceContabilController;
 import DAO.ContabilDAO;
 import DAO.ContasDAO;
 import Models.Contabil;
 import Models.Contas;
 
-public class ContabilController {
+public class ContabilController implements InterfaceContabilController{
 	private static ContabilController instance;
 	private Contabil contabil;
 

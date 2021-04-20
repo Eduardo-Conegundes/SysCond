@@ -1,10 +1,12 @@
 package Controllers;
 
 import java.util.List;
+
+import Controllers.Interface.InterfaceUsuarioController;
 import DAO.UsuarioDAO;
 import Models.Usuario;
 
-public class UsuarioController {
+public class UsuarioController implements InterfaceUsuarioController{
 
 	public Usuario criar(Usuario user){
 		Usuario userCriado = null;

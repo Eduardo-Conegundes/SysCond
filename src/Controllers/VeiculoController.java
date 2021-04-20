@@ -2,12 +2,13 @@ package Controllers;
 
 import java.util.List;
 
+import Controllers.Interface.InterfaceVeiculoController;
 import DAO.ApartamentoDAO;
 import DAO.VeiculoDAO;
 import Models.Apartamento;
 import Models.Veiculo;
-
-public class VeiculoController {
+ 
+public class VeiculoController implements InterfaceVeiculoController{
 	public Veiculo criar(String placa, int id){
 		Apartamento ap = null;
 		Veiculo Veiculo1 = null;

@@ -3,10 +3,11 @@ package Controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controllers.Interface.InterfaceApartamentoController;
 import DAO.ApartamentoDAO;
 import Models.Apartamento;
 
-public class ApartamentoController {
+public class ApartamentoController implements InterfaceApartamentoController {
 
 	public Apartamento criar(Apartamento apartamento){
 		String bloco = apartamento.getBloco();

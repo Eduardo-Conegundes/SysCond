@@ -3,11 +3,13 @@ package Controllers;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import Controllers.Interface.InterfaceLocacaoController;
 import DAO.LocacaoDAO;
 import Models.Espaco;
 import Models.Morador;
 
-public class LocacaoController {
+public class LocacaoController implements InterfaceLocacaoController {
 
 	public Espaco criar(Espaco locacao) {
 		Morador morador = locacao.getMorador(); 

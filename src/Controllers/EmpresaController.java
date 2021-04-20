@@ -2,11 +2,12 @@ package Controllers;
 
 import java.util.List;
 
+import Controllers.Interface.InterfaceEmpresaController;
 import DAO.EmpresaDAO;
 import Models.Empresa;
 import Models.ServicoProduto;
 
-public class EmpresaController {
+public class EmpresaController implements InterfaceEmpresaController {
 	//RESOLVER TUDO
 	public Empresa criar(Empresa empresa){
 

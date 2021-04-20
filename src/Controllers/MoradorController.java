@@ -2,6 +2,7 @@ package Controllers;
 
 import java.util.List;
 
+import Controllers.Interface.InterfaceMoradorController;
 import DAO.ApartamentoDAO;
 import DAO.MoradorDAO;
 import DAO.PessoaDAO;
@@ -9,7 +10,7 @@ import Models.Apartamento;
 import Models.Morador;
 import Models.Pessoa;
 
-public class MoradorController {
+public class MoradorController implements InterfaceMoradorController{
 
 	public Morador criar(String cpf, int id_apartamento){
 		try {

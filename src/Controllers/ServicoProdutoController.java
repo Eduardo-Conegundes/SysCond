@@ -3,12 +3,13 @@ package Controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controllers.Interface.InterfaceServicoProdutoController;
 import DAO.EmpresaDAO;
 import DAO.ServicoProdutoDAO;
 import Models.Empresa;
 import Models.ServicoProduto;
 
-public class ServicoProdutoController {
+public class ServicoProdutoController implements InterfaceServicoProdutoController {
 	public ServicoProduto criar(ServicoProduto servicoProduto){
 
 		Empresa empresa = null;
