@@ -1,69 +1,77 @@
 package Controllers;
 
 import java.util.List;
-
 import DAO.UsuarioDAO;
 import Models.Usuario;
 
 public class UsuarioController {
-	public Usuario criar(String email, String senha, String nivel){
-		Usuario Usuario1 = new Usuario(email, senha, nivel);
-		Usuario p = null;
+
+	public Usuario criar(Usuario user){
+		Usuario userCriado = null;
+		List<Usuario> users = this.listar();
+
+		for (Usuario user2 : users) {
+			if(user.getEmail().compareTo(user2.getEmail()) == 0) {
+				System.out.println("E-mail já cadastrado!");
+				return null;
+			}
+		}
+
 		try {
-			p = UsuarioDAO.getInstance().salvar(Usuario1);
-			System.out.println("Salvo " + p.getEmail() + " com sucesso");
-			return p;
+			userCriado = UsuarioDAO.getInstance().salvar(user);
+			System.out.println("Salvo " + userCriado.getEmail() + " com sucesso");
+			return userCriado;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar usuário!");
 			return null;
 		}
+
 	}
 
 	public List<Usuario> listar(){
 		try {
-			List<Usuario> l = UsuarioDAO.getInstance().listar();
-			System.out.println("Listar com sucesso: " + l.size());
-			return l;
+			List<Usuario> users = UsuarioDAO.getInstance().listar();
+			System.out.println("Listar com sucesso: " + users.size());
+			return users;
 		} catch (Exception eListar) {
+			eListar.printStackTrace();
 			System.err.println("Erro ao listar usuário(s)!");
 			return null;
 		}
-
 	}
 
 	public Usuario buscar(int id){
-		Usuario b= null;
+		Usuario userBuscar= null;
 		try {
-			b = UsuarioDAO.getInstance().buscar(id);
-			System.out.println("Achado com sucesso: " + b);
-			return b;
+			userBuscar = UsuarioDAO.getInstance().buscar(id);
+			System.out.println("Achado com sucesso: " + userBuscar);
+			return userBuscar;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar usuário!");
 			return null;
 		}
 	}
 
-	public Usuario atualizar(int id, String email, String senha, String nivel){
-		Usuario Usuario2 = new Usuario(email, senha, nivel);
-		Usuario b = null;
+	public Usuario atualizar(int id, Usuario user){
+		Usuario userBuscar = null;
 		try {
-			b = UsuarioDAO.getInstance().buscar(id);
+			userBuscar = this.buscar(id);
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar usuário!");
 			return null;
 		}
-		
-		if (b==null) {
+
+		if (userBuscar==null) {
 			System.out.println("Usuário não encontrada pelo ID");
 			return null;
 		}		
-		
-		Usuario2.setId(b.getId());
-				
+
+		user.setId(userBuscar.getId());
+
 		try {
-			Usuario a = UsuarioDAO.getInstance().atualizar(Usuario2);
-			System.out.println("Atualizado com sucesso: " + a.getEmail());
-			return a;
+			Usuario userAtualizado = UsuarioDAO.getInstance().atualizar(user);
+			System.out.println("Atualizado com sucesso: " + userAtualizado.getEmail());
+			return userAtualizado;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar usuário!");
 			return null;

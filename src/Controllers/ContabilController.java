@@ -2,14 +2,11 @@ package Controllers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
 import DAO.ContabilDAO;
 import DAO.ContasDAO;
 import Models.Contabil;
 import Models.Contas;
-import syscond.Syscond;
 
 public class ContabilController {
 	private static ContabilController instance;
@@ -127,16 +124,14 @@ public class ContabilController {
 				try {
 					ContabilDAO.getInstance().atualizar(contabil);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.err.println(e);
 				}
 			}else {
 				this.contabil.setSaldo(this.contabil.getSaldo()+conta.getValor());
 				try {
 					ContabilDAO.getInstance().atualizar(contabil);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.err.println(e);
 				}
 			}
 		}
@@ -156,8 +151,7 @@ public class ContabilController {
 				try {
 					ContabilDAO.getInstance().atualizar(contabil);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.err.println(e);
 				}
 			}else {
 				if(this.contabil.getSaldo() >= conta.getValor()) {
@@ -166,8 +160,7 @@ public class ContabilController {
 						ContabilDAO.getInstance().atualizar(contabil);
 						return true;
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						System.err.println(e);
 					}
 
 				}else {

@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Models.Locacao;
+import Models.Espaco;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,10 +13,7 @@ import javax.persistence.Persistence;
 
 import DAO.Interface.InterfaceLocacao;
 
-/**
- *
- * @author flavi
- */
+
 public class LocacaoDAO implements InterfaceLocacao {
 
 	private static LocacaoDAO instance;
@@ -41,11 +38,11 @@ public class LocacaoDAO implements InterfaceLocacao {
 		return em;
 	}
 
-	public Locacao buscar(int id) throws Exception {
-		Locacao l = null;
+	public Espaco buscar(int id) throws Exception {
+		Espaco l = null;
 		try {
 			em.getTransaction().begin();
-			l = em.find(Locacao.class, id);
+			l = em.find(Espaco.class, id);
 			em.getTransaction().commit();
 			return l;
 		} catch (Exception eBuscar) {
@@ -54,7 +51,7 @@ public class LocacaoDAO implements InterfaceLocacao {
 		}
 	}
 
-	public Locacao salvar(Locacao l) throws Exception {
+	public Espaco salvar(Espaco l) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.persist(l);
@@ -66,7 +63,7 @@ public class LocacaoDAO implements InterfaceLocacao {
 		}
 	}
 
-	public Locacao atualizar(Locacao l) throws Exception {
+	public Espaco atualizar(Espaco l) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.merge(l);
@@ -79,10 +76,10 @@ public class LocacaoDAO implements InterfaceLocacao {
 	}
 
 	public void deletar(int id) throws Exception {
-		Locacao l = null;
+		Espaco l = null;
 		try {
 			em.getTransaction().begin();
-			l = em.find(Locacao.class, id);
+			l = em.find(Espaco.class, id);
 			em.remove(l);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {
@@ -92,9 +89,9 @@ public class LocacaoDAO implements InterfaceLocacao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Locacao> listar() {
+	public List<Espaco> listar() {
 		try {
-			return (em.createQuery("from " + Locacao.class.getName()).getResultList());
+			return (em.createQuery("from " + Espaco.class.getName()).getResultList());
 		} catch (Exception eListar) {
 			throw eListar;
 		}

@@ -5,7 +5,7 @@
  */
 package DAO.Interface;
 
-import Models.Locacao;
+import Models.Espaco;
 import java.util.List;
 
 /**
@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface InterfaceLocacao {
     
-    Locacao salvar(Locacao l) throws Exception;
-    List<Locacao> listar() throws Exception;
-    Locacao buscar(int id) throws Exception;
-    Locacao atualizar(Locacao l) throws Exception;
+    Espaco salvar(Espaco l) throws Exception;
+    List<Espaco> listar() throws Exception;
+    Espaco buscar(int id) throws Exception;
+    Espaco atualizar(Espaco l) throws Exception;
     void deletar(int id) throws Exception;
     
 }
