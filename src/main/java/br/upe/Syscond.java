@@ -2,7 +2,6 @@ package br.upe;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import br.upe.Controllers.ApartamentoController;
 import br.upe.Controllers.LocacaoController;
 import br.upe.Controllers.MoradorController;

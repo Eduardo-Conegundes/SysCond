@@ -6,10 +6,8 @@ package br.upe;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 import org.junit.Test;
-
 import br.upe.Controllers.ApartamentoController;
 import br.upe.Controllers.VeiculoController;
 import br.upe.Models.Apartamento;
