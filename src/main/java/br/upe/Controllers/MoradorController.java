@@ -12,18 +12,23 @@ import br.upe.Models.Pessoa;
 
 public class MoradorController implements InterfaceMoradorController{
 
-	public Morador criar(String cpf, int id_apartamento){
+	public Morador criar(Morador morador){
+		Pessoa pessoa = morador.getPessoa();
+		Apartamento apartamento = morador.getApartamento();
+		
+		PessoaController pController = new PessoaController();
+		ApartamentoController aptController = new ApartamentoController();
+		
 		try {
-			Pessoa p = PessoaDAO.getInstance().buscar(cpf);
-			Apartamento a = ApartamentoDAO.getInstance().buscar(id_apartamento);
+			Pessoa pessoaBanco = pController.buscar(pessoa.getCpf());
+			Apartamento apartamentoBanco = aptController.buscar(apartamento.getId());
 
-			if(p != null && a != null) {
-				Morador morador = new Morador(p, a);
-				MoradorDAO.getInstance().salvar(morador);
-				System.out.println("Salvo morador " + morador.getPessoa().getNome() +  " com sucesso!!! ");
-				return morador;
+			if(pessoaBanco != null && apartamentoBanco != null) {
+				Morador salvo = MoradorDAO.getInstance().salvar(morador);
+				System.out.println("Salvo morador " + salvo.getPessoa().getNome() +  " com sucesso!!! ");
+				return salvo;
 			}else {
-				System.err.println("Erro ao salvar, n�o foi possivel encontrar pessoa ou apartamento com esses dados!!!");
+				System.err.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados!!!");
 				return null;
 			}
 
