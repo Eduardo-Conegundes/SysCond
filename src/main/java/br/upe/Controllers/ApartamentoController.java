@@ -1,10 +1,12 @@
 package br.upe.Controllers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import br.upe.Controllers.Interface.InterfaceApartamentoController;
 import br.upe.DAO.ApartamentoDAO;
+import br.upe.DAO.Interface.InterfaceApartamento;
 import br.upe.Models.Apartamento;
 
 public class ApartamentoController implements InterfaceApartamentoController {
@@ -50,6 +52,16 @@ public class ApartamentoController implements InterfaceApartamentoController {
 			return null;
 		}
 
+	}
+	
+	public Apartamento buscar(String bloco, int numero) {
+		List<Apartamento>lista_apartamentos = this.listar();
+		for (Apartamento apartamento : lista_apartamentos) {
+			if(apartamento.getBloco().compareTo(bloco)==0 && apartamento.getNumero() == numero) {
+				return apartamento;
+			}
+		}
+		return null;
 	}
 
 	public List<Apartamento> listar(String bloco) {

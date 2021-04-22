@@ -2,7 +2,9 @@ package br.upe.Controllers;
 
 import java.util.List;
 
+import br.upe.Controllers.Interface.InterfaceApartamentoController;
 import br.upe.Controllers.Interface.InterfaceMoradorController;
+import br.upe.Controllers.Interface.InterfacePessoaController;
 import br.upe.DAO.ApartamentoDAO;
 import br.upe.DAO.MoradorDAO;
 import br.upe.DAO.PessoaDAO;
@@ -16,13 +18,13 @@ public class MoradorController implements InterfaceMoradorController{
 		Pessoa pessoa = morador.getPessoa();
 		Apartamento apartamento = morador.getApartamento();
 		
-		PessoaController pController = new PessoaController();
-		ApartamentoController aptController = new ApartamentoController();
+		InterfacePessoaController pController = new PessoaController();
+		InterfaceApartamentoController aptController = new ApartamentoController();
 		
 		try {
 			Pessoa pessoaBanco = pController.buscar(pessoa.getCpf());
-			Apartamento apartamentoBanco = aptController.buscar(apartamento.getId());
-
+			Apartamento apartamentoBanco = aptController.buscar(apartamento.getBloco(), apartamento.getNumero());
+			
 			if(pessoaBanco != null && apartamentoBanco != null) {
 				Morador salvo = MoradorDAO.getInstance().salvar(morador);
 				System.out.println("Salvo morador " + salvo.getPessoa().getNome() +  " com sucesso!!! ");
