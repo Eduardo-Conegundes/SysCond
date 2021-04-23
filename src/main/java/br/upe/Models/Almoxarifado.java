@@ -10,13 +10,13 @@ import javax.persistence.OneToMany;
 
 @SuppressWarnings("serial")
 @Entity
-public class Estoque implements Serializable {
-	@Id @GeneratedValue(generator = "idEstoque")
+public class Almoxarifado implements Serializable {
+	@Id @GeneratedValue(generator = "idAlmoxarifado")
 	private int id;
 	@OneToMany
-	private List<FluxoEstoque> estoque;
+	private List<FluxoAlmoxarifado> Almoxarifado;
 
-	public Estoque() {
+	public Almoxarifado() {
 	}
 
 	/**
@@ -34,17 +34,17 @@ public class Estoque implements Serializable {
 	}
 
 	/**
-	 * @return the estoque
+	 * @return the Almoxarifado
 	 */
-	public List<FluxoEstoque> getEstoque() {
-		return estoque;
+	public List<FluxoAlmoxarifado> getEstoque() {
+		return Almoxarifado;
 	}
 
 	/**
-	 * @param estoque the estoque to set
+	 * @param estoque the Almoxarifado to set
 	 */
-	public void setEstoque(List<FluxoEstoque> estoque) {
-		this.estoque = estoque;
+	public void setEstoque(List<FluxoAlmoxarifado> Almoxarifado) {
+		this.Almoxarifado = Almoxarifado;
 	}
 
 }

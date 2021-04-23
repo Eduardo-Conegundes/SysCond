@@ -5,16 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class FluxoEstoque {
-    @Id @GeneratedValue(generator = "idFluxoEstoque")
+public class FluxoAlmoxarifado {
+    @Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
     private int id;
     private ServicoProduto produto;
     private int qtd;
-    private String tipoTransacao;
-    private Estoque estoque;
+    private String tipoTransacao; //entrada ou saida
+    private Almoxarifado estoque;
     
 
-    public FluxoEstoque(ServicoProduto produto, int qtd, String tipoTransacao, Estoque estoque){
+    public FluxoAlmoxarifado(ServicoProduto produto, int qtd, String tipoTransacao, Almoxarifado estoque){
         this.produto = produto;
         this.qtd = qtd;
         this.tipoTransacao = tipoTransacao;
@@ -63,16 +63,16 @@ public class FluxoEstoque {
     }
 
     /**
-     * @return the estoque
+     * @return the Almoxarifado
      */
-    public Estoque getEstoque() {
+    public Almoxarifado getEstoque() {
         return estoque;
     }
 
     /**
-     * @param estoque the estoque to set
+     * @param estoque the Almoxarifado to set
      */
-    public void setEstoque(Estoque estoque) {
+    public void setEstoque(Almoxarifado estoque) {
         this.estoque = estoque;
     }
     

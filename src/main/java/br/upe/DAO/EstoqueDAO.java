@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.upe.DAO.Interface.InterfaceEstoque;
-import br.upe.Models.Estoque;
+import br.upe.Models.Almoxarifado;
 
 public class EstoqueDAO implements InterfaceEstoque {
 
@@ -33,7 +33,7 @@ public class EstoqueDAO implements InterfaceEstoque {
         return em;
     }
 
-    public void salvar(Estoque F) throws Exception {
+    public void salvar(Almoxarifado F) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(F);
@@ -44,7 +44,7 @@ public class EstoqueDAO implements InterfaceEstoque {
         }
     }
 
-    public void atualizar(Estoque F) throws Exception {
+    public void atualizar(Almoxarifado F) throws Exception {
         try {
             em.getTransaction().begin();
             em.merge(F);
@@ -55,11 +55,11 @@ public class EstoqueDAO implements InterfaceEstoque {
         }
     }
 
-    public void deletar(Estoque F) throws Exception {
-        Estoque est = null;
+    public void deletar(Almoxarifado F) throws Exception {
+        Almoxarifado est = null;
         try {
             em.getTransaction().begin();
-            est = em.find(Estoque.class, F);
+            est = em.find(Almoxarifado.class, F);
             em.remove(est);
             em.getTransaction().commit();
         } catch (Exception eDeletar) {
@@ -69,9 +69,9 @@ public class EstoqueDAO implements InterfaceEstoque {
     }
 
     @SuppressWarnings("unchecked")
-	public List<Estoque> listar() {
+	public List<Almoxarifado> listar() {
     	try {
-    		return (em.createQuery("from " + Estoque.class.getName()).getResultList());	
+    		return (em.createQuery("from " + Almoxarifado.class.getName()).getResultList());	
 		} catch (Exception eListar) {
 			throw eListar;
 		}
