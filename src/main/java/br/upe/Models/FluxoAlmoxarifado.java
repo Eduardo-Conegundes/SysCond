@@ -6,75 +6,62 @@ import javax.persistence.Id;
 
 @Entity
 public class FluxoAlmoxarifado {
-    @Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
-    private int id;
-    private ServicoProduto produto;
-    private int qtd;
-    private String tipoTransacao; //entrada ou saida
-    private Almoxarifado estoque;
-    
+	@Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
+	private int id;
+	private ServicoProduto produto;
+	private int qtd;
+	private String tipoTransacao; //entrada ou saida
+	private Almoxarifado estoque;
 
-    public FluxoAlmoxarifado(ServicoProduto produto, int qtd, String tipoTransacao, Almoxarifado estoque){
-        this.produto = produto;
-        this.qtd = qtd;
-        this.tipoTransacao = tipoTransacao;
-        this.estoque = estoque;
-    }
-    /**
-     * @return the produto
-     */
-    public ServicoProduto getProduto() {
-        return produto;
-    }
+	public FluxoAlmoxarifado() {
+		// TODO Auto-generated constructor stub
+	}
+	public FluxoAlmoxarifado(ServicoProduto produto, int qtd, String tipoTransacao, Almoxarifado estoque){
+		this.produto = produto;
+		this.qtd = qtd;
+		this.tipoTransacao = tipoTransacao;
+		this.estoque = estoque;
+	}
 
-    /**
-     * @param produto the produto to set
-     */
-    public void setProduto(ServicoProduto produto) {
-        this.produto = produto;
-    }
+	public ServicoProduto getProduto() {
+		return produto;
+	}
 
-    /**
-     * @return the qtd
-     */
-    public int getQtd() {
-        return qtd;
-    }
 
-    /**
-     * @param qtd the qtd to set
-     */
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
-    }
+	public void setProduto(ServicoProduto produto) {
+		this.produto = produto;
+	}
 
-    /**
-     * @return the tipoTransacao
-     */
-    public String getTipoTransacao() {
-        return tipoTransacao;
-    }
+	public int getQtd() {
+		return qtd;
+	}
 
-    /**
-     * @param tipoTransacao the tipoTransacao to set
-     */
-    public void setTipoTransacao(String tipoTransacao) {
-        this.tipoTransacao = tipoTransacao;
-    }
+	public void setQtd(int qtd) {
+		this.qtd = qtd;
+	}
 
-    /**
-     * @return the Almoxarifado
-     */
-    public Almoxarifado getEstoque() {
-        return estoque;
-    }
+	public String getTipoTransacao() {
+		return tipoTransacao;
+	}
 
-    /**
-     * @param estoque the Almoxarifado to set
-     */
-    public void setEstoque(Almoxarifado estoque) {
-        this.estoque = estoque;
-    }
-    
-    
+	public void setTipoTransacao(String tipoTransacao) {
+		this.tipoTransacao = tipoTransacao;
+	}
+
+	public Almoxarifado getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Almoxarifado estoque) {
+		this.estoque = estoque;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }

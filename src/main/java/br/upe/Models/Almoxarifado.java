@@ -11,40 +11,32 @@ import javax.persistence.OneToMany;
 @SuppressWarnings("serial")
 @Entity
 public class Almoxarifado implements Serializable {
+
 	@Id @GeneratedValue(generator = "idAlmoxarifado")
 	private int id;
 	@OneToMany
-	private List<FluxoAlmoxarifado> Almoxarifado;
+	private List<FluxoAlmoxarifado> fluxoalmoxarifado;
 
-	public Almoxarifado() {
+
+	public Almoxarifado(List<FluxoAlmoxarifado> fluxoalmoxarifado) {
+		this.fluxoalmoxarifado = fluxoalmoxarifado;
 	}
 
-	/**
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}
-
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	/**
-	 * @return the Almoxarifado
-	 */
-	public List<FluxoAlmoxarifado> getEstoque() {
-		return Almoxarifado;
+	
+	public List<FluxoAlmoxarifado> getAlmoxarifado() {
+		return fluxoalmoxarifado;
+	}
+	
+	public void setAlmoxarifado(List<FluxoAlmoxarifado> fluxoalmoxarifado) {
+		this.fluxoalmoxarifado = fluxoalmoxarifado;
 	}
 
-	/**
-	 * @param estoque the Almoxarifado to set
-	 */
-	public void setEstoque(List<FluxoAlmoxarifado> Almoxarifado) {
-		this.Almoxarifado = Almoxarifado;
-	}
 
 }
