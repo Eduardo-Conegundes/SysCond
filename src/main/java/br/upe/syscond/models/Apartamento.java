@@ -9,17 +9,17 @@ public class Apartamento {
 
 	@Id @GeneratedValue(generator = "idApartamento")
 	private int id;
-    private int numero;
-    private String bloco;
-    private int vagas;
+	private int numero;
+	private String bloco;
+	private int vagas;
 
-    public Apartamento(){}
+	public Apartamento(){}
 
-    public Apartamento(String bloco, int numero,  int vagas) {
-    	this.bloco = bloco;
-    	this.numero = numero;
-        this.vagas = vagas;
-    }
+	public Apartamento(String bloco, int numero,  int vagas) {
+		this.bloco = bloco;
+		this.numero = numero;
+		this.vagas = vagas;
+	}
 
 	/**
 	 * @return the id
@@ -69,7 +69,6 @@ public class Apartamento {
 	public int getVagas() {
 		return vagas;
 	}
-
 	/**
 	 * @param vagas the vagas to set
 	 */

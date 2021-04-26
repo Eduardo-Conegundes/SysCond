@@ -40,40 +40,28 @@ public class UsuarioController implements InterfaceUsuarioController{
 		}
 	}
 
-	public Usuario buscar(int id){
-		Usuario userBuscar= null;
+	public Usuario buscar(Usuario user){
+		List<Usuario> users = this.listar();
 		try {
-			userBuscar = UsuarioDAO.getInstance().buscar(id);
-			System.out.println("Achado com sucesso: " + userBuscar);
-			return userBuscar;
+		for (Usuario user2 : users) {
+			if((user.getEmail().compareTo(user2.getEmail()) == 0) && user.getSenha().compareTo(user2.getSenha())==0) {
+				return UsuarioDAO.getInstance().buscar(user2.getId());				
+			}
+		}
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar usu�rio!");
 			return null;
 		}
+		return null;
 	}
 
-	public Usuario atualizar(int id, Usuario user){
-		Usuario userBuscar = null;
+	public Usuario atualizar(Usuario antigo, Usuario novo){
 		try {
-			userBuscar = this.buscar(id);
+			int id = this.buscar(antigo).getId();
+			novo.setId(id);
+			return UsuarioDAO.getInstance().atualizar(novo);
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar usu�rio!");
-			return null;
-		}
-
-		if (userBuscar==null) {
-			System.out.println("Usu�rio n�o encontrada pelo ID");
-			return null;
-		}		
-
-		user.setId(userBuscar.getId());
-
-		try {
-			Usuario userAtualizado = UsuarioDAO.getInstance().atualizar(user);
-			System.out.println("Atualizado com sucesso: " + userAtualizado.getEmail());
-			return userAtualizado;
-		} catch (Exception eSalvar) {
-			System.err.println("Erro ao atualizar usu�rio!");
 			return null;
 		}
 	}
