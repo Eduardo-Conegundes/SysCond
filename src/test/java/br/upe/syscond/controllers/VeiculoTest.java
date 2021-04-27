@@ -1,13 +1,12 @@
-package br.upe.syscond;
+package br.upe.syscond.controllers;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Test;
 
-import br.upe.syscond.controllers.ApartamentoController;
-import br.upe.syscond.controllers.VeiculoController;
 import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Veiculo;
 
@@ -34,5 +33,9 @@ public class VeiculoTest {
 		
 		assertNotNull(veiculosListados);
 		
+	}
+	@Test
+	public void teste() {
+		assertTrue(true);
 	}
 }

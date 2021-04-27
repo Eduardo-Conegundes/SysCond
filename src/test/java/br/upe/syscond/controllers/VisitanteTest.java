@@ -1,4 +1,4 @@
-package br.upe.syscond;
+package br.upe.syscond.controllers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -8,8 +8,6 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import br.upe.syscond.controllers.InterfaceVisitanteController;
-import br.upe.syscond.controllers.VisitanteController;
 import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Pessoa;
 import br.upe.syscond.models.Visitante;

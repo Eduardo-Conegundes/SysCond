@@ -19,7 +19,7 @@ public class MoradorController implements InterfaceMoradorController{
 		
 		try {
 			Pessoa pessoaBanco = pController.buscar(pessoa.getCpf());
-			Apartamento apartamentoBanco = aptController.buscar(apartamento.getBloco(), apartamento.getNumero());
+			Apartamento apartamentoBanco = aptController.buscar(apartamento);
 			
 			if(pessoaBanco != null && apartamentoBanco != null) {
 				Morador salvo = MoradorDAO.getInstance().salvar(morador);

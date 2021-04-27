@@ -18,7 +18,7 @@ public class VisitanteController implements InterfaceVisitanteController{
 		
 		try {
 			pessoaVisitanteBanco = pesCont.buscar(pessoaVisitanteVerificar.getCpf());
-			apartamentoBanco = aptCont.buscar(apartamentoVerificar.getId());
+			apartamentoBanco = aptCont.buscar(apartamentoVerificar);
 		} catch (Exception e) {
 			System.err.println("Erro ao encontrar apartamento relacionado ao visitante!");
 		}

@@ -75,4 +75,14 @@ public class Apartamento {
 	public void setVagas(int vagas) {
 		this.vagas = vagas;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Apartamento ap = (Apartamento) obj;
+		if((ap.getBloco().compareTo(this.bloco)== 0) && ap.getNumero() == this.numero) {
+			return true;			
+		}else {
+			return false;
+		}
+	}
 }

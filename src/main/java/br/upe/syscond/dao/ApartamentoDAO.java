@@ -70,22 +70,23 @@ public class ApartamentoDAO implements InterfaceApartamento {
     	}
     }
     
-    public void deletar(int id) throws Exception {
+    public boolean deletar(int id) throws Exception {
         try {
             Apartamento p = buscar(id);
-            deletarPorId(p);
+            return deletarPorId(p);
         } catch (Exception eDeletarId) {
         	eDeletarId.printStackTrace();
         	throw eDeletarId;
         }
     }
     
-    private void deletarPorId(Apartamento apartamento) throws Exception{
+    private boolean deletarPorId(Apartamento apartamento) throws Exception{
     	try {
     		em.getTransaction().begin();
     		Apartamento p = em.find(Apartamento.class, apartamento.getId());
     		em.remove(p);
     		em.getTransaction().commit();
+    		return true;
     	} catch(Exception eDeletar) {
     		em.getTransaction().rollback();
     		throw eDeletar;

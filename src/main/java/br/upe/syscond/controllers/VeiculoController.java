@@ -13,7 +13,7 @@ public class VeiculoController implements InterfaceVeiculoController{
 		
 		ApartamentoController aptCont = new ApartamentoController();
 		try {
-			apartamentoCadastrado = aptCont.buscar(veiculo.getApartamento().getId());
+			apartamentoCadastrado = aptCont.buscar(veiculo.getApartamento());
 		} catch (Exception e) {
 			System.err.println("Erro ao buscar apartamento relacionado ao veículo!");
 		}
@@ -56,13 +56,13 @@ public class VeiculoController implements InterfaceVeiculoController{
 		}
 	}
 
-	public Veiculo atualizar(int idApartamentoNovo, Veiculo veiculo){
+	public Veiculo atualizar(Apartamento ApartamentoNovo, Veiculo veiculo){
 		Apartamento apartamentoNovoCadastrado = null;
 		ApartamentoController aptCont = new ApartamentoController();
 		Veiculo veiculoCadastrado = null;
 
 		try {
-			apartamentoNovoCadastrado = aptCont.buscar(idApartamentoNovo);
+			apartamentoNovoCadastrado = aptCont.buscar(ApartamentoNovo);
 			veiculoCadastrado = this.buscar(veiculo.getPlaca());
 		} catch (Exception e) {
 		}

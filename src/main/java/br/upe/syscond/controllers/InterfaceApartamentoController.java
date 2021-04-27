@@ -8,9 +8,8 @@ public interface InterfaceApartamentoController {
 	public Apartamento criar(Apartamento apartamento);
 	public List<Apartamento> listar();
 	public List<Apartamento> listar(String bloco);
-	public Apartamento buscar(int id);
-	public Apartamento buscar(String bloco, int numero);
-	public Apartamento atualizar(int id, int vagas);
-	public void deletar(Apartamento apartamento);
+	public Apartamento buscar(Apartamento apartamento);
+	public Apartamento atualizar(Apartamento antigo, Apartamento novo);
+	public boolean deletar(Apartamento apartamento);
 
 }
