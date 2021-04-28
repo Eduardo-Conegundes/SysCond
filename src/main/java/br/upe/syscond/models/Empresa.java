@@ -2,18 +2,21 @@ package br.upe.syscond.models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @SuppressWarnings("serial")
 @Entity
 public class Empresa implements Serializable {
-	@Id
-	private String cnpj;
+	@Id @GeneratedValue(generator = "idEmpresa")
+	private int id;
 	@OneToMany
 	private List<ServicoProduto> servicoproduto;
+	private String cnpj;
 	private String nome;
 	private String telefone;
 
@@ -81,6 +84,19 @@ public class Empresa implements Serializable {
 	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		return Objects.equals(cnpj, other.cnpj) && Objects.equals(nome, other.nome)
+				&& Objects.equals(telefone, other.telefone);
 	}
 
 	

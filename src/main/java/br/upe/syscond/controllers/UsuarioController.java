@@ -13,14 +13,12 @@ public class UsuarioController implements InterfaceUsuarioController{
 
 		for (Usuario user2 : users) {
 			if(user.getEmail().compareTo(user2.getEmail()) == 0) {
-				System.out.println("E-mail j� cadastrado!");
 				return null;
 			}
 		}
 
 		try {
 			userCriado = UsuarioDAO.getInstance().salvar(user);
-			System.out.println("Salvo " + userCriado.getEmail() + " com sucesso");
 			return userCriado;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar usu�rio!");
@@ -32,7 +30,6 @@ public class UsuarioController implements InterfaceUsuarioController{
 	public List<Usuario> listar(){
 		try {
 			List<Usuario> users = UsuarioDAO.getInstance().listar();
-			System.out.println("Listar com sucesso: " + users.size());
 			return users;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar usu�rio(s)!");
@@ -69,7 +66,6 @@ public class UsuarioController implements InterfaceUsuarioController{
 	public void deletar(int id){
 		try {
 			UsuarioDAO.getInstance().deletar(id);
-			System.out.println("Exclu�do com sucesso");
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Usuario!");
 		}

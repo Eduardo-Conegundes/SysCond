@@ -1,17 +1,21 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Entity
 public class Veiculo implements Serializable {
-    @Id
-    private String placa;
+    @Id @GeneratedValue(generator = "idVeiculo")
+    private int id;
     @ManyToOne
     private Apartamento apartamento;
+    private String placa;
     
     public Veiculo() {}
     
@@ -48,6 +52,18 @@ public class Veiculo implements Serializable {
 		this.apartamento = apartamento;
 	}
 
-    
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Veiculo other = (Veiculo) obj;
+		return Objects.equals(apartamento, other.apartamento) && Objects.equals(placa, other.placa);
+	}
+
+
     
 }

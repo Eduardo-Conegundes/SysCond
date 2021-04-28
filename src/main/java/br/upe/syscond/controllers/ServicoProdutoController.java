@@ -21,7 +21,6 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 		}
 
 		if(empresa == null) {
-			System.out.println("Erro ao encontrar empresa!");
 			EmpresaController empCont = new EmpresaController();
 			empCont.criar(servicoProduto.getEmpresa());
 
@@ -30,7 +29,6 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 		// verificar duplicidade de ServicoProduto
 		try {
 			ServicoProduto p = ServicoProdutoDAO.getInstance().salvar(servicoProduto);
-			System.out.println("Salvo " + servicoProduto.getNome() + " com sucesso");
 			return p;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar Servico/Produto!");
@@ -41,7 +39,6 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 	public List<ServicoProduto> listar(){
 		try {
 			List<ServicoProduto> l = ServicoProdutoDAO.getInstance().listar();
-			System.out.println("Listar com sucesso: " + l.size());
 			return l;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar ServicoProduto(s)!");
@@ -53,7 +50,6 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 	public ServicoProduto buscar(int id){
 		try {
 			ServicoProduto b = ServicoProdutoDAO.getInstance().buscar(id);
-			System.out.println("Achado com sucesso: " + b.getNome());
 			return b;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar Servico ou Produto!");
@@ -102,7 +98,6 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 
 		try {
 			ServicoProduto a = ServicoProdutoDAO.getInstance().atualizar(servicoProduto);
-			System.out.println("Atualizado com sucesso: " + a.getNome());
 			return a;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar ServicoProduto!");
@@ -113,7 +108,6 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 	public void deletar(int id){
 		try {
 			ServicoProdutoDAO.getInstance().deletar(id);
-			System.out.println("Exclu�do com sucesso");
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao excluir ServicoProduto!");
 		}

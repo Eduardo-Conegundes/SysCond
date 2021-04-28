@@ -26,7 +26,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 		}
 		
 		if(moradorBd == null) {
-			System.out.println("Erro ao buscar CPF de morador!");
 			return null;
 		}
 		
@@ -35,14 +34,12 @@ public class LocacaoController implements InterfaceLocacaoController {
 					(data.compareTo(espaco.getData()) == 0) &&
 					horarioInicio.before(espaco.getHorarioFim()) &&
 							horarioFim.after(espaco.getHorarioInicio()))){
-				System.out.println("Espa�o j� alugado!");
 				return null;
 			}
 		}
 		
 		try {
 			Espaco salva = LocacaoDAO.getInstance().salvar(locacao);
-			System.out.println("Loca��o " + salva.getEspaco() + " salva com sucesso!");
 			return salva;
 		} catch (Exception e) {
 			System.err.println("Erro ao Salvar locacao!");
@@ -54,7 +51,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 	public Espaco buscar(int id){
 		try {
 			Espaco locacaoBuscar = LocacaoDAO.getInstance().buscar(id);
-			System.out.println("Locac�o Encontrada: " + locacaoBuscar.getEspaco());
 			return locacaoBuscar;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar loca��o!");
@@ -73,7 +69,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 		}
 		
 		if(morador == null) {
-			System.out.println("Erro ao encontrar morador!");
 			return null;
 		} 
 		
@@ -85,7 +80,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 		}
 
 		if (locacaoId==null) {
-			System.out.println("Locacao n�o encontrada pelo ID");
 			return null;
 		}		
 
@@ -93,7 +87,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 
 		try {
 			Espaco locacaoAtualizada = LocacaoDAO.getInstance().atualizar(locacao);
-			System.out.println("Loca��o atualizada com sucesso: " + locacaoAtualizada);
 			return locacaoAtualizada;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar Loca��o!");
@@ -104,7 +97,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 	public void deletar(int id){
 		try {
 			LocacaoDAO.getInstance().deletar(id);
-			System.out.println("Loca��o exclu�da com sucesso");
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Loca��o!");
 		}
@@ -113,7 +105,6 @@ public class LocacaoController implements InterfaceLocacaoController {
 	public List<Espaco> listar(){
 		try {
 			List<Espaco> locacoes = LocacaoDAO.getInstance().listar();
-			System.out.println(" Loca��o listada com sucesso: " + locacoes.size());
 			return locacoes;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar Loca��es)!");

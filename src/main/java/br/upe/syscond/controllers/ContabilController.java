@@ -40,7 +40,6 @@ public class ContabilController implements InterfaceContabilController{
 
 		if(contasBD.size()==0) {
 			try {
-				System.out.println("Conta Salva com Sucesso!");
 				criada = ContasDAO.getInstance().salvar(conta);
 				return criada;	
 			} catch (Exception eSalvar) {
@@ -49,13 +48,11 @@ public class ContabilController implements InterfaceContabilController{
 		}else{
 			for (int i = 0; i < contasBD.size(); i++) {
 				if(contasBD.get(i).equals(conta)) {
-					System.out.println("Conta ja existe!");
 					return null;
 				}
 			}
 			try {
 				if(atualizaSaldo(conta)) {
-					System.out.println("Conta Salva com Sucesso!");
 					criada = ContasDAO.getInstance().salvar(conta);					
 				}
 			} catch (Exception eSalvar) {
@@ -68,7 +65,6 @@ public class ContabilController implements InterfaceContabilController{
 	public List<Contas> listar(){
 		try {
 			List<Contas> l = ContasDAO.getInstance().listar();
-			System.out.println("Lido com sucesso!");
 			return l;
 		} catch (Exception eListar) {
 			eListar.printStackTrace();
@@ -80,7 +76,6 @@ public class ContabilController implements InterfaceContabilController{
 	public Contas buscar(int id){
 		try {
 			Contas conta = ContasDAO.getInstance().buscar(id);
-			System.out.println("Conta encontrada com sucesso: " + conta.getId());
 			return conta;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar Conta");
@@ -108,7 +103,6 @@ public class ContabilController implements InterfaceContabilController{
 		try {
 			atualizaSaldo(conta);
 			Contas atualizada = ContasDAO.getInstance().atualizar(conta);
-			System.out.println("Atualizado com sucesso!" + atualizada.getId());
 			return atualizada;
 		} catch (Exception eAtualizar) {
 			System.err.println("Erro ao atualizar Contabil!");
@@ -139,7 +133,6 @@ public class ContabilController implements InterfaceContabilController{
 
 		try {
 			ContasDAO.getInstance().deletar(id);
-			System.out.println("Exclu�do com sucesso");
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao excluir Contabil!");
 		}
@@ -165,7 +158,6 @@ public class ContabilController implements InterfaceContabilController{
 					}
 
 				}else {
-					System.out.println("Saldo insuficiente para efetuar o pagamento!");
 					return false;
 				}
 			}

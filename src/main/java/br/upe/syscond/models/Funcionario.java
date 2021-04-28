@@ -1,14 +1,19 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @SuppressWarnings("serial")
 @Entity
 public class Funcionario implements Serializable {
-    @Id @OneToOne
+    @Id @GeneratedValue(generator = "idFuncionario") 
+    private int id;
+    @OneToOne
     private Pessoa pessoa;
     private String interno_externo;
     private String cargo;
@@ -77,6 +82,20 @@ public class Funcionario implements Serializable {
 	 */
 	public void setSalario(float salario) {
 		this.salario = salario;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionario other = (Funcionario) obj;
+		return Objects.equals(cargo, other.cargo) && Objects.equals(interno_externo, other.interno_externo)
+				&& Objects.equals(pessoa, other.pessoa)
+				&& Float.floatToIntBits(salario) == Float.floatToIntBits(other.salario);
 	}
     
 }

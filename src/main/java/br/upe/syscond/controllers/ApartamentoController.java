@@ -86,7 +86,6 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		int id = apartamento.getId();
 		try {
 			ApartamentoDAO.getInstance().deletar(id);
-			System.out.println("Exclu�do com sucesso");
 			return true;
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Apartamento!");

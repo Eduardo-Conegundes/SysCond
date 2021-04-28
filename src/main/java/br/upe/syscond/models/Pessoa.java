@@ -1,11 +1,15 @@
 package br.upe.syscond.models;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Pessoa {
-	@Id
+	@Id @GeneratedValue(generator = "idPessoa")
+	private int id;
     private String cpf;
     private String nome;
     private String telefone;
@@ -74,7 +78,18 @@ public class Pessoa {
 		this.email = email;
 	}
 
-    
-    
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		return Objects.equals(cpf, other.cpf) && Objects.equals(email, other.email) && Objects.equals(nome, other.nome)
+				&& Objects.equals(telefone, other.telefone);
+	}
+ 
 }
 

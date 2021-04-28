@@ -1,8 +1,10 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -11,7 +13,9 @@ import javax.persistence.OneToOne;
 @Entity
 public class Morador implements Serializable {
 
-    @Id @OneToOne
+    @Id @GeneratedValue(generator = "idMorador")
+    private int id;
+    @OneToOne
     private Pessoa pessoa;
     @ManyToOne
     private Apartamento apartamento;
@@ -52,5 +56,17 @@ public class Morador implements Serializable {
 		this.apartamento = apartamento;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Morador other = (Morador) obj;
+		return Objects.equals(apartamento, other.apartamento) && Objects.equals(pessoa, other.pessoa);
+	}
 
+	
 }

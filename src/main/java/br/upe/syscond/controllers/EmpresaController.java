@@ -20,9 +20,7 @@ public class EmpresaController implements InterfaceEmpresaController {
 			return null;
 		}else { //CASO N�O EXISTA...
 			if(empServBD.size() == 0) { 
-				System.out.println("N�o h� nenhum servi�o ou produtos cadastrada para essa empresa!!! ");
 				if(empServ.size() == 0) {
-					System.out.println("N�o h� nenhum servi�o ou produto para cadastrar ");
 					return null;
 				}else {
 					for (int i = 0; i < empServ.size(); i++) {
@@ -35,7 +33,6 @@ public class EmpresaController implements InterfaceEmpresaController {
 
 		try {
 			Empresa p = EmpresaDAO.getInstance().salvar(empresa);
-			System.out.println("Salvo " + p.getNome() + " com sucesso");
 			return p;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar Empresa!");
@@ -46,7 +43,6 @@ public class EmpresaController implements InterfaceEmpresaController {
 	public List<Empresa> listar(){
 		try {
 			List<Empresa> l = EmpresaDAO.getInstance().listar();
-			System.out.println("Listar com sucesso: " + l.size());
 			return l;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar Empresa(s)!");
@@ -58,7 +54,6 @@ public class EmpresaController implements InterfaceEmpresaController {
 	public Empresa buscar(String cnpj){
 		try {
 			Empresa b = EmpresaDAO.getInstance().buscar(cnpj);
-			System.out.println("Achado com sucesso: " + b.getNome());
 			return b;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar Empresa!");
@@ -84,7 +79,6 @@ public class EmpresaController implements InterfaceEmpresaController {
 		
 		try {
 			Empresa atualizada = EmpresaDAO.getInstance().atualizar(empresa);
-			System.out.println("Empresa atualizada com sucesso: " + atualizada.getNome());
 			return atualizada;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar Empresa!");
@@ -96,7 +90,6 @@ public class EmpresaController implements InterfaceEmpresaController {
 	public void deletar(String cnpj){
 		try {
 			EmpresaDAO.getInstance().deletar(cnpj);
-			System.out.println("Exclu�do com sucesso");
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Empresa!");
 		}

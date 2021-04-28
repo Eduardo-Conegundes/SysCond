@@ -1,6 +1,7 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -96,6 +97,19 @@ public class ServicoProduto implements Serializable {
 	 */
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ServicoProduto other = (ServicoProduto) obj;
+		return Objects.equals(categoria, other.categoria) && Objects.equals(empresa, other.empresa)
+				&& Objects.equals(nome, other.nome) && Float.floatToIntBits(valor) == Float.floatToIntBits(other.valor);
 	}
 	
 	

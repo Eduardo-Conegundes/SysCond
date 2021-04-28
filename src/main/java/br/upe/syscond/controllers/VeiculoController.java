@@ -19,13 +19,11 @@ public class VeiculoController implements InterfaceVeiculoController{
 		}
 		
 		if (apartamentoCadastrado == null) {
-			System.out.println("Apartamento não cadastrado.");
 			return null;
 		}
 		
 		try {
 			CriarVeiculo = VeiculoDAO.getInstance().salvar(veiculo);
-			System.out.println("Veiculo de placa:" + CriarVeiculo.getPlaca() + "salvo com sucesso!");
 			return CriarVeiculo;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar veiculo!");
@@ -36,7 +34,6 @@ public class VeiculoController implements InterfaceVeiculoController{
 	public List<Veiculo> listar(){
 		try {
 			List<Veiculo> VeiculosListados = VeiculoDAO.getInstance().listar();
-			System.out.println("Listar com sucesso: " + VeiculosListados.size());
 			return VeiculosListados;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar Veiculo(s)!");
@@ -48,7 +45,6 @@ public class VeiculoController implements InterfaceVeiculoController{
 	public Veiculo buscar(String placa){
 		try {
 			Veiculo VeiculoBuscado = VeiculoDAO.getInstance().buscar(placa);
-			System.out.println("Achado com sucesso!");
 			return VeiculoBuscado;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar veiculo!");
@@ -68,14 +64,12 @@ public class VeiculoController implements InterfaceVeiculoController{
 		}
 		
 		if (apartamentoNovoCadastrado == null || veiculoCadastrado == null) {
-			System.out.println("Apartamento e/ou veículo não cadastrado.");
 			return null;
 		}
 		
 		try {
 			veiculoCadastrado.setApartamento(apartamentoNovoCadastrado);
 			veiculoCadastrado = VeiculoDAO.getInstance().atualizar(veiculoCadastrado);
-			System.out.println("Veiculo atualizado com sucesso.");
 			return veiculoCadastrado;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar veiculo!");
@@ -86,7 +80,6 @@ public class VeiculoController implements InterfaceVeiculoController{
 	public void deletar(String placa){
 		try {
 			VeiculoDAO.getInstance().deletar(placa);
-			System.out.println("Excluído com sucesso");
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Veiculo!");
 		}

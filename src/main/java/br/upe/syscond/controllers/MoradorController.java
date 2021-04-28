@@ -23,7 +23,6 @@ public class MoradorController implements InterfaceMoradorController{
 			
 			if(pessoaBanco != null && apartamentoBanco != null) {
 				Morador salvo = MoradorDAO.getInstance().salvar(morador);
-				System.out.println("Salvo morador " + salvo.getPessoa().getNome() +  " com sucesso!!! ");
 				return salvo;
 			}else {
 				System.err.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados!!!");
@@ -39,7 +38,6 @@ public class MoradorController implements InterfaceMoradorController{
 	public List<Morador> listar(){
 		try {
 			List<Morador> m = MoradorDAO.getInstance().listar();
-			System.out.println("Lido com sucesso! Resultados: " + m.size());
 			return m;
 		} catch (Exception eListar) {
 			System.err.println("Erro ao listar Morador(es)!");
@@ -50,7 +48,6 @@ public class MoradorController implements InterfaceMoradorController{
 	public Morador buscar(String cpf){
 		try {
 			Morador m = MoradorDAO.getInstance().buscar(cpf);
-			System.out.println("Encontrado morador com sucesso: " + m.getPessoa().getNome());
 			return m;
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar Morador!");
@@ -63,7 +60,6 @@ public class MoradorController implements InterfaceMoradorController{
 		Apartamento apt_novo = null;
 		try {
 			apt_novo = ApartamentoDAO.getInstance().buscar(id_apartamento_novo);
-			System.out.println(apt_novo);
 		} catch (Exception e) {
 			System.err.println("Erro ao buscar apartamento novo");
 			e.printStackTrace();
@@ -79,12 +75,10 @@ public class MoradorController implements InterfaceMoradorController{
 		}
 
 		if(apt_novo == null || m == null) {
-			System.out.println("Erro ao atualiza morador com cpf/id informado");
 			return null;
 		}else {
 			try {
 				Morador morador_atualizado = new Morador(m.getPessoa(), apt_novo);
-				morador_atualizado = MoradorDAO.getInstance().atualizar(morador_atualizado);
 				System.out.println("Morador atualizado");
 				return morador_atualizado;
 			} catch (Exception eBuscar) {
@@ -97,7 +91,6 @@ public class MoradorController implements InterfaceMoradorController{
 	public void deletar(String cpf){
 		try {
 			MoradorDAO.getInstance().deletar(cpf);
-			System.out.println("Morador deletado com sucesso!");
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao deletar morador");
 		}

@@ -1,6 +1,8 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -89,5 +91,17 @@ public class Usuario implements Serializable {
 		this.nivel = nivel;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(email, other.email) && Objects.equals(nivel, other.nivel)
+				&& Objects.equals(senha, other.senha);
+	}
 	
 }
