@@ -63,11 +63,14 @@ public class UsuarioController implements InterfaceUsuarioController{
 		}
 	}
 
-	public void deletar(int id){
+	public boolean deletar(Usuario user){
+		int id = user.getId();
 		try {
 			UsuarioDAO.getInstance().deletar(id);
+			return true;
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Usuario!");
+			return true;
 		}
 	}
 }

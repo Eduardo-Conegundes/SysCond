@@ -17,7 +17,7 @@ public class PessoaTest {
 
 
 	@Test
-	public void testeCriarEmpresa() {
+	public void testeCriarPessoa() {
 		Pessoa pessoanova = null;
 		pessoanova = pessoaCont.criar(pessoacriada);
 		assertNotNull(pessoanova);
@@ -25,7 +25,6 @@ public class PessoaTest {
 	}
 
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testeAtualizarPessoa() {
 		Pessoa pessoamodificada = new Pessoa("Luiz Augusto Alapenha", "66666", "62452346", "LuizAu@gmail.com");

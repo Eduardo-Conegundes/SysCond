@@ -9,6 +9,6 @@ public interface InterfaceUsuarioController {
 	public List<Usuario> listar();
 	public Usuario buscar(Usuario user);
 	public Usuario atualizar(Usuario antigo, Usuario novo);
-	public void deletar(int id);
+	public boolean deletar(Usuario user);
 
 }

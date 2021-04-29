@@ -20,7 +20,7 @@ public class FuncionarioTest {
 
 
 	@Test
-	public void testeCriarEmpresa() {
+	public void testeCriarFuncionario() {
 		Funcionario funcionarionovo = null;
 
 		pessoaCont.criar(pessoa);
@@ -34,7 +34,7 @@ public class FuncionarioTest {
 
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testeAtualizarEmpresa() {
+	public void testeAtualizarFuncionario() {
 		Funcionario funcionariomodificado = new Funcionario(pessoa, "Externoooo", "superviso",(float)8000.00);
 		funcionariomodificado = funciocont.atualizar(funcionariomodificado);
 
