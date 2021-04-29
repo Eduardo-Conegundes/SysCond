@@ -9,6 +9,6 @@ public interface InterfaceEmpresaController {
 	public List<Empresa> listar();
 	public Empresa buscar(String cnpj);
 	public Empresa atualizar(Empresa empresa);
-	public void deletar(String cnpj);
+	public boolean deletar(Empresa empresa);
 
 }

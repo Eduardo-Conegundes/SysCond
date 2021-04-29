@@ -67,11 +67,14 @@ public class PessoaController implements InterfacePessoaController {
 		}
 	}
 
-	public void deletarPorId(String cpf){
+	public boolean deletar(Pessoa pessoa){
+		String cpf = pessoa.getCpf();
 		try {
 			PessoaDAO.getInstance().deletar(cpf);
+			return true;
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir pessoa!");
+			return true;
 		}
 	}
 }

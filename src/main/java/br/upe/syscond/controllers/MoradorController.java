@@ -55,11 +55,12 @@ public class MoradorController implements InterfaceMoradorController{
 		}
 	}
 
-	public Morador atualizar(String cpf, int id_apartamento_novo){
+	public Morador atualizar(Morador morador){
+	//	String cpf, int id_apartamento_novo
 		Morador m = null;
 		Apartamento apt_novo = null;
 		try {
-			apt_novo = ApartamentoDAO.getInstance().buscar(id_apartamento_novo);
+			apt_novo = ApartamentoDAO.getInstance().buscar(morador.getApartamento().getId());
 		} catch (Exception e) {
 			System.err.println("Erro ao buscar apartamento novo");
 			e.printStackTrace();
@@ -67,7 +68,7 @@ public class MoradorController implements InterfaceMoradorController{
 		}
 		
 		try {
-			m = MoradorDAO.getInstance().buscar(cpf);
+			m = MoradorDAO.getInstance().buscar(morador.getPessoa().getCpf());
 		} catch (Exception e) {
 			System.err.println("Erro ao buscar morador com cpf informado");
 			e.printStackTrace();
@@ -88,11 +89,14 @@ public class MoradorController implements InterfaceMoradorController{
 		}
 	}
 
-	public void deletar(String cpf){
+	public boolean deletar(Morador morador){
+		String cpf = morador.getPessoa().getCpf();
 		try {
 			MoradorDAO.getInstance().deletar(cpf);
+			return true;
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao deletar morador");
+			return true;
 		}
 	}
 

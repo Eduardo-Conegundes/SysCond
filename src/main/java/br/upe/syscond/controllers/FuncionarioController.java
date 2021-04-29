@@ -80,11 +80,14 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 		
 	}
 
-	public void deletar(String cpf){
+	public boolean deletar(Funcionario funcionario){
+		String cpf = funcionario.getPessoa().getCpf();
 		try {
 			FuncionarioDAO.getInstance().deletar(cpf);
+			return true;
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Funcionario!");
+			return true;
 		}
 	}
 }

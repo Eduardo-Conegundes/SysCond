@@ -87,11 +87,14 @@ public class EmpresaController implements InterfaceEmpresaController {
 
 	}
 
-	public void deletar(String cnpj){
+	public boolean deletar(Empresa empresa){
+		String cnpj = empresa.getCnpj();
 		try {
 			EmpresaDAO.getInstance().deletar(cnpj);
+			return true;		
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Empresa!");
+			return true;
 		}
 	}
 }

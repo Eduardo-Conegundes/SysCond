@@ -9,5 +9,5 @@ public interface InterfaceFuncionarioController {
 	public List<Funcionario> listar();
 	public Funcionario buscar(String cpf);
 	public Funcionario atualizar(Funcionario funcionario);
-	public void deletar(String cpf);
+	public boolean deletar(Funcionario funcionario);
 }

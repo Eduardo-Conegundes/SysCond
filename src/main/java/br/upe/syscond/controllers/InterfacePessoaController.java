@@ -9,5 +9,5 @@ public interface InterfacePessoaController {
 	public List<Pessoa> listar();
 	public Pessoa buscar(String cpf);
 	public Pessoa atualizar(Pessoa pessoa);
-	public void deletarPorId(String cpf);
+	public boolean deletar(Pessoa pessoa);
 }
