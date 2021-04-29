@@ -9,7 +9,7 @@ public interface InterfaceServicoProdutoController {
 	public List<ServicoProduto> listar();
 	public ServicoProduto buscar(int id);
 	public List<ServicoProduto> listar(String cnpj);
-	public ServicoProduto atualizar(ServicoProduto servicoProduto, int id);
-	public void deletar(int id);
+	public ServicoProduto atualizar(ServicoProduto servicoProduto);
+	public boolean deletar(ServicoProduto servicoProduto);
 
 }

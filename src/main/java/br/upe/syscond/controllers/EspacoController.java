@@ -8,7 +8,7 @@ import br.upe.syscond.dao.LocacaoDAO;
 import br.upe.syscond.models.Espaco;
 import br.upe.syscond.models.Morador;
 
-public class LocacaoController implements InterfaceLocacaoController {
+public class EspacoController implements InterfaceLocacaoController {
 
 	public Espaco criar(Espaco locacao) {
 		Morador morador = locacao.getMorador(); 

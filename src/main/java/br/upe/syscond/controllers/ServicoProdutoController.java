@@ -80,7 +80,8 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 
 	}
 
-	public ServicoProduto atualizar(ServicoProduto servicoProduto, int id){
+	public ServicoProduto atualizar(ServicoProduto servicoProduto){
+		int id = servicoProduto.getId();
 
 		try {
 			servicoProduto = ServicoProdutoDAO.getInstance().buscar(id);			
@@ -105,11 +106,14 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 		}
 	}
 
-	public void deletar(int id){
+	public boolean deletar(ServicoProduto servicoProduto){
+		int id = servicoProduto.getId();
 		try {
 			ServicoProdutoDAO.getInstance().deletar(id);
+			return true;
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao excluir ServicoProduto!");
+			return true;
 		}
 	}
 }
