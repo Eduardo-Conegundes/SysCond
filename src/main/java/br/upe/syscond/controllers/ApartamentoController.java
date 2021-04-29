@@ -39,9 +39,9 @@ public class ApartamentoController implements InterfaceApartamentoController {
 
 	public Apartamento buscar(Apartamento pesquisar) {
 		List<Apartamento>lista_apartamentos = this.listar();
-		for (Apartamento apartamento : lista_apartamentos) {
-			if(apartamento.equals(pesquisar)) {
-				return apartamento;
+		for (int i=0; i <= lista_apartamentos.size(); i++) {
+			if(lista_apartamentos.get(i).equals(pesquisar)) {
+				return lista_apartamentos.get(i);
 			}
 		}
 		return null;

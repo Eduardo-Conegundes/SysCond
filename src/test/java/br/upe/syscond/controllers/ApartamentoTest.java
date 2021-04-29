@@ -9,10 +9,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.upe.syscond.models.Apartamento;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ApartamentoTest {
 
 	static String bloco = RandomStringUtils.randomAlphabetic(1).toUpperCase();
@@ -23,40 +26,43 @@ public class ApartamentoTest {
 	static Apartamento apartamento = new Apartamento(bloco, numero, 2);
 
 	@Test
-	public void testeCriar() {
+	public void t1esteCriar() {
 		Apartamento criado = null;		
 		criado = controlador.criar(apartamento);
 		int id = criado.getId();
-
+		
 		assertNotNull(criado);
 		assertNotNull(id);
-
+		
+		apartamento.setId(id);
 	}
 	
 	@Test
-	public void testeListar() {
+	public void t2esteListar() {
 		List<Apartamento> lista = controlador.listar();
-		
 		//lista não pode ser vazia
 		assertNotEquals(0, lista.size());
 	}
 	
 	@Test
-	public void testeAtualizar() {
-		Apartamento novo = new Apartamento("c", 100, 2);
+	public void t3esteAtualizar() {
+		
+		String bloco = "c";
+		int numero = 100;
+		int vagas = 2;
+		
+		Apartamento novo = new Apartamento(bloco, numero, vagas);
 		
 		novo = controlador.atualizar(apartamento, novo);
-				
+		
 		assertEquals(apartamento.getId(), novo.getId());
-		assertNotEquals(apartamento.getBloco(), novo.getBloco());
-		assertNotEquals(apartamento.getNumero(), novo.getNumero());
 		
 	}
 	
 	@Test
-	public void testeDeletar() {
-		boolean teste = controlador.deletar(apartamento);
-		System.out.println(teste);
+	public void t4esteDeletar() {
+		boolean teste = false;
+		teste = controlador.deletar(apartamento);
 		assertTrue(teste);
 	}
 }
