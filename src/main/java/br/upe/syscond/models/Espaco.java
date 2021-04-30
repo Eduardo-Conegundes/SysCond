@@ -1,6 +1,7 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -16,11 +17,11 @@ public class Espaco implements Serializable {
 	@Id @GeneratedValue(generator = "idLocacao")
 	private int id;
 	@Temporal(TemporalType.DATE)
-	private java.util.Date data;
+	private Date data;
 	@Temporal(TemporalType.TIME)
-	private java.util.Date horarioInicio;
+	private Date horarioInicio;
 	@Temporal(TemporalType.TIME)
-	private java.util.Date horarioFim;
+	private Date horarioFim;
 	@OneToOne
 	private Morador morador;
 	private String espaco;
@@ -39,7 +40,7 @@ public class Espaco implements Serializable {
 	 * @param espaco
 	 * @param valor
 	 */
-	public Espaco(java.util.Date data, java.util.Date horarioInicio, java.util.Date horarioFim,
+	public Espaco(Date data, Date horarioInicio, Date horarioFim,
 			Morador morador, String espaco, float valor) {
 		this.data = data;
 		this.horarioInicio = horarioInicio;
@@ -175,7 +176,7 @@ public class Espaco implements Serializable {
 				&& Objects.equals(morador, other.morador)
 				&& Float.floatToIntBits(valor) == Float.floatToIntBits(other.valor);
 	}
-	
+
 
 
 }

@@ -11,24 +11,14 @@ import br.upe.syscond.models.Pessoa;
 public class MoradorController implements InterfaceMoradorController{
 
 	public Morador criar(Morador morador){
-		Pessoa pessoa = morador.getPessoa();
-		Apartamento apartamento = morador.getApartamento();
-		
-		InterfacePessoaController pController = new PessoaController();
-		InterfaceApartamentoController aptController = new ApartamentoController();
-		
-		try {
-			Pessoa pessoaBanco = pController.buscar(pessoa.getCpf());
-			Apartamento apartamentoBanco = aptController.buscar(apartamento);
-			
-			if(pessoaBanco != null && apartamentoBanco != null) {
-				Morador salvo = MoradorDAO.getInstance().salvar(morador);
-				return salvo;
-			}else {
-				System.err.println("Erro ao salvar, não foi possivel encontrar pessoa ou apartamento com esses dados!!!");
-				return null;
-			}
 
+		if(this.buscar(morador)!=null) {
+			return null;
+		}
+
+		try {
+			Morador salvo = MoradorDAO.getInstance().salvar(morador);
+			return salvo;
 		} catch (Exception eCriar) {
 			System.err.println("Erro ao salvar morador");
 			return null;
@@ -45,58 +35,33 @@ public class MoradorController implements InterfaceMoradorController{
 		}
 	}
 
-	public Morador buscar(String cpf){
-		try {
-			Morador m = MoradorDAO.getInstance().buscar(cpf);
-			return m;
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar Morador!");
-			return null;
+	public Morador buscar(Morador morador){
+		List<Morador> lista = this.listar();
+		for (Morador morador2 : lista) {
+			if(morador2.equals(morador)) {
+				return morador2;
+			}
 		}
+		return null;
 	}
 
-	public Morador atualizar(Morador morador){
-	//	String cpf, int id_apartamento_novo
-		Morador m = null;
-		Apartamento apt_novo = null;
+	public Morador atualizar(Morador antigo, Morador novo){
 		try {
-			apt_novo = ApartamentoDAO.getInstance().buscar(morador.getApartamento().getId());
+			novo.setId(this.buscar(antigo).getId());
+			return MoradorDAO.getInstance().atualizar(novo);
 		} catch (Exception e) {
-			System.err.println("Erro ao buscar apartamento novo");
-			e.printStackTrace();
 			return null;
-		}
-		
-		try {
-			m = MoradorDAO.getInstance().buscar(morador.getPessoa().getCpf());
-		} catch (Exception e) {
-			System.err.println("Erro ao buscar morador com cpf informado");
-			e.printStackTrace();
-			return null;
-		}
-
-		if(apt_novo == null || m == null) {
-			return null;
-		}else {
-			try {
-				Morador morador_atualizado = new Morador(m.getPessoa(), apt_novo);
-				System.out.println("Morador atualizado");
-				return morador_atualizado;
-			} catch (Exception eBuscar) {
-				System.err.println("Erro ao atualizar morador");
-				return null;
-			}
 		}
 	}
 
 	public boolean deletar(Morador morador){
-		String cpf = morador.getPessoa().getCpf();
+		int id = this.buscar(morador).getId();
 		try {
-			MoradorDAO.getInstance().deletar(cpf);
+			MoradorDAO.getInstance().deletar(id);
 			return true;
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao deletar morador");
-			return true;
+			return false;
 		}
 	}
 

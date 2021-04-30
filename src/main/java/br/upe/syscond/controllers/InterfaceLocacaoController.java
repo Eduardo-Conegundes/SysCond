@@ -7,9 +7,9 @@ import br.upe.syscond.models.Espaco;
 
 public interface InterfaceLocacaoController {
 	public Espaco criar(Espaco locacao);
-	public Espaco buscar(int id);
-	public Espaco atualizar(int id, Espaco locacao);
-	public void deletar(int id);
+	public Espaco buscar(Espaco locacao);
+	public Espaco atualizar(Espaco antigo, Espaco novo);
+	public boolean deletar(Espaco locacao);
 	public List<Espaco> listar();
 	public List<Espaco> listar(Date data);
 

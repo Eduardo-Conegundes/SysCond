@@ -11,31 +11,9 @@ import br.upe.syscond.models.Morador;
 public class EspacoController implements InterfaceLocacaoController {
 
 	public Espaco criar(Espaco locacao) {
-		Morador morador = locacao.getMorador(); 
-		Morador moradorBd = null;
-		java.util.Date data = locacao.getData();
-		java.util.Date horarioInicio = locacao.getHorarioInicio();
-		java.util.Date horarioFim = locacao.getHorarioFim();
-		String espacoNome = locacao.getEspaco();
-		List<Espaco> espacos = this.listar();
 		
-		try {
-			moradorBd = new MoradorController().buscar(morador.getPessoa().getCpf());	
-		} catch (Exception e) {
-			System.err.println("Sistema - Erro ao buscar morador no banco de dados!");
-		}
-		
-		if(moradorBd == null) {
+		if(this.buscar(locacao)!=null) {
 			return null;
-		}
-		
-		for(Espaco espaco : espacos) {
-			if(((espacoNome.compareTo(espaco.getEspaco()) == 0) &&
-					(data.compareTo(espaco.getData()) == 0) &&
-					horarioInicio.before(espaco.getHorarioFim()) &&
-							horarioFim.after(espaco.getHorarioInicio()))){
-				return null;
-			}
 		}
 		
 		try {
@@ -48,57 +26,34 @@ public class EspacoController implements InterfaceLocacaoController {
 
 	}
 
-	public Espaco buscar(int id){
-		try {
-			Espaco locacaoBuscar = LocacaoDAO.getInstance().buscar(id);
-			return locacaoBuscar;
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar loca��o!");
-			return null;
+	public Espaco buscar(Espaco locacao){
+		List<Espaco> lista = this.listar();
+		for (Espaco espaco : lista) {
+			if(espaco.equals(locacao)) {
+				return espaco;
+			}
 		}
+		return null;
 	}
 
-	public Espaco atualizar(int id, Espaco locacao){
-		Morador morador = null;
-		Espaco locacaoId = null;
-		
+	public Espaco atualizar(Espaco antigo, Espaco novo){
 		try {
-			morador = new MoradorController().buscar(locacao.getMorador().getPessoa().getCpf());	
-		} catch (Exception e) {
-			System.err.println("Erro ao encontrar morador!");
-		}
-		
-		if(morador == null) {
-			return null;
-		} 
-		
-		try {
-			locacaoId = this.buscar(id);
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar id!");
-			return null;
-		}
-
-		if (locacaoId==null) {
-			return null;
-		}		
-
-		locacao.setId(id);
-
-		try {
-			Espaco locacaoAtualizada = LocacaoDAO.getInstance().atualizar(locacao);
+			novo.setId(this.buscar(antigo).getId());
+			Espaco locacaoAtualizada = LocacaoDAO.getInstance().atualizar(novo);
 			return locacaoAtualizada;
 		} catch (Exception eSalvar) {
-			System.err.println("Erro ao atualizar Loca��o!");
 			return null;
 		}
 	}
 
-	public void deletar(int id){
+	public boolean deletar(Espaco locacao){
+		int id = this.buscar(locacao).getId();
 		try {
 			LocacaoDAO.getInstance().deletar(id);
+			return true;
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Loca��o!");
+			return false;
 		}
 	}
 

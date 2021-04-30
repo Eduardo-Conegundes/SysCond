@@ -37,18 +37,18 @@ public class MoradorDAO implements InterfaceMorador{
 			em.getTransaction().begin();
 			em.persist(morador);
 			em.getTransaction().commit();
-			return buscar(morador.getPessoa().getCpf());
+			return this.buscar(morador);
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
 		}
 	}
 	
-	public Morador buscar(String cpf) throws Exception {
+	public Morador buscar(Morador morador) throws Exception {
 		Morador m = null;
 		try {
 			em.getTransaction().begin();
-			m = em.find(Morador.class, cpf);
+			m = em.find(Morador.class, morador.getId());
 			em.getTransaction().commit();
 			return m;
 		} catch (Exception eBuscar) {
@@ -62,18 +62,18 @@ public class MoradorDAO implements InterfaceMorador{
 			em.getTransaction().begin();
 			em.merge(morador);
 			em.getTransaction().commit();
-			return buscar(morador.getPessoa().getCpf());
+			return this.buscar(morador);
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
 		}
 	}
 
-	public void deletar(String cpf) throws Exception {
+	public void deletar(int id) throws Exception {
 		Morador m = null;
 		try {
 			em.getTransaction().begin();
-			m = em.find(Morador.class, cpf);
+			m = em.find(Morador.class, id);
 			em.remove(m);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {

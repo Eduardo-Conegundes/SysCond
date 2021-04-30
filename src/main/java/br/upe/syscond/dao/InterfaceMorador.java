@@ -8,8 +8,8 @@ public interface InterfaceMorador{
 
     Morador salvar(Morador m) throws Exception;
     List<Morador> listar() throws Exception;
-    Morador buscar(String cpf) throws Exception;
+    Morador buscar(Morador m) throws Exception;
     Morador atualizar(Morador m) throws Exception;
-    void deletar(String cpf) throws Exception;
+    void deletar(int id) throws Exception;
     
 }

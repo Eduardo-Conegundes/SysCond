@@ -7,8 +7,8 @@ import br.upe.syscond.models.Morador;
 public interface InterfaceMoradorController {
 	public Morador criar(Morador morador);
 	public List<Morador> listar();
-	public Morador buscar(String cpf);
-	public Morador atualizar(Morador morador);
+	public Morador buscar(Morador morador);
+	public Morador atualizar(Morador antigo, Morador novo);
 	public boolean deletar(Morador morador);
 
 }

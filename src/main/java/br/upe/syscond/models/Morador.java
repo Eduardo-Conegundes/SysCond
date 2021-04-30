@@ -13,7 +13,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Morador implements Serializable {
 
-    @Id @GeneratedValue(generator = "idMorador")
+
+	@Id @GeneratedValue(generator = "idMorador")
     private int id;
     @OneToOne
     private Pessoa pessoa;
@@ -26,6 +27,19 @@ public class Morador implements Serializable {
     public Morador(Pessoa pessoa, Apartamento apartamento) {
         this.pessoa = pessoa;
         this.apartamento = apartamento;
+    }
+    /**
+     * @return the id
+     */
+    public int getId() {
+    	return id;
+    }
+    
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+    	this.id = id;
     }
 
 	public Pessoa getPessoa() {
