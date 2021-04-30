@@ -32,11 +32,11 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         return em;
     }
     
-    public Funcionario buscar(String cpf) throws Exception {
+    public Funcionario buscar(int id) throws Exception {
         Funcionario f = null;
         try {
             em.getTransaction().begin();
-            f = em.find(Funcionario.class, cpf);
+            f = em.find(Funcionario.class, id);
             em.getTransaction().commit();
             return f;
         } catch (Exception eAtualizar) {
@@ -50,7 +50,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             em.getTransaction().begin();
             em.persist(funcionario);
             em.getTransaction().commit();
-            return buscar(funcionario.getPessoa().getCpf());
+            return buscar(funcionario.getId());
         } catch (Exception eSalvar) {
             em.getTransaction().rollback();
             throw eSalvar;
@@ -62,18 +62,18 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             em.getTransaction().begin();
             em.merge(funcionario);
             em.getTransaction().commit();
-            return buscar(funcionario.getPessoa().getCpf());
+            return this.buscar(funcionario.getId());
         } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
             throw eAtualizar;
         }
     }
 
-    public void deletar(String cpf) throws Exception {
+    public void deletar(int id) throws Exception {
         Funcionario f = null;
         try {
             em.getTransaction().begin();
-            f = em.find(Funcionario.class, cpf);
+            f = em.find(Funcionario.class, id);
             em.remove(f);
             em.getTransaction().commit();
         } catch (Exception eDeletar) {

@@ -14,7 +14,7 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 		Empresa empresa = null;
 
 		try {
-			empresa = EmpresaDAO.getInstance().buscar(servicoProduto.getEmpresa().getCnpj());			
+			empresa = EmpresaDAO.getInstance().buscar(servicoProduto.getEmpresa().getId());			
 		} catch (Exception e) {
 			System.err.println("Erro ao encontrar empresa!");
 			return null;

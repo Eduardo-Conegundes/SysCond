@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.upe.syscond.dao.EmpresaDAO;
 import br.upe.syscond.models.Empresa;
-import br.upe.syscond.models.ServicoProduto;
 
 public class EmpresaController implements InterfaceEmpresaController {
 	

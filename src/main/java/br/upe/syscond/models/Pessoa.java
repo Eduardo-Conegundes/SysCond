@@ -10,20 +10,20 @@ import javax.persistence.Id;
 public class Pessoa {
 	@Id @GeneratedValue(generator = "idPessoa")
 	private int id;
-    private String cpf;
-    private String nome;
-    private String telefone;
-    private String email;
+	private String cpf;
+	private String nome;
+	private String telefone;
+	private String email;
 
-    public Pessoa() {
-    }
+	public Pessoa() {
+	}
 
-    public Pessoa(String nome, String cpf, String telefone, String email) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.email = email;
-    }
+	public Pessoa(String nome, String cpf, String telefone, String email) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.email = email;
+	}
 
 	/**
 	 * @return the nome
@@ -80,16 +80,17 @@ public class Pessoa {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		Pessoa p = (Pessoa) obj;
+		if(this.cpf.compareTo(p.getCpf())==0 &&
+				this.email.compareTo(p.getEmail())==0 &&
+				this.nome.compareTo(p.getNome())==0 &&
+				this.telefone.compareTo(p.getTelefone())==0
+				) {
 			return true;
-		if (obj == null)
+		}else {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pessoa other = (Pessoa) obj;
-		return Objects.equals(cpf, other.cpf) && Objects.equals(email, other.email) && Objects.equals(nome, other.nome)
-				&& Objects.equals(telefone, other.telefone);
+		}
 	}
- 
+
 }
 
