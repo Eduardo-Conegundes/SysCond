@@ -7,33 +7,19 @@ import br.upe.syscond.models.Empresa;
 import br.upe.syscond.models.ServicoProduto;
 
 public class EmpresaController implements InterfaceEmpresaController {
-	//RESOLVER TUDO
+	
 	public Empresa criar(Empresa empresa){
-
-		ServicoProdutoController controlador = new ServicoProdutoController();
-		List<ServicoProduto> empServ = empresa.getServicoproduto();
-		List<ServicoProduto> empServBD = controlador.listar(empresa.getCnpj());
+		
 		List<Empresa> empresas = this.listar();
 
-		if(empresas.contains(empresa)) { //VERIFICANDO SE EMPRESA J� EXISTE
-			System.out.println("Empresa j� cadastrada!!! ");
-			return null;
-		}else { //CASO N�O EXISTA...
-			if(empServBD.size() == 0) { 
-				if(empServ.size() == 0) {
-					return null;
-				}else {
-					for (int i = 0; i < empServ.size(); i++) {
-						controlador.criar(empServ.get(i));
-
-					}
-				}
+		for (int i = 0; i < empresas.size(); i++) {
+			if(empresas.get(i).equals(empresa)) {
+				return null;
 			}
 		}
-
 		try {
-			Empresa p = EmpresaDAO.getInstance().salvar(empresa);
-			return p;
+			Empresa criada = EmpresaDAO.getInstance().salvar(empresa);
+			return criada;
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar Empresa!");
 			return null;
@@ -51,50 +37,39 @@ public class EmpresaController implements InterfaceEmpresaController {
 
 	}
 
-	public Empresa buscar(String cnpj){
-		try {
-			Empresa b = EmpresaDAO.getInstance().buscar(cnpj);
-			return b;
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar Empresa!");
-			return null;
+	public Empresa buscar(Empresa buscar){
+		List<Empresa> empresas = this.listar();
+		for (int i = 0; i < empresas.size(); i++) {
+			if(empresas.get(i).getCnpj().compareTo(buscar.getCnpj())==0) {
+				return empresas.get(i);
+			}
 		}
+		return null;
 	}
 
-	//atualiza qualquer campo da empresa, menos o cnpj
-	public Empresa atualizar(Empresa empresa){
-		Empresa empresa_encontrada = null;
-
-		try {
-			empresa_encontrada = EmpresaDAO.getInstance().buscar(empresa.getCnpj());
-		} catch (Exception eBuscar) {
-			System.err.println("Erro, n�o encontrada empresa com cnpj informado!");
-			return null;
-		}
-
-		if (empresa_encontrada == null) {
-			System.err.println("Erro, n�o encontrada empresa com cnpj informado!");
-			return null;
-		}
+	public Empresa atualizar(Empresa empresaAntiga, Empresa nova){
 		
-		try {
-			Empresa atualizada = EmpresaDAO.getInstance().atualizar(empresa);
-			return atualizada;
-		} catch (Exception eSalvar) {
-			System.err.println("Erro ao atualizar Empresa!");
-			return null;
+		if(this.buscar(empresaAntiga)!=null) {
+			try {
+				nova.setId(empresaAntiga.getId());
+				Empresa atualizada = EmpresaDAO.getInstance().atualizar(nova);
+				return atualizada;
+			} catch (Exception eSalvar) {
+				System.err.println("Erro sistema ao atualizar Empresa!");
+				return null;
+			}
 		}
+		return null;
 
 	}
 
 	public boolean deletar(Empresa empresa){
-		String cnpj = empresa.getCnpj();
 		try {
-			EmpresaDAO.getInstance().deletar(cnpj);
+			EmpresaDAO.getInstance().deletar(empresa.getId());
 			return true;		
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Empresa!");
-			return true;
+			return false;
 		}
 	}
 }

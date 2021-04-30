@@ -7,8 +7,8 @@ import br.upe.syscond.models.Empresa;
 public interface InterfaceEmpresaController {
 	public Empresa criar(Empresa empresa);
 	public List<Empresa> listar();
-	public Empresa buscar(String cnpj);
-	public Empresa atualizar(Empresa empresa);
+	public Empresa buscar(Empresa empresa);
+	public Empresa atualizar(Empresa antiga, Empresa nova);
 	public boolean deletar(Empresa empresa);
 
 }

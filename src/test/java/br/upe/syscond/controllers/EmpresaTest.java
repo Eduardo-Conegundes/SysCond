@@ -4,61 +4,72 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
 import br.upe.syscond.models.Empresa;
 import br.upe.syscond.models.ServicoProduto;
 
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmpresaTest {
-
-	ServicoProdutoController Sprod = new ServicoProdutoController();
-	ArrayList<ServicoProduto> listaproduto = new ArrayList<ServicoProduto>();
-	Empresa empresa = new Empresa("789234", listaproduto, "Jesus Humilha o Satanas", "666666");
-	EmpresaController empcont = new EmpresaController();
+	
+	static String cnpj = RandomStringUtils.randomAlphanumeric(5);
+	static String telefone = RandomStringUtils.randomAlphanumeric(8);
+	static String nome = RandomStringUtils.randomAlphabetic(6).toUpperCase();
+	static int numero = RandomUtils.nextInt();
+	
+	static ArrayList<ServicoProduto> listaprodutos = new ArrayList<ServicoProduto>();
+	
+	static Empresa empresa = new Empresa(cnpj, listaprodutos, nome, telefone);
+	
+	static EmpresaController ControllerEmpresa = new EmpresaController();
 
 
 	@Test
-	public void testeCriarEmpresa() {
+	public void t1esteCriarEmpresa() {
 		Empresa empresaCriada = null;
-		ServicoProduto Serv = new ServicoProduto("papel", (float)10.00, empresaCriada, "higienico");
-		Sprod.criar(Serv);
-		listaproduto.add(Serv);	
 
-		empresaCriada = empcont.criar(empresa);
+		empresaCriada = ControllerEmpresa.criar(empresa);
 
+		empresa.setId(empresaCriada.getId());
+		
 		assertNotNull(empresaCriada);
-
+		
 	}
 
 
 	@Test
-	public void testeAtualizarEmpresa() {
+	public void t2esteAtualizarEmpresa() {
+		
+		ArrayList<ServicoProduto> listaprodutos2 = new ArrayList<ServicoProduto>();
 
-		Empresa empresamodificada = new Empresa("789234", listaproduto, "HEEFDE", "436676");
+		Empresa empresamodificada = new Empresa("789234", listaprodutos2, "HEEFDE", "436676");
 
-		empresamodificada = empcont.atualizar(empresamodificada);
+		empresamodificada = ControllerEmpresa.atualizar(empresa, empresamodificada);
+		
+		assertEquals(empresa.getId(), empresamodificada.getId());
 
-		assertEquals(empresa.getCnpj(), empresamodificada.getCnpj());
-		assertNotEquals(empresa.getNome(), empresamodificada.getNome());
-		assertNotEquals(empresa.getServicoproduto(), empresamodificada.getServicoproduto());
-		assertNotEquals(empresa.getTelefone(), empresamodificada.getTelefone());
 
 	}
 
 	@Test
-	public void testeListarEmpresas() {
-		List<Empresa> lista = empcont.listar();
+	public void t3esteListarEmpresas() {
+		List<Empresa> lista = ControllerEmpresa.listar();
+		
 		assertNotEquals(0, lista.size());
-
 	}
 
 	@Test
-	public void testeDeletarEmpresa() {
-		boolean deletaEmpresa = empcont.deletar(empresa);
-		System.out.println(deletaEmpresa);
+	public void t4esteDeletarEmpresa() {
+		boolean deletaEmpresa = ControllerEmpresa.deletar(empresa);
 		assertTrue(deletaEmpresa);
 	}
 

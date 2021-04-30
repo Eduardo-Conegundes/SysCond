@@ -36,7 +36,7 @@ public class EmpresaDAO implements InterfaceEmpresa {
 			em.getTransaction().begin();
 			em.persist(E);
 			em.getTransaction().commit();
-			return buscar(E.getCnpj());
+			return buscar(E.getId());
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -48,18 +48,18 @@ public class EmpresaDAO implements InterfaceEmpresa {
 			em.getTransaction().begin();
 			em.merge(E);
 			em.getTransaction().commit();
-			return buscar(E.getCnpj());
+			return buscar(E.getId());
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
 		}
 	}
 
-	public void deletar(String cnpj) throws Exception {
+	public void deletar(int id) throws Exception {
 		Empresa E = null;
 		try {
 			em.getTransaction().begin();
-			E = em.find(Empresa.class, cnpj);
+			E = em.find(Empresa.class, id);
 			em.remove(E);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {
@@ -68,11 +68,11 @@ public class EmpresaDAO implements InterfaceEmpresa {
 		}
 	}
 
-	public Empresa buscar(String cnpj) throws Exception {
+	public Empresa buscar(int id) throws Exception {
 		Empresa e = null;
 		try {
 			em.getTransaction().begin();
-			e = em.find(Empresa.class, cnpj);
+			e = em.find(Empresa.class, id);
 			em.getTransaction().commit();
 			return e;
 		} catch (Exception eBuscar) {
