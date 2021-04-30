@@ -1,86 +1,68 @@
 package br.upe.syscond.controllers;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
 import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
 import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Morador;
 import br.upe.syscond.models.Pessoa;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MoradorTest {
 
 	static String bloco = RandomStringUtils.randomAlphabetic(1).toUpperCase();
 	static int numero = RandomUtils.nextInt();
+	static Apartamento apartamento = new ApartamentoController().criar(new Apartamento(bloco, numero, 3));
 
-	static ApartamentoController apcont = new ApartamentoController();
-	static PessoaController pessoacont = new PessoaController();
+	static Pessoa pessoa = new PessoaController().criar(new Pessoa(RandomStringUtils.randomAlphabetic(8).toUpperCase(), "66666", "666666", "LuizAu@gmail.com"));
 
-	static Apartamento apartamento = new Apartamento(bloco, numero, 3);
-	static Pessoa pessoa = new Pessoa("Luiz Augusto", "66666", "666666", "LuizAu@gmail.com");
+	static Morador morador = new Morador(pessoa, apartamento);
 
-	MoradorController moradorcont = new MoradorController();
-
-	Morador Moradorcriado = new Morador(pessoa, apartamento);
-
-
-
+	static MoradorController controlador = new MoradorController();
 
 	@Test
-	public void testeCriarMorador() {
-		apcont.criar(apartamento);
-		pessoacont.criar(pessoa);
-
-		Morador morador = null;		
-		morador = moradorcont.criar(morador);
-		assertNotNull(morador);
-
+	public void t1esteCriarMorador() {
+		Morador criado = null;		
+		criado = controlador.criar(morador);
+		assertNotNull(criado);
 	}
 
-
-	//Eu tenhop quase certezza que isso está ERRRARDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	@Test
-	public void testeAtualizarMorador() {
+	public void t2esteAtualizarMorador() {
+		Apartamento apartamento2 = new ApartamentoController().criar(new Apartamento("Atualizado", 1, 6));
+		Morador atualizado = new Morador(pessoa, apartamento2);
 
-		Apartamento novoAP = new Apartamento("B", 50, 3);
-		Morador moradorNovo = new Morador(pessoa, novoAP);
-		moradorNovo = moradorcont.atualizar(moradorNovo);
+		atualizado = controlador.atualizar(morador, atualizado);
 
-		//## OU ISSOOO
-		assertEquals(Moradorcriado.getApartamento().getBloco(), moradorNovo.getApartamento().getBloco());
-		assertEquals(Moradorcriado.getApartamento().getNumero(), moradorNovo.getApartamento().getNumero());
-		assertEquals(Moradorcriado.getApartamento().getId(), moradorNovo.getApartamento().getId());
-
-		assertEquals(Moradorcriado.getPessoa().getCpf(), moradorNovo.getPessoa().getCpf());
-		assertEquals(Moradorcriado.getPessoa().getNome(), moradorNovo.getPessoa().getNome());
-		assertEquals(Moradorcriado.getPessoa().getTelefone(), moradorNovo.getPessoa().getTelefone());
-		assertEquals(Moradorcriado.getPessoa().getEmail(), moradorNovo.getPessoa().getEmail());
-
-		//## OU ISSOOO
-
-		//	assertEquals(Moradorcriado.getApartamento(), moradorNovo.getApartamento());
-		//	assertEquals(Moradorcriado.getPessoa(), moradorNovo.getPessoa());
-
+		assertNotEquals(0, atualizado.getId());
+		morador = atualizado;
 	}
 
 
 	@Test
-	public void testeListarMoradores() {
-		List<Morador> listamoradores = moradorcont.listar();
-		assertNotEquals(0, listamoradores.size());
+	public void t3esteListarMoradores() {
+		List<Morador> lista = null;
+		lista = controlador.listar();
+		assertNotNull(lista);
 	}
 
 
 	@Test
-	public void testeDeletarmorador() {
-		boolean moradordeletado = moradorcont.deletar(Moradorcriado);
-		System.out.println(moradordeletado);
-		assertTrue(moradordeletado);
+	public void t4esteDeletarmorador() {
+		boolean teste = false; 
+
+		teste = controlador.deletar(morador);
+
+		assertTrue(teste);
 	}
 }
 

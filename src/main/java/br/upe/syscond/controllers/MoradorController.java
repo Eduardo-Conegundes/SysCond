@@ -60,7 +60,6 @@ public class MoradorController implements InterfaceMoradorController{
 			MoradorDAO.getInstance().deletar(id);
 			return true;
 		} catch (Exception eDeletar) {
-			System.err.println("Erro ao deletar morador");
 			return false;
 		}
 	}
