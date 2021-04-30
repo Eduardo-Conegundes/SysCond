@@ -8,18 +8,13 @@ import br.upe.syscond.models.Usuario;
 public class UsuarioController implements InterfaceUsuarioController{
 
 	public Usuario criar(Usuario user){
-		Usuario userCriado = null;
-		List<Usuario> users = this.listar();
-
-		for (Usuario user2 : users) {
-			if(user.getEmail().compareTo(user2.getEmail()) == 0) {
-				return null;
-			}
+		
+		if(this.buscar(user) != null) {
+			return null;
 		}
 
 		try {
-			userCriado = UsuarioDAO.getInstance().salvar(user);
-			return userCriado;
+			return UsuarioDAO.getInstance().salvar(user);
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar usu�rio!");
 			return null;
@@ -39,23 +34,18 @@ public class UsuarioController implements InterfaceUsuarioController{
 
 	public Usuario buscar(Usuario user){
 		List<Usuario> users = this.listar();
-		try {
+
 		for (Usuario user2 : users) {
-			if((user.getEmail().compareTo(user2.getEmail()) == 0) && user.getSenha().compareTo(user2.getSenha())==0) {
-				return UsuarioDAO.getInstance().buscar(user2.getId());				
+			if(user2.equals(user)) {
+				return user2;				
 			}
-		}
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar usu�rio!");
-			return null;
 		}
 		return null;
 	}
 
 	public Usuario atualizar(Usuario antigo, Usuario novo){
 		try {
-			int id = this.buscar(antigo).getId();
-			novo.setId(id);
+			novo.setId(this.buscar(antigo).getId());
 			return UsuarioDAO.getInstance().atualizar(novo);
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar usu�rio!");
@@ -64,7 +54,7 @@ public class UsuarioController implements InterfaceUsuarioController{
 	}
 
 	public boolean deletar(Usuario user){
-		int id = user.getId();
+		int id = this.buscar(user).getId();
 		try {
 			UsuarioDAO.getInstance().deletar(id);
 			return true;
