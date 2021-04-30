@@ -1,6 +1,5 @@
 package br.upe.syscond.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import br.upe.syscond.models.Contas;
@@ -8,8 +7,8 @@ import br.upe.syscond.models.Contas;
 public interface InterfaceContabilController {
 	public Contas criar(Contas conta);
 	public List<Contas> listar();
-	public Contas buscar(int id);
-	public List<Contas> buscar(LocalDate data_vencimento);
-	public Contas atualizar(int id, Contas conta);
-	public void deletar(int id);
+	public Contas buscar(Contas conta);
+	public List<Contas> buscarPorData(Contas buscar);
+	public Contas atualizar(Contas antiga, Contas nova);
+	public Boolean deletar(Contas conta);
 }

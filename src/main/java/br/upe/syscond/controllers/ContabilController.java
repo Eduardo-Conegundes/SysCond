@@ -33,33 +33,18 @@ public class ContabilController implements InterfaceContabilController{
 	}
 
 	public Contas criar(Contas conta){
-
-		Contas criada = null;
-
-		List<Contas> contasBD = this.listar();
-
-		if(contasBD.size()==0) {
-			try {
-				criada = ContasDAO.getInstance().salvar(conta);
-				return criada;	
-			} catch (Exception eSalvar) {
-				System.err.println("Erro ao salvar conta");
-			}
-		}else{
-			for (int i = 0; i < contasBD.size(); i++) {
-				if(contasBD.get(i).equals(conta)) {
-					return null;
-				}
-			}
-			try {
-				if(atualizaSaldo(conta)) {
-					criada = ContasDAO.getInstance().salvar(conta);					
-				}
-			} catch (Exception eSalvar) {
-				System.err.println("Erro ao salvar conta");
-			}
+		
+		if(this.buscar(conta) != null) {
+			return null;
 		}
-		return criada;
+		
+		try {
+			atualizaSaldo(conta);
+			return ContasDAO.getInstance().salvar(conta);
+		} catch (Exception eSalvar) {
+			System.err.println("Erro ao salvar conta");
+			return null;
+		}
 	}
 
 	public List<Contas> listar(){
@@ -67,23 +52,25 @@ public class ContabilController implements InterfaceContabilController{
 			List<Contas> l = ContasDAO.getInstance().listar();
 			return l;
 		} catch (Exception eListar) {
-			eListar.printStackTrace();
 			System.err.println("Erro ao listar Conta(s)!");
 			return null;
 		}
 	}
 
-	public Contas buscar(int id){
-		try {
-			Contas conta = ContasDAO.getInstance().buscar(id);
-			return conta;
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar Conta");
-			return null;
+	public Contas buscar(Contas conta){
+		
+		List<Contas> contasBD = this.listar();
+
+		for (Contas contas : contasBD) {
+			if(contas.equals(conta)) {
+				return contas;
+			}
 		}
+		return null;
 	}
 
-	public List<Contas> buscar(LocalDate data_vencimento){
+	public List<Contas> buscarPorData(Contas conta){
+		LocalDate data_vencimento = conta.getDataVencimento();
 
 		List<Contas> contasBD = this.listar();
 
@@ -97,12 +84,12 @@ public class ContabilController implements InterfaceContabilController{
 		return contas_porData;
 	}
 
-	public Contas atualizar(int id, Contas conta){
-		this.buscar(id);
-		conta.setId(id);
+	public Contas atualizar(Contas antiga, Contas nova){
+		int id = this.buscar(antiga).getId();
 		try {
-			atualizaSaldo(conta);
-			Contas atualizada = ContasDAO.getInstance().atualizar(conta);
+			nova.setId(id);
+			atualizaSaldo(nova);
+			Contas atualizada = ContasDAO.getInstance().atualizar(nova);
 			return atualizada;
 		} catch (Exception eAtualizar) {
 			System.err.println("Erro ao atualizar Contabil!");
@@ -110,9 +97,12 @@ public class ContabilController implements InterfaceContabilController{
 		}
 	}
 
-	public void deletar(int id){
-		Contas conta = this.buscar(id);
+	public Boolean deletar(Contas conta){
+		try {
+			conta.setId(this.buscar(conta).getId());			
+		}catch (Exception e) {
 
+		}
 		if(conta.getStatusPaga()) {
 			if(conta.getAReceber()) {
 				this.contabil.setSaldo(this.contabil.getSaldo()-conta.getValor());
@@ -132,9 +122,11 @@ public class ContabilController implements InterfaceContabilController{
 		}
 
 		try {
-			ContasDAO.getInstance().deletar(id);
+			ContasDAO.getInstance().deletar(conta.getId());
+			return true;
 		} catch (Exception eDeletar) {
 			System.err.println("Erro ao excluir Contabil!");
+			return false;
 		}
 	}
 
@@ -144,8 +136,10 @@ public class ContabilController implements InterfaceContabilController{
 				this.contabil.setSaldo(this.contabil.getSaldo()+conta.getValor());
 				try {
 					ContabilDAO.getInstance().atualizar(contabil);
+					return true;
 				} catch (Exception e) {
 					System.err.println(e);
+					return false;
 				}
 			}else {
 				if(this.contabil.getSaldo() >= conta.getValor()) {
@@ -155,6 +149,7 @@ public class ContabilController implements InterfaceContabilController{
 						return true;
 					} catch (Exception e) {
 						System.err.println(e);
+						return false;
 					}
 
 				}else {
@@ -164,7 +159,6 @@ public class ContabilController implements InterfaceContabilController{
 		}else {
 			return true;
 		}
-		return null;
 	}
 
 }
