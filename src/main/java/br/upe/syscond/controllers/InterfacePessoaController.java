@@ -7,7 +7,7 @@ import br.upe.syscond.models.Pessoa;
 public interface InterfacePessoaController {
 	public Pessoa criar(Pessoa pessoa);
 	public List<Pessoa> listar();
-	public Pessoa buscar(String cpf);
-	public Pessoa atualizar(Pessoa pessoa);
+	public Pessoa buscar(Pessoa pessoa);
+	public Pessoa atualizar(Pessoa antiga, Pessoa nova);
 	public boolean deletar(Pessoa pessoa);
 }

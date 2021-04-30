@@ -33,10 +33,10 @@ public class PessoaDAO implements InterfacePessoa {
         return em;
     }
 
-    public Pessoa buscar(String cpf) throws Exception {
+    public Pessoa buscar(int id) throws Exception {
     	try {
     		em.getTransaction().begin();
-    		Pessoa p = em.find(Pessoa.class, cpf);
+    		Pessoa p = em.find(Pessoa.class, id);
     		em.getTransaction().commit();
     		return p;
     	} catch(Exception eBuscar) {
@@ -61,7 +61,7 @@ public class PessoaDAO implements InterfacePessoa {
             em.getTransaction().begin();
             em.persist(p);
             em.getTransaction().commit();
-            return buscar(p.getCpf());
+            return this.buscar(p.getId());
         } catch (Exception eSalvar) {
             em.getTransaction().rollback();
             throw eSalvar;
@@ -73,27 +73,18 @@ public class PessoaDAO implements InterfacePessoa {
             em.getTransaction().begin();
             em.merge(p);
             em.getTransaction().commit();
-            return buscar(p.getCpf());
+            return buscar(p.getId());
         } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
             throw eAtualizar;
         }
     }
     
-    public void deletar(String cpf) throws Exception {
-        try {
-            Pessoa p = buscar(cpf);
-            deletar(p);
-        } catch (Exception eDeletarId) {
-        	throw eDeletarId;
-        }
-    }
-
-
-    private void deletar(Pessoa p) throws Exception {
-        try {
+    public void deletar(int id) throws Exception {
+        Pessoa p = null;
+    	try {
             em.getTransaction().begin();
-            p = em.find(Pessoa.class, p.getCpf());
+            p = em.find(Pessoa.class, id);
             em.remove(p);
             em.getTransaction().commit();
         } catch (Exception eDeletar) {

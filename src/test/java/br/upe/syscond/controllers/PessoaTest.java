@@ -1,54 +1,55 @@
 package br.upe.syscond.controllers;
 
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
 import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
 import br.upe.syscond.models.Pessoa;
 
-
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PessoaTest {
-	Pessoa pessoacriada = new Pessoa("Luiz Augusto", "66666", "666666", "LuizAu@gmail.com");
-	PessoaController pessoaCont = new PessoaController();
+	static Pessoa pessoa = new Pessoa(RandomStringUtils.randomAlphabetic(8).toUpperCase(), "66666", "666666", "LuizAu@gmail.com");
+	static PessoaController controlador = new PessoaController();
 
 
 	@Test
-	public void testeCriarPessoa() {
+	public void t1esteCriarPessoa() {
 		Pessoa pessoanova = null;
-		pessoanova = pessoaCont.criar(pessoacriada);
+		pessoanova = controlador.criar(pessoa);
 		assertNotNull(pessoanova);
-
 	}
 
 
 	@Test
-	public void testeAtualizarPessoa() {
+	public void t2esteAtualizarPessoa() {
 		Pessoa pessoamodificada = new Pessoa("Luiz Augusto Alapenha", "66666", "62452346", "LuizAu@gmail.com");
-		pessoamodificada = pessoaCont.atualizar(pessoamodificada);
-
-
-		assertEquals(pessoacriada.getCpf(), pessoamodificada.getCpf());
-		assertEquals(pessoacriada.getNome(), pessoamodificada.getNome());
-		assertEquals(pessoacriada.getTelefone(), pessoamodificada.getTelefone());
-		assertEquals(pessoacriada.getEmail(), pessoamodificada.getEmail());
+		pessoamodificada = controlador.atualizar(pessoa, pessoamodificada);
+		
+		assertNotEquals(0, pessoamodificada.getId());
+		pessoa = pessoamodificada;
 	}
 
 	@Test
-	public void testeListarPessoas() {
-		List<Pessoa> listapessoas = pessoaCont.listar();
-		assertNotEquals(0, listapessoas.size());
+	public void t3esteListarPessoas() {
+		List<Pessoa> listapessoas = null;
+		listapessoas = controlador.listar();
+		assertNotNull(listapessoas);
 
 	}
 
 	@Test
-	public void testeDeletarPessoas() {
-		boolean deletapessoa = pessoaCont.deletar(pessoacriada);
-		System.out.println(deletapessoa);
-		assertTrue(deletapessoa);
+	public void t4esteDeletarPessoas() {
+		boolean teste = false;
+		teste = controlador.deletar(pessoa);
+		assertTrue(teste);
 	}
 
 }

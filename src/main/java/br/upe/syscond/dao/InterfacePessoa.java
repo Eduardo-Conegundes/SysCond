@@ -8,8 +8,8 @@ public interface InterfacePessoa {
 
     Pessoa salvar(Pessoa p) throws Exception;
     List<Pessoa> listar() throws Exception;
-    Pessoa buscar(String cpf) throws Exception;
+    Pessoa buscar(int id) throws Exception;
     Pessoa atualizar(Pessoa p) throws Exception;
-    void deletar(String cpf) throws Exception;
+    void deletar(int id) throws Exception;
     
 }
