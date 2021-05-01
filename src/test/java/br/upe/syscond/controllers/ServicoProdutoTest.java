@@ -21,7 +21,7 @@ public class ServicoProdutoTest {
 	ServicoProduto servicoProdCriado = new ServicoProduto("papel", (float)10.00, empresa, "higienico");
 
 
-	@Test
+	//@Test
 	public void testeCriarSerProd() {
 		
 		empcont.criar(empresa);
@@ -34,7 +34,7 @@ public class ServicoProdutoTest {
 	}
 
 
-	@Test
+	//@Test
 	public void testeAtualizarSerProd() {
 
 		ServicoProduto ServProdModificada = new ServicoProduto("papel", (float)10.00, empresa, "crepom");
@@ -47,14 +47,14 @@ public class ServicoProdutoTest {
 
 	}
 
-	@Test
+	//@Test
 	public void testeListarSersProds() {
 		List<ServicoProduto> listaServicoProduto = Serprod.listar();
 		assertNotEquals(0, listaServicoProduto.size());
 
 	}
 
-	@Test
+	//@Test
 	public void testeDeletarSerProd() {
 		boolean deletaSerProd = Serprod.deletar(servicoProdCriado);
 		System.out.println(deletaSerProd);
