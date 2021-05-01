@@ -36,7 +36,7 @@ public class VeiculoDAO implements InterfaceVeiculo{
 			em.getTransaction().begin();
 			em.persist(veiculo);
 			em.getTransaction().commit();
-			return veiculo;
+			return this.buscar(veiculo.getId());
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -49,7 +49,7 @@ public class VeiculoDAO implements InterfaceVeiculo{
 			em.getTransaction().begin();
 			em.merge(veiculo);
 			em.getTransaction().commit();
-			return veiculo;
+			return this.buscar(veiculo.getId());
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
@@ -57,10 +57,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
 
 	}
 
-	public Veiculo buscar(String placa) throws Exception {
+	public Veiculo buscar(int id) throws Exception {
 		try {
 			em.getTransaction().begin();
-			Veiculo p = em.find(Veiculo.class, placa);
+			Veiculo p = em.find(Veiculo.class, id);
 			em.getTransaction().commit();
 			return p;
 		} catch(Exception eBuscar) {
@@ -69,11 +69,11 @@ public class VeiculoDAO implements InterfaceVeiculo{
 		}
 	}
 
-	public void deletar(String placa) throws Exception {
+	public void deletar(int id) throws Exception {
 		Veiculo v = null;
 		try {
 			em.getTransaction().begin();
-			v = em.find(Veiculo.class, placa);
+			v = em.find(Veiculo.class, id);
 			em.remove(v);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {

@@ -34,11 +34,11 @@ public class VisitanteDAO implements InterfaceVisitante {
 		return em;
 	}
 
-	public Visitante buscar(String cpf) throws Exception {
+	public Visitante buscar(int id) throws Exception {
 		Visitante v = null;
 		try {
 			em.getTransaction().begin();
-			v = em.find(Visitante.class, cpf);
+			v = em.find(Visitante.class, id);
 			em.getTransaction().commit();
 			return v;
 		} catch (Exception eBuscar) {
@@ -48,12 +48,11 @@ public class VisitanteDAO implements InterfaceVisitante {
 	}
 
 	public Visitante salvar(Visitante vis) throws Exception {
-
 		try {
 			em.getTransaction().begin();
 			em.persist(vis);
 			em.getTransaction().commit();
-			return this.buscar(vis.getPessoa().getCpf());
+			return this.buscar(vis.getId());
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -66,18 +65,18 @@ public class VisitanteDAO implements InterfaceVisitante {
 			em.getTransaction().begin();
 			em.merge(vis);
 			em.getTransaction().commit();
-			return this.buscar(vis.getPessoa().getCpf());
+			return this.buscar(vis.getId());
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
 		}
 	}
 
-	public void deletar(String cpf) throws Exception {
+	public void deletar(int id) throws Exception {
 		Visitante vis = null;
 		try {
 			em.getTransaction().begin();
-			vis = em.find(Visitante.class, cpf);
+			vis = em.find(Visitante.class, id);
 			em.remove(vis);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {

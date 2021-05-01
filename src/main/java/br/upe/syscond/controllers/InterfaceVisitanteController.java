@@ -2,13 +2,11 @@ package br.upe.syscond.controllers;
 
 import java.util.List;
 
-import br.upe.syscond.models.Apartamento;
-import br.upe.syscond.models.Pessoa;
 import br.upe.syscond.models.Visitante;
 
 public interface InterfaceVisitanteController {
-	public Visitante criar(Pessoa pessoaVisitanteVerificar, Apartamento apartamentoVerificar);
-	public Visitante buscar(String cpf);
+	public Visitante criar(Visitante visitante);
+	public Visitante buscar(Visitante visitante);
 	public List<Visitante> listar();
 	
 }

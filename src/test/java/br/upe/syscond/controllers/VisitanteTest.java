@@ -1,57 +1,47 @@
 package br.upe.syscond.controllers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
-import java.util.Random;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Pessoa;
 import br.upe.syscond.models.Visitante;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class VisitanteTest {
 
+	static Pessoa pessoa = new PessoaController().criar(new Pessoa("Teste", "12345678910", "8196959497", "teste@teste.com"));
+	static Apartamento apartamento = new ApartamentoController().criar(new Apartamento("teste", 1, 1));
+	static Visitante visitante = new Visitante(pessoa,apartamento);
+
+	static InterfaceVisitanteController controlador = new VisitanteController();
+
 	@Test
-	public void TestarVisitante() {
-
-		String str = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-		StringBuffer sb=new StringBuffer();
-		Random random = new Random();
-
-		for (int i=0;i<16;++i)
-			sb.append(str.charAt(random.nextInt(16)));
-
-		String cpf = sb.toString();
-
-
-		Apartamento apt = new Apartamento("Teste", 202, 1);
-		apt.setId(1);
-		Pessoa pessoa = new Pessoa("Teste", cpf, "81993939393", "flavio@email.com.br");
-		InterfaceVisitanteController visitCont = new VisitanteController();
-		Visitante idBancoVisitante = visitCont.criar(pessoa, apt);
-
-		assertEquals(cpf, idBancoVisitante.getPessoa().getCpf());
-
+	public void t1estarcriar() {
+		Visitante criado = null;
+		criado = controlador.criar(visitante);
+		assertNotNull(criado);
+		visitante.setId(criado.getId());
 	}
 
 	@Test
-	public void TestarListarVisitante() {
-		InterfaceVisitanteController visitCont = new VisitanteController();
-		List<Visitante> listaVisitante = visitCont.listar();
+	public void t2estarListarVisitante() {
+		List<Visitante> lista = null;
+		lista =	controlador.listar();
 
-		assertNotEquals(0,listaVisitante.size());
+		assertNotNull(lista);
 	}
 
 	@Test
-	public void TestarBuscarVisitante() {
-		InterfaceVisitanteController visitCont = new VisitanteController();
-		String nomeVisitante = "Flavio";
-		Visitante visitante = visitCont.buscar("299.299.299-20");
-
-		assertEquals(nomeVisitante, visitante.getPessoa().getNome());
+	public void t3estarBuscarVisitante() {
+		Visitante nao_encontrar = new Visitante(null,null);
+		assertNull(controlador.buscar(nao_encontrar));
+		assertNotNull(controlador.buscar(visitante));
 	}
 }

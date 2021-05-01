@@ -24,6 +24,22 @@ public class Visitante implements Serializable {
 		this.pessoa = pessoa;
 		this.apartamento = apartamento;
 	}
+	
+	
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Pessoa getPessoa() {
 		return pessoa;

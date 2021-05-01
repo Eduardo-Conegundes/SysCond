@@ -3,28 +3,16 @@ package br.upe.syscond.controllers;
 import java.util.List;
 
 import br.upe.syscond.dao.VeiculoDAO;
-import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Veiculo;
  
 public class VeiculoController implements InterfaceVeiculoController{
+	
 	public Veiculo criar(Veiculo veiculo){
-		Apartamento apartamentoCadastrado = null;
-		Veiculo CriarVeiculo = null;
-		
-		ApartamentoController aptCont = new ApartamentoController();
-		try {
-			apartamentoCadastrado = aptCont.buscar(veiculo.getApartamento());
-		} catch (Exception e) {
-			System.err.println("Erro ao buscar apartamento relacionado ao veículo!");
-		}
-		
-		if (apartamentoCadastrado == null) {
+		if (this.buscar(veiculo) != null) {
 			return null;
 		}
-		
 		try {
-			CriarVeiculo = VeiculoDAO.getInstance().salvar(veiculo);
-			return CriarVeiculo;
+			return VeiculoDAO.getInstance().salvar(veiculo);
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao salvar veiculo!");
 			return null;
@@ -33,55 +21,41 @@ public class VeiculoController implements InterfaceVeiculoController{
 
 	public List<Veiculo> listar(){
 		try {
-			List<Veiculo> VeiculosListados = VeiculoDAO.getInstance().listar();
-			return VeiculosListados;
+			return VeiculoDAO.getInstance().listar();
 		} catch (Exception eListar) {
-			System.err.println("Erro ao listar Veiculo(s)!");
 			return null;
 		}
 
 	}
 
-	public Veiculo buscar(String placa){
-		try {
-			Veiculo VeiculoBuscado = VeiculoDAO.getInstance().buscar(placa);
-			return VeiculoBuscado;
-		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar veiculo!");
-			return null;
+	public Veiculo buscar(Veiculo veiculo){
+		List<Veiculo> lista = this.listar();
+		for (Veiculo veiculo2 : lista) {
+			if(veiculo2.equals(veiculo)) {
+				return veiculo2;
+			}
 		}
+		return null;
 	}
 
-	public Veiculo atualizar(Apartamento ApartamentoNovo, Veiculo veiculo){
-		Apartamento apartamentoNovoCadastrado = null;
-		ApartamentoController aptCont = new ApartamentoController();
-		Veiculo veiculoCadastrado = null;
-
+	public Veiculo atualizar(Veiculo antigo, Veiculo novo){
 		try {
-			apartamentoNovoCadastrado = aptCont.buscar(ApartamentoNovo);
-			veiculoCadastrado = this.buscar(veiculo.getPlaca());
-		} catch (Exception e) {
-		}
-		
-		if (apartamentoNovoCadastrado == null || veiculoCadastrado == null) {
-			return null;
-		}
-		
-		try {
-			veiculoCadastrado.setApartamento(apartamentoNovoCadastrado);
-			veiculoCadastrado = VeiculoDAO.getInstance().atualizar(veiculoCadastrado);
-			return veiculoCadastrado;
+			novo.setId(this.buscar(antigo).getId());
+			return VeiculoDAO.getInstance().atualizar(novo);
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar veiculo!");
 			return null;
 		}
 	}
 
-	public void deletar(String placa){
+	public boolean deletar(Veiculo veiculo){
 		try {
-			VeiculoDAO.getInstance().deletar(placa);
+			int id = this.buscar(veiculo).getId();
+			VeiculoDAO.getInstance().deletar(id);
+			return true;
 		} catch (Exception e) {
 			System.err.println("Erro ao excluir Veiculo!");
+			return false;
 		}
 	}
 }

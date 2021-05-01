@@ -1,41 +1,57 @@
 package br.upe.syscond.controllers;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Veiculo;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class VeiculoTest {
 
+	static Apartamento apartamento = new ApartamentoController().criar(new Apartamento("A", 202, 1));
+	static Veiculo veiculo = new Veiculo("BCT-6969", apartamento);
+	static InterfaceVeiculoController controlador = new VeiculoController();
+
 	@Test
-	public void CriarVeiculo(){
-		Apartamento apt = new Apartamento("A", 202, 1);
-		Veiculo veiculo = new Veiculo("BCT-6969", apt);
-		Veiculo veiculoCriado = null;
-		VeiculoController veiCont = new VeiculoController();
-		ApartamentoController aptCont = new ApartamentoController();
-		
-		aptCont.criar(apt);		
-		veiculoCriado = veiCont.criar(veiculo);
-		
-		assertNotNull(veiculoCriado);
+	public void t1esteCriarVeiculo(){
+		Veiculo criado = null;
+		criado = controlador.criar(veiculo);		
+
+		assertNotNull(criado);
+	}
+
+	@Test
+	public void t2esteListarVeiculo() {
+
+		List<Veiculo> lista = null;
+		lista  = controlador.listar();
+
+		assertNotNull(lista);
+
 	}
 	
 	@Test
-	public void ListarVeiculo() {
-		VeiculoController veiCont = new VeiculoController();
-		List<Veiculo> veiculosListados = veiCont.listar();
+	public void t3esteAtualizar() {
+		Veiculo atualizacao = new Veiculo("atualizado", apartamento);
 		
-		assertNotNull(veiculosListados);
+		atualizacao = controlador.atualizar(veiculo, atualizacao);
+		assertNotEquals(0, atualizacao.getId());
 		
+		veiculo = atualizacao;
 	}
 	@Test
-	public void teste() {
-		assertTrue(true);
+	public void t4esteDeletar() {
+		boolean teste = false;
+		
+		teste = controlador.deletar(veiculo);
+		
+		assertTrue(teste);
 	}
 }
