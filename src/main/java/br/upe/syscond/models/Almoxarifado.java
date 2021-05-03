@@ -2,11 +2,6 @@ package br.upe.syscond.models;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 //@Entity
 public class Almoxarifado {
 
@@ -20,21 +15,39 @@ public class Almoxarifado {
 		this.fluxoalmoxarifado = fluxoalmoxarifado;
 	}
 
+
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
-	
+
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public List<FluxoAlmoxarifado> getAlmoxarifado() {
+
+
+	/**
+	 * @return the fluxoalmoxarifado
+	 */
+	public List<FluxoAlmoxarifado> getFluxoalmoxarifado() {
 		return fluxoalmoxarifado;
 	}
-	
-	public void setAlmoxarifado(List<FluxoAlmoxarifado> fluxoalmoxarifado) {
+
+
+	/**
+	 * @param fluxoalmoxarifado the fluxoalmoxarifado to set
+	 */
+	public void setFluxoalmoxarifado(List<FluxoAlmoxarifado> fluxoalmoxarifado) {
 		this.fluxoalmoxarifado = fluxoalmoxarifado;
 	}
+
+
 
 
 }

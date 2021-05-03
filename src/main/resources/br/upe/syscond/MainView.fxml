@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="404.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="701.0" prefWidth="1001.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Criar">
+                  <items>
+                    <MenuItem fx:id="miApartamentoCriar" mnemonicParsing="false" text="Apartamento" />
+                        <MenuItem fx:id="miEmpresaCriar" mnemonicParsing="false" text="Empresa" />
+                        <MenuItem fx:id="miFinanceiroCriar" mnemonicParsing="false" text="Financeiro" />
+                        <MenuItem fx:id="miLocacaoCriar" mnemonicParsing="false" text="Locação" />
+                        <MenuItem fx:id="miAlmoxarifadoCriar" mnemonicParsing="false" text="Almoxarifado" />
+                        <MenuItem fx:id="miFuncionarioCriar" mnemonicParsing="false" text="Funcionário" />
+                        <MenuItem fx:id="miMoradorCriar" mnemonicParsing="false" text="Morador" />
+                        <MenuItem fx:id="miServicoProdutoCriar" mnemonicParsing="false" text="Serviço - Produto" />
+                        <MenuItem fx:id="miUsuarioCriar" mnemonicParsing="false" text="Usuário" />
+                        <MenuItem fx:id="miVeiculoCriar" mnemonicParsing="false" text="Veículo" />
+                        <MenuItem fx:id="miVisitanteCriar" mnemonicParsing="false" text="Visitante" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Alterar">
+                     <items>
+                        <MenuItem fx:id="miApartamentoAlterar" mnemonicParsing="false" text="Apartamento" />
+                        <MenuItem fx:id="miEmpresaAlterar" mnemonicParsing="false" text="Empresa" />
+                        <MenuItem fx:id="miFinanceiroAlterar" mnemonicParsing="false" text="Financeiro" />
+                        <MenuItem fx:id="miLocacaoAlterar" mnemonicParsing="false" text="Locação" />
+                        <MenuItem fx:id="miAlmoxarifadoAlterar" mnemonicParsing="false" text="Almoxarifado" />
+                        <MenuItem fx:id="miFuncionarioAlterar" mnemonicParsing="false" text="Funcionário" />
+                        <MenuItem fx:id="miMoradorAlterar" mnemonicParsing="false" text="Morador" />
+                        <MenuItem fx:id="miServicoProdutoAlterar" mnemonicParsing="false" text="Serviço - Produto" />
+                        <MenuItem fx:id="miUsuarioAlterar" mnemonicParsing="false" text="Usuário" />
+                        <MenuItem fx:id="miVeiculoAlterar" mnemonicParsing="false" text="Veículo" />
+                        <MenuItem fx:id="miVisitanteAlterar" mnemonicParsing="false" text="Visitante" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Visualizar">
+                     <items>
+                        <MenuItem fx:id="miApartamentoVisualizar" mnemonicParsing="false" text="Apartamento" />
+                        <MenuItem fx:id="miEmpresaVisualizar" mnemonicParsing="false" text="Empresa" />
+                        <MenuItem fx:id="miFinanceiroVisualizar" mnemonicParsing="false" text="Financeiro" />
+                        <MenuItem fx:id="miLocacaoVisualizar" mnemonicParsing="false" text="Locação" />
+                        <MenuItem fx:id="miAlmoxarifadoVisualizar" mnemonicParsing="false" text="Almoxarifado" />
+                        <MenuItem fx:id="miFuncionarioVisualizar" mnemonicParsing="false" text="Funcionário" />
+                        <MenuItem fx:id="miMoradorVisualizar" mnemonicParsing="false" text="Morador" />
+                        <MenuItem fx:id="miServicoProdutoVisualizar" mnemonicParsing="false" text="Serviço - Produto" />
+                        <MenuItem fx:id="miUsuarioVisualizar" mnemonicParsing="false" text="Usuário" />
+                        <MenuItem fx:id="miVeiculoVisualizar" mnemonicParsing="false" text="Veículo" />
+                        <MenuItem fx:id="miVisitanteVisualizar" mnemonicParsing="false" text="Visitante" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Sair" />
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
