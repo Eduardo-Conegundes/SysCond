@@ -18,7 +18,7 @@
       </ImageView>
       <TextField fx:id="txfUser" promptText="Digite o usuario" />
       <PasswordField fx:id="txfSenha" promptText="Digite a senha" />
-      <Button fx:id="btnEntrar" onAction="#switchToSecondary" text="Entrar" />
+      <Button fx:id="btnEntrar" onAction="#switchToMain" text="Entrar" />
       <Label fx:id="lbl1" />
    </children>
    <padding>

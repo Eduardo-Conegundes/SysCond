@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginController {
+	static InterfaceUsuarioController userCont = new UsuarioController();
 	
     @FXML
     private TextField txfUser;
@@ -26,16 +27,17 @@ public class LoginController {
 
     @FXML
     private void switchToMain() throws IOException {
-    	InterfaceUsuarioController userCont = new UsuarioController();
+    	this.lbl1.setText(" ");
     	
     	String login = this.txfUser.getText();
     	String senha = this.txfSenha.getText();
     	Usuario user = null;
     	
-    	user = userCont.buscar(new Usuario(login, senha, null));
-
+    	user = userCont.buscar(new Usuario(login, senha, "teste"));
+    	
+    	
     	if(user!= null) {
-    		App.setRoot("secondary");    		
+    		App.setRoot("MainView");		
     	}else {
     		this.lbl1.setText("Usuario e/ou senha invalida");
     	}
