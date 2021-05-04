@@ -20,7 +20,7 @@
                         <MenuItem fx:id="miLocacaoCriar" mnemonicParsing="false" text="Locação" />
                         <MenuItem fx:id="miAlmoxarifadoCriar" mnemonicParsing="false" text="Almoxarifado" />
                         <MenuItem fx:id="miFuncionarioCriar" mnemonicParsing="false" text="Funcionário" />
-                        <MenuItem fx:id="miMoradorCriar" mnemonicParsing="false" text="Morador" />
+                        <MenuItem fx:id="miMoradorCriar" mnemonicParsing="false" onAction="#switchTelaMorador" text="Morador" />
                         <MenuItem fx:id="miServicoProdutoCriar" mnemonicParsing="false" text="Serviço - Produto" />
                         <MenuItem fx:id="miUsuarioCriar" mnemonicParsing="false" text="Usuário" />
                         <MenuItem fx:id="miVeiculoCriar" mnemonicParsing="false" text="Veículo" />

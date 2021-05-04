@@ -116,5 +116,16 @@ public class MainController {
 			e.printStackTrace();
 		}
     }
+    
+    @FXML
+    void switchTelaMorador(ActionEvent event) {
+    	try {
+			App.setRoot("MoradorView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
 
 }

@@ -46,6 +46,18 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 		return null;
 	}
+	
+	public Apartamento buscar(String bloco, int numero) {
+		List<Apartamento>lista_apartamentos = this.listar();
+		for (int i=0; i <= lista_apartamentos.size(); i++) {
+			if(lista_apartamentos.get(i).getBloco().compareTo(bloco) == 0 && lista_apartamentos.get(i).getNumero() == numero) {
+				return lista_apartamentos.get(i);
+			}
+		}
+		
+		return null;
+		
+	}
 
 	public List<Apartamento> listar(String bloco) {
 		List<Apartamento>lista_apartamentos = this.listar();
@@ -58,6 +70,49 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 		return lista_por_bloco;
 	}
+	
+	public ArrayList<String> listaNumeros(String bloco){
+		List<Apartamento>lista_apartamentos = this.listar();
+		ArrayList<String>lista_por_bloco = new ArrayList<String>();
+
+		for (int i = 0; i < lista_apartamentos.size(); i++) {
+			if(lista_apartamentos.get(i).getBloco().compareTo(bloco)==0) {
+				lista_por_bloco.add(Integer.toString(lista_apartamentos.get(i).getNumero()));
+			}
+			
+		}
+		return lista_por_bloco;
+	}
+	
+	public ArrayList<String> listarNumeros() {
+		List<Apartamento>lista_apartamentos = this.listar();
+		ArrayList<String> lista_por_numero = new ArrayList<String>();
+
+
+		for (int i = 0; i < lista_apartamentos.size(); i++) {
+
+			lista_por_numero.add(Integer.toString(lista_apartamentos.get(i).getNumero()));
+
+		}
+		
+		return lista_por_numero;
+	}
+	
+	public ArrayList<String> listarBlocos() {
+		List<Apartamento>lista_apartamentos = this.listar();
+		ArrayList<String> lista_de_blocos = new ArrayList<String>();
+
+
+		for (int i = 0; i < lista_apartamentos.size(); i++) {
+
+			lista_de_blocos.add(lista_apartamentos.get(i).getBloco());
+
+		}
+		
+		return lista_de_blocos;
+	}
+	
+	
 
 	public Apartamento atualizar(Apartamento antigo, Apartamento novo){
 		Apartamento busca = null;
