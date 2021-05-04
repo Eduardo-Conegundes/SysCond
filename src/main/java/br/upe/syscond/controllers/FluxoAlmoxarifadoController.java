@@ -1,5 +1,7 @@
 package br.upe.syscond.controllers;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import br.upe.syscond.dao.AlmoxarifadoDAO;
@@ -30,56 +32,97 @@ public class FluxoAlmoxarifadoController {
 			this.almoxarifado = AlmoxarifadoDAO.getInstance().buscar(1);
 		}
 	}
-	
-	
+
 	public FluxoAlmoxarifado criar(FluxoAlmoxarifado fluxo){
 
 		FluxoAlmoxarifado fluxocriado = null;
+		if (fluxo.getTipoTransacao().equals("saida")) {
+			int countAux = 0;
+			List<FluxoAlmoxarifado> BDfluxo = this.listar();
 
-		List<FluxoAlmoxarifado> BDfluxo = this.listar();
-
-		if(BDfluxo.size()==0) {
-			try {
-				System.out.println("Conta Salva com Sucesso!");
-				fluxocriado = FluxoAlmoxarifadoDAO.getInstance().salvar(fluxo);
-				return fluxocriado;	
-			} catch (Exception eSalvar) {
-				System.err.println("Erro ao salvar conta");
+			if(BDfluxo.size()==0) {
+				System.err.println("Não há estoque.");
+				return null;
 			}
-		}else{
+
 			for (int i = 0; i < BDfluxo.size(); i++) {
-				if(BDfluxo.get(i).equals(fluxo.getId())) {
-					System.out.println("Fluxo j� exitente!");
+				if(BDfluxo.get(i).getProduto().getNome().equals(fluxo.getProduto().getNome())) {
+					if (BDfluxo.get(i).getTipoTransacao().equals("saida")) {
+						countAux-=BDfluxo.get(i).getQtd();
+					}else if (BDfluxo.get(i).getTipoTransacao().equals("entrada")) {
+						countAux+=BDfluxo.get(i).getQtd();
+					}
+				}
+			}
+
+			if (countAux-fluxo.getQtd() < 0) {
+				System.err.println("Não há estoque suficiente para retirar.");
+				return null;
+			}else {
+				try {
+					fluxocriado = FluxoAlmoxarifadoDAO.getInstance().salvar(fluxo);
+					return fluxocriado;	
+				} catch (Exception eSalvar) {
+					System.err.println("Erro ao salvar transação!");
 					return null;
 				}
 			}
+		}else if (fluxo.getTipoTransacao().equals("entrada")) {
 			try {
-				
+				fluxocriado = FluxoAlmoxarifadoDAO.getInstance().salvar(fluxo);
+				return fluxocriado;	
 			} catch (Exception eSalvar) {
-				System.err.println("Erro ao salvar conta");
+				System.err.println("Erro ao salvar transação!");
+				return null;
 			}
 		}
-		return null;
 		
+		return null;
 	}
-	
-	
-	public List<FluxoAlmoxarifado> listar(){
+
+	public List<FluxoAlmoxarifado> listar(){		
+		
+		
+		List<FluxoAlmoxarifado> BDfluxo = this.listar();
+		List<Object> ListAux =  new ArrayList<Object>();
+		
+		if(BDfluxo.size()==0) {
+			System.err.println("Não há estoque.");
+			return null;
+		}
+
+		for (int j = 0; j < BDfluxo.size(); j++) {
+			int countAux = 0;
+			for (int i = 0; i < BDfluxo.size(); i++) {
+				if(BDfluxo.get(i).getProduto().getNome().equals(BDfluxo.get(j).getProduto().getNome())) {
+					if (BDfluxo.get(i).getTipoTransacao().equals("saida")) {
+						countAux-=BDfluxo.get(i).getQtd();
+					}else if (BDfluxo.get(i).getTipoTransacao().equals("entrada")) {
+						countAux+=BDfluxo.get(i).getQtd();
+					}
+				}
+			}
+			
+			//Object object = new Object(produto:BDFluxo.get(j).getProduto().getNome()); 
+			Object object = new Object();
+			object.name = 1;
+			ListAux.add(ListAux);
+		}
+		
 		try {
 			List<FluxoAlmoxarifado> fluxorecebido = FluxoAlmoxarifadoDAO.getInstance().listar();
 			System.out.println("Lido com sucesso!");
 			return fluxorecebido;
 		} catch (Exception eListar) {
-			eListar.printStackTrace();
 			System.err.println("Erro ao listar Conta(s)!");
 			return null;
 		}
 	}
-	
-//	public FluxoAlmoxarifado Transa��o() {
-//		///Falta implemenetarrr pois acho que minhas ideias esta certa, mas tamb�m est� errada
-//		return null;
-//		
-//	}
+
+	//	public FluxoAlmoxarifado Transa��o() {
+	//		///Falta implemenetarrr pois acho que minhas ideias esta certa, mas tamb�m est� errada
+	//		return null;
+	//		
+	//	}
 
 }
