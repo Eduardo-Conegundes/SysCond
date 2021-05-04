@@ -127,5 +127,16 @@ public class MainController {
 		}
 
     }
+    
+    @FXML
+    void switchTelaVisitante(ActionEvent event) {
+    	try {
+			App.setRoot("VisitanteView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
 
 }

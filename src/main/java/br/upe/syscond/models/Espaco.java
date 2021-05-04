@@ -31,15 +31,6 @@ public class Espaco implements Serializable {
 	public Espaco() {
 	}
 
-
-	/**
-	 * @param data
-	 * @param horarioInicio
-	 * @param horarioFim
-	 * @param morador
-	 * @param espaco
-	 * @param valor
-	 */
 	public Espaco(Date data, Date horarioInicio, Date horarioFim,
 			Morador morador, String espaco, float valor) {
 		this.data = data;
@@ -51,89 +42,46 @@ public class Espaco implements Serializable {
 	}
 
 
-	/**
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}
 
-
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-	/**
-	 * @return the data
-	 */
 	public java.util.Date getData() {
 		return data;
 	}
 
-
-	/**
-	 * @param data the data to set
-	 */
 	public void setData(java.util.Date data) {
 		this.data = data;
 	}
 
-
-	/**
-	 * @return the horarioInicio
-	 */
 	public java.util.Date getHorarioInicio() {
 		return horarioInicio;
 	}
 
-
-	/**
-	 * @param horarioInicio the horarioInicio to set
-	 */
 	public void setHorarioInicio(java.util.Date horarioInicio) {
 		this.horarioInicio = horarioInicio;
 	}
 
-
-	/**
-	 * @return the horarioFim
-	 */
 	public java.util.Date getHorarioFim() {
 		return horarioFim;
 	}
 
-
-	/**
-	 * @param horarioFim the horarioFim to set
-	 */
 	public void setHorarioFim(java.util.Date horarioFim) {
 		this.horarioFim = horarioFim;
 	}
 
-
-	/**
-	 * @return the morador
-	 */
 	public Morador getMorador() {
 		return morador;
 	}
 
-
-	/**
-	 * @param morador the morador to set
-	 */
 	public void setMorador(Morador morador) {
 		this.morador = morador;
 	}
 
-
-	/**
-	 * @return the espaco
-	 */
 	public String getEspaco() {
 		return espaco;
 	}

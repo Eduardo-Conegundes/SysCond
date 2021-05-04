@@ -11,7 +11,7 @@ import br.upe.syscond.models.FluxoAlmoxarifado;
 
 
 public class FluxoAlmoxarifadoController {
-	private static FluxoAlmoxarifadoController instance;
+	/*	private static FluxoAlmoxarifadoController instance;
 	private Almoxarifado almoxarifado;
 
 	public static FluxoAlmoxarifadoController getInstance() {
@@ -123,6 +123,6 @@ public class FluxoAlmoxarifadoController {
 	//		///Falta implemenetarrr pois acho que minhas ideias esta certa, mas tamb�m est� errada
 	//		return null;
 	//		
-	//	}
+	//	}*/
 
 }
