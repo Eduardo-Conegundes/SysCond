@@ -119,3 +119,4 @@ nbdist/
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,java,eclipse,netbeans
 src/META-INF/persistence.xml
+src/main/resources/META-INF/persistence.xml
