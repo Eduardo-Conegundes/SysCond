@@ -2,7 +2,7 @@ package br.upe.syscond;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -19,7 +19,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -33,142 +32,10 @@ public class VisitanteViewController implements Initializable {
 	static InterfacePessoaController controlaPessoa = new PessoaController();
 	static InterfaceApartamentoController controlaAp = new ApartamentoController();
 	ObservableList<String> blocosAp = FXCollections.observableArrayList(controlaAp.listarBlocos());
-	ObservableList<String> pessoasVisitantes = FXCollections.observableArrayList();
+	
 	String opcBloco;
 	String opcNumero;
-//	
-//	@FXML
-//    private Label lblId;
-//
-//    @FXML
-//    private Label lblCPF;
-//
-//    @FXML
-//    private Label lblNome;
-//
-//    @FXML
-//    private Label lblTel;
-//
-//    @FXML
-//    private TextField txfTel;
-//
-//    @FXML
-//    private TextField txfCPF;
-//
-//    @FXML
-//    private TextField txfNome;
-//
-//    @FXML
-//    private TextField txfId;
-//
-//    @FXML
-//    private Label lblEmail;
-//
-//    @FXML
-//    private TextField txfEmail;
-//
-//    @FXML
-//    private Label lblApartamento;
-//
-//    @FXML
-//    private Label lblNumeroAp;
-//
-//    @FXML
-//    private Label lblBlocoAp;
-//
-//    @FXML
-//    private ChoiceBox<String> chcBlocoAp;
-//
-//    @FXML
-//    private ChoiceBox<String> chcNumeroAp;
-//
-//    @FXML
-//    private Button btnCancelar;
-//
-//    @FXML
-//    private Button btnSalvar;
-//
-//    @FXML
-//    private Label lblNome1;
-//
-//    @FXML
-//    private Label lblNome2;
-//
-//    @FXML
-//    private TableView<Visitante> tableVisitante;
-//
-//    @FXML
-//    private TableColumn<Visitante, Integer> idTableVisita;
-//
-//    @FXML
-//    private TableColumn<Visitante, String> nomeTableVisita;
-//
-//    @FXML
-//    private TableColumn<Visitante, String> cpfTableVisita;
-//
-//    @FXML
-//    private TableColumn<Visitante, String> telTableVisita;
-//
-//    @FXML
-//    private TableColumn<Visitante, String> emailTableVisita;
-//
-//    @FXML
-//    private Button btnCancelar11;
-//
-//    @FXML
-//    private Button btnEditar;
-//
-//    @FXML
-//    private Label lblId1;
-//
-//    @FXML
-//    private TextField txfId1;
-//
-//    @FXML
-//    private Label lblId12;
-//
-//    @FXML
-//    private TextField txfId11;
-//
-//    @FXML
-//    private Label lblId13;
-//
-//    @FXML
-//    private TextField txfId12;
-//
-//    @FXML
-//    private Label lblId14;
-//
-//    @FXML
-//    private TextField txfId13;
-//
-//    @FXML
-//    private Label lblId11;
-//
-//    @FXML
-//    private TextField txfId14;
-//
-//    @FXML
-//    private Label lblApartamento1;
-//
-//    @FXML
-//    private Label lblNumeroAp1;
-//
-//    @FXML
-//    private Label lblBlocoAp1;
-//
-//    @FXML
-//    private ChoiceBox<?> chcBlocoAp1;
-//
-//    @FXML
-//    private ChoiceBox<?> chcNumeroAp1;
-//
-//    @FXML
-//    private Button btnCancelar1;
-//
-//    @FXML
-//    private Button btnSalvar1;
-    
+
     
     @FXML
     private Label lblId;
@@ -222,16 +89,31 @@ public class VisitanteViewController implements Initializable {
     private TableColumn<Visitante, Integer> idTableVisita;
 
     @FXML
-    private TableColumn<Visitante, String> nomeTableVisita;
+    private TableColumn<Pessoa, Pessoa> pessoaTableVisita;
 
     @FXML
-    private TableColumn<Visitante, String> cpfTableVisita;
+    private TableColumn<Pessoa, Integer> idPessoa;
 
     @FXML
-    private TableColumn<Visitante, String> telTableVisita;
+    private TableColumn<Pessoa, String> nomeTableVisita;
 
     @FXML
-    private TableColumn<Visitante, String> emailTableVisita;
+    private TableColumn<Pessoa, String> cpfTableVisita;
+
+    @FXML
+    private TableColumn<Pessoa, String> telTableVisita;
+
+    @FXML
+    private TableColumn<Pessoa, String> emailTableVisita;
+
+    @FXML
+    private TableColumn<Apartamento, Apartamento> colunaAp;
+
+    @FXML
+    private TableColumn<Apartamento, String> colunaApBloco;
+
+    @FXML
+    private TableColumn<Apartamento, Integer> colunaApNumero;
 
 	@FXML
 	void AlterarVisitante(MouseEvent event) {
@@ -322,22 +204,32 @@ public class VisitanteViewController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		idTableVisita.setCellValueFactory(new PropertyValueFactory<>("id"));
+		idPessoa.setCellValueFactory(new PropertyValueFactory<>("id"));
 		nomeTableVisita.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		cpfTableVisita.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		telTableVisita.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		emailTableVisita.setCellValueFactory(new PropertyValueFactory<>("email"));
+		colunaApBloco.setCellValueFactory(new PropertyValueFactory<>("bloco"));
+		colunaApNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		pessoaTableVisita.setCellValueFactory(new PropertyValueFactory<>("pessoa"));
+		colunaAp.setCellValueFactory(new PropertyValueFactory<>("apartamento"));
 		atualizaTabela();
+		
 	}
 	
 	private void atualizaTabela() {
-		List<Visitante> visitantes = controlaVisitante.listar();
-		
+		ObservableList<Visitante> visitantes = FXCollections.observableArrayList(controlaVisitante.listar());
+		ObservableList<Pessoa> pessoas = FXCollections.observableArrayList();
+		ObservableList<Apartamento> apartamentos = FXCollections.observableArrayList();
+
 		for (int i = 0; i < visitantes.size(); i++) {
-			visitantes.get(i).getPessoa();
-						
+			pessoas.add(visitantes.get(i).getPessoa());
+			apartamentos.add(visitantes.get(i).getApartamento());
+
 		}
-		
-		tableVisitante.getItems().setAll(controlaVisitante.listar());
+
+		tableVisitante.setItems(visitantes);
+				
 	}
 
 }

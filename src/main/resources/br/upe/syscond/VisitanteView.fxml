@@ -27,21 +27,21 @@
       <Label fx:id="lblBlocoAp" layoutX="323.0" layoutY="99.0" text="Bloco:" />
       <ChoiceBox fx:id="chcBlocoAp" layoutX="394.0" layoutY="95.0" onMouseClicked="#chamaBloco" prefWidth="150.0" />
       <ChoiceBox fx:id="chcNumeroAp" layoutX="394.0" layoutY="121.0" onMouseClicked="#ChamaNumero" prefWidth="150.0" />
-      <TableView fx:id="tableVisitante" layoutX="60.0" layoutY="181.0" prefHeight="200.0" prefWidth="526.0">
+      <TableView fx:id="tableVisitante" layoutX="24.0" layoutY="181.0" prefHeight="200.0" prefWidth="598.0">
         <columns>
           <TableColumn fx:id="idTableVisita" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nomeTableVisita" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="cpfTableVisita" prefWidth="75.0" text="CPF" />
-            <TableColumn fx:id="telTableVisita" prefWidth="75.0" text="Telefone" />
-            <TableColumn fx:id="emailTableVisita" prefWidth="75.0" text="Email" />
-            <TableColumn prefWidth="150.0" text="Apartamento">
+          <TableColumn fx:id="pessoaTableVisita" prefWidth="75.0" text="Pessoa">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Número" />
-               </columns>
-            </TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="0.0" text="Apartamento">
+                  <TableColumn fx:id="idPessoa" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="nomeTableVisita" prefWidth="75.0" text="Nome" />
+                  <TableColumn fx:id="cpfTableVisita" prefWidth="75.0" text="CPF" />
+                  <TableColumn fx:id="telTableVisita" prefWidth="75.0" text="Telefone" />
+                  <TableColumn fx:id="emailTableVisita" prefWidth="75.0" text="Email" />
+               </columns></TableColumn>
+            <TableColumn fx:id="colunaAp" prefWidth="75.0" text="Apartamento">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Bloco" />
+                  <TableColumn fx:id="colunaApBloco" prefWidth="75.0" text="Bloco" />
+                  <TableColumn fx:id="colunaApNumero" prefWidth="75.0" text="Número" />
                </columns>
             </TableColumn>
         </columns>
