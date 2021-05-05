@@ -2,9 +2,9 @@ package br.upe.syscond;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 
 public class MainController {
 
@@ -108,7 +108,7 @@ public class MainController {
     private MenuItem miVisitanteVisualizar;
 
     @FXML
-    void switchTelaApartamento(ActionEvent event) {
+    void switchTelaApartamento(MouseEvent event) {
     	try {
 			App.setRoot("ApartamentoView");
 		} catch (IOException e) {
@@ -118,7 +118,7 @@ public class MainController {
     }
     
     @FXML
-    void switchTelaMorador(ActionEvent event) {
+    void switchTelaMorador(MouseEvent event) {
     	try {
 			App.setRoot("MoradorView");
 		} catch (IOException e) {
@@ -129,7 +129,7 @@ public class MainController {
     }
     
     @FXML
-    void switchTelaVisitante(ActionEvent event) {
+    void switchTelaVisitante(MouseEvent event) {
     	try {
 			App.setRoot("VisitanteView");
 		} catch (IOException e) {
@@ -137,6 +137,16 @@ public class MainController {
 			e.printStackTrace();
 		}
 
+    }
+    
+    @FXML
+    void switchTelaLogin(MouseEvent event) {
+    	try {
+			App.setRoot("LoginView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }
