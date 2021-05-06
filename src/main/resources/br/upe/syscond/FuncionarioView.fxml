@@ -22,21 +22,13 @@
       <TextField fx:id="txfTel" layoutX="130.0" layoutY="171.0" />
       <Label fx:id="lblEmail" layoutX="380.0" layoutY="79.0" text="Email:" />
       <TextField fx:id="txfEmail" layoutX="457.0" layoutY="75.0" />
-      <TableView fx:id="tableFuncionario" layoutX="25.0" layoutY="211.0" prefHeight="176.0" prefWidth="620.0">
+      <TableView fx:id="tableFuncionario" layoutX="25.0" layoutY="211.0" prefHeight="176.0" prefWidth="606.0">
          <columns>
-            <TableColumn fx:id="idTableFuncionario" prefWidth="31.0" text="ID" />
-            <TableColumn fx:id="pessoaTableFuncionario" prefWidth="419.0" text="Pessoa">
-               <columns>
-                  <TableColumn fx:id="idPessoa" prefWidth="37.0" text="ID" />
-                  <TableColumn fx:id="nomeTableFuncionario" prefWidth="56.0" text="Nome" />
-                  <TableColumn fx:id="cpfTableFuncionario" prefWidth="101.0" text="CPF" />
-                  <TableColumn fx:id="telTableFuncionario" prefWidth="106.0" text="Telefone" />
-                  <TableColumn fx:id="emailTableFuncionario" prefWidth="75.0" text="Email" />
-               </columns>
-            </TableColumn>
-            <TableColumn fx:id="InternoExternTableFuncionario" prefWidth="75.0" text="InternoExterno" />
-            <TableColumn fx:id="cargoTableFuncionario" prefWidth="75.0" text="Cargo" />
-            <TableColumn fx:id="salarioTableFuncionario1" prefWidth="75.0" text="Salario" />
+            <TableColumn fx:id="id" prefWidth="31.0" text="ID" />
+            <TableColumn fx:id="pessoa" prefWidth="179.1999740600586" text="Pessoa" />
+            <TableColumn fx:id="internoExterno" prefWidth="94.4000244140625" text="InternoExterno" />
+            <TableColumn fx:id="cargo" prefWidth="110.4000244140625" text="Cargo" />
+            <TableColumn fx:id="salario" prefWidth="188.79999389648435" text="Salario" />
          </columns>
       </TableView>
       <Button fx:id="btnSalvar" layoutX="445.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarFuncionario" text="Salvar" />

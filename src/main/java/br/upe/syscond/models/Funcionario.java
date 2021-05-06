@@ -48,7 +48,12 @@ public class Funcionario implements Serializable {
 	 * @return the pessoa
 	 */
 	public Pessoa getPessoa() {
+		
 		return pessoa;
+	}
+	
+	public String getPessoaDetalhe() {
+		return pessoa.toString();
 	}
 
 	/**

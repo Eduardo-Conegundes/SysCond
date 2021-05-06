@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.upe.syscond.dao.FuncionarioDAO;
 import br.upe.syscond.models.Funcionario;
+import br.upe.syscond.models.Pessoa;
 
 public class FuncionarioController implements InterfaceFuncionarioController {
 
@@ -32,11 +33,13 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 
 	public Funcionario buscar(Funcionario buscar) {
 		List<Funcionario> lista = this.listar();
-		for (int i=0; i<= lista.size(); i++) {
-			if(lista.get(i).getPessoa().equals(buscar.getPessoa())) {
-				return lista.get(i);				
+		
+		for (Funcionario funcionario : lista) {
+			if(funcionario.equals(buscar)) {
+				return funcionario;				
 			}
 		}
+		
 		return null;
 	}
 

@@ -10,7 +10,12 @@ import br.upe.syscond.controllers.InterfacePessoaController;
 import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.models.Funcionario;
 import br.upe.syscond.models.Pessoa;
+import br.upe.syscond.models.Usuario;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -21,111 +26,105 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 
-public class FuncionarioViewController {
+public class FuncionarioViewController implements Initializable{
 
 	static InterfaceFuncionarioController controlaFuncionario = new FuncionarioController();
 	static InterfacePessoaController controlaPessoa = new PessoaController();
-	private String internoExterno;
+	private String AtributointernoExterno;
+	private ObservableList<Funcionario> select; 
 
-	@FXML
-	private Label lblId;
+    @FXML
+    private Label lblId;
 
-	@FXML
-	private TextField txfId;
+    @FXML
+    private TextField txfId;
 
-	@FXML
-	private Label lblNome;
+    @FXML
+    private Label lblNome;
 
-	@FXML
-	private TextField txfNome;
+    @FXML
+    private TextField txfNome;
 
-	@FXML
-	private Label lblCPF;
+    @FXML
+    private Label lblCPF;
 
-	@FXML
-	private TextField txfCPF;
+    @FXML
+    private TextField txfCPF;
 
-	@FXML
-	private Label lblTel;
+    @FXML
+    private Label lblTel;
 
-	@FXML
-	private TextField txfTel;
+    @FXML
+    private TextField txfTel;
 
-	@FXML
-	private Label lblEmail;
+    @FXML
+    private Label lblEmail;
 
-	@FXML
-	private TextField txfEmail;
+    @FXML
+    private TextField txfEmail;
 
-	@FXML
-	private TableView<Funcionario> tableFuncionario;
+    @FXML
+    private TableView<Funcionario> tableFuncionario;
 
-	@FXML
-	private TableColumn<Funcionario, Integer> idTableFuncionario;
+    @FXML
+    private TableColumn<Funcionario, Integer> id;
 
-	@FXML
-	private TableColumn<Pessoa, Pessoa> pessoaTableFuncionario;
+    @FXML
+    private TableColumn<Funcionario, String> pessoa;
 
-	@FXML
-	private TableColumn<Pessoa, Integer> idPessoa;
+    @FXML
+    private TableColumn<Funcionario, String> internoExterno;
 
-	@FXML
-	private TableColumn<Pessoa, String> nomeTableFuncionario;
+    @FXML
+    private TableColumn<Funcionario, String> cargo;
 
-	@FXML
-	private TableColumn<Pessoa, String> cpfTableFuncionario;
+    @FXML
+    private TableColumn<Funcionario, Float> salario;
 
-	@FXML
-	private TableColumn<Pessoa, String> telTableFuncionario;
+    @FXML
+    private Button btnSalvar;
 
-	@FXML
-	private TableColumn<Pessoa, String> emailTableFuncionario;
+    @FXML
+    private Button btnCancelar;
 
-	@FXML
-	private TableColumn<Pessoa, String> InternoExternTableFuncionario;
+    @FXML
+    private Button btnEditar;
 
-	@FXML
-	private TableColumn<Funcionario, String> cargoTableFuncionario;
+    @FXML
+    private Button btnExcluir;
 
-	@FXML 
-	private TableColumn<Funcionario, String> salarioTableFuncionario1;
+    @FXML
+    private Label lblInternoExterno;
 
-	@FXML
-	private Button btnSalvar;
+    @FXML
+    private Label lblCargo;
 
-	@FXML
-	private Button btnCancelar;
+    @FXML
+    private TextField txfCargo;
 
-	@FXML
-	private Button btnEditar;
+    @FXML
+    private Label lblSalario;
 
-	@FXML
-	private Button btnExcluir;
-
-	@FXML
-	private Label lblInternoExterno;
+    @FXML
+    private TextField txfSalario;
 
     @FXML
     private CheckBox checkInterno;
 
-    @FXML
-    private CheckBox checkExterno;
-
 	@FXML
-	private Label lblCargo;
-
-	@FXML
-	private TextField txfCargo;
-
-	@FXML
-	private Label lblSalario;
-
-	@FXML
-	private TextField txfSalario;
+	void salvarFuncionario(MouseEvent event) {
+		salvar();
+		limpaTela();
+		atualizaTabela();
+	}
 
 	@FXML
 	void EditarFuncionario(MouseEvent event) {
-
+//		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
+//		this.txfCargo.setText(select.get(0).getCargo());
+//		this.txfId.setText(select.get(0).getId());
+//		this.txfCargo.setText(select.get(0));
+//		this.txfCargo.setText(select.get(0).getCargo());
 	}
 
 	@FXML
@@ -133,29 +132,17 @@ public class FuncionarioViewController {
 
 	}
 
-	@FXML
-	void salvarFuncionario(MouseEvent event) {
-		intExt();
-		
-		String cpf = this.txfCPF.getText();
-		String nome = this.txfNome.getText();
-		String email = this.txfEmail.getText();
-		String telefone = this.txfTel.getText(); 
-		String cargo = this.txfCargo.getText();
-		float salario = Float.parseFloat(this.txfSalario.getText());
-
-		try {
-
-			System.out.println(nome + cpf + telefone + email + internoExterno + cargo +salario);
-
-			Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
-			controlaFuncionario.criar(new Funcionario(pessoa, internoExterno, cargo, salario));
-			App.setRoot("MainView");
-		}catch (Exception ex){
-
-		}
-
-
+	private void salvar() {
+//		String cpf = this.txfCPF.getText();
+//		String nome = this.txfNome.getText();
+//		String email = this.txfEmail.getText();
+//		String telefone = this.txfTel.getText(); 
+//		String cargo = this.txfCargo.getText();
+//		float salario = Float.parseFloat(this.txfSalario.getText());
+//		intExt();
+//
+//		Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
+//		controlaFuncionario.criar(new Funcionario(pessoa, internoExterno, cargo, salario));
 	}
 
 	@FXML
@@ -163,33 +150,39 @@ public class FuncionarioViewController {
 		try {
 			App.setRoot("MainView");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-		idTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("id"));
-		idPessoa.setCellValueFactory(new PropertyValueFactory<>("id"));
-		nomeTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		cpfTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		telTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-		emailTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("email"));
-		InternoExternTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("InternoExterno"));
-		cargoTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("cargo"));
-		pessoaTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
-		salarioTableFuncionario1.setCellValueFactory(new PropertyValueFactory<>("salario"));
+		id.setCellValueFactory(new PropertyValueFactory<>("id"));
+		pessoa.setCellValueFactory(new PropertyValueFactory<>("pessoaDetalhe"));
+		internoExterno.setCellValueFactory(new PropertyValueFactory<>("interno_externo"));
+		cargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
+		salario.setCellValueFactory(new PropertyValueFactory<>("salario"));
+		atualizaTabela();
 	}
-	
-	public void intExt() {
-		if(checkInterno.selectedProperty().getValue() == true) {
-			 this.internoExterno = "Interno";
-			
-		}else{
-			 this.internoExterno = "Externo";
-			
-		}
+
+	private void atualizaTabela() {
+		ObservableList<Funcionario> list = FXCollections.observableArrayList(controlaFuncionario.listar());
+		tableFuncionario.setItems(list);
+	}
+
+	private void limpaTela() {
+		this.txfCPF.setText("");
+		this.txfCargo.setText("");
+		this.txfEmail.setText("");
+		this.txfId.setText("");
+		this.txfNome.setText("");
+	}
+
+	private void intExt() {
+//		if(checkInterno.selectedProperty().getValue() == true) {
+//			this.internoExterno = "Interno";
+//		}else{
+//			this.internoExterno = "Externo";
+//		}
 	}
 
 }

@@ -155,5 +155,4 @@ public class UsuarioViewController implements Initializable{
 		controlaUsuario.deletar(user);
 	}
 
-
 }
