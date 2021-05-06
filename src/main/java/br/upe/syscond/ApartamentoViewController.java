@@ -3,28 +3,24 @@ package br.upe.syscond;
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
 import br.upe.syscond.models.Apartamento;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class ApartamentoViewController {
-
-    @FXML
+	
+	@FXML
     private Label lblId;
 
     @FXML
-    private Label lblBloco;
-
-    @FXML
-    private Label lblNumero;
-
-    @FXML
-    private Label lblVagas;
-
-    @FXML
-    private TextField txfVagas;
+    private TextField txfId;
 
     @FXML
     private TextField txfBloco;
@@ -33,7 +29,31 @@ public class ApartamentoViewController {
     private TextField txfNumero;
 
     @FXML
-    private TextField txfId;
+    private Label lblTel;
+
+    @FXML
+    private TextField txfVagas;
+
+    @FXML
+    private Label lblNumeroAp;
+
+    @FXML
+    private Label lblBlocoAp;
+
+    @FXML
+    private TableView<Apartamento> tableApartamento;
+
+    @FXML
+    private TableColumn<Apartamento, Integer> idTableApartamento;
+
+    @FXML
+    private TableColumn<Apartamento, String> blocoTableApartamento;
+
+    @FXML
+    private TableColumn<Apartamento, Integer> numeroTableApartamento;
+
+    @FXML
+    private TableColumn<Apartamento, Integer> vagasTableApartamento;
 
     @FXML
     private Button btnSalvar;
@@ -42,7 +62,20 @@ public class ApartamentoViewController {
     private Button btnCancelar;
 
     @FXML
-    void salvarApartamento(ActionEvent event) {
+    private Button btnEditar;
+
+    @FXML
+    void EditarApartamento(MouseEvent event) {
+
+    }
+
+    @FXML
+    void ExcluirApartamento(MouseEvent event) {
+
+    }
+
+    @FXML
+    void salvarApartamento(MouseEvent event) {
     	String bloco = this.txfBloco.getText();
     	int numero = Integer.parseInt(this.txfNumero.getText());
     	int vagas = Integer.parseInt(this.txfVagas.getText());
@@ -56,18 +89,28 @@ public class ApartamentoViewController {
 		} catch (Exception e) {
 			
 		}
-    	
-    	
+
     }
-    
+
     @FXML
-    void switchMain(ActionEvent event) {
+    void switchMain(MouseEvent event) {
     	try {
 			App.setRoot("MainView");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
     }
+	
+    public void initialize(URL location, ResourceBundle resources) {
+    	
+    	idTableApartamento.setCellValueFactory(new PropertyValueFactory<>("id"));
+		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
+		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));
+
+		
+	}
 
 }
 
