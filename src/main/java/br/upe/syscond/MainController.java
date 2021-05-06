@@ -140,6 +140,17 @@ public class MainController {
     }
     
     @FXML
+    void switchTelaVeiculo(MouseEvent event) {
+    	try {
+			App.setRoot("VeiculoView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
+    
+    @FXML
     void switchTelaLogin(MouseEvent event) {
     	try {
 			App.setRoot("LoginView");
