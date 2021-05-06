@@ -133,16 +133,17 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	private void salvar() {
-//		String cpf = this.txfCPF.getText();
-//		String nome = this.txfNome.getText();
-//		String email = this.txfEmail.getText();
-//		String telefone = this.txfTel.getText(); 
-//		String cargo = this.txfCargo.getText();
-//		float salario = Float.parseFloat(this.txfSalario.getText());
-//		intExt();
-//
-//		Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
-//		controlaFuncionario.criar(new Funcionario(pessoa, internoExterno, cargo, salario));
+		intExt();
+		String cpf = this.txfCPF.getText();
+		String nome = this.txfNome.getText();
+		String email = this.txfEmail.getText();
+		String telefone = this.txfTel.getText(); 
+		String cargo = this.txfCargo.getText();
+		float salario = Float.parseFloat(this.txfSalario.getText());
+		intExt();
+
+		Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
+		controlaFuncionario.criar(new Funcionario(pessoa, AtributointernoExterno, cargo, salario));
 	}
 
 	@FXML
@@ -178,11 +179,11 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	private void intExt() {
-//		if(checkInterno.selectedProperty().getValue() == true) {
-//			this.internoExterno = "Interno";
-//		}else{
-//			this.internoExterno = "Externo";
-//		}
+		if(checkInterno.selectedProperty().getValue() == true) {
+			this.AtributointernoExterno = "Interno";
+		}else{
+			this.AtributointernoExterno = "Externo";
+		}
 	}
 
 }
