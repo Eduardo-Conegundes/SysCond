@@ -151,6 +151,17 @@ public class MainController {
     }
     
     @FXML
+    void switchTelaUsuario(MouseEvent event) {
+    	try {
+			App.setRoot("UsuarioView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
+    
+    @FXML
     void switchTelaLogin(MouseEvent event) {
     	try {
 			App.setRoot("LoginView");
@@ -159,5 +170,7 @@ public class MainController {
 			e.printStackTrace();
 		}
     }
+    
+    
 
 }

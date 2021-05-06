@@ -62,6 +62,7 @@
       <Button fx:id="sairMain" layoutX="414.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#switchTelaLogin" text="Sair" />
       <Button fx:id="MoradorMain" layoutX="28.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaMorador" prefHeight="25.0" prefWidth="76.0" text="Morador" />
       <Button fx:id="ApartamentoMain" layoutX="189.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" text="Apartamento" />
-      <Button fx:id="VeiculoMain1" layoutX="297.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="25.0" prefWidth="76.0" text="Veiculo" />
+      <Button fx:id="VeiculoMain1" layoutX="285.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="25.0" prefWidth="76.0" text="Veiculo" />
+      <Button fx:id="UsuarioMain11" layoutX="376.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaUsuario" prefHeight="25.0" prefWidth="76.0" text="Usuario" />
    </children>
 </AnchorPane>
