@@ -64,5 +64,6 @@
       <Button fx:id="ApartamentoMain" layoutX="189.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" text="Apartamento" />
       <Button fx:id="VeiculoMain1" layoutX="285.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="25.0" prefWidth="76.0" text="Veiculo" />
       <Button fx:id="UsuarioMain11" layoutX="376.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaUsuario" prefHeight="25.0" prefWidth="76.0" text="Usuario" />
+      <Button fx:id="FuncionarioMain" layoutX="20.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#switchTelaFuncionario" prefHeight="25.0" prefWidth="105.0" text="Funcionario" />
    </children>
 </AnchorPane>

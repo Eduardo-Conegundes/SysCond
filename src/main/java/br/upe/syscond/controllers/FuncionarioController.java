@@ -8,13 +8,11 @@ import br.upe.syscond.models.Funcionario;
 public class FuncionarioController implements InterfaceFuncionarioController {
 
 	public Funcionario criar(Funcionario funcionario){
-		
-		List<Funcionario> lista = this.listar();
-
-		
-		try {
-			Funcionario salvo = FuncionarioDAO.getInstance().salvar(funcionario);
-			return salvo;
+		if (this.buscar(funcionario) != null) {
+			return null;
+		}	
+		try {	 
+			return FuncionarioDAO.getInstance().salvar(funcionario);
 		} catch (Exception eSalvar) {
 			System.err.println("Erro no sistema ao salvar Funcionario!");
 			return null;

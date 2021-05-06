@@ -50,13 +50,13 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             em.getTransaction().begin();
             em.persist(funcionario);
             em.getTransaction().commit();
-            return buscar(funcionario.getId());
+            return this.buscar(funcionario.getId());
         } catch (Exception eSalvar) {
             em.getTransaction().rollback();
             throw eSalvar;
         }
     }
-
+    
     public Funcionario atualizar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
