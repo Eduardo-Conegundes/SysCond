@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -47,11 +48,12 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <Label fx:id="lblInternoExterno" layoutX="380.0" layoutY="110.0" text="InternoExte:" />
-      <TextField fx:id="txfInternoExterno" layoutX="457.0" layoutY="106.0" />
+      <Label fx:id="lblInternoExterno" layoutX="338.0" layoutY="109.0" text="Interno ou Externo:" />
       <Label fx:id="lblCargo" layoutX="381.0" layoutY="141.0" text="Cargo:" />
       <TextField fx:id="txfCargo" layoutX="458.0" layoutY="137.0" />
       <Label fx:id="lblSalario" layoutX="381.0" layoutY="175.0" text="Salario:" />
       <TextField fx:id="txfSalario" layoutX="458.0" layoutY="171.0" />
+      <CheckBox fx:id="checkInterno" layoutX="463.0" layoutY="109.0" mnemonicParsing="false" text="Interno" />
+      <CheckBox layoutX="545.0" layoutY="109.0" mnemonicParsing="false" text="Externo" />
    </children>
 </AnchorPane>

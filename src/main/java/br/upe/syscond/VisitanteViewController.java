@@ -177,8 +177,7 @@ public class VisitanteViewController implements Initializable {
 			System.out.println(nome + cpf + telefone + email + bloco + numero);
 			Apartamento apt = controlaAp.buscar(bloco, Integer.parseInt(numero));
 			
-			Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
-			controlaPessoa.criar(pessoa);
+			Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email)) ;
 			controlaVisitante.criar(new Visitante(pessoa, apt));
 			
 			App.setRoot("MainView");

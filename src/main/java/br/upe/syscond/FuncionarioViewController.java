@@ -3,6 +3,7 @@ package br.upe.syscond;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import br.upe.syscond.controllers.FuncionarioController;
 import br.upe.syscond.controllers.InterfaceFuncionarioController;
 import br.upe.syscond.controllers.InterfacePessoaController;
@@ -11,6 +12,7 @@ import br.upe.syscond.models.Funcionario;
 import br.upe.syscond.models.Pessoa;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,6 +25,7 @@ public class FuncionarioViewController {
 
 	static InterfaceFuncionarioController controlaFuncionario = new FuncionarioController();
 	static InterfacePessoaController controlaPessoa = new PessoaController();
+	private String internoExterno;
 
 	@FXML
 	private Label lblId;
@@ -102,8 +105,11 @@ public class FuncionarioViewController {
 	@FXML
 	private Label lblInternoExterno;
 
-	@FXML
-	private TextField txfInternoExterno;
+    @FXML
+    private CheckBox checkInterno;
+
+    @FXML
+    private CheckBox checkExterno;
 
 	@FXML
 	private Label lblCargo;
@@ -129,21 +135,21 @@ public class FuncionarioViewController {
 
 	@FXML
 	void salvarFuncionario(MouseEvent event) {
+		intExt();
+		
 		String cpf = this.txfCPF.getText();
 		String nome = this.txfNome.getText();
 		String email = this.txfEmail.getText();
-		String telefone = this.txfTel.getText();
-		String internoExterno = this.txfInternoExterno.getText();
+		String telefone = this.txfTel.getText(); 
 		String cargo = this.txfCargo.getText();
-		String salario = this.txfSalario.getText();
+		float salario = Float.parseFloat(this.txfSalario.getText());
 
 		try {
 
 			System.out.println(nome + cpf + telefone + email + internoExterno + cargo +salario);
 
-			Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
-			controlaPessoa.criar(pessoa);
-			controlaFuncionario.criar(new Funcionario(pessoa, internoExterno, cargo, Float.parseFloat(salario)));
+			Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
+			controlaFuncionario.criar(new Funcionario(pessoa, internoExterno, cargo, salario));
 			App.setRoot("MainView");
 		}catch (Exception ex){
 
@@ -174,6 +180,16 @@ public class FuncionarioViewController {
 		cargoTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("cargo"));
 		pessoaTableFuncionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
 		salarioTableFuncionario1.setCellValueFactory(new PropertyValueFactory<>("salario"));
-
 	}
+	
+	public void intExt() {
+		if(checkInterno.selectedProperty().getValue() == true) {
+			 this.internoExterno = "Interno";
+			
+		}else{
+			 this.internoExterno = "Externo";
+			
+		}
+	}
+
 }
