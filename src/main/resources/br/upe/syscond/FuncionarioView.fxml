@@ -46,6 +46,6 @@
       <Label fx:id="lblSalario" layoutX="381.0" layoutY="175.0" text="Salario:" />
       <TextField fx:id="txfSalario" layoutX="458.0" layoutY="171.0" />
       <CheckBox fx:id="checkInterno" layoutX="463.0" layoutY="109.0" mnemonicParsing="false" text="Interno" />
-      <CheckBox layoutX="545.0" layoutY="109.0" mnemonicParsing="false" text="Externo" />
+      <CheckBox fx:id="checkExterno" layoutX="545.0" layoutY="109.0" mnemonicParsing="false" text="Externo" />
    </children>
 </AnchorPane>

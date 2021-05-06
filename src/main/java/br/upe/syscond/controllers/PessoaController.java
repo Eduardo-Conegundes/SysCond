@@ -42,10 +42,9 @@ public class PessoaController implements InterfacePessoaController {
 		return null;
 	}
 
-	public Pessoa atualizar(Pessoa antiga, Pessoa nova){
+	public Pessoa atualizar(Pessoa pessoa){
 		try {
-			nova.setId(this.buscar(antiga).getId());
-			return PessoaDAO.getInstance().atualizar(nova);
+			return PessoaDAO.getInstance().atualizar(pessoa);
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar pessoa!");
 			return null;
