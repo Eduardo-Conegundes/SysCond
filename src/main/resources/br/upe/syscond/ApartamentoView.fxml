@@ -2,48 +2,39 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ApartamentoViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ApartamentoViewController">
    <children>
-      <TabPane layoutX="-1.0" layoutY="14.0" prefHeight="386.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Cadastrar">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="lblId" layoutX="24.0" layoutY="29.0" text="ID:" />
-                        <Label fx:id="lblBloco" layoutX="24.0" layoutY="67.0" text="Bloco:" />
-                        <Label fx:id="lblNumero" layoutX="24.0" layoutY="103.0" text="Numero:" />
-                        <Label fx:id="lblVagas" layoutX="24.0" layoutY="139.0" text="Vagas:" />
-                        <TextField fx:id="txfVagas" layoutX="151.0" layoutY="135.0" />
-                        <TextField fx:id="txfBloco" layoutX="151.0" layoutY="63.0" />
-                        <TextField fx:id="txfNumero" layoutX="151.0" layoutY="99.0" />
-                        <TextField fx:id="txfId" editable="false" layoutX="151.0" layoutY="25.0" />
-                        <Button fx:id="btnSalvar" layoutX="30.0" layoutY="196.0" mnemonicParsing="false" onAction="#salvarApartamento" text="Salvar" />
-                        <Button fx:id="btnCancelar" layoutX="200.0" layoutY="196.0" mnemonicParsing="false" onAction="#switchMain" text="Cancelar" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Editar">
-            <content>
-              <AnchorPane />
-            </content>
-          </Tab>
-            <Tab text="Buscar">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Excluir">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
+      <Label fx:id="lblId" layoutX="47.0" layoutY="150.0" text="ID:" />
+      <TextField fx:id="txfId" editable="false" layoutX="119.0" layoutY="146.0" />
+      <TextField fx:id="txfBloco" layoutX="119.0" layoutY="176.0" />
+      <TextField fx:id="txfNumero" layoutX="119.0" layoutY="202.0" />
+      <Label fx:id="lblTel" layoutX="42.0" layoutY="238.0" text="Vagas:" />
+      <TextField fx:id="txfVagas" layoutX="119.0" layoutY="234.0" />
+      <Label fx:id="lblNumeroAp" layoutX="43.0" layoutY="206.0" text="Número:" />
+      <Label fx:id="lblBlocoAp" layoutX="46.0" layoutY="180.0" text="Bloco:" />
+      <TableView fx:id="tableApartamento" layoutX="307.0" layoutY="122.0" prefHeight="200.0" prefWidth="302.0">
+         <columns>
+            <TableColumn fx:id="idTableApartamento" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="blocoTableApartamento" prefWidth="75.0" text="Bloco" />
+            <TableColumn fx:id="numeroTableApartamento" prefWidth="75.0" text="Número" />
+            <TableColumn fx:id="vagasTableApartamento" prefWidth="75.0" text="Qª de vagas" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnSalvar" layoutX="38.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#salvarApartamento" text="Salvar" />
+      <Button fx:id="btnCancelar" layoutX="529.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar" />
+      <Button fx:id="btnEditar" layoutX="194.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#EditarApartamento" text="Editar" />
+      <Button fx:id="btnEditar" layoutX="351.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#ExcluirApartamento" text="Excluir" />
+      <Text layoutX="268.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apartamento" wrappingWidth="215.0">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
