@@ -43,9 +43,9 @@ public class UsuarioController implements InterfaceUsuarioController{
 		return null;
 	}
 
-	public Usuario atualizar(Usuario antigo, Usuario novo){
+	public Usuario atualizar(Usuario novo){
 		try {
-			novo.setId(this.buscar(antigo).getId());
+			
 			return UsuarioDAO.getInstance().atualizar(novo);
 		} catch (Exception eBuscar) {
 			System.err.println("Erro ao buscar usu�rio!");

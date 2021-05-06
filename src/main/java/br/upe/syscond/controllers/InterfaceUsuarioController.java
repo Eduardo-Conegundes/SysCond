@@ -8,7 +8,7 @@ public interface InterfaceUsuarioController {
 	public Usuario criar(Usuario user);
 	public List<Usuario> listar();
 	public Usuario buscar(Usuario user);
-	public Usuario atualizar(Usuario antigo, Usuario novo);
+	public Usuario atualizar(Usuario novo);
 	public boolean deletar(Usuario user);
 
 }
