@@ -115,7 +115,7 @@ public class ApartamentoDAO implements InterfaceApartamento {
     }
     
     /**
-	 * @return Apartamento[]
+	 * @return Lista de Apartamento[]
 	 */
     @SuppressWarnings("unchecked")
 	public List<Apartamento> listar() throws Exception{
@@ -126,7 +126,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
 			throw eListar;
 		}
     }
-    
+    /**
+	 * @param bloco
+	 * @return Apartamento[]
+	 */    
     @SuppressWarnings("unchecked")
 	public List<Apartamento> listarPorBloco(String bloco) throws Exception{
     	try {

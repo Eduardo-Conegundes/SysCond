@@ -75,7 +75,7 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 	/**
 	 * 
 	 * @param Almoxarifado
-	 *
+	 * @return Almoxarifado
 	 */
 	public void atualizar(Almoxarifado F) throws Exception {
 		try {
@@ -90,7 +90,7 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 	/**
 	 * 
 	 * @param Almoxarifado
-	 *
+	 * @return boolean
 	 */
 	public void deletar(Almoxarifado F) throws Exception {
 		Almoxarifado est = null;
@@ -105,7 +105,7 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 		}
 	}
 /**
- * @return Almoxarifado[]
+ * @return Lista de Almoxarifado[]
  */
 	@SuppressWarnings("unchecked")
 	public List<Almoxarifado> listar() {

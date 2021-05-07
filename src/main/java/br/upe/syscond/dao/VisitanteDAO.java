@@ -14,7 +14,10 @@ public class VisitanteDAO implements InterfaceVisitante {
 
 	private static VisitanteDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static VisitanteDAO getInstance() {
 		if (instance == null) {
 			instance = new VisitanteDAO();
@@ -25,7 +28,10 @@ public class VisitanteDAO implements InterfaceVisitante {
 	private VisitanteDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if (em == null) {
@@ -33,7 +39,10 @@ public class VisitanteDAO implements InterfaceVisitante {
 		}
 		return em;
 	}
-
+    /**
+     * @param integer
+	 * @return Visitante
+	 */
 	public Visitante buscar(int id) throws Exception {
 		Visitante v = null;
 		try {
@@ -46,7 +55,11 @@ public class VisitanteDAO implements InterfaceVisitante {
 			throw eBuscar;
 		}
 	}
-
+	/**
+	 * 
+	 * @param Visitante
+	 * @return Visitante
+	 */
 	public Visitante salvar(Visitante vis) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -59,7 +72,11 @@ public class VisitanteDAO implements InterfaceVisitante {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @param Visitante
+	 * @return Visitante
+	 */
 	public Visitante atualizar(Visitante vis) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -71,7 +88,10 @@ public class VisitanteDAO implements InterfaceVisitante {
 			throw eAtualizar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		Visitante vis = null;
 		try {
@@ -84,7 +104,9 @@ public class VisitanteDAO implements InterfaceVisitante {
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de Visitante[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Visitante> listar() {
 		try {

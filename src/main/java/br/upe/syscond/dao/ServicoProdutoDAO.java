@@ -11,7 +11,10 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
 
     private static ServicoProdutoDAO instance;
     protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
     public static ServicoProdutoDAO getInstance() {
         if (instance == null) {
             instance = new ServicoProdutoDAO();
@@ -22,7 +25,10 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
     private ServicoProdutoDAO() {
         em = getEntityManager();
     }
-
+    /**
+     * 
+     * @return EntityManager
+     */
     private EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
         if (em == null) {
@@ -30,7 +36,10 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
         }
         return em;
     }
-
+    /**
+     * @param integer
+	 * @return ServicoProduto
+	 */
     public ServicoProduto buscar(int id) throws Exception {
         ServicoProduto SP = null;
         try {
@@ -43,7 +52,10 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
             throw eBuscar;
         }
     }
-    
+	/**
+	 * param ServicoProduto
+	 * @return ServicoProduto
+	 */    
     public ServicoProduto salvar(ServicoProduto SP) throws Exception {
         try {
             em.getTransaction().begin();
@@ -55,7 +67,10 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
             throw eSalvar;
         }
     }
-
+	/**
+	 * param ServicoProduto
+	 * @return ServicoProduto
+	 */
     public ServicoProduto atualizar(ServicoProduto SP) throws Exception {
         try {
             em.getTransaction().begin();
@@ -67,7 +82,10 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
             throw eAtualizar;
         }
     }
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
     public void deletar(int id) throws Exception {
         ServicoProduto SP = null;
         try {
@@ -80,7 +98,9 @@ public class ServicoProdutoDAO implements InterfaceServicoProduto {
             throw eDeletar;
         }
     }
-
+    /**
+	 * @return Lista de ServicoProduto[]
+	 */
     @SuppressWarnings("unchecked")
 	public List<ServicoProduto> listar() {
         try {

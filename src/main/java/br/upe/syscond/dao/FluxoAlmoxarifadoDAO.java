@@ -13,7 +13,10 @@ import br.upe.syscond.models.FluxoAlmoxarifado;
 public class FluxoAlmoxarifadoDAO {
 	private static FluxoAlmoxarifadoDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static FluxoAlmoxarifadoDAO getInstance() {
 		if(instance == null) {
 			instance = new FluxoAlmoxarifadoDAO();
@@ -24,7 +27,10 @@ public class FluxoAlmoxarifadoDAO {
 	private FluxoAlmoxarifadoDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if(em == null) {
@@ -32,7 +38,10 @@ public class FluxoAlmoxarifadoDAO {
 		}
 		return em;
 	}
-
+    /**
+     * @param FluxoAlmoxarifado
+	 * @return FluxoAlmoxarifado
+	 */
 	public FluxoAlmoxarifado salvar(FluxoAlmoxarifado fluxo) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -44,7 +53,10 @@ public class FluxoAlmoxarifadoDAO {
 			throw eSalvar;
 		}
 	}
-
+    /**
+     * @param FluxoAlmoxarifado
+	 * @return FluxoAlmoxarifado
+	 */
 	public FluxoAlmoxarifado atualizar(FluxoAlmoxarifado fluxo) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -56,8 +68,11 @@ public class FluxoAlmoxarifadoDAO {
 			throw eAtualizar;
 		}
 	}
-
-	//esse metodo retorna null caso n�o encontre
+    /**
+     * @param integer
+	 * @return FluxoAlmoxarifado
+	 */
+	
 	public FluxoAlmoxarifado buscar(int id) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -69,7 +84,10 @@ public class FluxoAlmoxarifadoDAO {
 			throw eBuscar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		try {
 			FluxoAlmoxarifado fluxo = buscar(id);
@@ -79,7 +97,10 @@ public class FluxoAlmoxarifadoDAO {
 			throw eDeletarId;
 		}
 	}
-
+    /**
+     * @param FluxoAlmoxarifado
+	 * @return Bolean
+	 */
 	private void deletarPorId(FluxoAlmoxarifado fluxo) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -91,7 +112,9 @@ public class FluxoAlmoxarifadoDAO {
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de FluxoAlmoxarifado[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<FluxoAlmoxarifado> listar() throws Exception{
 		try {

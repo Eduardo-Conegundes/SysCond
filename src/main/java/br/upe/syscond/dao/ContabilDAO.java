@@ -11,7 +11,10 @@ import br.upe.syscond.models.Contabil;
 public class ContabilDAO implements InterfaceContabil{
 	private static ContabilDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static ContabilDAO getInstance() {
 		if(instance == null) {
 			instance = new ContabilDAO();
@@ -22,7 +25,10 @@ public class ContabilDAO implements InterfaceContabil{
 	private ContabilDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if(em == null) {
@@ -30,7 +36,10 @@ public class ContabilDAO implements InterfaceContabil{
 		}
 		return em;
 	}
-
+    /**
+     * @param Contabil
+	 * @return Contabil
+	 */
 	public Contabil salvar(Contabil contabil) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -42,7 +51,10 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eSalvar;
 		}
 	}
-
+    /**
+     * @param Contabil
+	 * @return Contabil
+	 */
 	public Contabil atualizar(Contabil contabil) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -54,7 +66,10 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eAtualizar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception{
 		Contabil p = null;
 		try {
@@ -67,7 +82,9 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de Contabil[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Contabil> listar(){
 		try {
@@ -78,7 +95,10 @@ public class ContabilDAO implements InterfaceContabil{
 		}
 	}
 
-
+    /**
+     * @param integer
+	 * @return Contabil
+	 */
 	public Contabil buscar(int id) {
 		Contabil p = null;
 		try {

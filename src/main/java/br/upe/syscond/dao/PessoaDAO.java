@@ -12,7 +12,10 @@ public class PessoaDAO implements InterfacePessoa {
 
     private static PessoaDAO instance;
     protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
     public static PessoaDAO getInstance() {
         if (instance == null) {
             instance = new PessoaDAO();
@@ -23,7 +26,10 @@ public class PessoaDAO implements InterfacePessoa {
     private PessoaDAO() {
         em = getEntityManager();
     }
-
+    /**
+     * 
+     * @return EntityManager
+     */
     private EntityManager getEntityManager() {
         EntityManagerFactory factory
                 = Persistence.createEntityManagerFactory("default");
@@ -32,7 +38,10 @@ public class PessoaDAO implements InterfacePessoa {
         }
         return em;
     }
-
+    /**
+     * @param integer
+	 * @return Pessoa
+	 */
     public Pessoa buscar(int id) throws Exception {
     	try {
     		em.getTransaction().begin();
@@ -44,7 +53,9 @@ public class PessoaDAO implements InterfacePessoa {
     		throw eBuscar;
     	}
     }
-
+    /**
+	 * @return Lista de Pessoa[]
+	 */
     @SuppressWarnings("unchecked")
     public List<Pessoa> listar() throws Exception {
     	try {
@@ -55,7 +66,10 @@ public class PessoaDAO implements InterfacePessoa {
 		}
         
     }
-
+	/**
+	 * param Pessoa
+	 * @return Pessoa
+	 */
     public Pessoa salvar(Pessoa p) throws Exception {
         try {
             em.getTransaction().begin();
@@ -67,7 +81,10 @@ public class PessoaDAO implements InterfacePessoa {
             throw eSalvar;
         }
     }
-
+	/**
+	 * param Pessoa
+	 * @return Pessoa
+	 */
     public Pessoa atualizar(Pessoa p) throws Exception {
         try {
             em.getTransaction().begin();
@@ -79,7 +96,10 @@ public class PessoaDAO implements InterfacePessoa {
             throw eAtualizar;
         }
     }
-    
+     /**
+     * @param integer
+	 * @return boolean
+	 */   
     public void deletar(int id) throws Exception {
         Pessoa p = null;
     	try {

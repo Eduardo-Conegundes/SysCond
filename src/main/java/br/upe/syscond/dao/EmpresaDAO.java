@@ -11,7 +11,10 @@ import br.upe.syscond.models.Empresa;
 public class EmpresaDAO implements InterfaceEmpresa {
 	private static EmpresaDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static EmpresaDAO getInstance() {
 		if (instance == null) {
 			instance = new EmpresaDAO();
@@ -22,7 +25,10 @@ public class EmpresaDAO implements InterfaceEmpresa {
 	private EmpresaDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if (em == null) {
@@ -30,7 +36,10 @@ public class EmpresaDAO implements InterfaceEmpresa {
 		}
 		return em;
 	}
-
+    /**
+     * @param Empresa
+	 * @return Empresa
+	 */  
 	public Empresa salvar(Empresa E) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -42,7 +51,10 @@ public class EmpresaDAO implements InterfaceEmpresa {
 			throw eSalvar;
 		}
 	}
-
+    /**
+     * @param Empresa
+	 * @return Empresa
+	 */  
 	public Empresa atualizar(Empresa E) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -54,7 +66,10 @@ public class EmpresaDAO implements InterfaceEmpresa {
 			throw eAtualizar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		Empresa E = null;
 		try {
@@ -67,7 +82,10 @@ public class EmpresaDAO implements InterfaceEmpresa {
 			throw eDeletar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return Empresa
+	 */
 	public Empresa buscar(int id) throws Exception {
 		Empresa e = null;
 		try {
@@ -80,7 +98,9 @@ public class EmpresaDAO implements InterfaceEmpresa {
 			throw eBuscar;
 		}
 	}
-
+    /**
+	 * @return Lista de Empresa[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Empresa> listar() {
 		try {

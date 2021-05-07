@@ -12,7 +12,10 @@ public class MoradorDAO implements InterfaceMorador{
 
 	private static MoradorDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static MoradorDAO getInstance() {
 		if (instance == null) {
 			instance = new MoradorDAO();
@@ -23,7 +26,10 @@ public class MoradorDAO implements InterfaceMorador{
 	private MoradorDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if (em == null) {
@@ -31,7 +37,10 @@ public class MoradorDAO implements InterfaceMorador{
 		}
 		return em;
 	}
-
+	/**
+	 * param Apartamento
+	 * @return Apartamento
+	 */
 	public Morador salvar(Morador morador) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -43,7 +52,10 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eSalvar;
 		}
 	}
-	
+	/**
+	 * param Morador
+	 * @return Morador
+	 */
 	public Morador buscar(Morador morador) throws Exception {
 		Morador m = null;
 		try {
@@ -56,7 +68,10 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eBuscar;
 		}
 	}
-
+	/**
+	 * param Morador
+	 * @return Morador
+	 */
 	public Morador atualizar(Morador morador) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -68,7 +83,10 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eAtualizar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		Morador m = null;
 		try {
@@ -81,7 +99,9 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de Morador[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Morador> listar() throws Exception {
 		try {

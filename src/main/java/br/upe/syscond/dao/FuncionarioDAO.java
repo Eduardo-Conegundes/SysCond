@@ -12,7 +12,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
     
     private static FuncionarioDAO instance;
     protected EntityManager em;
-	    
+    /**
+     * 
+     * @return instance
+     */	    
     public static FuncionarioDAO getInstance() {
         if (instance == null) {
             instance = new FuncionarioDAO();
@@ -23,7 +26,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
     private FuncionarioDAO() {
         em = getEntityManager();
     }
-
+    /**
+     * 
+     * @return EntityManager
+     */
     private EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
         if (em == null) {
@@ -31,7 +37,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         }
         return em;
     }
-    
+    /**
+     * @param integer
+	 * @return Funcionario
+	 */    
     public Funcionario buscar(int id) throws Exception {
         Funcionario f = null;
         try {
@@ -44,7 +53,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             throw eAtualizar;
         }
     }
-
+    /**
+     * @param Funcionario
+	 * @return Funcionario
+	 */
     public Funcionario salvar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
@@ -56,7 +68,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             throw eSalvar;
         }
     }
-    
+     /**
+     * @param Funcionario
+	 * @return Funcionario
+	 */   
     public Funcionario atualizar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
@@ -68,7 +83,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             throw eAtualizar;
         }
     }
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
     public void deletar(int id) throws Exception {
         Funcionario f = null;
         try {
@@ -81,7 +99,9 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             throw eDeletar;
         }
     }
-
+    /**
+	 * @return Lista de Funcionario[]
+	 */
     @SuppressWarnings("unchecked")
 	public List<Funcionario> listar() {
         try {

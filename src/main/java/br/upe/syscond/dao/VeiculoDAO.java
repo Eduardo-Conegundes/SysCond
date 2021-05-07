@@ -11,7 +11,10 @@ import br.upe.syscond.models.Veiculo;
 public class VeiculoDAO implements InterfaceVeiculo{
 	private static VeiculoDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static VeiculoDAO getInstance() {
 		if (instance == null) {
 			instance = new VeiculoDAO();
@@ -22,7 +25,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
 	private VeiculoDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if (em == null) {
@@ -30,7 +36,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
 		}
 		return em;
 	}
-
+    /**
+     * @param Veiculo
+	 * @return Veiculo
+	 */
 	public Veiculo salvar(Veiculo veiculo) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -43,7 +52,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
 		}
 
 	}
-
+    /**
+     * @param Veiculo
+	 * @return Veiculo
+	 */  
 	public Veiculo atualizar(Veiculo veiculo) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -56,7 +68,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
 		}
 
 	}
-
+    /**
+     * @param integer
+	 * @return Veiculo
+	 */
 	public Veiculo buscar(int id) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -68,7 +83,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
 			throw eBuscar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		Veiculo v = null;
 		try {
@@ -81,7 +99,9 @@ public class VeiculoDAO implements InterfaceVeiculo{
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de Veiculo[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Veiculo> listar() throws Exception {
 		try {

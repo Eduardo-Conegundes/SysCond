@@ -12,7 +12,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 
 	private static UsuarioDAO instance;
 	protected EntityManager em;
-
+    /**
+     * 
+     * @return instance
+     */
 	public static UsuarioDAO getInstance() {
 		if (instance == null) {
 			instance = new UsuarioDAO();
@@ -23,7 +26,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 	private UsuarioDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if (em == null) {
@@ -31,7 +37,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 		}
 		return em;
 	}
-
+    /**
+     * @param integer
+	 * @return Usuario
+	 */
 	public Usuario buscar(int id) throws Exception {
 		Usuario user = null;
 		try {
@@ -44,7 +53,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eBuscar;
 		}
 	}
-
+    /**
+     * @param Usuario
+	 * @return Usuario
+	 */
 	public Usuario salvar(Usuario user) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -56,7 +68,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eSalvar;
 		}
 	}
-
+    /**
+     * @param Usuario
+	 * @return Usuario
+	 */
 	public Usuario atualizar(Usuario user) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -68,7 +83,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eAtualizar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		Usuario user = null;
 		try {
@@ -81,7 +99,9 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de Usuario[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listar() {
 		try {

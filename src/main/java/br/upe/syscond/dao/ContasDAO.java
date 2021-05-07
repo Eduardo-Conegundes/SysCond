@@ -12,7 +12,10 @@ public class ContasDAO implements InterfaceContas{
 	
 	private static ContasDAO instance;
     protected EntityManager em;
-    
+    /**
+     * 
+     * @return instance
+     */   
     public static ContasDAO getInstance() {
     	if(instance == null) {
     		instance = new ContasDAO();
@@ -23,7 +26,10 @@ public class ContasDAO implements InterfaceContas{
     private ContasDAO() {
     	em = getEntityManager();
     }
-    
+    /**
+     * 
+     * @return EntityManager
+     */   
     private EntityManager getEntityManager() {
     	EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
     	if(em == null) {
@@ -31,7 +37,10 @@ public class ContasDAO implements InterfaceContas{
     	}
     	return em;
     }
-	
+    /**
+     * @param Contas
+	 * @return Contas
+	 */  	
     public Contas salvar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -43,7 +52,10 @@ public class ContasDAO implements InterfaceContas{
     		throw eSalvar;
     	}
     }
-    
+    /**
+     * @param Contas
+	 * @return Contas
+	 */    
     public Contas atualizar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -55,7 +67,10 @@ public class ContasDAO implements InterfaceContas{
     		throw eAtualizar;
     	}
     }
-    
+     /**
+     * @param integer
+	 * @return boolean
+	 */   
     public void deletar(int id) throws Exception{
     	Contas p = null;
     	try {
@@ -68,7 +83,10 @@ public class ContasDAO implements InterfaceContas{
     		throw eDeletar;
     	}
     }
-    
+    /**
+     * @param integer
+	 * @return Contas
+	 */    
     public Contas buscar(int id) throws Exception {
     	Contas p = null;
     	try {
@@ -81,7 +99,9 @@ public class ContasDAO implements InterfaceContas{
     		throw eBuscar;
     	}
     }
-    
+    /**
+	 * @return Lista de Contas[]
+	 */    
     @SuppressWarnings("unchecked")
 	public List<Contas> listar(){
     	try {

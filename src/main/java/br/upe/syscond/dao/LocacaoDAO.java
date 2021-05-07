@@ -12,6 +12,11 @@ public class LocacaoDAO implements InterfaceLocacao {
 
 	private static LocacaoDAO instance;
 	protected EntityManager em;
+	
+	/**
+     * 
+     * @return instance
+     */
 
 	public static LocacaoDAO getInstance() {
 		if (instance == null) {
@@ -23,7 +28,10 @@ public class LocacaoDAO implements InterfaceLocacao {
 	private LocacaoDAO() {
 		em = getEntityManager();
 	}
-
+    /**
+     * 
+     * @return EntityManager
+     */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if (em == null) {
@@ -31,7 +39,10 @@ public class LocacaoDAO implements InterfaceLocacao {
 		}
 		return em;
 	}
-
+    /**
+     * @param integer
+	 * @return Locaçao
+	 */
 	public Espaco buscar(int id) throws Exception {
 		Espaco l = null;
 		try {
@@ -44,7 +55,10 @@ public class LocacaoDAO implements InterfaceLocacao {
 			throw eBuscar;
 		}
 	}
-
+	/**
+	 * param Espaco
+	 * @return Espaco
+	 */
 	public Espaco salvar(Espaco l) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -56,7 +70,10 @@ public class LocacaoDAO implements InterfaceLocacao {
 			throw eSalvar;
 		}
 	}
-
+	/**
+	 * param Espaco
+	 * @return Espaco
+	 */
 	public Espaco atualizar(Espaco l) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -68,7 +85,10 @@ public class LocacaoDAO implements InterfaceLocacao {
 			throw eAtualizar;
 		}
 	}
-
+    /**
+     * @param integer
+	 * @return boolean
+	 */
 	public void deletar(int id) throws Exception {
 		Espaco l = null;
 		try {
@@ -81,7 +101,9 @@ public class LocacaoDAO implements InterfaceLocacao {
 			throw eDeletar;
 		}
 	}
-
+    /**
+	 * @return Lista de Espaço[]
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Espaco> listar() {
 		try {
