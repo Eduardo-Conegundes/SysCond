@@ -150,6 +150,10 @@ public class Espaco implements Serializable {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+	
+	public String getMoradorToString(){
+		return this.morador.getPessoaString();
+	}
 
 	@Override
 	public boolean equals(Object obj) {

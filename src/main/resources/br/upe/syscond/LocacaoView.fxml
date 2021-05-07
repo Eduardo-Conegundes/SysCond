@@ -17,11 +17,11 @@
       <TextField fx:id="txfId" editable="false" layoutX="130.0" layoutY="75.0" />
       <Label fx:id="lblMorador" layoutX="55.0" layoutY="109.0" text="Morador:" />
       <Label fx:id="lblDataIni" layoutX="55.0" layoutY="141.0" text="Data Inicial:" />
-      <Label fx:id="lblHora" layoutX="53.0" layoutY="175.0" text="Hora:" />
+      <Label fx:id="lblHora" layoutX="53.0" layoutY="175.0" text="Horário:" />
       <TextField fx:id="txfHora" layoutX="130.0" layoutY="171.0" />
       <Label fx:id="lblValor" layoutX="410.0" layoutY="79.0" text="Valor:" />
       <TextField fx:id="txfValor" layoutX="457.0" layoutY="75.0" />
-      <TableView fx:id="tableFuncionario" layoutX="14.0" layoutY="208.0" prefHeight="176.0" prefWidth="626.0">
+      <TableView fx:id="tableLocacao" layoutX="14.0" layoutY="208.0" prefHeight="176.0" prefWidth="626.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="42.0" text="ID" />
             <TableColumn fx:id="Morador" prefWidth="95.0" text="Morador" />
