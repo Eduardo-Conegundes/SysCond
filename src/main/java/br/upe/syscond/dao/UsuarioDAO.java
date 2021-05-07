@@ -32,6 +32,7 @@ public class UsuarioDAO implements InterfaceUsuario {
      */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+		
 		if (em == null) {
 			em = factory.createEntityManager();
 		}
@@ -42,16 +43,30 @@ public class UsuarioDAO implements InterfaceUsuario {
 	 * @return Usuario
 	 */
 	public Usuario buscar(int id) throws Exception {
-		Usuario user = null;
 		try {
 			em.getTransaction().begin();
-			user = em.find(Usuario.class, id);
+			Usuario user = em.find(Usuario.class, id);
 			em.getTransaction().commit();
 			return user;
 		} catch (Exception eBuscar) {
 			em.getTransaction().rollback();
 			throw eBuscar;
 		}
+	}
+	
+	public Usuario buscar(Usuario user) throws Exception {
+		try {
+			String sql = "FROM Usuario u WHERE u.email = :email and u.senha = :senha";
+			return (Usuario) em.createQuery(sql)
+					.setParameter("email", user.getEmail())
+					.setParameter("senha", user.getSenha())
+					.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("nao encontrei o email");
+			//e.printStackTrace();
+			throw e;
+		}
+		
 	}
     /**
      * @param Usuario
@@ -87,12 +102,10 @@ public class UsuarioDAO implements InterfaceUsuario {
      * @param integer
 	 * @return boolean
 	 */
-	public void deletar(int id) throws Exception {
-		Usuario user = null;
+	public void deletar(Usuario user) throws Exception {
 		try {
 			em.getTransaction().begin();
-			user = em.find(Usuario.class, id);
-			em.remove(user);
+			em.remove(this.buscar(user));
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {
 			em.getTransaction().rollback();
@@ -103,7 +116,7 @@ public class UsuarioDAO implements InterfaceUsuario {
 	 * @return Lista de Usuario[]
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Usuario> listar() {
+	public List<Usuario> listar() throws Exception{
 		try {
 			return (em.createQuery("from " + Usuario.class.getName()).getResultList());		
 		} catch (Exception eListar) {

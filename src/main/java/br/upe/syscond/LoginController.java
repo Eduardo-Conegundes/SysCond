@@ -27,20 +27,16 @@ public class LoginController {
 
     @FXML
     private void switchToMain() throws IOException {
-    	this.lbl1.setText(" ");
-    	
     	String login = this.txfUser.getText();
     	String senha = this.txfSenha.getText();
-    	Usuario user = null;
-    	
-    	user = userCont.buscar(new Usuario(login, senha, "teste"));
-    	
-    	
-    	if(user!= null) {
-    		App.setRoot("MainView");		
-    	}else {
-    		this.lbl1.setText("Usuario e/ou senha invalida");
-    	}
+    	try {
+			userCont.buscar(new Usuario(login, senha));
+			this.lbl1.setText("");
+			App.setRoot("MainView");		
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.lbl1.setText("User/Senha invalido");
+		}
     	
     }
     

@@ -3,9 +3,11 @@ package br.upe.syscond.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
@@ -13,10 +15,10 @@ public class Usuario implements Serializable {
     
     @Id @GeneratedValue(generator = "idUsuario")
     private int id;
+    @Column(unique=true)
     private String email;
+    @Column
     private String senha;
-    private String nivel;
-  
 
     public Usuario() {}
 
@@ -24,12 +26,10 @@ public class Usuario implements Serializable {
      * 
      * @param email
      * @param senha
-     * @param nivel
      */
-	public Usuario(String email, String senha, String nivel) {
+	public Usuario(String email, String senha) {
 		this.email = email;
 		this.senha = senha;
-		this.nivel = nivel;
 	}
 	/**
 	 * 
@@ -74,20 +74,8 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	/**
-	 * 
-	 * @return nivel
+	 * @param obj
 	 */
-	public String getNivel() {
-		return nivel;
-	}
-	/**
-	 * 
-	 * @param nivel
-	 */
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,8 +85,7 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(email, other.email) && Objects.equals(nivel, other.nivel)
-				&& Objects.equals(senha, other.senha);
+		return Objects.equals(email, other.email) && Objects.equals(senha, other.senha);
 	}
 	
 }

@@ -40,12 +40,6 @@ public class UsuarioViewController implements Initializable{
 	private TextField txfSenha;
 
 	@FXML
-	private Label lblNivel;
-
-	@FXML
-	private TextField txfNivel;
-
-	@FXML
 	private Label lblEmail;
 
 	@FXML
@@ -64,9 +58,6 @@ public class UsuarioViewController implements Initializable{
 	private TableColumn<Usuario, String> senhaTableUsuario;
 
 	@FXML
-	private TableColumn<Usuario, String> nivelTableUsuario;
-
-	@FXML
 	private Button btnSalvar;
 
 	@FXML
@@ -83,7 +74,6 @@ public class UsuarioViewController implements Initializable{
 		this.select = tableUsuario.getSelectionModel().getSelectedItems();
 		this.txfEmail.setText(select.get(0).getEmail());
 		this.txfSenha.setText(select.get(0).getSenha());
-		this.txfNivel.setText(select.get(0).getNivel());
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
 	}
 
@@ -117,42 +107,60 @@ public class UsuarioViewController implements Initializable{
 		idTableUsuario.setCellValueFactory(new PropertyValueFactory<>("id"));
 		emailTableUsuario.setCellValueFactory(new PropertyValueFactory<>("email"));
 		senhaTableUsuario.setCellValueFactory(new PropertyValueFactory<>("senha"));
-		nivelTableUsuario.setCellValueFactory(new PropertyValueFactory<>("nivel"));
 		atualizaTabela();
 	}
 
 	private void atualizaTabela() {
-		ObservableList<Usuario> list = FXCollections.observableArrayList(controlaUsuario.listar());
+		ObservableList<Usuario> list = null;
+		try {
+			list = FXCollections.observableArrayList(controlaUsuario.listar());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		tableUsuario.setItems(list);
 	}
 
 	private void limpaTela() {
 		this.txfEmail.setText("");
 		this.txfSenha.setText("");
-		this.txfNivel.setText("");
 		this.txfId.setText("");
 	}
 
 	private void salvar() {
 		String email = this.txfEmail.getText();
 		String senha = this.txfSenha.getText();
-		String nivel = this.txfNivel.getText();
 		String id = this.txfId.getText();
 		
-		Usuario usuario = new Usuario(email, senha, nivel);
+		Usuario usuario = new Usuario(email, senha);
 		
 		if(!id.equals("")) {
 			
 			usuario.setId(Integer.parseInt(id));
-			controlaUsuario.atualizar(usuario);
+			try {
+				controlaUsuario.atualizar(usuario);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else {
 					
-			controlaUsuario.criar(usuario);
+			try {
+				controlaUsuario.criar(usuario);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	private void deletar(Usuario user) {
-		controlaUsuario.deletar(user);
+		try {
+			controlaUsuario.deletar(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

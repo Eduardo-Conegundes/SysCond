@@ -9,7 +9,8 @@ public interface InterfaceUsuario {
     Usuario salvar(Usuario u) throws Exception;
     List<Usuario> listar() throws Exception;
     Usuario buscar(int id) throws Exception;
+    Usuario buscar(Usuario u) throws Exception;
     Usuario atualizar(Usuario u) throws Exception;
-    void deletar(int id) throws Exception;
+    void deletar(Usuario user) throws Exception;
     
 }

@@ -2,79 +2,72 @@ package br.upe.syscond.controllers;
 
 import java.util.List;
 
+import br.upe.syscond.dao.InterfaceUsuario;
 import br.upe.syscond.dao.UsuarioDAO;
 import br.upe.syscond.models.Usuario;
 
 public class UsuarioController implements InterfaceUsuarioController{
+	
+	static InterfaceUsuario userDAO = UsuarioDAO.getInstance();
+	
 	/**
 	 * @param Usuario
 	 * @return Usuario || null
+	 * @throws Exception 
 	 */
-	public Usuario criar(Usuario user){
-		
-		if(this.buscar(user) != null) {
-			return null;
-		}
-
+	public Usuario criar(Usuario user) throws Exception{
 		try {
-			return UsuarioDAO.getInstance().salvar(user);
+			return userDAO.salvar(user);
 		} catch (Exception eSalvar) {
-			System.err.println("Erro ao salvar usu�rio!");
-			return null;
+			throw eSalvar;
 		}
-
 	}
 	/**
 	 * @return Usuario[] || null
+	 * @throws Exception 
 	 */
-	public List<Usuario> listar(){
+	public List<Usuario> listar() throws Exception{
 		try {
-			List<Usuario> users = UsuarioDAO.getInstance().listar();
-			return users;
+			return userDAO.listar();
 		} catch (Exception eListar) {
-			System.err.println("Erro ao listar usu�rio(s)!");
-			return null;
+			throw eListar;
 		}
 	}
 	/**
 	 * @param Usuario
 	 * @return Usuario || null
+	 * @throws Exception 
 	 */
-	public Usuario buscar(Usuario user){
-		List<Usuario> users = this.listar();
-
-		for (Usuario user2 : users) {
-			if(user2.equals(user)) {
-				return user2;				
-			}
-		}
-		return null;
-	}
-	/**
-	 * @param Usuario
-	 * @return Usuario || null
-	 */
-	public Usuario atualizar(Usuario novo){
+	public Usuario buscar(Usuario user) throws Exception{
 		try {
-			
-			return UsuarioDAO.getInstance().atualizar(novo);
+			return userDAO.buscar(user);
 		} catch (Exception eBuscar) {
-			System.err.println("Erro ao buscar usu�rio!");
-			return null;
+			throw eBuscar;
+		}
+	}
+	/**
+	 * @param Usuario
+	 * @return Usuario || null
+	 * @throws Exception 
+	 */
+	public Usuario atualizar(Usuario novo) throws Exception{
+		try {
+			return userDAO.atualizar(novo);
+		} catch (Exception eBuscar) {
+			throw eBuscar;
 		}
 	}
 	/**
 	 * @param Usuario
 	 * @return boolean
+	 * @throws Exception 
 	 */
-	public boolean deletar(Usuario user){
-		int id = this.buscar(user).getId();
+	public boolean deletar(Usuario user) throws Exception{
 		try {
-			UsuarioDAO.getInstance().deletar(id);
+			userDAO.deletar(user);
 			return true;
-		} catch (Exception e) {
-			System.err.println("Erro ao excluir Usuario!");
-			return true;
+		} catch (Exception eDeletar) {
+			throw eDeletar;
 		}
 	}
 }
