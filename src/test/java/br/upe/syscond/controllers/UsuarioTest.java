@@ -1,7 +1,7 @@
 package br.upe.syscond.controllers;
 
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -17,22 +17,23 @@ import br.upe.syscond.models.Usuario;
 public class UsuarioTest {
 	static Usuario usuario = new Usuario("teste", "teste", "admin");
 	UsuarioController controlador = new UsuarioController();
-
+	Usuario user = null;
+	
 	@Test
 	public void t1esteCriarUsuario() {
-
-		Usuario user = null;
 		user = controlador.criar(usuario);
-
 		assertNotNull(user);
 	}
 
 	@Test
 	public void t2esteAtualizarUsuario() {
-		Usuario modificado = new Usuario("mod", "mod", "mod");
-		modificado = controlador.atualizar(usuario, modificado);
+		user = null;
+		user = controlador.criar(usuario);
+		Usuario userAux = user;
+		user.setEmail("alterado");
+		Usuario modificado = controlador.atualizar(user);
 
-		assertNotEquals(0, modificado.getId());
+		assertEquals(userAux.getId(), modificado.getId());
 		usuario = modificado;
 	}
 
