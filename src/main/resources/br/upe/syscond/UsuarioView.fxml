@@ -12,23 +12,15 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.UsuarioViewController">
    <children>
       <Label fx:id="lblId" layoutX="19.0" layoutY="131.0" text="ID:" />
-      <TextField fx:id="txfId" editable="false" layoutX="91.0" layoutY="127.0" />
       <Label fx:id="lblsenha" layoutX="16.0" layoutY="197.0" text="Senha:" />
       <TextField fx:id="txfSenha" layoutX="92.0" layoutY="193.0" />
-      <Label fx:id="lblNivel" layoutX="15.0" layoutY="229.0" text="Nivel" />
-      <TextField fx:id="txfNivel" layoutX="92.0" layoutY="225.0" />
       <Label fx:id="lblEmail" layoutX="15.0" layoutY="162.0" text="Email:" />
       <TextField fx:id="txfEmail" layoutX="92.0" layoutY="158.0" />
       <TableView fx:id="tableUsuario" layoutX="295.0" layoutY="97.0" prefHeight="200.0" prefWidth="301.0">
          <columns>
-            <TableColumn fx:id="usuarioTableUsuario" prefWidth="75.0" text="Usuarios">
-               <columns>
-                  <TableColumn fx:id="idTableUsuario" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="emailTableUsuario" prefWidth="75.0" text="E-mail" />
-                  <TableColumn fx:id="senhaTableUsuario" prefWidth="75.0" text="Senha" />
-                  <TableColumn fx:id="nivelTableUsuario" prefWidth="75.0" text="Nivel" />
-               </columns>
-            </TableColumn>
+            <TableColumn fx:id="idTableUsuario" prefWidth="88.0" text="ID" />
+            <TableColumn fx:id="emailTableUsuario" prefWidth="105.5999755859375" text="E-mail" />
+            <TableColumn fx:id="senhaTableUsuario" prefWidth="108.00009155273438" text="Senha" />
          </columns>
       </TableView>
       <Button fx:id="btnSalvar" layoutX="34.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#salvarUsuario" text="Salvar" />
@@ -40,5 +32,6 @@
             <Font size="31.0" />
          </font>
       </Text>
+      <Label fx:id="txfId" layoutX="92.0" layoutY="131.0" />
    </children>
 </AnchorPane>

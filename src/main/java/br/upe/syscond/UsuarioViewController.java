@@ -3,17 +3,20 @@ package br.upe.syscond;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.upe.syscond.controllers.InterfaceUsuarioController;
 import br.upe.syscond.controllers.UsuarioController;
 import br.upe.syscond.models.Usuario;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,13 +34,19 @@ public class UsuarioViewController implements Initializable{
 	private Label lblId;
 
 	@FXML
-	private TextField txfId;
-
-	@FXML
 	private Label lblsenha;
 
 	@FXML
 	private TextField txfSenha;
+
+	@FXML
+	private Label lblNivel;
+
+	@FXML
+	private Label txfId;
+
+	@FXML
+	private TextField txfNivel;
 
 	@FXML
 	private Label lblEmail;
@@ -80,14 +89,14 @@ public class UsuarioViewController implements Initializable{
 	@FXML
 	void ExcluirUsuario(MouseEvent event) {
 		this.select = tableUsuario.getSelectionModel().getSelectedItems();
-		deletar(this.select.get(0));
-		System.out.println(this.select.get(0).getEmail());
+		alertaDeletar(this.select.get(0));
 		limpaTela();
 		atualizaTabela();
 	}
 
 	@FXML
 	void salvarUsuario(MouseEvent event) {
+		this.select = null;
 		salvar();
 		limpaTela();
 		atualizaTabela();
@@ -98,6 +107,7 @@ public class UsuarioViewController implements Initializable{
 		try {
 			App.setRoot("MainView");
 		} catch (IOException e) {
+			alertaErro("Erro ao voltar pagina principal");
 			e.printStackTrace();
 		}
 
@@ -111,14 +121,12 @@ public class UsuarioViewController implements Initializable{
 	}
 
 	private void atualizaTabela() {
-		ObservableList<Usuario> list = null;
 		try {
-			list = FXCollections.observableArrayList(controlaUsuario.listar());
+			tableUsuario.setItems(FXCollections.observableArrayList(controlaUsuario.listar()));			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			alertaErro("Erro ao listar tabela");
 			e.printStackTrace();
 		}
-		tableUsuario.setItems(list);
 	}
 
 	private void limpaTela() {
@@ -131,36 +139,62 @@ public class UsuarioViewController implements Initializable{
 		String email = this.txfEmail.getText();
 		String senha = this.txfSenha.getText();
 		String id = this.txfId.getText();
-		
+
 		Usuario usuario = new Usuario(email, senha);
-		
+
 		if(!id.equals("")) {
-			
 			usuario.setId(Integer.parseInt(id));
 			try {
 				controlaUsuario.atualizar(usuario);
+				alertaSucesso("Atualizado com sucesso!");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				alertaErro("Erro ao atualizar");
 				e.printStackTrace();
 			}
 		}else {
-					
 			try {
 				controlaUsuario.criar(usuario);
+				alertaSucesso("Salvo com sucesso!");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				alertaErro("Erro ao salvar");
 			}
 		}
 	}
 
-	private void deletar(Usuario user) {
-		try {
-			controlaUsuario.deletar(user);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private void alertaErro(String erro) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error Dialog");
+		alert.setHeaderText(erro);
+		alert.setContentText("Ooops, there was an error!");
+		alert.showAndWait();
+	}
+
+	private void alertaDeletar(Usuario user) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText("Look, a Confirmation Dialog");
+		alert.setContentText("Are you ok with this?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			try {
+				controlaUsuario.deletar(user);
+			} catch (Exception e) {
+				alertaErro("Erro ao deletar");
+				e.printStackTrace();
+			}
+		} else {
+			return;
 		}
+	}
+	
+	private void alertaSucesso(String msg) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(msg);
+		alert.setContentText("I have a great message for you!");
+
+		alert.showAndWait();
 	}
 
 }
