@@ -155,8 +155,7 @@ public class Contas {
 	public void setStatusPaga(Boolean statusPaga) {
 		this.statusPaga = statusPaga;
 	}
-	
-	
+	@Override
 	public boolean equals(Object obj) {
 		Contas conta = (Contas)obj;
 		if(

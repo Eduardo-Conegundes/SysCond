@@ -16,7 +16,11 @@ public class Contabil {
 	private float saldo;
 	
 	public Contabil() {}
-	
+	/**
+	 * 
+	 * @param contas
+	 * @param saldo
+	 */
 	public Contabil(List<Contas> contas, float saldo) {
 		this.Contas = contas;
 		this.saldo = saldo;

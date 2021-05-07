@@ -18,7 +18,11 @@ public class Veiculo implements Serializable {
     private String placa;
     
     public Veiculo() {}
-    
+    /**
+     * 
+     * @param placa
+     * @param apartamento
+     */
     public Veiculo(String placa, Apartamento apartamento){
         this.placa = placa; 
         this.apartamento = apartamento;

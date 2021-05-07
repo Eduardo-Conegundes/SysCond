@@ -21,7 +21,13 @@ public class Pessoa {
 
 	public Pessoa() {
 	}
-
+	/**
+	 * 
+	 * @param nome
+	 * @param cpf
+	 * @param telefone
+	 * @param email
+	 */
 	public Pessoa(String nome, String cpf, String telefone, String email) {
 		this.nome = nome;
 		this.cpf = cpf;

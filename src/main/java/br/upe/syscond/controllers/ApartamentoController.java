@@ -7,7 +7,10 @@ import br.upe.syscond.dao.ApartamentoDAO;
 import br.upe.syscond.models.Apartamento;
 
 public class ApartamentoController implements InterfaceApartamentoController {
-
+	/**
+	 * @param Apartamento
+	 * @return null || Apartamento
+	 */
 	public Apartamento criar(Apartamento apartamento){
 		List<Apartamento> ap = new ArrayList<Apartamento>();
 		ap = this.listar();
@@ -25,7 +28,9 @@ public class ApartamentoController implements InterfaceApartamentoController {
 			return null;
 		}	
 	}
-
+	/**
+	 * @return Apartamento[]
+	 */
 	public List<Apartamento> listar(){
 		try {
 			List<Apartamento> list = ApartamentoDAO.getInstance().listar();
@@ -36,7 +41,10 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 
 	}
-
+	/**
+	 * @param Apartamento
+	 * @return Apartamento
+	 */
 	public Apartamento buscar(Apartamento pesquisar) {
 		List<Apartamento>lista_apartamentos = this.listar();
 		for (int i=0; i <= lista_apartamentos.size(); i++) {
@@ -46,7 +54,11 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 		return null;
 	}
-	
+	/**
+	 * @param String
+	 * @param int
+	 * @return null || Apartamento
+	 */
 	public Apartamento buscar(String bloco, int numero) {
 		List<Apartamento>lista_apartamentos = this.listar();
 		for (int i=0; i <= lista_apartamentos.size(); i++) {
@@ -58,7 +70,10 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		return null;
 		
 	}
-
+	/**
+	 * @param String
+	 * @return Apartamento[]
+	 */
 	public List<Apartamento> listar(String bloco) {
 		List<Apartamento>lista_apartamentos = this.listar();
 		List<Apartamento>lista_por_bloco = new ArrayList<Apartamento>();
@@ -70,7 +85,10 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 		return lista_por_bloco;
 	}
-	
+	/**
+	 * @param String
+	 * @return String[]
+	 */
 	public ArrayList<String> listaNumeros(String bloco){
 		List<Apartamento>lista_apartamentos = this.listar();
 		ArrayList<String>lista_por_bloco = new ArrayList<String>();
@@ -83,7 +101,9 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 		return lista_por_bloco;
 	}
-	
+	/**
+	 * @return String[]
+	 */
 	public ArrayList<String> listarNumeros() {
 		List<Apartamento>lista_apartamentos = this.listar();
 		ArrayList<String> lista_por_numero = new ArrayList<String>();
@@ -97,7 +117,9 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		
 		return lista_por_numero;
 	}
-	
+	/**
+	 * @return String[]
+	 */
 	public ArrayList<String> listarBlocos() {
 		List<Apartamento>lista_apartamentos = this.listar();
 		ArrayList<String> lista_de_blocos = new ArrayList<String>();
@@ -113,7 +135,11 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	}
 	
 	
-
+	/**
+	 * @param Apartamento antigo
+	 * @param Apartamento novo
+	 * @return Apartamento || null
+	 */
 	public Apartamento atualizar(Apartamento antigo, Apartamento novo){
 		Apartamento busca = null;
 		try {
@@ -136,7 +162,10 @@ public class ApartamentoController implements InterfaceApartamentoController {
 			return null;
 		}
 	}
-
+	/**
+	 * @param Apartamento
+	 * @return boolean
+	 */
 	public boolean deletar(Apartamento apartamento) {
 		int id = apartamento.getId();
 		try {

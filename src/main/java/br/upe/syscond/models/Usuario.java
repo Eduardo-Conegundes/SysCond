@@ -20,41 +20,70 @@ public class Usuario implements Serializable {
 
     public Usuario() {}
 
-
+    /**
+     * 
+     * @param email
+     * @param senha
+     * @param nivel
+     */
 	public Usuario(String email, String senha, String nivel) {
 		this.email = email;
 		this.senha = senha;
 		this.nivel = nivel;
 	}
-
+	/**
+	 * 
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
-
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	/**
+	 * 
+	 * @return email
+	 */
 	public String getEmail() {
 		return email;
 	}
-
+	/**
+	 * 
+	 * @param email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	/**
+	 * 
+	 * @return senha
+	 */
 	public String getSenha() {
 		return senha;
 	}
-
+	/**
+	 * 
+	 * @param senha
+	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	/**
+	 * 
+	 * @return nivel
+	 */
 	public String getNivel() {
 		return nivel;
 	}
-
+	/**
+	 * 
+	 * @param nivel
+	 */
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}

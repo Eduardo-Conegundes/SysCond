@@ -12,14 +12,16 @@ import br.upe.syscond.models.Contas;
 public class ContabilController implements InterfaceContabilController{
 	private static ContabilController instance;
 	private Contabil contabil;
-
+/**
+ * 
+ * @return instance
+ */
 	public static ContabilController getInstance() {
 		if(instance == null) {
 			instance = new ContabilController();
 		}
 		return instance;
 	}
-
 	private ContabilController() {
 		if(ContabilDAO.getInstance().listar().size()==0) {
 			try {

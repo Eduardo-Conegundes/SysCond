@@ -13,9 +13,15 @@ public class FluxoAlmoxarifado {
 	private String tipoTransacao; //entrada ou saida
 	private Almoxarifado estoque;
 
-	public FluxoAlmoxarifado() {
-		// TODO Auto-generated constructor stub
-	}
+	public FluxoAlmoxarifado() {}
+	
+	/**
+	 * 
+	 * @param produto
+	 * @param qtd
+	 * @param tipoTransacao
+	 * @param estoque
+	 */
 	public FluxoAlmoxarifado(ServicoProduto produto, int qtd, String tipoTransacao, Almoxarifado estoque){
 		this.produto = produto;
 		this.qtd = qtd;

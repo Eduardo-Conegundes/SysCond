@@ -14,7 +14,12 @@ public class Apartamento {
 	private int vagas;
 
 	public Apartamento(){}
-
+	/**
+	 * 
+	 * @param bloco
+	 * @param numero
+	 * @param vagas
+	 */
 	public Apartamento(String bloco, int numero,  int vagas) {
 		this.bloco = bloco;
 		this.numero = numero;

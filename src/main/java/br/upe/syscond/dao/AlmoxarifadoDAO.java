@@ -13,18 +13,24 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 
 	private static AlmoxarifadoDAO instance;
 	protected EntityManager em;
-
+	/**
+	 * 
+	 * @return instance
+	 */
 	public static AlmoxarifadoDAO getInstance() {
 		if (instance == null) {
 			instance = new AlmoxarifadoDAO();
 		}
 		return instance;
 	}
-
+	
 	private AlmoxarifadoDAO() {
 		em = getEntityManager();
 	}
-
+	/**
+	 * 
+	 * @return EntityManager
+	 */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		if(em == null) {
@@ -33,7 +39,11 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 		return em;
 	
 	}
-
+	/**
+	 * 
+	 * @param id
+	 * @return Almoxarifado
+	 */
 	public Almoxarifado buscar(int id) {
 		Almoxarifado p = null;
 		try {
@@ -46,6 +56,11 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 			throw eBuscar;
 		}
 	}
+	/**
+	 * 
+	 * @param Almoxarifado
+	 * @return Almoxarifado
+	 */
 	public Almoxarifado salvar(Almoxarifado almoxarifado) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -57,7 +72,11 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 			throw eSalvar;
 		}
 	}
-/// falta daqui pra baixooo
+	/**
+	 * 
+	 * @param Almoxarifado
+	 *
+	 */
 	public void atualizar(Almoxarifado F) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -68,7 +87,11 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 			throw eAtualizar;
 		}
 	}
-
+	/**
+	 * 
+	 * @param Almoxarifado
+	 *
+	 */
 	public void deletar(Almoxarifado F) throws Exception {
 		Almoxarifado est = null;
 		try {
@@ -81,7 +104,9 @@ public class AlmoxarifadoDAO implements InterfaceEstoque {
 			throw eDeletar;
 		}
 	}
-
+/**
+ * @return Almoxarifado[]
+ */
 	@SuppressWarnings("unchecked")
 	public List<Almoxarifado> listar() {
 		try {

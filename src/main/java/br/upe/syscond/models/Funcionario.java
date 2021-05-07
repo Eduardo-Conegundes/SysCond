@@ -18,9 +18,15 @@ public class Funcionario implements Serializable {
     private String interno_externo;
     private String cargo;
     private float salario;
-
-    public Funcionario(){}
     
+    public Funcionario() {}
+    /**
+     * 
+     * @param pessoa
+     * @param interno_externo
+     * @param cargo
+     * @param salario
+     */
     public Funcionario(Pessoa pessoa, String interno_externo, String cargo, float salario) {
         this.pessoa = pessoa;
         this.interno_externo = interno_externo;
@@ -51,7 +57,10 @@ public class Funcionario implements Serializable {
 		
 		return pessoa;
 	}
-	
+	/**
+	 * 
+	 * @return pessoa.toString()
+	 */
 	public String getPessoaDetalhe() {
 		return pessoa.toString();
 	}

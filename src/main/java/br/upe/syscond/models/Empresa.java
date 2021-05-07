@@ -22,7 +22,13 @@ public class Empresa implements Serializable {
 
 	public Empresa() {
 	}
-
+	/**
+	 * 
+	 * @param cnpj
+	 * @param servicoproduto
+	 * @param nome
+	 * @param telefone
+	 */
 	public Empresa(String cnpj, List<ServicoProduto> servicoproduto, String nome, String telefone){
 		this.cnpj = cnpj;
 		this.nome = nome;

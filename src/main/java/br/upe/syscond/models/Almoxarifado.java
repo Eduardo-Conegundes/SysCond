@@ -10,7 +10,10 @@ public class Almoxarifado {
 	//@OneToMany
 	private List<FluxoAlmoxarifado> fluxoalmoxarifado;
 
-
+	/**
+	 * 
+	 * @param fluxoalmoxarifado
+	 */
 	public Almoxarifado(List<FluxoAlmoxarifado> fluxoalmoxarifado) {
 		this.fluxoalmoxarifado = fluxoalmoxarifado;
 	}

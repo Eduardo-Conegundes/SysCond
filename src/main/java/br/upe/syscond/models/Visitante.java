@@ -19,7 +19,11 @@ public class Visitante implements Serializable {
 	private Apartamento apartamento;
 
 	public Visitante() { }
-
+	/**
+	 * 
+	 * @param pessoa
+	 * @param apartamento
+	 */
 	public Visitante(Pessoa pessoa, Apartamento apartamento) {
 		this.pessoa = pessoa;
 		this.apartamento = apartamento;

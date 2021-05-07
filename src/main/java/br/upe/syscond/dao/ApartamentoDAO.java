@@ -13,7 +13,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
     
 	private static ApartamentoDAO instance;
     protected EntityManager em;
-    
+    /**
+     * 
+     * @return instance
+     */
     public static ApartamentoDAO getInstance() {
     	if(instance == null) {
     		instance = new ApartamentoDAO();
@@ -24,7 +27,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
     private ApartamentoDAO() {
     	em = getEntityManager();
     }
-    
+    /**
+     * 
+     * @return EntityManager
+     */
     private EntityManager getEntityManager() {
     	EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
     	if(em == null) {
@@ -32,7 +38,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
     	}
     	return em;
     }
-	
+	/**
+	 * param Apartamento
+	 * @return Apartamento
+	 */
     public Apartamento salvar(Apartamento apartamento) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -44,7 +53,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		throw eSalvar;
     	}
     }
-    
+    /**
+     * @param Apartamento
+	 * @return Apartamento
+	 */
     public Apartamento atualizar(Apartamento apartamento) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -57,7 +69,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
     	}
     }
     
-    //esse metodo retorna null caso n�o encontre
+    /**
+     * @param integer
+	 * @return Apartamento
+	 */
     public Apartamento buscar(int id) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -69,7 +84,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
     		throw eBuscar;
     	}
     }
-    
+    /**
+     * @param integer
+	 * @return boolean
+	 */
     public boolean deletar(int id) throws Exception {
         try {
             Apartamento p = buscar(id);
@@ -79,7 +97,10 @@ public class ApartamentoDAO implements InterfaceApartamento {
         	throw eDeletarId;
         }
     }
-    
+    /**
+     * @param Apartamento
+	 * @return boolean
+	 */
     private boolean deletarPorId(Apartamento apartamento) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -93,6 +114,9 @@ public class ApartamentoDAO implements InterfaceApartamento {
     	}
     }
     
+    /**
+	 * @return Apartamento[]
+	 */
     @SuppressWarnings("unchecked")
 	public List<Apartamento> listar() throws Exception{
     	try {

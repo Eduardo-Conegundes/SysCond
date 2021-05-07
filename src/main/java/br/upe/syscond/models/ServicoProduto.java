@@ -21,7 +21,13 @@ public class ServicoProduto implements Serializable {
 
 	public ServicoProduto() {
 	}
-
+	/**
+	 * 
+	 * @param nome
+	 * @param valor
+	 * @param empresa
+	 * @param categoria
+	 */
 	public ServicoProduto(String nome, float valor, Empresa empresa, String categoria) {
 		this.nome = nome;
 		this.valor = valor;
