@@ -30,7 +30,6 @@ public class FuncionarioViewController implements Initializable{
 	static InterfacePessoaController controlaPessoa = new PessoaController();
 	private String AtributointernoExterno;
 	private ObservableList<Funcionario> select;
-	private Pessoa pessoaAtualiza;
 
     @FXML
     private Label lblId;
@@ -123,7 +122,6 @@ public class FuncionarioViewController implements Initializable{
 	@FXML
 	void EditarFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
-		this.pessoaAtualiza = select.get(0).getPessoa();
 		this.txfCargo.setText(select.get(0).getCargo());
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfNome.setText(select.get(0).getPessoa().getNome());
@@ -132,13 +130,12 @@ public class FuncionarioViewController implements Initializable{
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
 		this.txfSalario.setText(Float.toString(select.get(0).getSalario()));
 		
-		
 	}
 
 	@FXML
 	void ExcluirFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
-		deletar(this.select.get(0));
+		deletar();
 		limpaTela();
 		atualizaTabela();
 
@@ -157,7 +154,7 @@ public class FuncionarioViewController implements Initializable{
 		Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
 		
 		if(!id.equals("")) {
-			pessoa.setId(this.pessoaAtualiza.getId());
+			pessoa.setId(select.get(0).getPessoa().getId());
 			Pessoa newPessoa = controlaPessoa.atualizar(pessoa);
 			Funcionario funcionario = new Funcionario(newPessoa, AtributointernoExterno, cargo, salario);
 			funcionario.setId(Integer.parseInt(id));
@@ -193,11 +190,13 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	private void limpaTela() {
-		this.txfCPF.setText("");
 		this.txfCargo.setText("");
-		this.txfEmail.setText("");
 		this.txfId.setText("");
 		this.txfNome.setText("");
+		this.txfCPF.setText("");
+		this.txfEmail.setText("");
+		this.txfTel.setText("");
+		this.txfSalario.setText("");
 	}
 
 	private void intExt() {
@@ -208,8 +207,9 @@ public class FuncionarioViewController implements Initializable{
 		}
 	}
 	
-	private void deletar(Funcionario func) {
-		controlaFuncionario.deletar(func);
+	private void deletar() {
+		controlaFuncionario.deletar(select.get(0));
+		controlaPessoa.deletar(select.get(0).getPessoa());
 	}
 
 }
