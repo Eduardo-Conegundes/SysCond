@@ -33,26 +33,23 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 
 	public Funcionario buscar(Funcionario buscar) {
 		List<Funcionario> lista = this.listar();
-		
+
 		for (Funcionario funcionario : lista) {
 			if(funcionario.equals(buscar)) {
 				return funcionario;				
 			}
 		}
-		
+
 		return null;
 	}
 
-	public Funcionario atualizar(Funcionario antigo, Funcionario novo){
-		if(this.buscar(antigo)!= null) {
-			try {
-				novo.setId(antigo.getId());
-				Funcionario atualizado = FuncionarioDAO.getInstance().atualizar(novo);
-				return atualizado;
-			} catch (Exception eSalvar) {
-				System.err.println("Erro ao atualizar Funcionario!");
-				return null;
-			}
+	public Funcionario atualizar(Funcionario funcionario){
+
+		try{
+			Funcionario atualizado = FuncionarioDAO.getInstance().atualizar(funcionario);
+			return atualizado;
+		}catch (Exception ex) {
+
 		}
 		return null;
 	}

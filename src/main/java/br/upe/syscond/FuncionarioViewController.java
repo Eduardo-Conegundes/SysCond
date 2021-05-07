@@ -10,8 +10,6 @@ import br.upe.syscond.controllers.InterfacePessoaController;
 import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.models.Funcionario;
 import br.upe.syscond.models.Pessoa;
-import br.upe.syscond.models.Usuario;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,7 +29,7 @@ public class FuncionarioViewController implements Initializable{
 	static InterfaceFuncionarioController controlaFuncionario = new FuncionarioController();
 	static InterfacePessoaController controlaPessoa = new PessoaController();
 	private String AtributointernoExterno;
-	private ObservableList<Funcionario> select; 
+	private ObservableList<Funcionario> select;
 
     @FXML
     private Label lblId;
@@ -110,6 +108,9 @@ public class FuncionarioViewController implements Initializable{
 
     @FXML
     private CheckBox checkInterno;
+    
+    @FXML
+    private CheckBox checkExterno;
 
 	@FXML
 	void salvarFuncionario(MouseEvent event) {
@@ -120,32 +121,50 @@ public class FuncionarioViewController implements Initializable{
 
 	@FXML
 	void EditarFuncionario(MouseEvent event) {
-//		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
-//		this.txfCargo.setText(select.get(0).getCargo());
-//		this.txfId.setText(select.get(0).getId());
-//		this.txfCargo.setText(select.get(0));
-//		this.txfCargo.setText(select.get(0).getCargo());
+		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
+		this.txfCargo.setText(select.get(0).getCargo());
+		this.txfId.setText(Integer.toString(select.get(0).getId()));
+		this.txfNome.setText(select.get(0).getPessoa().getNome());
+		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
+		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
+		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
+		this.txfSalario.setText(Float.toString(select.get(0).getSalario()));
+		
 	}
 
 	@FXML
 	void ExcluirFuncionario(MouseEvent event) {
+		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
+		deletar();
+		limpaTela();
+		atualizaTabela();
 
 	}
-
+	
 	private void salvar() {
-		intExt();
 		String cpf = this.txfCPF.getText();
 		String nome = this.txfNome.getText();
 		String email = this.txfEmail.getText();
 		String telefone = this.txfTel.getText(); 
 		String cargo = this.txfCargo.getText();
+		String id = this.txfId.getText();
 		float salario = Float.parseFloat(this.txfSalario.getText());
 		intExt();
-
-		Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
-		controlaFuncionario.criar(new Funcionario(pessoa, AtributointernoExterno, cargo, salario));
+		
+		Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
+		
+		if(!id.equals("")) {
+			pessoa.setId(select.get(0).getPessoa().getId());
+			Pessoa newPessoa = controlaPessoa.atualizar(pessoa);
+			Funcionario funcionario = new Funcionario(newPessoa, AtributointernoExterno, cargo, salario);
+			funcionario.setId(Integer.parseInt(id));
+			controlaFuncionario.atualizar(funcionario);
+		} else {
+			pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
+			controlaFuncionario.criar(new Funcionario(pessoa, AtributointernoExterno, cargo, salario));
+		}
 	}
-
+	
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -171,11 +190,13 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	private void limpaTela() {
-		this.txfCPF.setText("");
 		this.txfCargo.setText("");
-		this.txfEmail.setText("");
 		this.txfId.setText("");
 		this.txfNome.setText("");
+		this.txfCPF.setText("");
+		this.txfEmail.setText("");
+		this.txfTel.setText("");
+		this.txfSalario.setText("");
 	}
 
 	private void intExt() {
@@ -184,6 +205,11 @@ public class FuncionarioViewController implements Initializable{
 		}else{
 			this.AtributointernoExterno = "Externo";
 		}
+	}
+	
+	private void deletar() {
+		controlaFuncionario.deletar(select.get(0));
+		controlaPessoa.deletar(select.get(0).getPessoa());
 	}
 
 }

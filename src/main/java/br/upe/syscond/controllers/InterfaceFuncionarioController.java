@@ -8,6 +8,6 @@ public interface InterfaceFuncionarioController {
 	public Funcionario criar(Funcionario funcionario);
 	public List<Funcionario> listar();
 	public Funcionario buscar(Funcionario buscar);
-	public Funcionario atualizar(Funcionario antigo, Funcionario novo);
+	public Funcionario atualizar(Funcionario funcionario);
 	public boolean deletar(Funcionario funcionario);
 }

@@ -6,11 +6,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Pessoa {
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email
-				+ "]";
-	}
 
 	@Id @GeneratedValue(generator = "idPessoa")
 	private int id;
@@ -114,6 +109,11 @@ public class Pessoa {
 		}else {
 			return false;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return nome;
 	}
 
 }

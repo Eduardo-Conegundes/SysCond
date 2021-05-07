@@ -68,6 +68,14 @@ public class Morador implements Serializable {
 	public void setApartamento(Apartamento apartamento) {
 		this.apartamento = apartamento;
 	}
+	
+	public String getPessoaString() {
+		return pessoa.toString();
+	}
+	
+	public String getApartamentoString() {
+		return apartamento.toString();
+	}
 
 	@Override
 	public boolean equals(Object obj) {

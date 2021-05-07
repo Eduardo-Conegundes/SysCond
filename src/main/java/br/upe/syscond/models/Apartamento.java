@@ -7,6 +7,11 @@ import javax.persistence.Id;
 @Entity
 public class Apartamento {
 
+	@Override
+	public String toString() {
+		return "numero= " + numero + ", bloco= " + bloco;
+	}
+
 	@Id @GeneratedValue(generator = "idApartamento")
 	private int id;
 	private int numero;
@@ -83,6 +88,7 @@ public class Apartamento {
 	public void setVagas(int vagas) {
 		this.vagas = vagas;
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {

@@ -8,6 +8,6 @@ public interface InterfacePessoaController {
 	public Pessoa criar(Pessoa pessoa);
 	public List<Pessoa> listar();
 	public Pessoa buscar(Pessoa pessoa);
-	public Pessoa atualizar(Pessoa antiga, Pessoa nova);
+	public Pessoa atualizar(Pessoa pessoa);
 	public boolean deletar(Pessoa pessoa);
 }
