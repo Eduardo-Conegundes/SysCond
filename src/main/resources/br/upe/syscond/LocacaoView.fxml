@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.LocacaoViewController">
+   <children>
+      <Label fx:id="lblId" layoutX="58.0" layoutY="79.0" text="ID:" />
+      <TextField fx:id="txfId" editable="false" layoutX="130.0" layoutY="75.0" />
+      <Label fx:id="lblMorador" layoutX="55.0" layoutY="109.0" text="Morador:" />
+      <Label fx:id="lblDataIni" layoutX="55.0" layoutY="141.0" text="Data Inicial:" />
+      <Label fx:id="lblHora" layoutX="53.0" layoutY="175.0" text="Hora:" />
+      <TextField fx:id="txfHora" layoutX="130.0" layoutY="171.0" />
+      <Label fx:id="lblValor" layoutX="410.0" layoutY="79.0" text="Valor:" />
+      <TextField fx:id="txfValor" layoutX="457.0" layoutY="75.0" />
+      <TableView fx:id="tableFuncionario" layoutX="14.0" layoutY="208.0" prefHeight="176.0" prefWidth="626.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="42.0" text="ID" />
+            <TableColumn fx:id="Morador" prefWidth="95.0" text="Morador" />
+            <TableColumn fx:id="DataInicial" prefWidth="100.0" text="Data Inicial" />
+            <TableColumn fx:id="DataFinal" minWidth="0.0" prefWidth="96.0" text="Data Final" />
+            <TableColumn fx:id="Hora" prefWidth="104.0" text="Hora" />
+            <TableColumn fx:id="Espaço" prefWidth="97.0" text="Espaço" />
+            <TableColumn fx:id="Valor" prefWidth="127.0" text="Valor" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnSalvar" layoutX="445.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarLocacao" text="Salvar" />
+      <Button fx:id="btnCancelar" layoutX="518.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar" />
+      <Button fx:id="btnEditar" layoutX="29.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#EditarLocacao" text="Editar" />
+      <Button fx:id="btnExcluir" layoutX="98.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#ExcluirLocacao" text="Excluir" />
+      <Text layoutX="268.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Locação" wrappingWidth="215.0">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="cbMorador" layoutX="131.0" layoutY="105.0" prefWidth="150.0" />
+      <DatePicker fx:id="dateFim" layoutX="457.0" layoutY="137.0" />
+      <Label fx:id="lblDataFim" layoutX="394.0" layoutY="141.0" text="Data Final:" />
+      <DatePicker fx:id="dateIni" layoutX="130.0" layoutY="137.0" />
+      <TextField fx:id="txfEspaco" layoutX="457.0" layoutY="105.0" />
+      <Label fx:id="lblEspaco" layoutX="410.0" layoutY="109.0" text="Espaço:" />
+   </children>
+</AnchorPane>

@@ -8,6 +8,6 @@ public interface InterfaceVeiculoController {
 	public Veiculo criar(Veiculo veiculo);
 	public List<Veiculo> listar();
 	public Veiculo buscar(Veiculo veiculo);
-	public Veiculo atualizar(Veiculo antigo, Veiculo novo);
+	public Veiculo atualizar(Veiculo novo);
 	public boolean deletar(Veiculo veiculo);
 }

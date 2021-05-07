@@ -15,8 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -107,10 +107,10 @@ public class FuncionarioViewController implements Initializable{
     private TextField txfSalario;
 
     @FXML
-    private CheckBox checkInterno;
-    
+    private RadioButton checkInterno;
+
     @FXML
-    private CheckBox checkExterno;
+    private RadioButton checkExterno;
 
 	@FXML
 	void salvarFuncionario(MouseEvent event) {
@@ -129,6 +129,7 @@ public class FuncionarioViewController implements Initializable{
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
 		this.txfSalario.setText(Float.toString(select.get(0).getSalario()));
+		
 		
 	}
 
