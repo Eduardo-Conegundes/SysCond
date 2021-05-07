@@ -53,13 +53,11 @@ public class MoradorController implements InterfaceMoradorController{
 		return null;
 	}
 	/**
-	 * @param Morador antigo
 	 * @param Morador novo
 	 * @return Morador || null
 	 */
-	public Morador atualizar(Morador antigo, Morador novo){
+	public Morador atualizar(Morador novo){
 		try {
-			novo.setId(this.buscar(antigo).getId());
 			return MoradorDAO.getInstance().atualizar(novo);
 		} catch (Exception e) {
 			return null;

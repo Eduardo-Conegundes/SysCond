@@ -8,7 +8,7 @@ public interface InterfaceMoradorController {
 	public Morador criar(Morador morador);
 	public List<Morador> listar();
 	public Morador buscar(Morador morador);
-	public Morador atualizar(Morador antigo, Morador novo);
+	public Morador atualizar(Morador novo);
 	public boolean deletar(Morador morador);
 
 }
