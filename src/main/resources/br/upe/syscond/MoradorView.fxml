@@ -27,24 +27,11 @@
       <Label fx:id="lblBlocoAp" layoutX="323.0" layoutY="99.0" text="Bloco:" />
       <ChoiceBox fx:id="chcBlocoAp" layoutX="394.0" layoutY="95.0" onMouseClicked="#chamaBloco" prefWidth="150.0" />
       <ChoiceBox fx:id="chcNumeroAp" layoutX="394.0" layoutY="121.0" onMouseClicked="#ChamaNumero" prefWidth="150.0" />
-      <TableView fx:id="tableMorador" layoutX="24.0" layoutY="181.0" prefHeight="200.0" prefWidth="598.0">
+      <TableView fx:id="tableMorador" layoutX="24.0" layoutY="181.0" prefHeight="200.0" prefWidth="575.0">
          <columns>
-            <TableColumn fx:id="idTableMorador" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="pessoaTableMorador" prefWidth="75.0" text="Pessoa">
-               <columns>
-                  <TableColumn fx:id="idTablePessoaMorador" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="nomeTableMorador" prefWidth="75.0" text="Nome" />
-                  <TableColumn fx:id="cpfTableMorador" prefWidth="75.0" text="CPF" />
-                  <TableColumn fx:id="telTableMorador" prefWidth="75.0" text="Telefone" />
-                  <TableColumn fx:id="emailTableMorador" prefWidth="75.0" text="Email" />
-               </columns>
-            </TableColumn>
-            <TableColumn fx:id="colunaAp" prefWidth="75.0" text="Apartamento">
-               <columns>
-                  <TableColumn fx:id="colunaApBloco" prefWidth="75.0" text="Bloco" />
-                  <TableColumn fx:id="colunaApNumero" prefWidth="75.0" text="Número" />
-               </columns>
-            </TableColumn>
+            <TableColumn fx:id="idTableMorador" prefWidth="94.0" text="ID" />
+            <TableColumn fx:id="pessoaTableMorador" prefWidth="285.0" text="Pessoa" />
+            <TableColumn fx:id="ApartamentoTableMorador" minWidth="6.0" prefWidth="195.0" text="Apartamento" />
          </columns>
       </TableView>
       <Button fx:id="btnSalvar" layoutX="445.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarMorador" text="Salvar" />
