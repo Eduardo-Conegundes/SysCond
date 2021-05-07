@@ -47,7 +47,6 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 				return funcionario;				
 			}
 		}
-
 		return null;
 	}
 	/**
@@ -55,12 +54,10 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 	 * @return Funcionario || null
 	 */
 	public Funcionario atualizar(Funcionario funcionario){
-
 		try{
 			Funcionario atualizado = FuncionarioDAO.getInstance().atualizar(funcionario);
 			return atualizado;
 		}catch (Exception ex) {
-
 		}
 		return null;
 	}
