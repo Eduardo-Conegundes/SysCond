@@ -66,9 +66,9 @@ public class ApartamentoController implements InterfaceApartamentoController {
 				return lista_apartamentos.get(i);
 			}
 		}
-		
+
 		return null;
-		
+
 	}
 	/**
 	 * @param String
@@ -97,7 +97,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 			if(lista_apartamentos.get(i).getBloco().compareTo(bloco)==0) {
 				lista_por_bloco.add(Integer.toString(lista_apartamentos.get(i).getNumero()));
 			}
-			
+
 		}
 		return lista_por_bloco;
 	}
@@ -114,7 +114,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 			lista_por_numero.add(Integer.toString(lista_apartamentos.get(i).getNumero()));
 
 		}
-		
+
 		return lista_por_numero;
 	}
 	/**
@@ -130,38 +130,24 @@ public class ApartamentoController implements InterfaceApartamentoController {
 			lista_de_blocos.add(lista_apartamentos.get(i).getBloco());
 
 		}
-		
+
 		return lista_de_blocos;
 	}
-	
-	
+
+
 	/**
-	 * @param Apartamento antigo
 	 * @param Apartamento novo
 	 * @return Apartamento || null
 	 */
-	public Apartamento atualizar(Apartamento antigo, Apartamento novo){
-		Apartamento busca = null;
+	public Apartamento atualizar(Apartamento novo){
 		try {
-			busca = this.buscar(antigo);		
-		} catch (Exception eBuscar) {
-			System.err.println("Erro no sistema ao buscar apartamento!");
-			return null;
-		}
-		if(busca != null) {
-			try {
-				novo.setId(busca.getId());
-				Apartamento atualizado = ApartamentoDAO.getInstance().atualizar(novo);
-				return atualizado;
-			} catch (Exception eSalvar) {
-				System.err.println("Erro ao atualizar Apartamento!");
-				return null;
-			}
-		}else {
-			System.out.println("apartamento não encontrado");
+			return ApartamentoDAO.getInstance().atualizar(novo);
+		} catch (Exception eSalvar) {
+			System.err.println("Erro ao atualizar Apartamento!");
 			return null;
 		}
 	}
+
 	/**
 	 * @param Apartamento
 	 * @return boolean
