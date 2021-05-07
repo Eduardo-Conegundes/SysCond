@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ApartamentoViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ContabilViewController">
    <children>
       <Label fx:id="lblId" layoutX="47.0" layoutY="62.0" text="ID:" />
       <TextField fx:id="txfIdentificador" layoutX="119.0" layoutY="88.0" />
@@ -33,10 +33,10 @@
             <TableColumn fx:id="TableDataVencimento" prefWidth="96.0" text="Data Vencimento" />
          </columns>
       </TableView>
-      <Button fx:id="btnSalvar" layoutX="46.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#salvarApartamento" text="Salvar" />
+      <Button fx:id="btnSalvar" layoutX="46.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#salvarConta" text="Salvar" />
       <Button fx:id="btnCancelar" layoutX="537.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar" />
-      <Button fx:id="btnEditar" layoutX="202.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#EditarApartamento" text="Editar" />
-      <Button fx:id="btnEditar" layoutX="359.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#ExcluirApartamento" text="Excluir" />
+      <Button fx:id="btnEditar" layoutX="202.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#EditarConta" text="Editar" />
+      <Button fx:id="btnEditar" layoutX="359.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#ExcluirConta" text="Excluir" />
       <Text layoutX="215.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contábil" textAlignment="CENTER" wrappingWidth="215.0">
          <font>
             <Font size="21.0" />
