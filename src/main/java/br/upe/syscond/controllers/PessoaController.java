@@ -6,7 +6,10 @@ import br.upe.syscond.dao.PessoaDAO;
 import br.upe.syscond.models.Pessoa;
 
 public class PessoaController implements InterfacePessoaController {
-
+	/**
+	 * @param Pessoa
+	 * @return Pessoa || null
+	 */
 	public Pessoa criar(Pessoa pessoa){
 
 		if(this.buscar(pessoa)!=null) {
@@ -20,7 +23,9 @@ public class PessoaController implements InterfacePessoaController {
 			return null;
 		}
 	}
-
+	/**
+	 * @return Pessoa[] || null
+	 */
 	public List<Pessoa> listar(){
 		try {
 			List<Pessoa> l = PessoaDAO.getInstance().listar();
@@ -31,7 +36,10 @@ public class PessoaController implements InterfacePessoaController {
 		}
 
 	}
-
+	/**
+	 * @param Pessoa
+	 * @return Pessoa || null
+	 */
 	public Pessoa buscar(Pessoa pessoa){
 		List<Pessoa> lista = this.listar();
 		for (Pessoa pessoa2 : lista) {
@@ -41,7 +49,10 @@ public class PessoaController implements InterfacePessoaController {
 		}
 		return null;
 	}
-
+	/**
+	 * @param Pessoa
+	 * @return Pessoa || null
+	 */
 	public Pessoa atualizar(Pessoa pessoa){
 		try {
 			return PessoaDAO.getInstance().atualizar(pessoa);
@@ -50,7 +61,10 @@ public class PessoaController implements InterfacePessoaController {
 			return null;
 		}
 	}
-
+	/**
+	 * @param Pessoa
+	 * @return boolean
+	 */
 	public boolean deletar(Pessoa pessoa){
 		int id = this.buscar(pessoa).getId();
 		try {

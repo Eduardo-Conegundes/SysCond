@@ -9,6 +9,10 @@ import br.upe.syscond.models.Empresa;
 import br.upe.syscond.models.ServicoProduto;
 
 public class ServicoProdutoController implements InterfaceServicoProdutoController {
+	/**
+	 * @param ServicoProduto
+	 * @return ServicoProduto || null
+	 */
 	public ServicoProduto criar(ServicoProduto servicoProduto){
 
 		Empresa empresa = null;
@@ -35,7 +39,9 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 			return null;
 		}
 	}
-
+	/**
+	 * @return ServicoProduto[] || null
+	 */
 	public List<ServicoProduto> listar(){
 		try {
 			List<ServicoProduto> l = ServicoProdutoDAO.getInstance().listar();
@@ -46,7 +52,10 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 		}
 
 	}
-
+	/**
+	 * @param int
+	 * @return ServicoProduto || null
+	 */
 	public ServicoProduto buscar(int id){
 		try {
 			ServicoProduto b = ServicoProdutoDAO.getInstance().buscar(id);
@@ -56,7 +65,10 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 			return null;
 		}
 	}
-
+	/**
+	 * @param String
+	 * @return ServicoProduto[] || null
+	 */
 	public List<ServicoProduto> listar(String cnpj) {
 
 		List<ServicoProduto> l = null;
@@ -79,7 +91,10 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 		return servCnpj;
 
 	}
-
+	/**
+	 * @param ServicoProduto
+	 * @return ServicoProduto || null
+	 */
 	public ServicoProduto atualizar(ServicoProduto servicoProduto){
 		int id = servicoProduto.getId();
 
@@ -105,7 +120,10 @@ public class ServicoProdutoController implements InterfaceServicoProdutoControll
 			return null;
 		}
 	}
-
+	/**
+	 * @param ServicoProduto
+	 * @return boolean
+	 */
 	public boolean deletar(ServicoProduto servicoProduto){
 		int id = servicoProduto.getId();
 		try {

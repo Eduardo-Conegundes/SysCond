@@ -6,7 +6,10 @@ import br.upe.syscond.dao.EmpresaDAO;
 import br.upe.syscond.models.Empresa;
 
 public class EmpresaController implements InterfaceEmpresaController {
-	
+	/**
+	 * @param Empresa
+	 * @return Empresa
+	 */
 	public Empresa criar(Empresa empresa){
 		
 		List<Empresa> empresas = this.listar();
@@ -24,7 +27,9 @@ public class EmpresaController implements InterfaceEmpresaController {
 			return null;
 		}
 	}
-
+	/**
+	 * @return Empresa[]
+	 */
 	public List<Empresa> listar(){
 		try {
 			List<Empresa> l = EmpresaDAO.getInstance().listar();
@@ -35,7 +40,10 @@ public class EmpresaController implements InterfaceEmpresaController {
 		}
 
 	}
-
+	/**
+	 * @param Empresa
+	 * @return Empresa
+	 */
 	public Empresa buscar(Empresa buscar){
 		List<Empresa> empresas = this.listar();
 		for (int i = 0; i < empresas.size(); i++) {
@@ -45,7 +53,11 @@ public class EmpresaController implements InterfaceEmpresaController {
 		}
 		return null;
 	}
-
+	/**
+	 * @param Empresa empresaAntiga
+	 * @param Empresa nova
+	 * @return Empresa
+	 */
 	public Empresa atualizar(Empresa empresaAntiga, Empresa nova){
 		
 		if(this.buscar(empresaAntiga)!=null) {
@@ -61,7 +73,10 @@ public class EmpresaController implements InterfaceEmpresaController {
 		return null;
 
 	}
-
+	/**
+	 * @param Empresa
+	 * @return boolean
+	 */
 	public boolean deletar(Empresa empresa){
 		try {
 			EmpresaDAO.getInstance().deletar(empresa.getId());

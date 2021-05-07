@@ -7,7 +7,10 @@ import br.upe.syscond.models.Funcionario;
 import br.upe.syscond.models.Pessoa;
 
 public class FuncionarioController implements InterfaceFuncionarioController {
-
+	/**
+	 * @param Funcionario
+	 * @return Funcionario || null
+	 */
 	public Funcionario criar(Funcionario funcionario){
 		if (this.buscar(funcionario) != null) {
 			return null;
@@ -20,7 +23,9 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 		}
 
 	}
-
+	/**
+	 * @return Funcionario[] || null
+	 */
 	public List<Funcionario> listar(){
 		try {
 			List<Funcionario> lista = FuncionarioDAO.getInstance().listar();
@@ -30,7 +35,10 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 			return null;
 		}
 	}
-
+	/**
+	 * @param Funcionario
+	 * @return Funcionario || null
+	 */
 	public Funcionario buscar(Funcionario buscar) {
 		List<Funcionario> lista = this.listar();
 
@@ -42,7 +50,10 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 
 		return null;
 	}
-
+	/**
+	 * @param Funcionario
+	 * @return Funcionario || null
+	 */
 	public Funcionario atualizar(Funcionario funcionario){
 
 		try{
@@ -53,7 +64,10 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 		}
 		return null;
 	}
-
+	/**
+	 * @param Funcionario
+	 * @return boolean
+	 */
 	public boolean deletar(Funcionario funcionario){
 		try {
 			int id = this.buscar(funcionario).getId();

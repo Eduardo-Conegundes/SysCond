@@ -6,7 +6,10 @@ import br.upe.syscond.dao.VisitanteDAO;
 import br.upe.syscond.models.Visitante;
 
 public class VisitanteController implements InterfaceVisitanteController{
-	
+	/**
+	 * @param Visitante
+	 * @return Visitante || null
+	 */
 	public Visitante criar(Visitante visitante) {
 		
 		if(this.buscar(visitante) != null) {
@@ -20,7 +23,10 @@ public class VisitanteController implements InterfaceVisitanteController{
 			return null;
 		}
 	}
-
+	/**
+	 * @param Visitante
+	 * @return Visitante || null
+	 */
 	public Visitante buscar(Visitante visitante){
 		List<Visitante> lista = this.listar();
 		for (Visitante visitante2 : lista) {
@@ -30,7 +36,9 @@ public class VisitanteController implements InterfaceVisitanteController{
 		}
 		return null;
 	}
-
+	/**
+	 * @return Visitante[] || null
+	 */
 	public List<Visitante> listar(){
 		try {
 			return VisitanteDAO.getInstance().listar();

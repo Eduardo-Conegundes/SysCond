@@ -6,7 +6,10 @@ import br.upe.syscond.dao.VeiculoDAO;
 import br.upe.syscond.models.Veiculo;
  
 public class VeiculoController implements InterfaceVeiculoController{
-	
+	/**
+	 * @param Veiculo
+	 * @return Veiculo || null
+	 */
 	public Veiculo criar(Veiculo veiculo){
 		if (this.buscar(veiculo) != null) {
 			return null;
@@ -18,7 +21,9 @@ public class VeiculoController implements InterfaceVeiculoController{
 			return null;
 		}
 	}
-
+	/**
+	 * @return Veiculo[] || null
+	 */
 	public List<Veiculo> listar(){
 		try {
 			return VeiculoDAO.getInstance().listar();
@@ -27,7 +32,10 @@ public class VeiculoController implements InterfaceVeiculoController{
 		}
 
 	}
-
+	/**
+	 * @param Veiculo
+	 * @return Veiculo || null
+	 */
 	public Veiculo buscar(Veiculo veiculo){
 		List<Veiculo> lista = this.listar();
 		for (Veiculo veiculo2 : lista) {
@@ -37,7 +45,11 @@ public class VeiculoController implements InterfaceVeiculoController{
 		}
 		return null;
 	}
-
+	/**
+	 * @param Veiculo antigo
+	 * @param Veiculo novo
+	 * @return Veiculo || null
+	 */
 	public Veiculo atualizar(Veiculo antigo, Veiculo novo){
 		try {
 			novo.setId(this.buscar(antigo).getId());
@@ -47,7 +59,10 @@ public class VeiculoController implements InterfaceVeiculoController{
 			return null;
 		}
 	}
-
+	/**
+	 * @param Veiculo
+	 * @return boolean
+	 */
 	public boolean deletar(Veiculo veiculo){
 		try {
 			int id = this.buscar(veiculo).getId();

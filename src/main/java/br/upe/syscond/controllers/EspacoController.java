@@ -9,7 +9,10 @@ import br.upe.syscond.models.Espaco;
 import br.upe.syscond.models.Morador;
 
 public class EspacoController implements InterfaceLocacaoController {
-
+	/**
+	 * @param Espaco
+	 * @return Espaco
+	 */
 	public Espaco criar(Espaco locacao) {
 		
 		if(this.buscar(locacao)!=null) {
@@ -25,7 +28,10 @@ public class EspacoController implements InterfaceLocacaoController {
 		}
 
 	}
-
+	/**
+	 * @param Espaco
+	 * @return Espaco || null
+	 */
 	public Espaco buscar(Espaco locacao){
 		List<Espaco> lista = this.listar();
 		for (Espaco espaco : lista) {
@@ -35,7 +41,11 @@ public class EspacoController implements InterfaceLocacaoController {
 		}
 		return null;
 	}
-
+	/**
+	 * @param Espaco antigo
+	 * @param Espaco novo
+	 * @return Espaco || null
+	 */
 	public Espaco atualizar(Espaco antigo, Espaco novo){
 		try {
 			novo.setId(this.buscar(antigo).getId());
@@ -45,7 +55,10 @@ public class EspacoController implements InterfaceLocacaoController {
 			return null;
 		}
 	}
-
+	/**
+	 * @param Espaco
+	 * @return boolean
+	 */
 	public boolean deletar(Espaco locacao){
 		int id = this.buscar(locacao).getId();
 		try {
@@ -56,7 +69,9 @@ public class EspacoController implements InterfaceLocacaoController {
 			return false;
 		}
 	}
-
+	/**
+	 * @return Espaco[]
+	 */
 	public List<Espaco> listar(){
 		try {
 			List<Espaco> locacoes = LocacaoDAO.getInstance().listar();
@@ -67,7 +82,10 @@ public class EspacoController implements InterfaceLocacaoController {
 		}
 
 	}
-	
+	/**
+	 * @param Date
+	 * @return Espaco[]
+	 */
 	public List<Espaco> listar(Date data){
 
 		List<Espaco> todosEspacos = this.listar();

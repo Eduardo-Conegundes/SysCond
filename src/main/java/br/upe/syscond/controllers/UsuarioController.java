@@ -6,7 +6,10 @@ import br.upe.syscond.dao.UsuarioDAO;
 import br.upe.syscond.models.Usuario;
 
 public class UsuarioController implements InterfaceUsuarioController{
-
+	/**
+	 * @param Usuario
+	 * @return Usuario || null
+	 */
 	public Usuario criar(Usuario user){
 		
 		if(this.buscar(user) != null) {
@@ -21,7 +24,9 @@ public class UsuarioController implements InterfaceUsuarioController{
 		}
 
 	}
-
+	/**
+	 * @return Usuario[] || null
+	 */
 	public List<Usuario> listar(){
 		try {
 			List<Usuario> users = UsuarioDAO.getInstance().listar();
@@ -31,7 +36,10 @@ public class UsuarioController implements InterfaceUsuarioController{
 			return null;
 		}
 	}
-
+	/**
+	 * @param Usuario
+	 * @return Usuario || null
+	 */
 	public Usuario buscar(Usuario user){
 		List<Usuario> users = this.listar();
 
@@ -42,7 +50,10 @@ public class UsuarioController implements InterfaceUsuarioController{
 		}
 		return null;
 	}
-
+	/**
+	 * @param Usuario
+	 * @return Usuario || null
+	 */
 	public Usuario atualizar(Usuario novo){
 		try {
 			
@@ -52,7 +63,10 @@ public class UsuarioController implements InterfaceUsuarioController{
 			return null;
 		}
 	}
-
+	/**
+	 * @param Usuario
+	 * @return boolean
+	 */
 	public boolean deletar(Usuario user){
 		int id = this.buscar(user).getId();
 		try {

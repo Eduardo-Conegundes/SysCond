@@ -33,7 +33,10 @@ public class ContabilController implements InterfaceContabilController{
 			this.contabil = ContabilDAO.getInstance().buscar(1);
 		}
 	}
-
+	/**
+	 * @param Apartamento
+	 * @return null || Conta
+	 */
 	public Contas criar(Contas conta){
 		
 		if(this.buscar(conta) != null) {
@@ -48,7 +51,9 @@ public class ContabilController implements InterfaceContabilController{
 			return null;
 		}
 	}
-
+	/**
+	 * @return Conta[]
+	 */
 	public List<Contas> listar(){
 		try {
 			List<Contas> l = ContasDAO.getInstance().listar();
@@ -58,7 +63,10 @@ public class ContabilController implements InterfaceContabilController{
 			return null;
 		}
 	}
-
+	/**
+	 * @param Conta
+	 * @return Conta || null
+	 */
 	public Contas buscar(Contas conta){
 		
 		List<Contas> contasBD = this.listar();
@@ -70,7 +78,10 @@ public class ContabilController implements InterfaceContabilController{
 		}
 		return null;
 	}
-
+	/**
+	 * @param Conta
+	 * @return Conta[]
+	 */
 	public List<Contas> buscarPorData(Contas conta){
 		LocalDate data_vencimento = conta.getDataVencimento();
 
@@ -85,7 +96,11 @@ public class ContabilController implements InterfaceContabilController{
 		}
 		return contas_porData;
 	}
-
+	/**
+	 * @param Conta antiga
+	 * @param Conta nova
+	 * @return Conta
+	 */
 	public Contas atualizar(Contas antiga, Contas nova){
 		int id = this.buscar(antiga).getId();
 		try {
@@ -98,7 +113,10 @@ public class ContabilController implements InterfaceContabilController{
 			return null;
 		}
 	}
-
+	/**
+	 * @param Conta
+	 * @return boolean
+	 */
 	public Boolean deletar(Contas conta){
 		try {
 			conta.setId(this.buscar(conta).getId());			
@@ -131,7 +149,10 @@ public class ContabilController implements InterfaceContabilController{
 			return false;
 		}
 	}
-
+	/**
+	 * @param Conta
+	 * @return boolean
+	 */
 	private Boolean atualizaSaldo(Contas conta) {
 		if(conta.getStatusPaga()) {
 			if(conta.getAReceber()) {
