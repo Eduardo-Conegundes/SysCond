@@ -46,13 +46,11 @@ public class VeiculoController implements InterfaceVeiculoController{
 		return null;
 	}
 	/**
-	 * @param Veiculo antigo
 	 * @param Veiculo novo
 	 * @return Veiculo || null
 	 */
-	public Veiculo atualizar(Veiculo antigo, Veiculo novo){
+	public Veiculo atualizar(Veiculo novo){
 		try {
-			novo.setId(this.buscar(antigo).getId());
 			return VeiculoDAO.getInstance().atualizar(novo);
 		} catch (Exception eSalvar) {
 			System.err.println("Erro ao atualizar veiculo!");

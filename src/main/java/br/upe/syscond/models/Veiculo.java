@@ -71,6 +71,10 @@ public class Veiculo implements Serializable {
 	public void setApartamento(Apartamento apartamento) {
 		this.apartamento = apartamento;
 	}
+	
+	public String getApartamentoString() {
+		return apartamento.toString();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
