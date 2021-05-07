@@ -63,6 +63,22 @@ public class Visitante implements Serializable {
 	public Apartamento getApartamento() {
 		return apartamento;
 	}
+	
+	/**
+	 * 
+	 * @return pessoaToString
+	 */
+	public String getPessoaString() {
+		return this.pessoa.toString();
+	}
+	
+	/**
+	 * 
+	 * @return apartamentoToString
+	 */
+	public String getApartamentoString(){
+		return this.apartamento.toString();
+	}
 
 	/**
 	 * @param apartamento the apartamento to set

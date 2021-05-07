@@ -29,27 +29,13 @@
       <ChoiceBox fx:id="chcNumeroAp" layoutX="394.0" layoutY="121.0" onMouseClicked="#ChamaNumero" prefWidth="150.0" />
       <TableView fx:id="tableVisitante" layoutX="24.0" layoutY="181.0" prefHeight="200.0" prefWidth="598.0">
         <columns>
-          <TableColumn fx:id="idTableVisita" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="pessoaTableVisita" prefWidth="75.0" text="Pessoa">
-               <columns>
-                  <TableColumn fx:id="idPessoa" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="nomeTableVisita" prefWidth="75.0" text="Nome" />
-                  <TableColumn fx:id="cpfTableVisita" prefWidth="75.0" text="CPF" />
-                  <TableColumn fx:id="telTableVisita" prefWidth="75.0" text="Telefone" />
-                  <TableColumn fx:id="emailTableVisita" prefWidth="75.0" text="Email" />
-               </columns></TableColumn>
-            <TableColumn fx:id="colunaAp" prefWidth="75.0" text="Apartamento">
-               <columns>
-                  <TableColumn fx:id="colunaApBloco" prefWidth="75.0" text="Bloco" />
-                  <TableColumn fx:id="colunaApNumero" prefWidth="75.0" text="Número" />
-               </columns>
-            </TableColumn>
+          <TableColumn fx:id="idTableVisita" prefWidth="87.0" text="ID" />
+          <TableColumn fx:id="pessoaTableVisita" prefWidth="278.0" text="Pessoa" />
+            <TableColumn fx:id="colunaAp" minWidth="0.0" prefWidth="232.0" text="Apartamento" />
         </columns>
       </TableView>
-      <Button fx:id="btnSalvar" layoutX="445.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarVisitante" text="Salvar" />
+      <Button fx:id="btnSalvar" layoutX="46.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarVisitante" text="Salvar" />
       <Button fx:id="btnCancelar" layoutX="518.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar" />
-      <Button layoutX="29.0" layoutY="402.0" mnemonicParsing="false" text="Editar" />
-      <Button layoutX="98.0" layoutY="402.0" mnemonicParsing="false" text="Excluir" />
       <Text layoutX="268.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visitante" wrappingWidth="215.0">
          <font>
             <Font size="31.0" />

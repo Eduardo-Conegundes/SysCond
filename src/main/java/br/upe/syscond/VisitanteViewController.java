@@ -2,8 +2,6 @@ package br.upe.syscond;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import br.upe.syscond.controllers.ApartamentoController;
@@ -13,12 +11,14 @@ import br.upe.syscond.controllers.InterfaceVisitanteController;
 import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.controllers.VisitanteController;
 import br.upe.syscond.models.Apartamento;
+import br.upe.syscond.models.Morador;
 import br.upe.syscond.models.Pessoa;
 import br.upe.syscond.models.Visitante;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -37,7 +37,7 @@ public class VisitanteViewController implements Initializable {
 	String opcNumero;
 
     
-    @FXML
+	@FXML
     private Label lblId;
 
     @FXML
@@ -89,44 +89,33 @@ public class VisitanteViewController implements Initializable {
     private TableColumn<Visitante, Integer> idTableVisita;
 
     @FXML
-    private TableColumn<Pessoa, Pessoa> pessoaTableVisita;
+    private TableColumn<Visitante, String> pessoaTableVisita;
 
     @FXML
-    private TableColumn<Pessoa, Integer> idPessoa;
+    private TableColumn<Visitante, String> colunaAp;
 
     @FXML
-    private TableColumn<Pessoa, String> nomeTableVisita;
+    private Button btnSalvar;
 
     @FXML
-    private TableColumn<Pessoa, String> cpfTableVisita;
-
+    private Button btnCancelar;
+    
     @FXML
-    private TableColumn<Pessoa, String> telTableVisita;
-
-    @FXML
-    private TableColumn<Pessoa, String> emailTableVisita;
-
-    @FXML
-    private TableColumn<Apartamento, Apartamento> colunaAp;
-
-    @FXML
-    private TableColumn<Apartamento, String> colunaApBloco;
+    private Button btnEditar;
 
     @FXML
     private TableColumn<Apartamento, Integer> colunaApNumero;
+	private ObservableList<Visitante> select;
 
 	@FXML
-	void AlterarVisitante(MouseEvent event) {
-
+	void salvarVisitante(MouseEvent event) {
+		salvar();
+		limpaTela();
+		atualizaTabela();
 	}
 
 	@FXML
-	void BuscaVisitante(MouseEvent event) {
-
-	}
-
-	@FXML
-	public void ChamaNumero(MouseEvent event) {
+	void ChamaNumero(MouseEvent event) {
 		ObservableList<String> numerosAp = FXCollections.observableArrayList(controlaAp.listaNumeros(opcBloco));
 
 		this.chcNumeroAp.setItems(numerosAp);
@@ -138,17 +127,10 @@ public class VisitanteViewController implements Initializable {
 
 
 		System.out.println(numerosAp);
-
-
 	}
 
 	@FXML
-	void DeletarVisitante(MouseEvent event) {
-
-	}
-
-	@FXML
-	public void chamaBloco(MouseEvent event) {
+	void chamaBloco(MouseEvent event) {
 		this.chcBlocoAp.setItems(blocosAp);
 
 		this.opcBloco = (String) this.chcBlocoAp.getValue();
@@ -158,14 +140,21 @@ public class VisitanteViewController implements Initializable {
 
 
 	}
-	
-	@FXML
-    void switchEditar(MouseEvent event) {
-
-    }
 
 	@FXML
-	void salvarVisitante(MouseEvent event) {
+	void editarVisitante(MouseEvent event) {
+//		this.pessoaAtualiza = select.get(0).getPessoa();
+		this.select = tableVisitante.getSelectionModel().getSelectedItems();
+		this.txfId.setText(Integer.toString(select.get(0).getId()));
+		this.txfNome.setText(select.get(0).getPessoa().getNome());
+		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
+		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
+		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
+		
+	}
+
+	void salvar() {
+		String id = this.txfId.getText();
 		String cpf = this.txfCPF.getText();
 		String nome = this.txfNome.getText();
 		String email = this.txfEmail.getText();
@@ -173,18 +162,14 @@ public class VisitanteViewController implements Initializable {
 		String bloco = this.opcBloco;
 		String numero = this.opcNumero;
 		
-		try {
-			System.out.println(nome + cpf + telefone + email + bloco + numero);
-			Apartamento apt = controlaAp.buscar(bloco, Integer.parseInt(numero));
-			
-			Pessoa pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email)) ;
-			controlaVisitante.criar(new Visitante(pessoa, apt));
-			
-			App.setRoot("MainView");
-		}catch (Exception ex){
-			
-		}
-
+		Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
+		Apartamento apt = controlaAp.buscar(bloco, Integer.parseInt(numero));
+		Visitante visitante = new Visitante(pessoa, apt);
+		visitante.setApartamento(apt);
+		
+		controlaPessoa.criar(pessoa);
+		controlaVisitante.criar(visitante);			
+		
 
 
 	}
@@ -200,35 +185,24 @@ public class VisitanteViewController implements Initializable {
 
 	}
 
-	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		idTableVisita.setCellValueFactory(new PropertyValueFactory<>("id"));
-		idPessoa.setCellValueFactory(new PropertyValueFactory<>("id"));
-		nomeTableVisita.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		cpfTableVisita.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		telTableVisita.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-		emailTableVisita.setCellValueFactory(new PropertyValueFactory<>("email"));
-		colunaApBloco.setCellValueFactory(new PropertyValueFactory<>("bloco"));
-		colunaApNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-		pessoaTableVisita.setCellValueFactory(new PropertyValueFactory<>("pessoa"));
-		colunaAp.setCellValueFactory(new PropertyValueFactory<>("apartamento"));
+		pessoaTableVisita.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
+		colunaAp.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
-		
+
+	}
+	
+	private void limpaTela() {
+		this.txfCPF.setText("");
+		this.txfEmail.setText("");
+		this.txfId.setText("");
+		this.txfNome.setText("");
 	}
 	
 	private void atualizaTabela() {
-		ObservableList<Visitante> visitantes = FXCollections.observableArrayList(controlaVisitante.listar());
-		ObservableList<Pessoa> pessoas = FXCollections.observableArrayList();
-		ObservableList<Apartamento> apartamentos = FXCollections.observableArrayList();
-
-		for (int i = 0; i < visitantes.size(); i++) {
-			pessoas.add(visitantes.get(i).getPessoa());
-			apartamentos.add(visitantes.get(i).getApartamento());
-
-		}
-
-		tableVisitante.setItems(visitantes);
-				
+		ObservableList<Visitante> list = FXCollections.observableArrayList(controlaVisitante.listar());
+		tableVisitante.setItems(list);
 	}
 
 }
