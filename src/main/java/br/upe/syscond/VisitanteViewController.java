@@ -159,7 +159,7 @@ public class VisitanteViewController implements Initializable {
 	private void limpaTela() {
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
-		this.txfId.setText(null);
+		this.txfId.setText("");
 		this.txfNome.setText(null);
 		this.txfTel.setText(null);
 		this.chcAp.setItems(FXCollections.observableArrayList());
