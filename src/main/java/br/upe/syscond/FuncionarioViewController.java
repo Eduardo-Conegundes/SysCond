@@ -9,6 +9,7 @@ import br.upe.syscond.controllers.InterfaceFuncionarioController;
 import br.upe.syscond.controllers.InterfacePessoaController;
 import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.models.Funcionario;
+import br.upe.syscond.models.Morador;
 import br.upe.syscond.models.Pessoa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -120,7 +121,7 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	@FXML
-	void EditarFuncionario(MouseEvent event) {
+	void editarFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
 		this.txfCargo.setText(select.get(0).getCargo());
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
@@ -134,7 +135,7 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	@FXML
-	void ExcluirFuncionario(MouseEvent event) {
+	void excluirFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
 		deletar();
 		limpaTela();
@@ -143,27 +144,39 @@ public class FuncionarioViewController implements Initializable{
 	}
 	
 	private void salvar() {
-		String cpf = this.txfCPF.getText();
-		String nome = this.txfNome.getText();
-		String email = this.txfEmail.getText();
-		String telefone = this.txfTel.getText(); 
-		String cargo = this.txfCargo.getText();
+		Funcionario funcionario = new Funcionario(
+		     new Pessoa(this.txfNome.getText(), 
+						this.txfCPF.getText(), 
+						this.txfTel.getText(), 
+						this.txfEmail.getText()),
+		     			this.intExt(),
+		     			this.txfCargo.getText(),
+		     			Float.parseFloat(this.txfSalario.getText())
+		     			
+			);
+
 		String id = this.txfId.getText();
-		float salario = Float.parseFloat(this.txfSalario.getText());
-		intExt();
-		
-		Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
-		
+
+		//caso atualizar
 		if(!id.equals("")) {
-			pessoa.setId(select.get(0).getPessoa().getId());
-			Pessoa newPessoa = controlaPessoa.atualizar(pessoa);
-			Funcionario funcionario = new Funcionario(newPessoa, AtributointernoExterno, cargo, salario);
 			funcionario.setId(Integer.parseInt(id));
-			controlaFuncionario.atualizar(funcionario);
-		} else {
-			pessoa = controlaPessoa.criar(new Pessoa(nome, cpf, telefone, email));
-			controlaFuncionario.criar(new Funcionario(pessoa, AtributointernoExterno, cargo, salario));
+			try {
+				controlaFuncionario.atualizar(funcionario);
+				Alerts.alertaSucesso("Atualizado com Sucesso!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alerts.alertaErro(e.getMessage());
+			}
+		}else {
+			try {
+				controlaFuncionario.criar(funcionario);
+				Alerts.alertaSucesso("Salvo com Sucesso!");
+			} catch (Exception e) {
+				Alerts.alertaErro(e.getMessage());
+			}			
 		}
+		limpaTela();
+		atualizaTabela();
 	}
 	
 	@FXML
@@ -177,6 +190,7 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
+		limpaTela();
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		pessoa.setCellValueFactory(new PropertyValueFactory<>("pessoaDetalhe"));
 		internoExterno.setCellValueFactory(new PropertyValueFactory<>("interno_externo"));
@@ -186,31 +200,39 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	private void atualizaTabela() {
-		ObservableList<Funcionario> list = FXCollections.observableArrayList(controlaFuncionario.listar());
-		tableFuncionario.setItems(list);
+		try {
+			this.tableFuncionario.setItems(FXCollections.observableArrayList(controlaFuncionario.listar()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void limpaTela() {
-		this.txfCargo.setText("");
+		this.txfCargo.setText(null);
 		this.txfId.setText("");
-		this.txfNome.setText("");
-		this.txfCPF.setText("");
-		this.txfEmail.setText("");
-		this.txfTel.setText("");
-		this.txfSalario.setText("");
+		this.txfNome.setText(null);
+		this.txfCPF.setText(null);
+		this.txfEmail.setText(null);
+		this.txfTel.setText(null);
+		this.txfSalario.setText(null);
 	}
 
-	private void intExt() {
+	private String intExt() {
 		if(checkInterno.selectedProperty().getValue() == true) {
-			this.AtributointernoExterno = "Interno";
+			return "Interno";
 		}else{
-			this.AtributointernoExterno = "Externo";
+			return "Externo";
 		}
 	}
 	
 	private void deletar() {
-		controlaFuncionario.deletar(select.get(0));
-		controlaPessoa.deletar(select.get(0).getPessoa());
-	}
+		try {
+			controlaFuncionario.deletar(this.select.get(0));
+			Alerts.alertaSucesso("Deletado com Sucesso!");
+		} catch (Exception e) {
+			Alerts.alertaErro(e.getMessage());
 
+		}
+
+	}
 }

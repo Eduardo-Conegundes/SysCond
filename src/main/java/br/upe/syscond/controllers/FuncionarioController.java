@@ -3,76 +3,70 @@ package br.upe.syscond.controllers;
 import java.util.List;
 
 import br.upe.syscond.dao.FuncionarioDAO;
+import br.upe.syscond.dao.InterfaceFuncionario;
 import br.upe.syscond.models.Funcionario;
-import br.upe.syscond.models.Pessoa;
 
 public class FuncionarioController implements InterfaceFuncionarioController {
+	static InterfaceFuncionario funcionarioDAO = FuncionarioDAO.getInstance();
 	/**
 	 * @param Funcionario
 	 * @return Funcionario || null
+	 * @throws Exception 
 	 */
-	public Funcionario criar(Funcionario funcionario){
-		if (this.buscar(funcionario) != null) {
-			return null;
-		}	
+	public Funcionario criar(Funcionario funcionario) throws Exception{
 		try {	 
-			return FuncionarioDAO.getInstance().salvar(funcionario);
+			return funcionarioDAO.salvar(funcionario);
 		} catch (Exception eSalvar) {
-			System.err.println("Erro no sistema ao salvar Funcionario!");
-			return null;
+			throw eSalvar;
 		}
 
 	}
 	/**
 	 * @return Funcionario[] || null
+	 * @throws Exception 
 	 */
-	public List<Funcionario> listar(){
+	public List<Funcionario> listar() throws Exception{
 		try {
-			List<Funcionario> lista = FuncionarioDAO.getInstance().listar();
-			return lista;
+			return funcionarioDAO.listar();
 		} catch (Exception eListar) {
-			System.err.println("Erro no sistema ao listar Funcionario(s)!");
-			return null;
+			throw eListar;
 		}
 	}
 	/**
 	 * @param Funcionario
 	 * @return Funcionario || null
+	 * @throws Exception 
 	 */
-	public Funcionario buscar(Funcionario buscar) {
-		List<Funcionario> lista = this.listar();
-
-		for (Funcionario funcionario : lista) {
-			if(funcionario.equals(buscar)) {
-				return funcionario;				
-			}
+	public Funcionario buscar(Funcionario funcionario) throws Exception {
+		try {
+			return funcionarioDAO.buscar(funcionario);
+		} catch (Exception eBuscar) {
+			throw eBuscar;
 		}
-		return null;
 	}
 	/**
 	 * @param Funcionario
 	 * @return Funcionario || null
+	 * @throws Exception 
 	 */
-	public Funcionario atualizar(Funcionario funcionario){
+	public Funcionario atualizar(Funcionario funcionario) throws Exception{
 		try{
-			Funcionario atualizado = FuncionarioDAO.getInstance().atualizar(funcionario);
-			return atualizado;
-		}catch (Exception ex) {
+			return funcionarioDAO.atualizar(funcionario);
+		}catch (Exception eAtualizar) {
+			throw eAtualizar;
 		}
-		return null;
+		
 	}
 	/**
 	 * @param Funcionario
 	 * @return boolean
+	 * @throws Exception 
 	 */
-	public boolean deletar(Funcionario funcionario){
+	public void deletar(Funcionario funcionario) throws Exception{
 		try {
-			int id = this.buscar(funcionario).getId();
-			FuncionarioDAO.getInstance().deletar(id);
-			return true;
-		} catch (Exception e) {
-			System.err.println("Erro ao excluir Funcionario!");
-			return false;
+			funcionarioDAO.deletar(funcionario);
+		} catch (Exception eDeletar) {
+			throw eDeletar;
 		}
 	}
 }
