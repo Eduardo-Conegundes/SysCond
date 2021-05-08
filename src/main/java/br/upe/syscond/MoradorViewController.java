@@ -37,7 +37,7 @@ public class MoradorViewController implements Initializable{
 	private Label lblId;
 
 	@FXML
-	private TextField txfId;
+	private Label txfId;
 
 	@FXML
 	private Label lblNome;

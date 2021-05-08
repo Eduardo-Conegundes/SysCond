@@ -29,7 +29,6 @@ public class FuncionarioViewController implements Initializable{
 
 	static InterfaceFuncionarioController controlaFuncionario = new FuncionarioController();
 	static InterfacePessoaController controlaPessoa = new PessoaController();
-	private String AtributointernoExterno;
 	private ObservableList<Funcionario> select;
 
     @FXML
@@ -121,7 +120,7 @@ public class FuncionarioViewController implements Initializable{
 	}
 
 	@FXML
-	void editarFuncionario(MouseEvent event) {
+	void EditarFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
 		this.txfCargo.setText(select.get(0).getCargo());
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
@@ -130,12 +129,10 @@ public class FuncionarioViewController implements Initializable{
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
 		this.txfSalario.setText(Float.toString(select.get(0).getSalario()));
-		
-		
 	}
 
 	@FXML
-	void excluirFuncionario(MouseEvent event) {
+	void ExcluirFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
 		deletar();
 		limpaTela();
@@ -151,8 +148,7 @@ public class FuncionarioViewController implements Initializable{
 						this.txfEmail.getText()),
 		     			this.intExt(),
 		     			this.txfCargo.getText(),
-		     			Float.parseFloat(this.txfSalario.getText())
-		     			
+		     			Float.parseFloat(this.txfSalario.getText())	
 			);
 
 		String id = this.txfId.getText();
@@ -186,7 +182,6 @@ public class FuncionarioViewController implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -227,12 +222,12 @@ public class FuncionarioViewController implements Initializable{
 	
 	private void deletar() {
 		try {
-			controlaFuncionario.deletar(this.select.get(0));
-			Alerts.alertaSucesso("Deletado com Sucesso!");
+			if(Alerts.alertaDeletar()) {
+				controlaFuncionario.deletar(this.select.get(0));				
+				Alerts.alertaSucesso("Deletado com Sucesso!");
+			}
 		} catch (Exception e) {
 			Alerts.alertaErro(e.getMessage());
-
 		}
-
 	}
 }

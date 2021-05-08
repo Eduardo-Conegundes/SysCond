@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.upe.syscond.models.Funcionario;
-import br.upe.syscond.models.Morador;
 
 public class FuncionarioDAO implements InterfaceFuncionario {
     
