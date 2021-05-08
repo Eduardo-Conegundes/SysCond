@@ -1,111 +1,41 @@
 package br.upe.syscond;
 
 import java.io.IOException;
-
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 public class MainViewController {
 
-    @FXML
-    private MenuItem miApartamentoCriar;
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private ResourceBundle resources;
 
-    @FXML
-    private MenuItem miEmpresaCriar;
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    private URL location;
 
-    @FXML
-    private MenuItem miFinanceiroCriar;
+    @FXML // fx:id="VisitanteMain"
+    private Button VisitanteMain; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miLocacaoCriar;
+    @FXML // fx:id="sairMain"
+    private Button sairMain; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miAlmoxarifadoCriar;
+    @FXML // fx:id="MoradorMain"
+    private Button MoradorMain; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miFuncionarioCriar;
+    @FXML // fx:id="ApartamentoMain"
+    private Button ApartamentoMain; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miMoradorCriar;
+    @FXML // fx:id="VeiculoMain1"
+    private Button VeiculoMain1; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miServicoProdutoCriar;
+    @FXML // fx:id="UsuarioMain11"
+    private Button UsuarioMain11; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miUsuarioCriar;
+    @FXML // fx:id="FuncionarioMain"
+    private Button FuncionarioMain; // Value injected by FXMLLoader
 
-    @FXML
-    private MenuItem miVeiculoCriar;
-
-    @FXML
-    private MenuItem miVisitanteCriar;
-
-    @FXML
-    private MenuItem miApartamentoAlterar;
-
-    @FXML
-    private MenuItem miEmpresaAlterar;
-
-    @FXML
-    private MenuItem miFinanceiroAlterar;
-
-    @FXML
-    private MenuItem miLocacaoAlterar;
-
-    @FXML
-    private MenuItem miAlmoxarifadoAlterar;
-
-    @FXML
-    private MenuItem miFuncionarioAlterar;
-
-    @FXML
-    private MenuItem miMoradorAlterar;
-
-    @FXML
-    private MenuItem miServicoProdutoAlterar;
-
-    @FXML
-    private MenuItem miUsuarioAlterar;
-
-    @FXML
-    private MenuItem miVeiculoAlterar;
-
-    @FXML
-    private MenuItem miVisitanteAlterar;
-
-    @FXML
-    private MenuItem miApartamentoVisualizar;
-
-    @FXML
-    private MenuItem miEmpresaVisualizar;
-
-    @FXML
-    private MenuItem miFinanceiroVisualizar;
-
-    @FXML
-    private MenuItem miLocacaoVisualizar;
-
-    @FXML
-    private MenuItem miAlmoxarifadoVisualizar;
-
-    @FXML
-    private MenuItem miFuncionarioVisualizar;
-
-    @FXML
-    private MenuItem miMoradorVisualizar;
-
-    @FXML
-    private MenuItem miServicoProdutoVisualizar;
-
-    @FXML
-    private MenuItem miUsuarioVisualizar;
-
-    @FXML
-    private MenuItem miVeiculoVisualizar;
-
-    @FXML
-    private MenuItem miVisitanteVisualizar;
 
     @FXML
     void switchTelaApartamento(MouseEvent event) {
