@@ -6,12 +6,9 @@ import java.util.ResourceBundle;
 
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
-import br.upe.syscond.controllers.InterfacePessoaController;
 import br.upe.syscond.controllers.InterfaceVisitanteController;
-import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.controllers.VisitanteController;
 import br.upe.syscond.models.Apartamento;
-import br.upe.syscond.models.Morador;
 import br.upe.syscond.models.Pessoa;
 import br.upe.syscond.models.Visitante;
 import javafx.collections.FXCollections;
@@ -26,15 +23,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-/*
+
 public class VisitanteViewController implements Initializable {
 	static InterfaceVisitanteController controlaVisitante = new VisitanteController();
-	static InterfacePessoaController controlaPessoa = new PessoaController();
-	static InterfaceApartamentoController controlaAp = new ApartamentoController();
-	ObservableList<String> blocosAp = FXCollections.observableArrayList(controlaAp.listarBlocos());
-	
-	String opcBloco;
-	String opcNumero;
+	static InterfaceApartamentoController controlaApartamento = new ApartamentoController();
 
     
 	@FXML
@@ -77,10 +69,7 @@ public class VisitanteViewController implements Initializable {
     private Label lblBlocoAp;
 
     @FXML
-    private ChoiceBox<String> chcBlocoAp;
-
-    @FXML
-    private ChoiceBox<String> chcNumeroAp;
+    private ChoiceBox<Apartamento> chcAp;
 
     @FXML
     private TableView<Visitante> tableVisitante;
@@ -115,33 +104,6 @@ public class VisitanteViewController implements Initializable {
 	}
 
 	@FXML
-	void ChamaNumero(MouseEvent event) {
-		ObservableList<String> numerosAp = FXCollections.observableArrayList(controlaAp.listaNumeros(opcBloco));
-
-		this.chcNumeroAp.setItems(numerosAp);
-
-		this.opcNumero = (String) this.chcBlocoAp.getValue();
-		chcNumeroAp.setOnAction((Event)->{
-			this.opcNumero = chcNumeroAp.getSelectionModel().getSelectedItem();
-		});
-
-
-		System.out.println(numerosAp);
-	}
-
-	@FXML
-	void chamaBloco(MouseEvent event) {
-		this.chcBlocoAp.setItems(blocosAp);
-
-		this.opcBloco = (String) this.chcBlocoAp.getValue();
-		chcBlocoAp.setOnAction((Event)->{
-			this.opcBloco = chcBlocoAp.getSelectionModel().getSelectedItem();
-		});
-
-
-	}
-
-	@FXML
 	void editarVisitante(MouseEvent event) {
 //		this.pessoaAtualiza = select.get(0).getPessoa();
 		this.select = tableVisitante.getSelectionModel().getSelectedItems();
@@ -154,23 +116,23 @@ public class VisitanteViewController implements Initializable {
 	}
 
 	void salvar() {
-		String id = this.txfId.getText();
-		String cpf = this.txfCPF.getText();
-		String nome = this.txfNome.getText();
-		String email = this.txfEmail.getText();
-		String telefone = this.txfTel.getText();
-		String bloco = this.opcBloco;
-		String numero = this.opcNumero;
-		
-		Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
-		Apartamento apt = controlaAp.buscar(bloco, Integer.parseInt(numero));
-		Visitante visitante = new Visitante(pessoa, apt);
-		visitante.setApartamento(apt);
-		
-		controlaPessoa.criar(pessoa);
-		controlaVisitante.criar(visitante);			
-		
+		Visitante visitante = new Visitante(
+				new Pessoa(this.txfNome.getText(), 
+						this.txfCPF.getText(), 
+						this.txfTel.getText(), 
+						this.txfEmail.getText()), 
+				this.chcAp.getSelectionModel().getSelectedItem()
+				);
 
+		try {
+			controlaVisitante.criar(visitante);
+			Alerts.alertaSucesso("Salvo com Sucesso!");
+		} catch (Exception e) {
+			Alerts.alertaErro(e.getMessage());
+		}			
+
+		limpaTela();
+		atualizaTabela();
 
 	}
 
@@ -186,6 +148,7 @@ public class VisitanteViewController implements Initializable {
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
+		limpaTela();
 		idTableVisita.setCellValueFactory(new PropertyValueFactory<>("id"));
 		pessoaTableVisita.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
 		colunaAp.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
@@ -194,16 +157,22 @@ public class VisitanteViewController implements Initializable {
 	}
 	
 	private void limpaTela() {
-		this.txfCPF.setText("");
-		this.txfEmail.setText("");
-		this.txfId.setText("");
-		this.txfNome.setText("");
+		this.txfCPF.setText(null);
+		this.txfEmail.setText(null);
+		this.txfId.setText(null);
+		this.txfNome.setText(null);
+		this.txfTel.setText(null);
+		this.chcAp.setItems(FXCollections.observableArrayList());
 	}
 	
 	private void atualizaTabela() {
-		ObservableList<Visitante> list = FXCollections.observableArrayList(controlaVisitante.listar());
-		tableVisitante.setItems(list);
-	}
+		try {
+			this.tableVisitante.setItems(FXCollections.observableArrayList(controlaVisitante.listar()));
+			this.chcAp.setItems(FXCollections.observableArrayList(controlaApartamento.listar()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		
 
+		}
+	}
 }
-*/
