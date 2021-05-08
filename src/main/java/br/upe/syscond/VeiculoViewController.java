@@ -23,25 +23,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-/*
+
 public class VeiculoViewController implements Initializable {
 
 
 	static InterfaceVeiculoController controlaVeiculo = new VeiculoController();
 	static InterfaceApartamentoController controlaAp = new ApartamentoController();
-	ObservableList<String> blocosAp = FXCollections.observableArrayList(controlaAp.listarBlocos());
 	private ObservableList<Veiculo> select;
-
-	String opcBloco;
-	String opcNumero;
-
-
 
 	@FXML
 	private Label lblId;
 
 	@FXML
-	private TextField txfId;
+	private Label txfId;
 
 	@FXML
 	private Label lblPlaca;
@@ -59,10 +53,7 @@ public class VeiculoViewController implements Initializable {
 	private Label lblBlocoAp;
 
 	@FXML
-	private ChoiceBox<String> chcBlocoAp;
-
-	@FXML
-	private ChoiceBox<String> chcNumeroAp;
+	private ChoiceBox<Apartamento> chcAp;
 
 	@FXML
 	private TableView<Veiculo> tableVeiculo;
@@ -95,38 +86,10 @@ public class VeiculoViewController implements Initializable {
 	private Button btnExcluir;
 
 	@FXML
-	void ChamaNumero(MouseEvent event) {
-		ObservableList<String> numerosAp = FXCollections.observableArrayList(controlaAp.listaNumeros(opcBloco));
-
-		this.chcNumeroAp.setItems(numerosAp);
-
-		this.opcNumero = (String) this.chcBlocoAp.getValue();
-		chcNumeroAp.setOnAction((Event)->{
-			this.opcNumero = chcNumeroAp.getSelectionModel().getSelectedItem();
-		});
-
-
-		System.out.println(numerosAp);
-
-	}
-
-	@FXML
-	void chamaBloco(MouseEvent event) {
-		this.chcBlocoAp.setItems(blocosAp);
-
-		this.opcBloco = (String) this.chcBlocoAp.getValue();
-		chcBlocoAp.setOnAction((Event)->{
-			this.opcBloco = chcBlocoAp.getSelectionModel().getSelectedItem();
-		});
-
-	}
-
-	@FXML
 	void editarVeiculo(MouseEvent event) {
 		this.select = tableVeiculo.getSelectionModel().getSelectedItems();
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfPlaca.setText(select.get(0).getPlaca());
-
 	}
 
 	@FXML
@@ -135,7 +98,6 @@ public class VeiculoViewController implements Initializable {
 		deletar(this.select.get(0));
 		limpaTela();
 		atualizaTabela();
-
 	}
 
 	@FXML
@@ -143,7 +105,6 @@ public class VeiculoViewController implements Initializable {
 		salvar();
 		limpaTela();
 		atualizaTabela();
-
 	}
 
 	@FXML
@@ -151,52 +112,66 @@ public class VeiculoViewController implements Initializable {
 		try {
 			App.setRoot("MainView");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Alerts.alertaErro("Erro");
 			e.printStackTrace();
 		}
-
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
+		limpaTela();
 		idTableVeiculo.setCellValueFactory(new PropertyValueFactory<>("id"));
 		placaTableVeiculo.setCellValueFactory(new PropertyValueFactory<>("placa"));
 		colunaAp.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
 	}
-	
+
 	private void deletar(Veiculo veiculo) {
-		controlaVeiculo.deletar(veiculo);
+		try {
+			controlaVeiculo.deletar(veiculo);
+			Alerts.alertaDeletar();
+		} catch (Exception e) {
+			Alerts.alertaErro("Erro");
+			e.printStackTrace();
+		}
 	}
-	
+
 	private void limpaTela() {
 		this.txfId.setText("");
 		this.txfPlaca.setText("");
-		
 	}
-	
+
 	private void atualizaTabela() {
-		ObservableList<Veiculo> list = FXCollections.observableArrayList(controlaVeiculo.listar());
-		tableVeiculo.setItems(list);
+		try {
+			this.tableVeiculo.setItems(FXCollections.observableArrayList(controlaVeiculo.listar()));
+			this.chcAp.setItems(FXCollections.observableArrayList(controlaAp.listar()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	void salvar() {
 		String id = this.txfId.getText();
 		String placa = this.txfPlaca.getText();
-		String bloco = opcBloco;
-		String numero = opcNumero;
-		
-		Apartamento apt = controlaAp.buscar(bloco, Integer.parseInt(numero));
-		Veiculo veiculo = new Veiculo(placa, apt);
-		
+		Veiculo veiculo = new Veiculo(placa, this.chcAp.getSelectionModel().getSelectedItem());
 		if(!id.equals("")) {
 			veiculo.setId(Integer.parseInt(id));
-			controlaVeiculo.atualizar(veiculo);
+			try {
+				controlaVeiculo.atualizar(veiculo);
+				Alerts.alertaSucesso("Atualizado com sucesso!");
+			} catch (Exception e) {
+				Alerts.alertaErro("Erro");
+				e.printStackTrace();
+			}
 		}else {
-			controlaVeiculo.criar(veiculo);
-			
+			try {
+				controlaVeiculo.criar(veiculo);
+				Alerts.alertaSucesso("Criado com sucesso!");
+			} catch (Exception e) {
+				Alerts.alertaErro("Erro");
+				e.printStackTrace();
+			}
 		}
-		
+		limpaTela();
+		atualizaTabela();
 	}
-
 }
-*/

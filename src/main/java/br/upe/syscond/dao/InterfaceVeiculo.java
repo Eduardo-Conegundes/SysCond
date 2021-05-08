@@ -6,10 +6,10 @@ import br.upe.syscond.models.Veiculo;
 
 public interface InterfaceVeiculo {
     
-	Veiculo salvar(Veiculo c) throws Exception;
+	Veiculo salvar(Veiculo veiculo) throws Exception;
     List<Veiculo> listar() throws Exception;
-    Veiculo buscar(int id) throws Exception;
-    Veiculo atualizar(Veiculo c) throws Exception;
-    void deletar(int id) throws Exception;
+    Veiculo buscar(Veiculo veiculo) throws Exception;
+    Veiculo atualizar(Veiculo veiculo) throws Exception;
+    void deletar(Veiculo veiculo) throws Exception;
     
 }

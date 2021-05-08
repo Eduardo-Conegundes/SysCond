@@ -44,8 +44,9 @@ public class VeiculoDAO implements InterfaceVeiculo{
 		try {
 			em.getTransaction().begin();
 			em.persist(veiculo);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(veiculo.getId());
+			return veiculo;
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -60,8 +61,9 @@ public class VeiculoDAO implements InterfaceVeiculo{
 		try {
 			em.getTransaction().begin();
 			em.merge(veiculo);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(veiculo.getId());
+			return veiculo;
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
@@ -72,14 +74,13 @@ public class VeiculoDAO implements InterfaceVeiculo{
      * @param integer
 	 * @return Veiculo
 	 */
-	public Veiculo buscar(int id) throws Exception {
+	public Veiculo buscar(Veiculo veiculo) throws Exception {
 		try {
-			em.getTransaction().begin();
-			Veiculo p = em.find(Veiculo.class, id);
-			em.getTransaction().commit();
-			return p;
+			return (Veiculo) em.createQuery("from Veiculo v where v.placa = :placa and v.apartamento = :apartamento")
+					.setParameter("placa", veiculo.getPlaca())
+					.setParameter("apartamento", veiculo.getApartamento())
+					.getSingleResult();
 		} catch(Exception eBuscar) {
-			em.getTransaction().rollback();
 			throw eBuscar;
 		}
 	}
@@ -87,12 +88,10 @@ public class VeiculoDAO implements InterfaceVeiculo{
      * @param integer
 	 * @return boolean
 	 */
-	public void deletar(int id) throws Exception {
-		Veiculo v = null;
+	public void deletar(Veiculo veiculo) throws Exception {
 		try {
 			em.getTransaction().begin();
-			v = em.find(Veiculo.class, id);
-			em.remove(v);
+			em.remove(veiculo);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {
 			em.getTransaction().rollback();

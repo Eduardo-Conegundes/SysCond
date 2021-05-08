@@ -12,15 +12,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.VeiculoViewController">
    <children>
-      <Label fx:id="lblId" layoutX="32.0" layoutY="97.0" text="ID:" />
-      <TextField fx:id="txfId" editable="false" layoutX="104.0" layoutY="93.0" />
-      <Label fx:id="lblPlaca" layoutX="29.0" layoutY="127.0" text="Placa:" />
-      <TextField fx:id="txfPlaca" layoutX="104.0" layoutY="123.0" />
+      <Label fx:id="lblId" layoutX="32.0" layoutY="70.0" text="ID:" />
+      <Label fx:id="lblPlaca" layoutX="29.0" layoutY="100.0" text="Placa:" />
+      <TextField fx:id="txfPlaca" layoutX="104.0" layoutY="96.0" />
       <Label fx:id="lblApartamento" layoutX="430.0" layoutY="75.0" text="Apartamento:" />
-      <Label fx:id="lblNumeroAp" layoutX="316.0" layoutY="125.0" text="Número:" />
-      <Label fx:id="lblBlocoAp" layoutX="323.0" layoutY="99.0" text="Bloco:" />
-      <ChoiceBox fx:id="chcBlocoAp" layoutX="394.0" layoutY="95.0" onMouseClicked="#chamaBloco" prefWidth="150.0" />
-      <ChoiceBox fx:id="chcNumeroAp" layoutX="394.0" layoutY="121.0" onMouseClicked="#ChamaNumero" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcAp" layoutX="394.0" layoutY="98.0" prefWidth="150.0" />
       <TableView fx:id="tableVeiculo" layoutX="26.0" layoutY="183.0" prefHeight="200.0" prefWidth="580.0">
          <columns>
             <TableColumn fx:id="idTableVeiculo" prefWidth="75.0" text="ID" />
@@ -37,5 +33,6 @@
             <Font size="31.0" />
          </font>
       </Text>
+      <Label fx:id="txfId" layoutX="104.0" layoutY="97.0" />
    </children>
 </AnchorPane>
