@@ -3,110 +3,32 @@ package br.upe.syscond;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 public class MainViewController {
 
     @FXML
-    private MenuItem miApartamentoCriar;
+    private Button VisitanteMain;
 
     @FXML
-    private MenuItem miEmpresaCriar;
+    private Button sairMain;
 
     @FXML
-    private MenuItem miFinanceiroCriar;
+    private Button MoradorMain;
 
     @FXML
-    private MenuItem miLocacaoCriar;
+    private Button ApartamentoMain;
 
     @FXML
-    private MenuItem miAlmoxarifadoCriar;
+    private Button VeiculoMain1;
 
     @FXML
-    private MenuItem miFuncionarioCriar;
+    private Button UsuarioMain11;
 
     @FXML
-    private MenuItem miMoradorCriar;
-
-    @FXML
-    private MenuItem miServicoProdutoCriar;
-
-    @FXML
-    private MenuItem miUsuarioCriar;
-
-    @FXML
-    private MenuItem miVeiculoCriar;
-
-    @FXML
-    private MenuItem miVisitanteCriar;
-
-    @FXML
-    private MenuItem miApartamentoAlterar;
-
-    @FXML
-    private MenuItem miEmpresaAlterar;
-
-    @FXML
-    private MenuItem miFinanceiroAlterar;
-
-    @FXML
-    private MenuItem miLocacaoAlterar;
-
-    @FXML
-    private MenuItem miAlmoxarifadoAlterar;
-
-    @FXML
-    private MenuItem miFuncionarioAlterar;
-
-    @FXML
-    private MenuItem miMoradorAlterar;
-
-    @FXML
-    private MenuItem miServicoProdutoAlterar;
-
-    @FXML
-    private MenuItem miUsuarioAlterar;
-
-    @FXML
-    private MenuItem miVeiculoAlterar;
-
-    @FXML
-    private MenuItem miVisitanteAlterar;
-
-    @FXML
-    private MenuItem miApartamentoVisualizar;
-
-    @FXML
-    private MenuItem miEmpresaVisualizar;
-
-    @FXML
-    private MenuItem miFinanceiroVisualizar;
-
-    @FXML
-    private MenuItem miLocacaoVisualizar;
-
-    @FXML
-    private MenuItem miAlmoxarifadoVisualizar;
-
-    @FXML
-    private MenuItem miFuncionarioVisualizar;
-
-    @FXML
-    private MenuItem miMoradorVisualizar;
-
-    @FXML
-    private MenuItem miServicoProdutoVisualizar;
-
-    @FXML
-    private MenuItem miUsuarioVisualizar;
-
-    @FXML
-    private MenuItem miVeiculoVisualizar;
-
-    @FXML
-    private MenuItem miVisitanteVisualizar;
-
+    private Button FuncionarioMain;
+    
     @FXML
     void switchTelaApartamento(MouseEvent event) {
     	try {

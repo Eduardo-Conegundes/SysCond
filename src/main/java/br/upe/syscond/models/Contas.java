@@ -20,8 +20,8 @@ public class Contas {
 	private Boolean statusPaga;
 
 	public Contas() {
-
 	}
+	
 	/**
 	 * @param identificador
 	 * @param pagador
@@ -34,18 +34,15 @@ public class Contas {
 	 */
 	public Contas(String identificador, String pagador, String beneficiario, float valor, LocalDate dataEmissao,
 			LocalDate dataVencimento, Boolean aReceber, Boolean statusPaga) {
-		super();
 		this.identificador = identificador;
 		this.pagador = pagador;
 		this.beneficiario = beneficiario;
 		this.valor = valor;
 		this.dataEmissao = dataEmissao;
 		this.dataVencimento = dataVencimento;
-		AReceber = aReceber;
+		this.AReceber = aReceber;
 		this.statusPaga = statusPaga;
 	}
-
-	
 
 	/**
 	 * @return the id
@@ -173,6 +170,11 @@ public class Contas {
 		}else {
 			return false;			
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 }
