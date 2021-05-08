@@ -26,7 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
+/*
 public class VisitanteViewController implements Initializable {
 	static InterfaceVisitanteController controlaVisitante = new VisitanteController();
 	static InterfacePessoaController controlaPessoa = new PessoaController();
@@ -206,3 +206,4 @@ public class VisitanteViewController implements Initializable {
 	}
 
 }
+*/

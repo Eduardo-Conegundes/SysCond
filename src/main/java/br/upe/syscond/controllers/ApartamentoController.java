@@ -89,5 +89,39 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 	}
 
+	@Override
+	public List<Apartamento> listarBlocos(String bloco) throws Exception {
+		try {
+			return aptDAO.listarPorBloco(bloco);
+		} catch (Exception eListarBloco) {
+			throw eListarBloco;
+		}
+	}
+	
+	public List<Apartamento> listarBlocos() throws Exception {
+		try {
+			return aptDAO.listarBlocos();
+		} catch (Exception eListarBloco) {
+			throw eListarBloco;
+		}
+	}
+
+	@Override
+	public List<Apartamento> listarNumeros(Integer numero) throws Exception {
+		try {
+			return aptDAO.listarPorNumero(numero);
+		} catch (Exception eListarNumero) {
+			throw eListarNumero;
+		}
+	}
+	
+	public List<Apartamento> listarNumeros() throws Exception {
+		try {
+			return aptDAO.listarNumeros();
+		} catch (Exception eListarNumero) {
+			throw eListarNumero;
+		}
+	}
+
 	
 }

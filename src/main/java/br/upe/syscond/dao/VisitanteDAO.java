@@ -43,15 +43,14 @@ public class VisitanteDAO implements InterfaceVisitante {
      * @param integer
 	 * @return Visitante
 	 */
-	public Visitante buscar(int id) throws Exception {
-		Visitante v = null;
+	@SuppressWarnings("unchecked")
+	public List<Visitante> buscar(Visitante visitante) throws Exception {
 		try {
-			em.getTransaction().begin();
-			v = em.find(Visitante.class, id);
-			em.getTransaction().commit();
-			return v;
+			return em.createQuery("FROM Visitante v WHERE v.pessoa = :pessoa and v.apartamento = :apartamento")
+					.setParameter("pessoa", visitante.getPessoa())
+					.setParameter("apartamento", visitante.getApartamento())
+					.getResultList();
 		} catch (Exception eBuscar) {
-			em.getTransaction().rollback();
 			throw eBuscar;
 		}
 	}
@@ -64,46 +63,16 @@ public class VisitanteDAO implements InterfaceVisitante {
 		try {
 			em.getTransaction().begin();
 			em.persist(vis);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(vis.getId());
+			return vis;
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
 		}
 
 	}
-	/**
-	 * 
-	 * @param Visitante
-	 * @return Visitante
-	 */
-	public Visitante atualizar(Visitante vis) throws Exception {
-		try {
-			em.getTransaction().begin();
-			em.merge(vis);
-			em.getTransaction().commit();
-			return this.buscar(vis.getId());
-		} catch (Exception eAtualizar) {
-			em.getTransaction().rollback();
-			throw eAtualizar;
-		}
-	}
-    /**
-     * @param integer
-	 * @return boolean
-	 */
-	public void deletar(int id) throws Exception {
-		Visitante vis = null;
-		try {
-			em.getTransaction().begin();
-			vis = em.find(Visitante.class, id);
-			em.remove(vis);
-			em.getTransaction().commit();
-		} catch (Exception eDeletar) {
-			em.getTransaction().rollback();
-			throw eDeletar;
-		}
-	}
+
     /**
 	 * @return Lista de Visitante[]
 	 */

@@ -90,7 +90,8 @@ public class PessoaDAO implements InterfacePessoa {
             em.getTransaction().begin();
             em.merge(p);
             em.getTransaction().commit();
-            return buscar(p.getId());
+            em.flush();
+            return p;
         } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
             throw eAtualizar;

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import br.upe.syscond.models.Apartamento;
 
@@ -46,8 +47,9 @@ public class ApartamentoDAO implements InterfaceApartamento {
 		try {
 			em.getTransaction().begin();
 			em.persist(apartamento);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(apartamento);
+			return apartamento;
 		}catch(Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -61,8 +63,9 @@ public class ApartamentoDAO implements InterfaceApartamento {
 		try {
 			em.getTransaction().begin();
 			em.merge(apartamento);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(apartamento);
+			return apartamento;
 		}catch(Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
@@ -105,7 +108,7 @@ public class ApartamentoDAO implements InterfaceApartamento {
 	@SuppressWarnings("unchecked")
 	public List<Apartamento> listar() throws Exception{
 		try {
-			return (em.createQuery("from " + Apartamento.class.getName()).getResultList());			
+			return em.createQuery("from " + Apartamento.class.getName()).getResultList();			
 		} catch (Exception eListar) {
 			eListar.printStackTrace();
 			throw eListar;
@@ -115,14 +118,44 @@ public class ApartamentoDAO implements InterfaceApartamento {
 	 * @param bloco
 	 * @return Apartamento[]
 	 */    
-	@SuppressWarnings("unchecked")
 	public List<Apartamento> listarPorBloco(String bloco) throws Exception{
 		try {
-			return em.createQuery("select a from Apartamento a where a.bloco = :nomeBloco", Apartamento.class)
-					.setParameter("nomeBloco", bloco)
+			return em.createQuery("select a from Apartamento a where a.bloco = :Bloco", Apartamento.class)
+					.setParameter("Bloco", bloco)
 					.getResultList();
 		} catch (Exception eListarBloco) {
 			throw eListarBloco;
+		}
+	}
+
+	@Override
+	public List<Apartamento> listarPorNumero(Integer numero) throws Exception {
+		try {
+			return em.createQuery("select a from Apartamento a where a.numero = :numero", Apartamento.class)
+					.setParameter("numero", numero)
+					.getResultList();
+		} catch (Exception eListarNumero) {
+			throw eListarNumero;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Apartamento> listarBlocos() throws Exception {
+		try {
+			return em.createQuery("select bloco from Apartamento").getResultList();
+		} catch (Exception eListarNumero) {
+			throw eListarNumero;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Apartamento> listarNumeros() throws Exception {
+		try {
+			return (List<Apartamento>) em.createQuery("select numero from Apartamento").getResultList();
+		} catch (Exception eListarNumero) {
+			throw eListarNumero;
 		}
 	}
 }

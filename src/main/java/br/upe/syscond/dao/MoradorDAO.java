@@ -45,8 +45,9 @@ public class MoradorDAO implements InterfaceMorador{
 		try {
 			em.getTransaction().begin();
 			em.persist(morador);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(morador);
+			return morador;
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -57,14 +58,12 @@ public class MoradorDAO implements InterfaceMorador{
 	 * @return Morador
 	 */
 	public Morador buscar(Morador morador) throws Exception {
-		Morador m = null;
 		try {
-			em.getTransaction().begin();
-			m = em.find(Morador.class, morador.getId());
-			em.getTransaction().commit();
-			return m;
+			return (Morador) em.createQuery("From Morador m where m.pessoa = :pessoa and m.apartamento = :apartamento")
+					.setParameter("pessoa", morador.getPessoa())
+					.setParameter("apartamento", morador.getApartamento())
+					.getSingleResult();
 		} catch (Exception eBuscar) {
-			em.getTransaction().rollback();
 			throw eBuscar;
 		}
 	}
@@ -73,11 +72,12 @@ public class MoradorDAO implements InterfaceMorador{
 	 * @return Morador
 	 */
 	public Morador atualizar(Morador morador) throws Exception {
+		
 		try {
 			em.getTransaction().begin();
 			em.merge(morador);
 			em.getTransaction().commit();
-			return this.buscar(morador);
+			return morador;
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
@@ -87,11 +87,9 @@ public class MoradorDAO implements InterfaceMorador{
      * @param integer
 	 * @return boolean
 	 */
-	public void deletar(int id) throws Exception {
-		Morador m = null;
+	public void deletar(Morador m) throws Exception {
 		try {
 			em.getTransaction().begin();
-			m = em.find(Morador.class, id);
 			em.remove(m);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {

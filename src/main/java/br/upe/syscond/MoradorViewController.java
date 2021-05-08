@@ -8,9 +8,7 @@ import java.util.ResourceBundle;
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
 import br.upe.syscond.controllers.InterfaceMoradorController;
-import br.upe.syscond.controllers.InterfacePessoaController;
 import br.upe.syscond.controllers.MoradorController;
-import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Morador;
 import br.upe.syscond.models.Pessoa;
@@ -29,17 +27,11 @@ import javafx.scene.input.MouseEvent;
 
 
 public class MoradorViewController implements Initializable{
+
 	static InterfaceMoradorController controlaMorador = new MoradorController();
-	static InterfacePessoaController controlaPessoa = new PessoaController();
-	static InterfaceApartamentoController controlaAp = new ApartamentoController();
-	
-	ObservableList<Morador> list;
-	ObservableList<String> blocosAp; 
+	static InterfaceApartamentoController controlaApartamento = new ApartamentoController();
+
 	private ObservableList<Morador> select;
-
-
-	String opcBloco;
-	String opcNumero;
 
 	@FXML
 	private Label lblId;
@@ -81,10 +73,7 @@ public class MoradorViewController implements Initializable{
 	private Label lblBlocoAp;
 
 	@FXML
-	private ChoiceBox<String> chcBlocoAp;
-
-	@FXML
-	private ChoiceBox<String> chcNumeroAp;
+	private ChoiceBox<Apartamento> chcAp;
 
 	@FXML
 	private TableView<Morador> tableMorador;
@@ -118,27 +107,13 @@ public class MoradorViewController implements Initializable{
 	}
 
 	@FXML
-	void ChamaNumero(MouseEvent event) {
-		this.opcBloco = this.chcBlocoAp.getSelectionModel().getSelectedItem();
-		ObservableList<String> numerosAp = FXCollections.observableArrayList(controlaAp.listaNumeros(opcBloco));
-		this.chcNumeroAp.setItems(numerosAp);
-		this.opcNumero = (String) this.chcBlocoAp.getValue();
-		chcNumeroAp.setOnAction((Event)->{
-			this.opcNumero = chcNumeroAp.getSelectionModel().getSelectedItem();
-		});
-	}
-
-	@FXML
 	void editarMorador(MouseEvent event) {
 		this.select = tableMorador.getSelectionModel().getSelectedItems();
-		
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
-		
 		this.txfNome.setText(select.get(0).getPessoa().getNome());
 		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
-
 	}
 
 	@FXML
@@ -151,30 +126,36 @@ public class MoradorViewController implements Initializable{
 
 
 	void salvar() {
+		Morador morador = new Morador(
+				new Pessoa(this.txfNome.getText(), 
+						this.txfCPF.getText(), 
+						this.txfTel.getText(), 
+						this.txfEmail.getText()), 
+				this.chcAp.getSelectionModel().getSelectedItem()
+				);
+
 		String id = this.txfId.getText();
-		String cpf = this.txfCPF.getText();
-		String nome = this.txfNome.getText();
-		String email = this.txfEmail.getText();
-		String telefone = this.txfTel.getText();
-		String bloco = this.opcBloco;
-		String numero = this.opcNumero;
-		
-		Pessoa pessoa = new Pessoa(nome, cpf, telefone, email);
-		Apartamento apt = controlaAp.buscar(bloco, Integer.parseInt(numero));
-		Morador morador = new Morador(pessoa, apt);
-		morador.setApartamento(apt);
-		
+
 		//caso atualizar
 		if(!id.equals("")) {
 			morador.setId(Integer.parseInt(id));
-			pessoa.setId(select.get(0).getPessoa().getId());
-			controlaPessoa.atualizar(pessoa);
-			controlaMorador.atualizar(morador);
+			try {
+				controlaMorador.atualizar(morador);
+				Alerts.alertaSucesso("Atualizado com Sucesso!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alerts.alertaErro(e.getMessage());
+			}
 		}else {
-			controlaPessoa.criar(pessoa);
-			controlaMorador.criar(morador);			
+			try {
+				controlaMorador.criar(morador);
+				Alerts.alertaSucesso("Salvo com Sucesso!");
+			} catch (Exception e) {
+				Alerts.alertaErro(e.getMessage());
+			}			
 		}
-
+		limpaTela();
+		atualizaTabela();
 
 	}
 
@@ -183,40 +164,44 @@ public class MoradorViewController implements Initializable{
 		try {
 			App.setRoot("MainView");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Alerts.alertaErro(e.getMessage());
 		}
 
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-		idTableMorador.setCellValueFactory(new PropertyValueFactory<>("id"));
-		pessoaTableMorador.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
-		ApartamentoTableMorador.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
+		limpaTela();
+		this.idTableMorador.setCellValueFactory(new PropertyValueFactory<>("id"));
+		this.pessoaTableMorador.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
+		this.ApartamentoTableMorador.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
-
 	}
 
 	private void deletar() {
-		controlaMorador.deletar(this.select.get(0));
-		System.out.println(select.get(0).getPessoa());
-		controlaPessoa.deletar(select.get(0).getPessoa());
+		try {
+			controlaMorador.deletar(this.select.get(0));
+			Alerts.alertaSucesso("Deletado com Sucesso!");
+		} catch (Exception e) {
+			Alerts.alertaErro(e.getMessage());
+		}
 	}
 
 	private void limpaTela() {
-		this.txfCPF.setText("");
-		this.txfEmail.setText("");
+		this.txfCPF.setText(null);
+		this.txfEmail.setText(null);
 		this.txfId.setText("");
-		this.txfNome.setText("");
-		this.txfTel.setText("");
+		this.txfNome.setText(null);
+		this.txfTel.setText(null);
+		this.chcAp.setItems(FXCollections.observableArrayList());
 	}
 
 	private void atualizaTabela() {
-		tableMorador.setItems(list);
-		this.list = FXCollections.observableArrayList(controlaMorador.listar());
-		tableMorador.setItems(list);
-		this.blocosAp = FXCollections.observableArrayList(controlaAp.listarBlocos());
-		chcBlocoAp.setItems(blocosAp);
+		try {
+			this.tableMorador.setItems(FXCollections.observableArrayList(controlaMorador.listar()));
+			this.chcAp.setItems(FXCollections.observableArrayList(controlaApartamento.listar()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

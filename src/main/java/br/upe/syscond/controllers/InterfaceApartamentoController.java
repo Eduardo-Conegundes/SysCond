@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.upe.syscond.models.Apartamento;
+import javafx.util.Callback;
 
 public interface InterfaceApartamentoController {
 	/**
@@ -41,5 +42,13 @@ public interface InterfaceApartamentoController {
 	 * @throws Exception 
 	 */
 	public void deletar(Apartamento apartamento) throws Exception;
+
+	public List<Apartamento> listarBlocos(String bloco) throws Exception;
+
+	public List<Apartamento> listarNumeros(Integer numero) throws Exception;
+
+	public List<Apartamento> listarBlocos() throws Exception;
+
+	public List<Apartamento> listarNumeros() throws Exception;
 
 }

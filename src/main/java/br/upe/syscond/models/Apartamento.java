@@ -15,6 +15,7 @@ public class Apartamento {
 	private int numero;
 	private String bloco;
 	private int vagas;
+	
 
 	public Apartamento(){}
 

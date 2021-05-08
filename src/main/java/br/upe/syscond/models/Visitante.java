@@ -1,6 +1,8 @@
 package br.upe.syscond.models;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,14 +15,14 @@ public class Visitante implements Serializable {
 	
 	@Id @GeneratedValue(generator = "idVisitante") 
 	private int id;
-	@OneToOne
+	@OneToOne (cascade=CascadeType.ALL)
 	private Pessoa pessoa;
 	@ManyToOne
 	private Apartamento apartamento;
 
 	public Visitante() { }
+	
 	/**
-	 * 
 	 * @param pessoa
 	 * @param apartamento
 	 */

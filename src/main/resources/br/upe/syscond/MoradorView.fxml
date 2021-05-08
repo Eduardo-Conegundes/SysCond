@@ -22,11 +22,9 @@
       <TextField fx:id="txfTel" layoutX="98.0" layoutY="110.0" />
       <Label fx:id="lblEmail" layoutX="21.0" layoutY="145.0" text="Email:" />
       <TextField fx:id="txfEmail" layoutX="98.0" layoutY="141.0" />
-      <Label fx:id="lblApartamento" layoutX="430.0" layoutY="75.0" text="Apartamento:" />
-      <Label fx:id="lblNumeroAp" layoutX="316.0" layoutY="125.0" text="Número:" />
-      <Label fx:id="lblBlocoAp" layoutX="323.0" layoutY="99.0" text="Bloco:" />
-      <ChoiceBox fx:id="chcBlocoAp" layoutX="394.0" layoutY="95.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="chcNumeroAp" layoutX="394.0" layoutY="121.0" onMouseClicked="#ChamaNumero" prefWidth="150.0" />
+      <Label fx:id="lblApartamento" layoutX="430.0" layoutY="85.0" text="Apartamento:" />
+      <Label fx:id="lblBlocoAp" layoutX="424.0" layoutY="101.0" text="Bloco / Número" />
+      <ChoiceBox fx:id="chcAp" layoutX="394.0" layoutY="119.0" prefWidth="150.0" />
       <TableView fx:id="tableMorador" layoutX="24.0" layoutY="181.0" prefHeight="200.0" prefWidth="575.0">
          <columns>
             <TableColumn fx:id="idTableMorador" prefWidth="94.0" text="ID" />

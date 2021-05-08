@@ -10,6 +10,6 @@ public interface InterfaceMorador{
     List<Morador> listar() throws Exception;
     Morador buscar(Morador m) throws Exception;
     Morador atualizar(Morador m) throws Exception;
-    void deletar(int id) throws Exception;
+    void deletar(Morador m) throws Exception;
     
 }

@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-
+/*
 public class VeiculoViewController implements Initializable {
 
 
@@ -199,3 +199,4 @@ public class VeiculoViewController implements Initializable {
 	}
 
 }
+*/

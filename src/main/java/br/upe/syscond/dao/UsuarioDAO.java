@@ -73,8 +73,9 @@ public class UsuarioDAO implements InterfaceUsuario {
 		try {
 			em.getTransaction().begin();
 			em.persist(user);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(user.getId());
+			return user;
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -88,8 +89,9 @@ public class UsuarioDAO implements InterfaceUsuario {
 		try {
 			em.getTransaction().begin();
 			em.merge(user);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(user.getId());
+			return user;
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;

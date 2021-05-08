@@ -2,78 +2,72 @@ package br.upe.syscond.controllers;
 
 import java.util.List;
 
-import br.upe.syscond.dao.ApartamentoDAO;
+import br.upe.syscond.dao.InterfaceMorador;
 import br.upe.syscond.dao.MoradorDAO;
-import br.upe.syscond.models.Apartamento;
 import br.upe.syscond.models.Morador;
-import br.upe.syscond.models.Pessoa;
 
 public class MoradorController implements InterfaceMoradorController{
+	
+	static InterfaceMorador moradorDAO = MoradorDAO.getInstance();
+	
 	/**
 	 * @param Morador
 	 * @return Morador || null
+	 * @throws Exception 
 	 */
-	public Morador criar(Morador morador){
-
-		if(this.buscar(morador)!=null) {
-			return null;
-		}
+	public Morador criar(Morador morador) throws Exception{
 
 		try {
-			Morador salvo = MoradorDAO.getInstance().salvar(morador);
-			return salvo;
+			return moradorDAO.salvar(morador);
 		} catch (Exception eCriar) {
-			System.err.println("Erro ao salvar morador");
-			return null;
+			throw eCriar;
 		}
 	}
 	/**
 	 * @return Morador[] || null
+	 * @throws Exception 
 	 */
-	public List<Morador> listar(){
+	public List<Morador> listar() throws Exception{
 		try {
-			List<Morador> m = MoradorDAO.getInstance().listar();
-			return m;
+			return moradorDAO.listar();
 		} catch (Exception eListar) {
-			System.err.println("Erro ao listar Morador(es)!");
-			return null;
+			throw eListar;
 		}
 	}
 	/**
 	 * @param Morador
 	 * @return Morador[] || null
+	 * @throws Exception 
 	 */
-	public Morador buscar(Morador morador){
-		List<Morador> lista = this.listar();
-		for (Morador morador2 : lista) {
-			if(morador2.equals(morador)) {
-				return morador2;
-			}
+	public Morador buscar(Morador morador) throws Exception{
+		try {
+			return moradorDAO.buscar(morador);
+		} catch (Exception eBuscar) {
+			throw eBuscar;
 		}
-		return null;
 	}
 	/**
 	 * @param Morador novo
 	 * @return Morador || null
+	 * @throws Exception 
 	 */
-	public Morador atualizar(Morador novo){
+	public Morador atualizar(Morador novo) throws Exception{
 		try {
-			return MoradorDAO.getInstance().atualizar(novo);
-		} catch (Exception e) {
-			return null;
+			return moradorDAO.atualizar(novo);
+		} catch (Exception eAtualizar) {
+			throw eAtualizar;
 		}
 	}
 	/**
 	 * @param Morador antigo
 	 * @return boolean
+	 * @throws Exception 
 	 */
-	public boolean deletar(Morador morador){
-		int id = this.buscar(morador).getId();
+	public void deletar(Morador morador) throws Exception{
 		try {
-			MoradorDAO.getInstance().deletar(id);
-			return true;
+			moradorDAO.deletar(morador);
 		} catch (Exception eDeletar) {
-			return false;
+			throw eDeletar;
 		}
 	}
 
