@@ -13,7 +13,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.MoradorViewController">
    <children>
       <Label fx:id="lblId" layoutX="26.0" layoutY="26.0" text="ID:" />
-      <TextField fx:id="txfId" editable="false" layoutX="98.0" layoutY="22.0" />
       <Label fx:id="lblNome" layoutX="23.0" layoutY="56.0" text="Nome:" />
       <TextField fx:id="txfNome" layoutX="98.0" layoutY="52.0" />
       <Label fx:id="lblCpf" layoutX="22.0" layoutY="82.0" text="CPF:" />
@@ -32,14 +31,15 @@
             <TableColumn fx:id="ApartamentoTableMorador" minWidth="6.0" prefWidth="195.0" text="Apartamento" />
          </columns>
       </TableView>
-      <Button fx:id="btnSalvar" layoutX="445.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarMorador" text="Salvar" />
+      <Button fx:id="btnSalvar" layoutX="22.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#salvarMorador" text="Salvar" />
       <Button fx:id="btnCancelar" layoutX="518.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar" />
-      <Button fx:id="btnEditar" layoutX="29.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#editarMorador" text="Editar" />
-      <Button fx:id="btnExcluir" layoutX="98.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#excluirMorador" text="Excluir" />
+      <Button fx:id="btnEditar" layoutX="181.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#editarMorador" text="Editar" />
+      <Button fx:id="btnExcluir" layoutX="344.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#excluirMorador" text="Excluir" />
       <Text layoutX="268.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Morador" wrappingWidth="215.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
+      <Label fx:id="txfId" layoutX="98.0" layoutY="25.0" />
    </children>
 </AnchorPane>
