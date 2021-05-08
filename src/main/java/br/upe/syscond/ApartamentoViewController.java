@@ -1,32 +1,33 @@
 package br.upe.syscond;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
 import br.upe.syscond.models.Apartamento;
-import br.upe.syscond.models.Morador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class ApartamentoViewController implements Initializable {
 	static InterfaceApartamentoController controlaAp = new ApartamentoController();
+	
 	private ObservableList<Apartamento> select;
 
 	@FXML
 	private Label lblId;
 
 	@FXML
-	private TextField txfId;
+	private Label txfId;
 
 	@FXML
 	private TextField txfBloco;
@@ -69,25 +70,41 @@ public class ApartamentoViewController implements Initializable {
 
 	@FXML
 	private Button btnEditar;
+	
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		idTableApartamento.setCellValueFactory(new PropertyValueFactory<>("id"));
+		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
+		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));
+		
+		try {
+			tableApartamento.setItems(FXCollections.observableArrayList(controlaAp.listar()));
+		} catch (Exception e) {
+			Alerts.alertaErro("Erro ao listar na tabela");
+			e.printStackTrace();
+		}
+	}
 
 	@FXML
 	void EditarApartamento(MouseEvent event) {
 		this.select = tableApartamento.getSelectionModel().getSelectedItems();
-
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
-
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
-		this.txfBloco.setText(select.get(0).getBloco());
-		this.txfNumero.setText(Integer.toString(select.get(0).getNumero()));
-		this.txfVagas.setText(Integer.toString(select.get(0).getVagas()));
-
+		setDados();
 	}
 
 	@FXML
 	void ExcluirApartamento(MouseEvent event) {
 		this.select = tableApartamento.getSelectionModel().getSelectedItems();
-		controlaAp.deletar(this.select.get(0));
-		initialize(null,null);
+		try {
+			if(Alerts.alertaDeletar()) {
+				controlaAp.deletar(this.select.get(0));				
+			}
+		} catch (Exception e) {
+			Alerts.alertaErro("Erro ao Deletar");
+			e.printStackTrace();
+		}
+		limpaTela();
+		initialize(null, null);
 	}
 
 	@FXML
@@ -100,18 +117,25 @@ public class ApartamentoViewController implements Initializable {
 		Apartamento ap = new Apartamento(bloco, numero, vagas);
 		
 			if(!id.equals("")) {
-				ap.setId(Integer.parseInt(id));
-				controlaAp.atualizar(ap);
-				limpaTela();
-				initialize(null,null);
+				try {
+					ap.setId(Integer.parseInt(id));
+					controlaAp.atualizar(ap);
+					Alerts.alertaSucesso("Atualizado com Sucesso!");
+				} catch (Exception e) {
+					Alerts.alertaErro("Erro ao Atualizar...");
+					e.printStackTrace();
+				}
 			}else {
-				controlaAp.criar(ap);
-				limpaTela();
-				initialize(null,null);
+				try {
+					controlaAp.criar(ap);
+					Alerts.alertaSucesso("Salvo com Sucesso!");
+				} catch (Exception e) {
+					Alerts.alertaErro("Erro ao salvar...");
+					e.printStackTrace();
+				}
 			}
-			
-		
-
+			limpaTela();
+			initialize(null,null);
 	}
 
 	@FXML
@@ -119,18 +143,15 @@ public class ApartamentoViewController implements Initializable {
 		try {
 			App.setRoot("MainView");
 		} catch (Exception e) {
-			// TODO: handle exception
+			Alerts.alertaErro("Erro ao ir ao Menu principal!");
 		}
-
 	}
-
-	public void initialize(URL location, ResourceBundle resources) {
-		ObservableList<Apartamento> listAp = FXCollections.observableArrayList(controlaAp.listar());
-		idTableApartamento.setCellValueFactory(new PropertyValueFactory<>("id"));
-		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
-		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
-		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));
-		tableApartamento.setItems(listAp);
+	
+	private void setDados() {
+		this.txfId.setText(Integer.toString(select.get(0).getId()));
+		this.txfBloco.setText(select.get(0).getBloco());
+		this.txfNumero.setText(Integer.toString(select.get(0).getNumero()));
+		this.txfVagas.setText(Integer.toString(select.get(0).getVagas()));
 	}
 	
 	private void limpaTela() {

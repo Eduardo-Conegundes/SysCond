@@ -8,8 +8,8 @@ public interface InterfaceApartamento {
 
     Apartamento salvar(Apartamento a) throws Exception;
     List<Apartamento> listar() throws Exception;
-    Apartamento buscar(int id) throws Exception;
+    List<Apartamento> listarPorBloco(String bloco) throws Exception;
+    Apartamento buscar(Apartamento a) throws Exception;
     Apartamento atualizar(Apartamento a) throws Exception;
-    boolean deletar(int id) throws Exception;
-    
+    void deletar(Apartamento a) throws Exception;
 }

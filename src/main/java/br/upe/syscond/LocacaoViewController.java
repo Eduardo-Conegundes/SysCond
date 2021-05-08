@@ -68,7 +68,7 @@
 ////    private TableColumn<Espaco, String> Hora;
 ////
 ////    @FXML
-////    private TableColumn<Espaco, String> Espaço;
+////    private TableColumn<Espaco, String> Espaco;
 ////
 ////    @FXML
 ////    private TableColumn<Espaco, Float> Valor;

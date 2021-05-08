@@ -3,7 +3,6 @@ package br.upe.syscond;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.upe.syscond.controllers.InterfaceUsuarioController;
@@ -13,10 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -89,7 +85,14 @@ public class UsuarioViewController implements Initializable{
 	@FXML
 	void ExcluirUsuario(MouseEvent event) {
 		this.select = tableUsuario.getSelectionModel().getSelectedItems();
-		alertaDeletar(this.select.get(0));
+		try {
+			if(Alerts.alertaDeletar()) {
+				controlaUsuario.deletar(this.select.get(0));				
+			}
+		} catch (Exception e) {
+			Alerts.alertaErro("Erro ao deletar");
+			e.printStackTrace();
+		}
 		limpaTela();
 		atualizaTabela();
 	}
@@ -107,7 +110,7 @@ public class UsuarioViewController implements Initializable{
 		try {
 			App.setRoot("MainView");
 		} catch (IOException e) {
-			alertaErro("Erro ao voltar pagina principal");
+			Alerts.alertaErro("Erro ao voltar pagina principal");
 			e.printStackTrace();
 		}
 
@@ -124,7 +127,7 @@ public class UsuarioViewController implements Initializable{
 		try {
 			tableUsuario.setItems(FXCollections.observableArrayList(controlaUsuario.listar()));			
 		} catch (Exception e) {
-			alertaErro("Erro ao listar tabela");
+			Alerts.alertaErro("Erro ao listar tabela");
 			e.printStackTrace();
 		}
 	}
@@ -146,55 +149,18 @@ public class UsuarioViewController implements Initializable{
 			usuario.setId(Integer.parseInt(id));
 			try {
 				controlaUsuario.atualizar(usuario);
-				alertaSucesso("Atualizado com sucesso!");
+				Alerts.alertaSucesso("Atualizado com sucesso!");
 			} catch (Exception e) {
-				alertaErro("Erro ao atualizar");
+				Alerts.alertaErro("Erro ao atualizar");
 				e.printStackTrace();
 			}
 		}else {
 			try {
 				controlaUsuario.criar(usuario);
-				alertaSucesso("Salvo com sucesso!");
+				Alerts.alertaSucesso("Salvo com sucesso!");
 			} catch (Exception e) {
-				alertaErro("Erro ao salvar");
+				Alerts.alertaErro("Erro ao salvar");
 			}
 		}
 	}
-
-	private void alertaErro(String erro) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Error Dialog");
-		alert.setHeaderText(erro);
-		alert.setContentText("Ooops, there was an error!");
-		alert.showAndWait();
-	}
-
-	private void alertaDeletar(Usuario user) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Look, a Confirmation Dialog");
-		alert.setContentText("Are you ok with this?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
-			try {
-				controlaUsuario.deletar(user);
-			} catch (Exception e) {
-				alertaErro("Erro ao deletar");
-				e.printStackTrace();
-			}
-		} else {
-			return;
-		}
-	}
-	
-	private void alertaSucesso(String msg) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information Dialog");
-		alert.setHeaderText(msg);
-		alert.setContentText("I have a great message for you!");
-
-		alert.showAndWait();
-	}
-
 }

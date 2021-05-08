@@ -5,141 +5,124 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import br.upe.syscond.models.Apartamento;
 
 public class ApartamentoDAO implements InterfaceApartamento {
-    
+
 	private static ApartamentoDAO instance;
-    protected EntityManager em;
-    /**
-     * 
-     * @return instance
-     */
-    public static ApartamentoDAO getInstance() {
-    	if(instance == null) {
-    		instance = new ApartamentoDAO();
-    	}
-    	return instance;
-    }
-    	
-    private ApartamentoDAO() {
-    	em = getEntityManager();
-    }
-    /**
-     * 
-     * @return EntityManager
-     */
-    private EntityManager getEntityManager() {
-    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
-    	if(em == null) {
-    		em = factory.createEntityManager();
-    	}
-    	return em;
-    }
+	protected EntityManager em;
+	/**
+	 * 
+	 * @return instance
+	 */
+	public static ApartamentoDAO getInstance() {
+		if(instance == null) {
+			instance = new ApartamentoDAO();
+		}
+		return instance;
+	}
+
+	private ApartamentoDAO() {
+		em = getEntityManager();
+	}
+	/**
+	 * 
+	 * @return EntityManager
+	 */
+	private EntityManager getEntityManager() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
+		if(em == null) {
+			em = factory.createEntityManager();
+		}
+		return em;
+	}
+
 	/**
 	 * param Apartamento
 	 * @return Apartamento
 	 */
-    public Apartamento salvar(Apartamento apartamento) throws Exception{
-    	try {
-    		em.getTransaction().begin();
-    		em.persist(apartamento);
-    		em.getTransaction().commit();
-    		return this.buscar(apartamento.getId());
-    	}catch(Exception eSalvar) {
-    		em.getTransaction().rollback();
-    		throw eSalvar;
-    	}
-    }
-    /**
-     * @param Apartamento
+	public Apartamento salvar(Apartamento apartamento) throws Exception{
+		try {
+			em.getTransaction().begin();
+			em.persist(apartamento);
+			em.getTransaction().commit();
+			return this.buscar(apartamento);
+		}catch(Exception eSalvar) {
+			em.getTransaction().rollback();
+			throw eSalvar;
+		}
+	}
+	/**
+	 * @param Apartamento
 	 * @return Apartamento
 	 */
-    public Apartamento atualizar(Apartamento apartamento) throws Exception{
-    	try {
-    		em.getTransaction().begin();
-    		em.merge(apartamento);
-    		em.getTransaction().commit();
-    		return this.buscar(apartamento.getId());
-    	}catch(Exception eAtualizar) {
-    		em.getTransaction().rollback();
-    		throw eAtualizar;
-    	}
-    }
-    
-    /**
-     * @param integer
+	public Apartamento atualizar(Apartamento apartamento) throws Exception{
+		try {
+			em.getTransaction().begin();
+			em.merge(apartamento);
+			em.getTransaction().commit();
+			return this.buscar(apartamento);
+		}catch(Exception eAtualizar) {
+			em.getTransaction().rollback();
+			throw eAtualizar;
+		}
+	}
+
+	/**
+	 * @param integer
 	 * @return Apartamento
 	 */
-    public Apartamento buscar(int id) throws Exception{
-    	try {
-    		em.getTransaction().begin();
-    		Apartamento p = em.find(Apartamento.class, id);
-    		em.getTransaction().commit();
-    		return p;
-    	} catch(Exception eBuscar) {
-    		em.getTransaction().rollback();
-    		throw eBuscar;
-    	}
-    }
-    /**
-     * @param integer
+
+	public Apartamento buscar(Apartamento apartamento) throws Exception{
+		try {
+			return (Apartamento) em.createQuery("FROM Apartamento a WHERE a.bloco = :bloco and a.numero = :numero")
+					.setParameter("bloco", apartamento.getBloco())
+					.setParameter("numero", apartamento.getNumero())
+					.getSingleResult();
+		} catch (Exception eBuscar) {
+			throw eBuscar;
+		}
+	}
+	/**
+	 * @param Apartamento
 	 * @return boolean
 	 */
-    public boolean deletar(int id) throws Exception {
-        try {
-            Apartamento p = buscar(id);
-            return deletarPorId(p);
-        } catch (Exception eDeletarId) {
-        	eDeletarId.printStackTrace();
-        	throw eDeletarId;
-        }
-    }
-    /**
-     * @param Apartamento
-	 * @return boolean
-	 */
-    private boolean deletarPorId(Apartamento apartamento) throws Exception{
-    	try {
-    		em.getTransaction().begin();
-    		Apartamento p = em.find(Apartamento.class, apartamento.getId());
-    		em.remove(p);
-    		em.getTransaction().commit();
-    		return true;
-    	} catch(Exception eDeletar) {
-    		em.getTransaction().rollback();
-    		throw eDeletar;
-    	}
-    }
-    
-    /**
+	public void deletar(Apartamento apartamento) throws Exception{
+		try {
+			em.getTransaction().begin();
+			em.remove(this.buscar(apartamento));
+			em.getTransaction().commit();
+		} catch(Exception eDeletar) {
+			em.getTransaction().rollback();
+			throw eDeletar;
+		}
+	}
+
+	/**
 	 * @return Lista de Apartamento[]
 	 */
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<Apartamento> listar() throws Exception{
-    	try {
-    		return (em.createQuery("from " + Apartamento.class.getName()).getResultList());			
+		try {
+			return (em.createQuery("from " + Apartamento.class.getName()).getResultList());			
 		} catch (Exception eListar) {
 			eListar.printStackTrace();
 			throw eListar;
 		}
-    }
-    /**
+	}
+	/**
 	 * @param bloco
 	 * @return Apartamento[]
 	 */    
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<Apartamento> listarPorBloco(String bloco) throws Exception{
-    	try {
-    		String jpql = "select a from Apartamento a where a.bloco = :nomeBloco";
-    		Query query = em.createQuery(jpql, Apartamento.class);
-    		query.setParameter("nomeBloco", bloco);
-    		return (query.getResultList());
-    	} catch (Exception eListarBloco) {
-    		throw eListarBloco;
+		try {
+			return em.createQuery("select a from Apartamento a where a.bloco = :nomeBloco", Apartamento.class)
+					.setParameter("nomeBloco", bloco)
+					.getResultList();
+		} catch (Exception eListarBloco) {
+			throw eListarBloco;
 		}
-    }
-    
+	}
 }

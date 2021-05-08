@@ -6,15 +6,40 @@ import java.util.List;
 import br.upe.syscond.models.Apartamento;
 
 public interface InterfaceApartamentoController {
-	public Apartamento criar(Apartamento apartamento);
-	public List<Apartamento> listar();
-	public List<Apartamento> listar(String bloco);
-	public Apartamento buscar(Apartamento apartamento);
-	public Apartamento atualizar(Apartamento novo);
-	public boolean deletar(Apartamento apartamento);
-	public ArrayList<String> listarNumeros();
-	public ArrayList<String> listarBlocos();
-	public ArrayList<String> listaNumeros(String bloco);
-	public Apartamento buscar(String bloco, int numero);
+	/**
+	 * 
+	 * @param apartamento
+	 * @return apartamento
+	 * @throws Exception
+	 */
+	public Apartamento criar(Apartamento apartamento) throws Exception;
+	/**
+	 * 
+	 * @return
+	 * @throws Exception 
+	 */
+	public List<Apartamento> listar() throws Exception;
+
+	/**
+	 * 
+	 * @param apartamento
+	 * @return
+	 * @throws Exception 
+	 */
+	public Apartamento buscar(Apartamento apartamento) throws Exception;
+	/**
+	 * 
+	 * @param novo
+	 * @return
+	 * @throws Exception 
+	 */
+	public Apartamento atualizar(Apartamento novo) throws Exception;
+	/**
+	 * 
+	 * @param apartamento
+	 * @return
+	 * @throws Exception 
+	 */
+	public void deletar(Apartamento apartamento) throws Exception;
 
 }

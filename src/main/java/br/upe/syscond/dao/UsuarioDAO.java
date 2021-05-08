@@ -56,15 +56,12 @@ public class UsuarioDAO implements InterfaceUsuario {
 	
 	public Usuario buscar(Usuario user) throws Exception {
 		try {
-			String sql = "FROM Usuario u WHERE u.email = :email and u.senha = :senha";
-			return (Usuario) em.createQuery(sql)
+			return (Usuario) em.createQuery("FROM Usuario u WHERE u.email = :email and u.senha = :senha")
 					.setParameter("email", user.getEmail())
 					.setParameter("senha", user.getSenha())
 					.getSingleResult();
-		} catch (Exception e) {
-			System.out.println("nao encontrei o email");
-			//e.printStackTrace();
-			throw e;
+		} catch (Exception eBuscar) {
+			throw eBuscar;
 		}
 		
 	}

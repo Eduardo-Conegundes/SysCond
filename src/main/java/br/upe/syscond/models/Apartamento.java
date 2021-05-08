@@ -3,14 +3,12 @@ package br.upe.syscond.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"numero", "bloco"}))
 public class Apartamento {
-
-	@Override
-	public String toString() {
-		return "numero= " + numero + ", bloco= " + bloco;
-	}
 
 	@Id @GeneratedValue(generator = "idApartamento")
 	private int id;
@@ -19,8 +17,8 @@ public class Apartamento {
 	private int vagas;
 
 	public Apartamento(){}
+
 	/**
-	 * 
 	 * @param bloco
 	 * @param numero
 	 * @param vagas
@@ -30,8 +28,6 @@ public class Apartamento {
 		this.numero = numero;
 		this.vagas = vagas;
 	}
-
-
 
 	/**
 	 * @return the id
@@ -48,14 +44,14 @@ public class Apartamento {
 	}
 
 	/**
-	 * @return the numero
+	 * @return the number
 	 */
 	public int getNumero() {
 		return numero;
 	}
 
 	/**
-	 * @param numero the numero to set
+	 * @param numero the number to set
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
@@ -88,8 +84,19 @@ public class Apartamento {
 	public void setVagas(int vagas) {
 		this.vagas = vagas;
 	}
-	
 
+	/**
+	 * @return String dos atributos do Apartamento
+	 */
+	@Override
+	public String toString() {
+		return "Bloco: " + bloco + ", Núm: " + numero;
+	}
+
+	/**
+	 * @param obj 
+	 * @return se o obj é igual em bloco e número
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -117,6 +124,4 @@ public class Apartamento {
 		}
 		return true;
 	}
-	
-	
 }
