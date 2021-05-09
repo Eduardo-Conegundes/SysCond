@@ -12,7 +12,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.MoradorViewController">
    <children>
-      <Label fx:id="lblId" layoutX="26.0" layoutY="26.0" text="ID:" />
       <Label fx:id="lblNome" layoutX="23.0" layoutY="56.0" text="Nome:" />
       <TextField fx:id="txfNome" layoutX="98.0" layoutY="52.0" />
       <Label fx:id="lblCpf" layoutX="22.0" layoutY="82.0" text="CPF:" />
@@ -26,7 +25,6 @@
       <ChoiceBox fx:id="chcAp" layoutX="394.0" layoutY="119.0" prefWidth="150.0" />
       <TableView fx:id="tableMorador" layoutX="24.0" layoutY="181.0" prefHeight="200.0" prefWidth="575.0">
          <columns>
-            <TableColumn fx:id="idTableMorador" prefWidth="94.0" text="ID" />
             <TableColumn fx:id="pessoaTableMorador" prefWidth="285.0" text="Pessoa" />
             <TableColumn fx:id="ApartamentoTableMorador" minWidth="6.0" prefWidth="195.0" text="Apartamento" />
          </columns>
@@ -40,6 +38,5 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <Label fx:id="txfId" layoutX="98.0" layoutY="25.0" />
    </children>
 </AnchorPane>

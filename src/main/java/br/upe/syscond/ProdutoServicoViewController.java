@@ -6,52 +6,47 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class EmpresaViewController implements Initializable{
-
-    @FXML
-    private Label lblId;
-
-    @FXML
-    private TextField txfId;
-
-    @FXML
-    private TextField txfCnpj;
-
-    @FXML
-    private TextField txfNome;
-
-    @FXML
-    private Label lblTel;
-
-    @FXML
-    private TextField txfTelefone;
+public class ProdutoServicoViewController implements Initializable{
 
     @FXML
     private Label lblNome;
 
     @FXML
-    private Label lblCnpj;
+    private TextField txfNomeProduto;
 
     @FXML
-    private TableView<?> tableEmpresa;
+    private Label lblCpf;
 
     @FXML
-    private TableColumn<?, ?> TableIdEmpresa;
+    private TextField txfCategoria;
 
     @FXML
-    private TableColumn<?, ?> TableCnpj;
+    private Label lblTel;
 
     @FXML
-    private TableColumn<?, ?> TableNome;
+    private TextField txfTel;
 
     @FXML
-    private TableColumn<?, ?> Tabletelefone;
+    private Label lblEmpresa;
+
+    @FXML
+    private ChoiceBox<?> chcEmpresa;
+
+    @FXML
+    private TableView<?> TableProdutoServicoView;
+
+    @FXML
+    private TableColumn<?, ?> TableProdServ;
+
+    @FXML
+    private TableColumn<?, ?> TableEmpresa;
 
     @FXML
     private Button btnSalvar;
@@ -63,25 +58,20 @@ public class EmpresaViewController implements Initializable{
     private Button btnEditar;
 
     @FXML
-    private Button btnListaProdServ;
+    private Button btnExcluir;
 
     @FXML
-    void EditarEmpresa(MouseEvent event) {
+    void editarMorador(MouseEvent event) {
 
     }
 
     @FXML
-    void ExcluirEmpresa(MouseEvent event) {
+    void excluirMorador(MouseEvent event) {
 
     }
 
     @FXML
-    void MostrarProdServ(MouseEvent event) {
-
-    }
-
-    @FXML
-    void salvarEmpresa(MouseEvent event) {
+    void salvarMorador(MouseEvent event) {
 
     }
 

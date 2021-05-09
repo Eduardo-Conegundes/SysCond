@@ -28,13 +28,6 @@ public class VisitanteViewController implements Initializable {
 	static InterfaceVisitanteController controlaVisitante = new VisitanteController();
 	static InterfaceApartamentoController controlaApartamento = new ApartamentoController();
 
-    
-	@FXML
-    private Label lblId;
-
-    @FXML
-    private TextField txfId;
-
     @FXML
     private Label lblCPF;
 
@@ -105,9 +98,7 @@ public class VisitanteViewController implements Initializable {
 
 	@FXML
 	void editarVisitante(MouseEvent event) {
-//		this.pessoaAtualiza = select.get(0).getPessoa();
 		this.select = tableVisitante.getSelectionModel().getSelectedItems();
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfNome.setText(select.get(0).getPessoa().getNome());
 		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
@@ -149,7 +140,6 @@ public class VisitanteViewController implements Initializable {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
-		idTableVisita.setCellValueFactory(new PropertyValueFactory<>("id"));
 		pessoaTableVisita.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
 		colunaAp.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
@@ -159,7 +149,6 @@ public class VisitanteViewController implements Initializable {
 	private void limpaTela() {
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
-		this.txfId.setText("");
 		this.txfNome.setText(null);
 		this.txfTel.setText(null);
 		this.chcAp.setItems(FXCollections.observableArrayList());
