@@ -10,11 +10,16 @@ import br.upe.syscond.models.Morador;
 
 public class MoradorDAO implements InterfaceMorador{
 
-	private static MoradorDAO instance;
-	protected EntityManager em;
     /**
      * 
-     * @return instance
+     * @variavel --> Variavel gobal instance do tipo MoradorDAO e variavel em do tipo EntityManager.
+     */
+	private static MoradorDAO instance;
+	protected EntityManager em;
+
+    /**
+     * 
+     * @return instance --> Retorno do estanciamento do MoradorDAO.
      */
 	public static MoradorDAO getInstance() {
 		if (instance == null) {
@@ -26,9 +31,10 @@ public class MoradorDAO implements InterfaceMorador{
 	private MoradorDAO() {
 		em = getEntityManager();
 	}
+	
     /**
      * 
-     * @return EntityManager
+     * @return instance --> Retorno do estanciamento do MoradorDAO.
      */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
@@ -37,9 +43,11 @@ public class MoradorDAO implements InterfaceMorador{
 		}
 		return em;
 	}
+
 	/**
-	 * param Apartamento
-	 * @return Apartamento
+	 * @param --> O metodo salvar recebe um parametro morador-com todos os atributos internalizados- do tipo morador para salvar no banco de dados.
+	 * @return--> Caso a operação de salvar seja bem sucedida, ela retona um morador salvo no banco de dados.
+	 * @throws--> se apoeração  de salvar falhar, sera lançada uma Exception.
 	 */
 	public Morador salvar(Morador morador) throws Exception {
 		try {
@@ -53,9 +61,11 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eSalvar;
 		}
 	}
+	
 	/**
-	 * param Morador
-	 * @return Morador
+	 * @param --> O metodo buscar recebe um parametro morador -com todos os atributos internalizados- do tipo morador para realizar uma busca no banco de dados do morador solicitado.
+	 * @return--> Caso a operação  de Buscar seja bem sucedida, ela retona o morador deseja que esta no Banco de dados. 
+	 * @throws Exception--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public Morador buscar(Morador morador) throws Exception {
 		try {
@@ -67,9 +77,11 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eBuscar;
 		}
 	}
+
 	/**
-	 * param Morador
-	 * @return Morador
+	 * @param --> O metodo atualizar recebe um parametro morador-com um ou diversos atributos internalizados- do tipo morador para atualizar o morador antigo no banco de dados.
+	 * @return--> Caso a operação de atualizar seja bem sucedida, ela retona o morador antigo com as informações atualizadas no banco de dados.
+	 * @throws--> se apoeração  de atualizar falhar, sera lançada uma Exception.
 	 */
 	public Morador atualizar(Morador morador) throws Exception {
 		
@@ -83,9 +95,11 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eAtualizar;
 		}
 	}
-    /**
-     * @param integer
-	 * @return boolean
+
+	/**
+	 * @param --> O metodo deletar recebe um parametro m-com todos os atibutos atributos internalizados- do tipo morador para exclusão do morador solicitado no banco de dados.
+	 * @return--> Caso a operação de deletar seja bem sucedida, ela retona o valor boleano TRUE.
+	 * @throws--> se a operação  de deletar falhar, sera lançada uma Exception.
 	 */
 	public void deletar(Morador m) throws Exception {
 		try {
@@ -97,8 +111,10 @@ public class MoradorDAO implements InterfaceMorador{
 			throw eDeletar;
 		}
 	}
-    /**
-	 * @return Lista de Morador[]
+	
+	/**
+	 * @return--> Caso a operação de listar seja bem sucedida, ela retona uma lista com todos os moradores salvos no banco de dados.
+	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Morador> listar() throws Exception {
