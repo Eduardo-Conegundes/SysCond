@@ -41,15 +41,15 @@ public class FuncionarioDAO implements InterfaceFuncionario {
      * @param integer
 	 * @return Funcionario
 	 */    
-    public Funcionario buscar(int id) throws Exception {
-        Funcionario f = null;
+    public Funcionario buscar(Funcionario funcionario) throws Exception {
         try {
-            em.getTransaction().begin();
-            f = em.find(Funcionario.class, id);
-            em.getTransaction().commit();
-            return f;
+        	return (Funcionario) em.createQuery("From Funcionario f where f.pessoa = :pessoa and f.cargo = :cargo and f.salario = :salario and f.interno_externo = :interno_externo")
+					.setParameter("pessoa", funcionario.getPessoa())
+					.setParameter("cargo", funcionario.getCargo())
+					.setParameter("salario", funcionario.getSalario())
+					.setParameter("interno_externo", funcionario.getInterno_externo())
+					.getSingleResult();
         } catch (Exception eAtualizar) {
-            em.getTransaction().rollback();
             throw eAtualizar;
         }
     }
@@ -61,8 +61,9 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         try {
             em.getTransaction().begin();
             em.persist(funcionario);
+            em.flush();
             em.getTransaction().commit();
-            return this.buscar(funcionario.getId());
+            return funcionario;
         } catch (Exception eSalvar) {
             em.getTransaction().rollback();
             throw eSalvar;
@@ -76,8 +77,9 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         try {
             em.getTransaction().begin();
             em.merge(funcionario);
+            em.flush();
             em.getTransaction().commit();
-            return this.buscar(funcionario.getId());
+            return funcionario;
         } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
             throw eAtualizar;
@@ -87,12 +89,10 @@ public class FuncionarioDAO implements InterfaceFuncionario {
      * @param integer
 	 * @return boolean
 	 */
-    public void deletar(int id) throws Exception {
-        Funcionario f = null;
+    public void deletar(Funcionario funcionario) throws Exception {
         try {
             em.getTransaction().begin();
-            f = em.find(Funcionario.class, id);
-            em.remove(f);
+            em.remove(funcionario);
             em.getTransaction().commit();
         } catch (Exception eDeletar) {
             em.getTransaction().rollback();

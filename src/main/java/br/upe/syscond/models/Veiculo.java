@@ -3,6 +3,7 @@ package br.upe.syscond.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ public class Veiculo implements Serializable {
     private int id;
     @ManyToOne
     private Apartamento apartamento;
+    @Column(nullable = false)
     private String placa;
     
     public Veiculo() {}
@@ -28,8 +30,6 @@ public class Veiculo implements Serializable {
         this.apartamento = apartamento;
     }
     
-    
-
 	/**
 	 * @return the id
 	 */

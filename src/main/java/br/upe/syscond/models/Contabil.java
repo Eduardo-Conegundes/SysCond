@@ -12,7 +12,7 @@ public class Contabil {
 	@Id @GeneratedValue(generator = "idContabil")
 	private int id;
 	@OneToMany
-	private List<Contas> Contas;
+	private List<Contas> contas;
 	private float saldo;
 	
 	public Contabil() {}
@@ -22,7 +22,7 @@ public class Contabil {
 	 * @param saldo
 	 */
 	public Contabil(List<Contas> contas, float saldo) {
-		this.Contas = contas;
+		this.contas = contas;
 		this.saldo = saldo;
 	}
 	/**
@@ -41,13 +41,13 @@ public class Contabil {
 	 * @return the contas
 	 */
 	public List<Contas> getContas() {
-		return Contas;
+		return contas;
 	}
 	/**
 	 * @param contas the contas to set
 	 */
 	public void setContas(List<Contas> contas) {
-		Contas = contas;
+		this.contas = contas;
 	}
 	/**
 	 * @return the saldo
@@ -60,6 +60,10 @@ public class Contabil {
 	 */
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
+	}
+	
+	public String getContasString() {
+		return this.contas.toString();
 	}
 	
 	

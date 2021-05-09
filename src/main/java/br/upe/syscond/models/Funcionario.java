@@ -3,6 +3,8 @@ package br.upe.syscond.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,10 +15,15 @@ import javax.persistence.OneToOne;
 public class Funcionario implements Serializable {
     @Id @GeneratedValue(generator = "idFuncionario") 
     private int id;
-    @OneToOne
+    @OneToOne(
+    	    orphanRemoval = true,
+    	    cascade = CascadeType.ALL)
     private Pessoa pessoa;
+    @Column(nullable = false)
     private String interno_externo;
+    @Column(nullable = false)
     private String cargo;
+    @Column(nullable = false)
     private float salario;
     
     public Funcionario() {}
