@@ -1,7 +1,7 @@
 package br.upe.syscond.controllers;
 
 	/**
-	*@import Importação das bibliotecas necessárias
+	*@import --> Importação das bibliotecas necessárias
 	*/
 import java.util.List;
 import br.upe.syscond.dao.ApartamentoDAO;
@@ -12,14 +12,14 @@ import br.upe.syscond.models.Apartamento;
 public class ApartamentoController implements InterfaceApartamentoController {
 	
 	/**
-	*@criação de variavel statica do tipo apartamento, que recebe um apartamentoDAO
+	*@Variavel --> variavel statica global do tipo apartamento, que recebe um apartamentoDAO
 	*/
 	static InterfaceApartamento aptDAO = ApartamentoDAO.getInstance();
 	
 	/**
-	 * @param --> O metodo recebe um parametro apartamento-com diversos atributos internalizados- do tipo apartamento para salvar no banco de dados.
-	 * @return--> Caso a operação de salva seja bem sucedida, ela retona um apartamento salvo no banco de dados.
-	 * @throws--> se apoeração  de salva falhar, sera lançada uma Exception.
+	 * @param --> O metodo criar recebe um parametro apartamento-com diversos atributos internalizados- do tipo apartamento para salvar no banco de dados.
+	 * @return--> Caso a operação de criar seja bem sucedida, ela retona um apartamento salvo no banco de dados.
+	 * @throws--> se apoeração  de criar falhar, sera lançada uma Exception.
 	 */
 	public Apartamento criar(Apartamento apartamento) throws Exception{
 		try {
@@ -30,7 +30,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	}
 	
 	/**
-	 * @return--> Caso a operação de listar seja bem sucedida, ela retona uma lista com todos os blocos de apartamento salvos no banco de dados.
+	 * @return--> Caso a operação de listar seja bem sucedida, ela retona uma lista com todos os apartamento salvos no banco de dados.
 	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public List<Apartamento> listar() throws Exception{
@@ -73,7 +73,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	/**
 	 * @param --> O metodo atualizar recebe um parametro novo-com um ou diversos atributos internalizados- do tipo apartamento para atualizar o apartamento antigo no banco de dados.
 	 * @return--> Caso a operação de atualizar seja bem sucedida, ela retona o apartamento antigo com as informações atualizadas no banco de dados.
-	 * @throws--> se apoeração  de salva falhar, sera lançada uma Exception.
+	 * @throws--> se apoeração  de atualizar falhar, sera lançada uma Exception.
 	 */
 	public Apartamento atualizar(Apartamento novo) throws Exception{
 		try {

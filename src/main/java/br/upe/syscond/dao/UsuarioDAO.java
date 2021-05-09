@@ -1,20 +1,26 @@
 package br.upe.syscond.dao;
 
+	/**
+	*@import --> Importação das bibliotecas necessárias
+	*/
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import br.upe.syscond.models.Usuario;
 
 public class UsuarioDAO implements InterfaceUsuario {
 
-	private static UsuarioDAO instance;
-	protected EntityManager em;
     /**
      * 
-     * @return instance
+     * @variavel --> Variavel gobal instance do tipo UsuarioDAO e variavel em do tipo EntityManager..
+     */
+	private static UsuarioDAO instance;
+	protected EntityManager em;
+	
+    /**
+     * 
+     * @return instance --> Retorno do estanciamento do UsuarioDAO.
      */
 	public static UsuarioDAO getInstance() {
 		if (instance == null) {
@@ -26,9 +32,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 	private UsuarioDAO() {
 		em = getEntityManager();
 	}
+	
     /**
      * 
-     * @return EntityManager
+     * @return EntityManager--> retorno de qualquer identidade de entidade persistente.
      */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
@@ -38,10 +45,12 @@ public class UsuarioDAO implements InterfaceUsuario {
 		}
 		return em;
 	}
-    /**
-     * @param integer
-	 * @return Usuario
-	 */
+	
+	/**
+	 * @param --> O metodo buscar recebe um parametro id do tipo integer para realizar uma busca no banco de dados do apartamento desejado.
+	 * @return--> Caso a operação  de Buscar seja bem sucedida, ela retona o usuario relacionado ao id digitado que devera estar no Banco de dados. 
+	 * @throws Exception--> se apoeração de busca falhar, sera lançada uma Exception.
+	 */	
 	public Usuario buscar(int id) throws Exception {
 		try {
 			em.getTransaction().begin();
@@ -54,6 +63,11 @@ public class UsuarioDAO implements InterfaceUsuario {
 		}
 	}
 	
+	/**
+	 * @param --> O metodo buscar recebe um parametro user -com todos os atributos internalizados- do tipo usuario para realizar uma busca no banco de dados do usuario desejado.
+	 * @return--> Caso a operação  de Buscar seja bem sucedida, ela retona o usuario solicitado que esta no Banco de dados. 
+	 * @throws Exception--> se apoeração de buscar falhar, sera lançada uma Exception.
+	 */	
 	public Usuario buscar(Usuario user) throws Exception {
 		try {
 			return (Usuario) em.createQuery("FROM Usuario u WHERE u.email = :email and u.senha = :senha")
@@ -65,9 +79,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 		}
 		
 	}
-    /**
-     * @param Usuario
-	 * @return Usuario
+	/**
+	 * @param --> O metodo salvar recebe um parametro user-com todos os atributos internalizados- do tipo Usuario para salvar no banco de dados.
+	 * @return--> Caso a operação de salva seja bem sucedida, ela retona um usuario novo salvo no banco de dados.
+	 * @throws--> se apoeração  de salva falhar, sera lançada uma Exception.
 	 */
 	public Usuario salvar(Usuario user) throws Exception {
 		try {
@@ -81,9 +96,11 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eSalvar;
 		}
 	}
-    /**
-     * @param Usuario
-	 * @return Usuario
+	
+	/**
+	 * @param --> O metodo atualizar recebe um parametro user-com um ou diversos atributos internalizados- do tipo Usuario para atualizar o Usuario antigo no banco de dados.
+	 * @return--> Caso a operação de atualizar seja bem sucedida, ela retona o Usuario antigo com as informações atualizadas no banco de dados.
+	 * @throws--> se apoeração  de atualizar falhar, sera lançada uma Exception.
 	 */
 	public Usuario atualizar(Usuario user) throws Exception {
 		try {
@@ -97,9 +114,11 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eAtualizar;
 		}
 	}
-    /**
-     * @param integer
-	 * @return boolean
+
+	/**
+	 * @param --> O metodo deletar recebe um parametro user-com todos os atibutos internalizados- do tipo Usuario para exclusão do usuario exitente no banco de dados.
+	 * @return--> Caso a operação de deletar seja bem sucedida, ela retona o valor boleano TRUE.
+	 * @throws--> se apoeração  de deletar falhar, sera lançada uma Exception.
 	 */
 	public void deletar(Usuario user) throws Exception {
 		try {
@@ -111,8 +130,10 @@ public class UsuarioDAO implements InterfaceUsuario {
 			throw eDeletar;
 		}
 	}
-    /**
-	 * @return Lista de Usuario[]
+
+	/**
+	 * @return--> Caso a operação de listar seja bem sucedida, ela retona uma lista com todos os uuarios salvos no banco de dados.
+	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listar() throws Exception{
