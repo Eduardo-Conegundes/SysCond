@@ -10,25 +10,25 @@ public class Alerts {
 	
 	static public void alertaErro(String erro) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Error Dialog");
+		alert.setTitle("Erro :(");
 		alert.setHeaderText(erro);
-		alert.setContentText("Ooops, there was an error!");
+		alert.setContentText("Infelizmente, algo de errado aconteceu!");
 		alert.showAndWait();
 	}
 	
 	static public void alertaSucesso(String msg) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information Dialog");
+		alert.setTitle("Sucesso !! :)");
 		alert.setHeaderText(msg);
-		alert.setContentText("I have a great message for you!");
+		alert.setContentText("Deu tudo certo com a sua operação!");
 		alert.showAndWait();
 	}
 	
 	static public boolean alertaDeletar() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Look, a Confirmation Dialog");
-		alert.setContentText("Are you ok with this?");
+		alert.setTitle("Confirmação (?)");
+		alert.setHeaderText("Pense bem nessa operação que você está fazendo.");
+		alert.setContentText("Você tem certeza disso?");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
 			return true;
