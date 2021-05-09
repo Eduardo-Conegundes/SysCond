@@ -1,5 +1,6 @@
 package br.upe.syscond.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,8 +46,9 @@ public class ContasDAO implements InterfaceContas{
     	try {
     		em.getTransaction().begin();
     		em.persist(contas);
+    		em.flush();
     		em.getTransaction().commit();
-    		return this.buscar(contas.getId());
+    		return contas;
     	}catch(Exception eSalvar) {
     		em.getTransaction().rollback();
     		throw eSalvar;
@@ -60,8 +62,9 @@ public class ContasDAO implements InterfaceContas{
     	try {
     		em.getTransaction().begin();
     		em.merge(contas);
+    		em.flush();
     		em.getTransaction().commit();
-    		return this.buscar(contas.getId());
+    		return contas;
     	}catch(Exception eAtualizar) {
     		em.getTransaction().rollback();
     		throw eAtualizar;
@@ -71,12 +74,10 @@ public class ContasDAO implements InterfaceContas{
      * @param integer
 	 * @return boolean
 	 */   
-    public void deletar(int id) throws Exception{
-    	Contas p = null;
+    public void deletar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
-    		p = em.find(Contas.class, id);
-    		em.remove(p);
+    		em.remove(contas);
     		em.getTransaction().commit();
     	} catch(Exception eDeletar) {
     		em.getTransaction().rollback();
@@ -87,18 +88,41 @@ public class ContasDAO implements InterfaceContas{
      * @param integer
 	 * @return Contas
 	 */    
-    public Contas buscar(int id) throws Exception {
-    	Contas p = null;
+    public Contas buscar(Contas conta) throws Exception {
     	try {
-    		em.getTransaction().begin();
-    		p = em.find(Contas.class, id);
-    		em.getTransaction().commit();
-    		return p;
+    		return (Contas) em.createQuery("From Contas c where c.identificador =:identificador and "
+    				+ "c.pagador =:pagador and "
+    				+ "c.beneficiario =:beneficiario and "
+    				+ "c.valor =:valor and "
+    				+ "c.dataEmissao =:dataEmissao and "
+    				+ "c.dataVencimento =:dataVencimento and "
+    				+ "c.AReceber =:AReceber and "
+    				+ "c.statusPaga =:statusPaga")
+    		.setParameter("AReceber", conta.getAReceber())
+    		.setParameter("statusPaga", conta.getStatusPaga())
+    		.setParameter("dataVencimento", conta.getDataVencimento())
+    		.setParameter("dataEmissao", conta.getDataEmissao())
+    		.setParameter("valor", conta.getValor())
+    		.setParameter("beneficiario", conta.getBeneficiario())
+    		.setParameter("pagador", conta.getPagador())
+    		.setParameter("identificador", conta.getIdentificador())
+    		.getSingleResult();
     	} catch(Exception eBuscar) {
-    		em.getTransaction().rollback();
     		throw eBuscar;
     	}
     }
+    
+	@SuppressWarnings("unchecked")
+	public List<Contas> listarPorData(LocalDate data) throws Exception{
+    	try {
+			return em.createQuery("from Contas c where c.dataVencimento =:vencimento")
+					.setParameter("vencimento", data)
+					.getResultList();
+		} catch (Exception e) {
+			throw e;
+		}
+    }
+    
     /**
 	 * @return Lista de Contas[]
 	 */    
@@ -110,5 +134,4 @@ public class ContasDAO implements InterfaceContas{
 			throw eListar;
 		}
     }
-    
 }

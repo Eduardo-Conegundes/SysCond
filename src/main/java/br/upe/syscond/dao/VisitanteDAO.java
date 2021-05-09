@@ -70,7 +70,6 @@ public class VisitanteDAO implements InterfaceVisitante {
 			em.getTransaction().rollback();
 			throw eSalvar;
 		}
-
 	}
 
     /**
