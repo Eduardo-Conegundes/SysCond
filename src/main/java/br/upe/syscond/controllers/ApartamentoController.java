@@ -47,14 +47,21 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @return --> Caso a operação  de listar seja bem sucedida, ela retona uma lista dos apartamentos no Banco de dados relacionado ao bloco desejado.
 	 * @throws Exception --> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
-	@Override
-	public List<Apartamento> listar(String bloco) throws Exception {
+	public List<Apartamento> listarPorBlocos(String bloco) throws Exception {
 		try {
 			return aptDAO.listarPorBloco(bloco);
 		} catch (Exception eListarBloco) {
 			throw eListarBloco;
 		}
 	}
+	
+	public List<Apartamento> listarBlocos() throws Exception {
+        try {
+            return aptDAO.listarBlocos();
+        } catch (Exception eListarBloco) {
+            throw eListarBloco;
+        }
+    }
 	
 	/**
 	 * @param --> O metodo buscar recebe um parametro pesquisar -com diversos atributos internalizados- do tipo apartamento para realizar uma busca no banco de dados do apartamento desejado.
@@ -69,7 +76,6 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 	}
 	
-
 	/**
 	 * @param --> O metodo atualizar recebe um parametro novo-com um ou diversos atributos internalizados- do tipo apartamento para atualizar o apartamento antigo no banco de dados.
 	 * @return--> Caso a operação de atualizar seja bem sucedida, ela retona o apartamento antigo com as informações atualizadas no banco de dados.
@@ -101,8 +107,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @return --> Caso a operação  de listar seja bem sucedida, ela retona uma lista dos apartamentos no Banco de dados relacionado ao numero desejado.
 	 * @throws Exception --> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
-	@Override
-	public List<Apartamento> listarNumeros(Integer numero) throws Exception {
+	public List<Apartamento> listarPorNumeros(Integer numero) throws Exception {
 		try {
 			return aptDAO.listarPorNumero(numero);
 		} catch (Exception eListarNumero) {
@@ -122,5 +127,4 @@ public class ApartamentoController implements InterfaceApartamentoController {
 		}
 	}
 
-	
 }

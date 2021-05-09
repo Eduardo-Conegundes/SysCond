@@ -1,10 +1,11 @@
 package br.upe.syscond.dao;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+
 import br.upe.syscond.models.Apartamento;
 
 public class ApartamentoDAO implements InterfaceApartamento {
@@ -155,4 +156,23 @@ public class ApartamentoDAO implements InterfaceApartamento {
 			throw eListarNumero;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+    public List<Apartamento> listarBlocos() throws Exception {
+        try {
+            return em.createQuery("select bloco from Apartamento").getResultList();
+        } catch (Exception eListarNumero) {
+            throw eListarNumero;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Apartamento> listarNumeros() throws Exception {
+        try {
+            return (List<Apartamento>) em.createQuery("select numero from Apartamento").getResultList();
+        } catch (Exception eListarNumero) {
+            throw eListarNumero;
+        }
+    }
+
 }

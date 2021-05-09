@@ -13,6 +13,6 @@ public interface InterfaceApartamento {
     Apartamento atualizar(Apartamento a) throws Exception;
     void deletar(Apartamento a) throws Exception;
 	List<Apartamento> listarPorNumero(Integer numero) throws Exception;
-	List<Apartamento> listarBlocos() throws Exception;
 	List<Apartamento> listarNumeros() throws Exception;
+	List<Apartamento> listarBlocos() throws Exception;
 }

@@ -43,9 +43,9 @@ public interface InterfaceApartamentoController {
 	 */
 	public void deletar(Apartamento apartamento) throws Exception;
 
-	public List<Apartamento> listarBlocos(String bloco) throws Exception;
+	public List<Apartamento> listarPorBlocos(String bloco) throws Exception;
 
-	public List<Apartamento> listarNumeros(Integer numero) throws Exception;
+	public List<Apartamento> listarPorNumeros(Integer numero) throws Exception;
 
 	public List<Apartamento> listarBlocos() throws Exception;
 
