@@ -11,19 +11,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ApartamentoViewController">
    <children>
-      <Label fx:id="lblId" layoutX="64.0" layoutY="150.0" text="ID:" />
-      <TextField fx:id="txfBloco" layoutX="119.0" layoutY="176.0" />
-      <TextField fx:id="txfNumero" layoutX="119.0" layoutY="205.0" />
-      <Label fx:id="lblTel" layoutX="62.0" layoutY="238.0" text="Vagas:" />
-      <TextField fx:id="txfVagas" layoutX="119.0" layoutY="234.0" />
-      <Label fx:id="lblNumeroAp" layoutX="61.0" layoutY="210.0" text="Número:" />
-      <Label fx:id="lblBlocoAp" layoutX="62.0" layoutY="180.0" text="Bloco:" />
-      <TableView fx:id="tableApartamento" layoutX="307.0" layoutY="122.0" prefHeight="200.0" prefWidth="302.0">
+      <TextField fx:id="txfBloco" layoutX="96.0" layoutY="122.0" />
+      <TextField fx:id="txfNumero" layoutX="96.0" layoutY="151.0" />
+      <Label fx:id="lblTel" layoutX="33.0" layoutY="184.0" text="Vagas:" />
+      <TextField fx:id="txfVagas" layoutX="96.0" layoutY="180.0" />
+      <Label fx:id="lblNumeroAp" layoutX="22.0" layoutY="156.0" text="Número:" />
+      <Label fx:id="lblBlocoAp" layoutX="39.0" layoutY="126.0" text="Bloco:" />
+      <TableView fx:id="tableApartamento" layoutX="266.0" layoutY="122.0" prefHeight="200.0" prefWidth="343.0">
          <columns>
-            <TableColumn fx:id="idTableApartamento" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="blocoTableApartamento" prefWidth="75.0" text="Bloco" />
-            <TableColumn fx:id="numeroTableApartamento" prefWidth="75.0" text="Número" />
-            <TableColumn fx:id="vagasTableApartamento" prefWidth="75.0" text="Qª de vagas" />
+            <TableColumn fx:id="idTableApartamento" prefWidth="55.0" text="ID" />
+            <TableColumn fx:id="blocoTableApartamento" prefWidth="95.0" text="Bloco" />
+            <TableColumn fx:id="numeroTableApartamento" prefWidth="102.0" text="Número" />
+            <TableColumn fx:id="vagasTableApartamento" prefWidth="90.0" text="Qª de vagas" />
          </columns>
       </TableView>
       <Button fx:id="btnSalvar" layoutX="38.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#salvarApartamento" text="Salvar" />
@@ -35,6 +34,5 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <Label fx:id="txfId" layoutX="119.0" layoutY="150.0" />
    </children>
 </AnchorPane>

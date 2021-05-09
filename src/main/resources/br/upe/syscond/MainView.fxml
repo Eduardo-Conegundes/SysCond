@@ -7,20 +7,23 @@
 
 <AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.MainViewController">
    <children>
-      <Button fx:id="VisitanteMain" layoutX="31.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#switchTelaVisitante" prefHeight="50.0" prefWidth="125.0" text="Visitante" />
-      <Button fx:id="sairMain" alignment="CENTER" contentDisplay="CENTER" layoutX="669.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#switchTelaLogin" prefHeight="35.0" prefWidth="100.0" text="Sair" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="sairMain" alignment="CENTER" contentDisplay="CENTER" layoutX="643.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#switchTelaLogin" prefHeight="35.0" prefWidth="100.0" text="Sair" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font></Button>
-      <Button fx:id="MoradorMain" layoutX="31.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#switchTelaMorador" prefHeight="50.0" prefWidth="125.0" text="Morador" textAlignment="CENTER" />
-      <Button fx:id="ApartamentoMain" layoutX="31.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" prefHeight="50.0" prefWidth="125.0" text="Apartamento" />
-      <Button fx:id="VeiculoMain1" layoutX="200.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Veículo" />
-      <Button fx:id="UsuarioMain11" layoutX="200.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#switchTelaUsuario" prefHeight="50.0" prefWidth="125.0" text="Usuário" />
-      <Button fx:id="FuncionarioMain" layoutX="31.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#switchTelaFuncionario" prefHeight="50.0" prefWidth="125.0" text="Funcionário" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="36.0" text="SysCond" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="76.0" text="SysCond" textAlignment="CENTER">
          <font>
             <Font name="Verdana" size="35.0" />
          </font>
       </Label>
+      <Button fx:id="VisitanteMain" layoutX="253.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#switchTelaVisitante" prefHeight="50.0" prefWidth="125.0" text="Visitante" />
+      <Button fx:id="MoradorMain" layoutX="253.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#switchTelaMorador" prefHeight="50.0" prefWidth="125.0" text="Morador" textAlignment="CENTER" />
+      <Button fx:id="ApartamentoMain" layoutX="253.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" prefHeight="50.0" prefWidth="125.0" text="Apartamento" />
+      <Button fx:id="VeiculoMain1" layoutX="422.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Produto / Serviço" />
+      <Button fx:id="UsuarioMain11" layoutX="422.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#switchTelaUsuario" prefHeight="50.0" prefWidth="125.0" text="Usuário" />
+      <Button fx:id="FuncionarioMain" layoutX="253.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#switchTelaFuncionario" prefHeight="50.0" prefWidth="125.0" text="Funcionário" />
+      <Button fx:id="VeiculoMain11" layoutX="422.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Veículo" />
+      <Button fx:id="VeiculoMain12" layoutX="422.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Empresa" />
+      <Button fx:id="ApartamentoMain1" layoutX="253.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" prefHeight="50.0" prefWidth="125.0" text="Contas" />
    </children>
 </AnchorPane>

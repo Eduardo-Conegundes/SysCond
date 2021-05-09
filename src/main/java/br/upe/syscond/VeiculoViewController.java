@@ -26,16 +26,9 @@ import javafx.scene.input.MouseEvent;
 
 public class VeiculoViewController implements Initializable {
 
-
 	static InterfaceVeiculoController controlaVeiculo = new VeiculoController();
 	static InterfaceApartamentoController controlaAp = new ApartamentoController();
 	private ObservableList<Veiculo> select;
-
-	@FXML
-	private Label lblId;
-
-	@FXML
-	private Label txfId;
 
 	@FXML
 	private Label lblPlaca;
@@ -88,7 +81,6 @@ public class VeiculoViewController implements Initializable {
 	@FXML
 	void editarVeiculo(MouseEvent event) {
 		this.select = tableVeiculo.getSelectionModel().getSelectedItems();
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfPlaca.setText(select.get(0).getPlaca());
 	}
 
@@ -119,7 +111,6 @@ public class VeiculoViewController implements Initializable {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
-		idTableVeiculo.setCellValueFactory(new PropertyValueFactory<>("id"));
 		placaTableVeiculo.setCellValueFactory(new PropertyValueFactory<>("placa"));
 		colunaAp.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
@@ -136,7 +127,6 @@ public class VeiculoViewController implements Initializable {
 	}
 
 	private void limpaTela() {
-		this.txfId.setText("");
 		this.txfPlaca.setText("");
 	}
 
@@ -150,11 +140,11 @@ public class VeiculoViewController implements Initializable {
 	}
 
 	void salvar() {
-		String id = this.txfId.getText();
+		Integer id = this.select.get(0).getId();
 		String placa = this.txfPlaca.getText();
 		Veiculo veiculo = new Veiculo(placa, this.chcAp.getSelectionModel().getSelectedItem());
-		if(!id.equals("")) {
-			veiculo.setId(Integer.parseInt(id));
+		if(!id.equals(0)) {
+			veiculo.setId(id);
 			try {
 				controlaVeiculo.atualizar(veiculo);
 				Alerts.alertaSucesso("Atualizado com sucesso!");
