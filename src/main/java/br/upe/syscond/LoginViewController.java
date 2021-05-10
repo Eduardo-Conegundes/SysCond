@@ -35,7 +35,7 @@ public class LoginViewController {
 			App.setRoot("MainView");		
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.lbl1.setText("User/Senha invalido");
+			this.lbl1.setText("Login / Senha invalido");
 		}
     	
     }

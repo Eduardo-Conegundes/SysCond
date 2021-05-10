@@ -34,12 +34,6 @@ public class MoradorViewController implements Initializable{
 	private ObservableList<Morador> select;
 
 	@FXML
-	private Label lblId;
-
-	@FXML
-	private Label txfId;
-
-	@FXML
 	private Label lblNome;
 
 	@FXML
@@ -79,9 +73,6 @@ public class MoradorViewController implements Initializable{
 	private TableView<Morador> tableMorador;
 
 	@FXML
-	private TableColumn<Morador, Integer> idTableMorador;
-
-	@FXML
 	private TableColumn<Morador, String> pessoaTableMorador;
 
 	@FXML
@@ -98,24 +89,39 @@ public class MoradorViewController implements Initializable{
 
 	@FXML
 	private Button btnExcluir;
-
+	
+	/**
+	 * botão salvar
+	 * quando o usuario aperta, e chamado metodo salvar
+	 * @param event
+	 */
 	@FXML
 	void salvarMorador(MouseEvent event) {
-		salvar();
-		limpaTela();
-		atualizaTabela();
+		if(this.select == null) {
+			salvar(0);
+		}else {
+			salvar(this.select.get(0).getId());
+		}
 	}
-
+	/**
+	 * botão editar
+	 * coloca todos os dados da opcao selecionada na tela
+	 * @param event
+	 */
 	@FXML
 	void editarMorador(MouseEvent event) {
 		this.select = tableMorador.getSelectionModel().getSelectedItems();
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfNome.setText(select.get(0).getPessoa().getNome());
 		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
+		this.chcAp.setValue(this.select.get(0).getApartamento());
+		
 	}
-
+	/**
+	 * metodo ao clicar no botao deletar
+	 * @param event
+	 */
 	@FXML
 	void excluirMorador(MouseEvent event) {
 		this.select = tableMorador.getSelectionModel().getSelectedItems();
@@ -124,8 +130,11 @@ public class MoradorViewController implements Initializable{
 		atualizaTabela();
 	}
 
-
-	void salvar() {
+	/**
+	 * metodo chamado ao apertar o botão salvar
+	 * @param id
+	 */
+	void salvar(int id) {
 		Morador morador = new Morador(
 				new Pessoa(this.txfNome.getText(), 
 						this.txfCPF.getText(), 
@@ -133,15 +142,16 @@ public class MoradorViewController implements Initializable{
 						this.txfEmail.getText()), 
 				this.chcAp.getSelectionModel().getSelectedItem()
 				);
-
-		String id = this.txfId.getText();
-
+		
+		
 		//caso atualizar
-		if(!id.equals("")) {
-			morador.setId(Integer.parseInt(id));
+		if(!(id == 0)) {
+			morador.setId(id);
 			try {
 				controlaMorador.atualizar(morador);
 				Alerts.alertaSucesso("Atualizado com Sucesso!");
+				limpaTela();
+				initialize(null, null);
 			} catch (Exception e) {
 				e.printStackTrace();
 				Alerts.alertaErro(e.getMessage());
@@ -150,15 +160,18 @@ public class MoradorViewController implements Initializable{
 			try {
 				controlaMorador.criar(morador);
 				Alerts.alertaSucesso("Salvo com Sucesso!");
+				limpaTela();
+				initialize(null, null);
 			} catch (Exception e) {
 				Alerts.alertaErro(e.getMessage());
-			}			
+			}	
 		}
-		limpaTela();
-		atualizaTabela();
-
 	}
-
+	
+	/**
+	 * encaminha o usuario a tela principal
+	 * @param event
+	 */
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -169,32 +182,42 @@ public class MoradorViewController implements Initializable{
 
 	}
 
+	/**
+	 * metodo que inicia ao chamar a tela
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		limpaTela();
-		this.idTableMorador.setCellValueFactory(new PropertyValueFactory<>("id"));
 		this.pessoaTableMorador.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
 		this.ApartamentoTableMorador.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * caso o usuario confirme o alerta, a opcão escolhida será deletada
+	 */
 	private void deletar() {
 		try {
-			controlaMorador.deletar(this.select.get(0));
-			Alerts.alertaSucesso("Deletado com Sucesso!");
+			if(Alerts.alertaDeletar()) {
+				controlaMorador.deletar(this.select.get(0));
+				Alerts.alertaSucesso("Deletado com Sucesso!");				
+			}
 		} catch (Exception e) {
 			Alerts.alertaErro(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * limpa todos os textfild da tela
+	 */
 	private void limpaTela() {
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
-		this.txfId.setText("");
 		this.txfNome.setText(null);
 		this.txfTel.setText(null);
-		this.chcAp.setItems(FXCollections.observableArrayList());
 	}
-
+	
+	/**
+	 * busca da base e seta os valores na tabela
+	 */
 	private void atualizaTabela() {
 		try {
 			this.tableMorador.setItems(FXCollections.observableArrayList(controlaMorador.listar()));
