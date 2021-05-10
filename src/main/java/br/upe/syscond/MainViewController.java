@@ -103,5 +103,14 @@ public class MainViewController {
 			e.printStackTrace();
 		}
     }
+    
+    @FXML
+    void switchTelaContabil(MouseEvent event) {
+    	try {
+    		App.setRoot("ContabilView");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    }
 
 }

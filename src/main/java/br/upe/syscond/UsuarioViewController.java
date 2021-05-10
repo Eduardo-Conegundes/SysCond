@@ -133,8 +133,8 @@ public class UsuarioViewController implements Initializable{
 	}
 
 	private void limpaTela() {
-		this.txfEmail.setText("");
-		this.txfSenha.setText("");
+		this.txfEmail.setText(null);
+		this.txfSenha.setText(null);
 		this.txfId.setText("");
 	}
 

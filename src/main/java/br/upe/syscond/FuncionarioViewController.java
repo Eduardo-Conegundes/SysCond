@@ -9,7 +9,6 @@ import br.upe.syscond.controllers.InterfaceFuncionarioController;
 import br.upe.syscond.controllers.InterfacePessoaController;
 import br.upe.syscond.controllers.PessoaController;
 import br.upe.syscond.models.Funcionario;
-import br.upe.syscond.models.Morador;
 import br.upe.syscond.models.Pessoa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -114,16 +113,17 @@ public class FuncionarioViewController implements Initializable{
 
 	@FXML
 	void salvarFuncionario(MouseEvent event) {
-		salvar();
-		limpaTela();
-		atualizaTabela();
+		if(this.select == null) {
+			salvar(0);
+		}else {
+			salvar(this.select.get(0).getId());
+		}
 	}
 
 	@FXML
 	void EditarFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
 		this.txfCargo.setText(select.get(0).getCargo());
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfNome.setText(select.get(0).getPessoa().getNome());
 		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
@@ -140,7 +140,7 @@ public class FuncionarioViewController implements Initializable{
 
 	}
 	
-	private void salvar() {
+	private void salvar(int id) {
 		Funcionario funcionario = new Funcionario(
 		     new Pessoa(this.txfNome.getText(), 
 						this.txfCPF.getText(), 
@@ -151,11 +151,9 @@ public class FuncionarioViewController implements Initializable{
 		     			Float.parseFloat(this.txfSalario.getText())	
 			);
 
-		String id = this.txfId.getText();
-
 		//caso atualizar
-		if(!id.equals("")) {
-			funcionario.setId(Integer.parseInt(id));
+		if(!(id == 0)) {
+			funcionario.setId(id);
 			try {
 				controlaFuncionario.atualizar(funcionario);
 				Alerts.alertaSucesso("Atualizado com Sucesso!");
@@ -186,7 +184,6 @@ public class FuncionarioViewController implements Initializable{
 
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
-		id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		pessoa.setCellValueFactory(new PropertyValueFactory<>("pessoaDetalhe"));
 		internoExterno.setCellValueFactory(new PropertyValueFactory<>("interno_externo"));
 		cargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
@@ -204,7 +201,6 @@ public class FuncionarioViewController implements Initializable{
 
 	private void limpaTela() {
 		this.txfCargo.setText(null);
-		this.txfId.setText("");
 		this.txfNome.setText(null);
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
