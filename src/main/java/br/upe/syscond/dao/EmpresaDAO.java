@@ -44,8 +44,9 @@ public class EmpresaDAO implements InterfaceEmpresa {
 		try {
 			em.getTransaction().begin();
 			em.persist(E);
+			em.flush();
 			em.getTransaction().commit();
-			return buscar(E.getId());
+			return E;
 		} catch (Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -59,8 +60,9 @@ public class EmpresaDAO implements InterfaceEmpresa {
 		try {
 			em.getTransaction().begin();
 			em.merge(E);
+			em.flush();
 			em.getTransaction().commit();
-			return buscar(E.getId());
+			return E;
 		} catch (Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
@@ -70,11 +72,9 @@ public class EmpresaDAO implements InterfaceEmpresa {
      * @param integer
 	 * @return boolean
 	 */
-	public void deletar(int id) throws Exception {
-		Empresa E = null;
+	public void deletar(Empresa E) throws Exception {
 		try {
 			em.getTransaction().begin();
-			E = em.find(Empresa.class, id);
 			em.remove(E);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {
@@ -86,15 +86,14 @@ public class EmpresaDAO implements InterfaceEmpresa {
      * @param integer
 	 * @return Empresa
 	 */
-	public Empresa buscar(int id) throws Exception {
-		Empresa e = null;
+	public Empresa buscar(Empresa empresa) throws Exception {
 		try {
-			em.getTransaction().begin();
-			e = em.find(Empresa.class, id);
-			em.getTransaction().commit();
-			return e;
+			return (Empresa) em.createQuery("from Empresa e where e.nome =:nome and e.telefone =:telefone and e.cnpj =:cnpj")
+					.setParameter("nome", empresa.getNome())
+					.setParameter("telefone", empresa.getTelefone())
+					.setParameter("cnpj", empresa.getCnpj())
+					.getSingleResult();
 		} catch (Exception eBuscar) {
-			em.getTransaction().rollback();
 			throw eBuscar;
 		}
 	}

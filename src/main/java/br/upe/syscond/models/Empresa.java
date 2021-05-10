@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,10 +15,13 @@ import javax.persistence.OneToMany;
 public class Empresa implements Serializable {
 	@Id @GeneratedValue(generator = "idEmpresa")
 	private int id;
-	@OneToMany
-	private List<ServicoProduto> servicoproduto;
+	@Column(nullable = false)
+	private String servicoproduto;
+	@Column(nullable = false)
 	private String cnpj;
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private String telefone;
 
 	public Empresa() {
@@ -29,7 +33,7 @@ public class Empresa implements Serializable {
 	 * @param nome
 	 * @param telefone
 	 */
-	public Empresa(String cnpj, List<ServicoProduto> servicoproduto, String nome, String telefone){
+	public Empresa(String cnpj, String servicoproduto, String nome, String telefone){
 		this.cnpj = cnpj;
 		this.nome = nome;
 		this.servicoproduto = servicoproduto;
@@ -67,14 +71,14 @@ public class Empresa implements Serializable {
 	/**
 	 * @return the servicoproduto
 	 */
-	public List<ServicoProduto> getServicoproduto() {
+	public String getServicoproduto() {
 		return servicoproduto;
 	}
 
 	/**
 	 * @param servicoproduto the servicoproduto to set
 	 */
-	public void setServicoproduto(List<ServicoProduto> servicoproduto) {
+	public void setServicoproduto(String servicoproduto) {
 		this.servicoproduto = servicoproduto;
 	}
 
@@ -118,6 +122,5 @@ public class Empresa implements Serializable {
 		return Objects.equals(cnpj, other.cnpj) && Objects.equals(nome, other.nome)
 				&& Objects.equals(telefone, other.telefone);
 	}
-
 	
 }

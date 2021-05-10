@@ -30,6 +30,16 @@ public class MainViewController {
     private Button FuncionarioMain;
     
     @FXML
+    void switchTelaEmpresa(MouseEvent event) {
+    	try {
+			App.setRoot("EmpresaView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
     void switchTelaApartamento(MouseEvent event) {
     	try {
 			App.setRoot("ApartamentoView");

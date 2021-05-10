@@ -5,10 +5,10 @@ import br.upe.syscond.models.Empresa;
 
 public interface InterfaceEmpresa {
     
-    Empresa salvar(Empresa e) throws Exception;
+    Empresa salvar(Empresa empresa) throws Exception;
     List<Empresa> listar() throws Exception;
-    Empresa buscar(int id) throws Exception;
-    Empresa atualizar(Empresa e) throws Exception;
-    void deletar(int id) throws Exception;
+    Empresa buscar(Empresa empresa) throws Exception;
+    Empresa atualizar(Empresa empresa) throws Exception;
+    void deletar(Empresa empresa) throws Exception;
     
 }

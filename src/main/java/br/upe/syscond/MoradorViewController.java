@@ -1,4 +1,4 @@
-package br.upe.syscond;
+	package br.upe.syscond;
 
 
 import java.io.IOException;
@@ -143,7 +143,6 @@ public class MoradorViewController implements Initializable{
 				this.chcAp.getSelectionModel().getSelectedItem()
 				);
 		
-		
 		//caso atualizar
 		if(!(id == 0)) {
 			morador.setId(id);
@@ -179,7 +178,6 @@ public class MoradorViewController implements Initializable{
 		} catch (IOException e) {
 			Alerts.alertaErro(e.getMessage());
 		}
-
 	}
 
 	/**
@@ -189,6 +187,7 @@ public class MoradorViewController implements Initializable{
 		this.pessoaTableMorador.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
 		this.ApartamentoTableMorador.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
+		this.select = null;
 	}
 	
 	/**
