@@ -1,7 +1,6 @@
 package br.upe.syscond.controllers;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.upe.syscond.dao.ContabilDAO;
@@ -33,7 +32,7 @@ public class ContabilController implements InterfaceContabilController{
 		}
 		return instance;
 	}
-	private ContabilController() throws Exception {
+	public ContabilController() throws Exception {
 		if(contabilDAO.listar().size()==0) {
 			try {
 				this.contabil = contabilDAO.salvar(new Contabil(null, 0));

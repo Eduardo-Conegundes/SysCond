@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class FluxoAlmoxarifado {
 	//@Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
 	private int id;
-	private ServicoProduto produto;
 	private int qtd;
 	private String tipoTransacao; //entrada ou saida
 	private Almoxarifado estoque;
@@ -22,8 +21,7 @@ public class FluxoAlmoxarifado {
 	 * @param tipoTransacao
 	 * @param estoque
 	 */
-	public FluxoAlmoxarifado(ServicoProduto produto, int qtd, String tipoTransacao, Almoxarifado estoque){
-		this.produto = produto;
+	public FluxoAlmoxarifado(int qtd, String tipoTransacao, Almoxarifado estoque){
 		this.qtd = qtd;
 		this.tipoTransacao = tipoTransacao;
 		this.estoque = estoque;
@@ -40,18 +38,7 @@ public class FluxoAlmoxarifado {
 	public void setId(int id) {
 		this.id = id;
 	}
-	/**
-	 * @return the produto
-	 */
-	public ServicoProduto getProduto() {
-		return produto;
-	}
-	/**
-	 * @param produto the produto to set
-	 */
-	public void setProduto(ServicoProduto produto) {
-		this.produto = produto;
-	}
+	
 	/**
 	 * @return the qtd
 	 */

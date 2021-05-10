@@ -135,6 +135,24 @@ public class Contas {
 		return AReceber;
 	}
 	/**
+	 * @return the aReceber em String
+	 */
+	public String getStatusPagaString() {
+		if(this.statusPaga) {
+			return "Paga";
+		} else {
+			return "Nao paga";
+		}
+	}
+	
+	public String getAReceberString() {
+		if(this.AReceber) {
+			return "Receber";
+		} else {
+			return "Pagar";
+		}
+	}
+	/**
 	 * @param aReceber the aReceber to set
 	 */
 	public void setAReceber(Boolean aReceber) {
