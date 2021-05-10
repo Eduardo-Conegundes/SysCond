@@ -157,8 +157,8 @@ public class UsuarioViewController implements Initializable{
 	 * Metodo que limpa os campos apos serem salvados ou atualizados.
 	 */
 	private void limpaTela() {
-		this.txfEmail.setText("");
-		this.txfSenha.setText("");
+		this.txfEmail.setText(null);
+		this.txfSenha.setText(null);
 		this.txfId.setText("");
 	}
 	

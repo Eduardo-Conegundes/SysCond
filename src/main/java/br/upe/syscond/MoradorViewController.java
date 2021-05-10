@@ -1,4 +1,4 @@
-package br.upe.syscond;
+	package br.upe.syscond;
 
 
 import java.io.IOException;
@@ -32,12 +32,6 @@ public class MoradorViewController implements Initializable{
 	static InterfaceApartamentoController controlaApartamento = new ApartamentoController();
 
 	private ObservableList<Morador> select;
-
-	@FXML
-	private Label lblId;
-
-	@FXML
-	private Label txfId;
 
 	@FXML
 	private Label lblNome;
@@ -79,9 +73,6 @@ public class MoradorViewController implements Initializable{
 	private TableView<Morador> tableMorador;
 
 	@FXML
-	private TableColumn<Morador, Integer> idTableMorador;
-
-	@FXML
 	private TableColumn<Morador, String> pessoaTableMorador;
 
 	@FXML
@@ -98,35 +89,39 @@ public class MoradorViewController implements Initializable{
 
 	@FXML
 	private Button btnExcluir;
-    
-    /**
-     * 
-     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
-     */
-	@FXML
-	void salvarMorador(MouseEvent event) {
-		salvar();
-		limpaTela();
-		atualizaTabela();
-	}
 	
 	/**
-	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Morador que deseja-se editar ao ser cliclar..
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
+	 * botÃ£o salvar
+	 * quando o usuario aperta, e chamado metodo salvar
+	 * @param event
+	 */
+	@FXML
+	void salvarMorador(MouseEvent event) {
+		if(this.select == null) {
+			salvar(0);
+		}else {
+			salvar(this.select.get(0).getId());
+		}
+	}
+	/**
+     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleï¿½ï¿½o do Morador que deseja-se editar ao ser cliclar.
+	 * botÃ£o editar
+	 * coloca todos os dados da opcao selecionada na tela
 	 */
 	@FXML
 	void editarMorador(MouseEvent event) {
 		this.select = tableMorador.getSelectionModel().getSelectedItems();
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfNome.setText(select.get(0).getPessoa().getNome());
 		this.txfCPF.setText(select.get(0).getPessoa().getCpf());
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
+		this.chcAp.setValue(this.select.get(0).getApartamento());
+		
 	}
-	
 	/**
-	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Morador que deseja-se excluir ao ser cliclar..
+	 * metodo ao clicar no botao deletar
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleï¿½ï¿½o do Morador que deseja-se excluir ao ser cliclar.
 	 */
 	@FXML
 	void excluirMorador(MouseEvent event) {
@@ -135,11 +130,13 @@ public class MoradorViewController implements Initializable{
 		limpaTela();
 		atualizaTabela();
 	}
-	
+
 	/**
 	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
+	 * metodo chamado ao apertar o botÃ£o salvar
+	 * @param id
 	 */
-	void salvar() {
+	void salvar(int id) {
 		Morador morador = new Morador(
 				new Pessoa(this.txfNome.getText(), 
 						this.txfCPF.getText(), 
@@ -147,15 +144,15 @@ public class MoradorViewController implements Initializable{
 						this.txfEmail.getText()), 
 				this.chcAp.getSelectionModel().getSelectedItem()
 				);
-
-		String id = this.txfId.getText();
-
+		
 		//caso atualizar
-		if(!id.equals("")) {
-			morador.setId(Integer.parseInt(id));
+		if(!(id == 0)) {
+			morador.setId(id);
 			try {
 				controlaMorador.atualizar(morador);
 				Alerts.alertaSucesso("Atualizado com Sucesso!");
+				limpaTela();
+				initialize(null, null);
 			} catch (Exception e) {
 				e.printStackTrace();
 				Alerts.alertaErro(e.getMessage());
@@ -164,18 +161,17 @@ public class MoradorViewController implements Initializable{
 			try {
 				controlaMorador.criar(morador);
 				Alerts.alertaSucesso("Salvo com Sucesso!");
+				limpaTela();
+				initialize(null, null);
 			} catch (Exception e) {
 				Alerts.alertaErro(e.getMessage());
-			}			
+			}	
 		}
-		limpaTela();
-		atualizaTabela();
-
 	}
 	
 	/**
-	 * 
-	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 * encaminha o usuario a tela principal
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer funï¿½ï¿½o do crude.
 	 */
 	@FXML
 	void switchMain(MouseEvent event) {
@@ -184,47 +180,44 @@ public class MoradorViewController implements Initializable{
 		} catch (IOException e) {
 			Alerts.alertaErro(e.getMessage());
 		}
-
 	}
-	
+
 	/**
-	 * inicializar o controlador MoradorViewController  depois que seu elemento raiz foi completamente processado.
+	 * metodo que inicia ao chamar a tela ou seja inicializar o controlador MoradorViewController  depois que seu elemento raiz foi completamente processado.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		limpaTela();
-		this.idTableMorador.setCellValueFactory(new PropertyValueFactory<>("id"));
 		this.pessoaTableMorador.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
 		this.ApartamentoTableMorador.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
+		this.select = null;
 	}
 	
-	
 	/**
-	 * Metodo que deletar o morador.
+	 * caso o usuario confirme o alerta, a opcÃ£o escolhida serÃ¡ deletada
 	 */
 	private void deletar() {
 		try {
-			controlaMorador.deletar(this.select.get(0));
-			Alerts.alertaSucesso("Deletado com Sucesso!");
+			if(Alerts.alertaDeletar()) {
+				controlaMorador.deletar(this.select.get(0));
+				Alerts.alertaSucesso("Deletado com Sucesso!");				
+			}
 		} catch (Exception e) {
 			Alerts.alertaErro(e.getMessage());
 		}
 	}
 	
 	/**
-	 * Metodo que limpa os campos apos serem salvados ou atualizados.
+	 * limpa todos os textfild da tela
 	 */
 	private void limpaTela() {
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
-		this.txfId.setText("");
 		this.txfNome.setText(null);
 		this.txfTel.setText(null);
-		this.chcAp.setItems(FXCollections.observableArrayList());
 	}
 	
 	/**
-	 * Metodo que atualiza o a tabela de Morador na interface.
+	 * busca da base e seta os valores na tabela
 	 */
 	private void atualizaTabela() {
 		try {

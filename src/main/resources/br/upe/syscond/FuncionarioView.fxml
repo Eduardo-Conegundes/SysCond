@@ -22,7 +22,6 @@
       <TextField fx:id="txfEmail" layoutX="457.0" layoutY="75.0" />
       <TableView fx:id="tableFuncionario" layoutX="25.0" layoutY="211.0" prefHeight="176.0" prefWidth="606.0">
          <columns>
-            <TableColumn fx:id="id" prefWidth="31.0" text="ID" />
             <TableColumn fx:id="pessoa" prefWidth="179.1999740600586" text="Pessoa" />
             <TableColumn fx:id="internoExterno" prefWidth="94.4000244140625" text="InternoExterno" />
             <TableColumn fx:id="cargo" prefWidth="110.4000244140625" text="Cargo" />

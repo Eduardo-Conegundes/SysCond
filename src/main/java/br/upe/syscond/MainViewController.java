@@ -32,6 +32,16 @@ public class MainViewController {
      * @param event
      */
     @FXML
+    void switchTelaEmpresa(MouseEvent event) {
+    	try {
+			App.setRoot("EmpresaView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
     void switchTelaApartamento(MouseEvent event) {
     	try {
 			App.setRoot("ApartamentoView");
@@ -122,6 +132,15 @@ public class MainViewController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    @FXML
+    void switchTelaContabil(MouseEvent event) {
+    	try {
+    		App.setRoot("ContabilView");
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
     }
 
 }

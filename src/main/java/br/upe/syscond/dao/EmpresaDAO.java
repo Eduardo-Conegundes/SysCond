@@ -85,29 +85,26 @@ public class EmpresaDAO implements InterfaceEmpresa {
 	public void deletar(Empresa empresa) throws Exception {
 		try {
 			em.getTransaction().begin();
-			em.remove(this.buscar(empresa));
+			em.remove(empresa);
 			em.getTransaction().commit();
 		} catch (Exception eDeletar) {
 			em.getTransaction().rollback();
 			throw eDeletar;
 		}
 	}
-	
 	/**
 	 * @param --> O metodo buscar recebe um parametro id  do tipo integer para realizar uma busca no banco de dados da Empresa solicitado.
 	 * @return--> Caso a operacao de Buscar seja bem sucedida, ela retona a Empresa deseja que esta no Banco de dados. 
 	 * @throws Exception--> se apoeracao de listar falhar, sera lancada uma Exception.
 	 */ 
 	public Empresa buscar(Empresa empresa) throws Exception {
-
 		try {
-			return (Empresa) em.createQuery("FROM Empresa a WHERE a.cnpj = :cnpj and a.nome = :nome and a.telefone = :telefone")
-					.setParameter("cnpj", empresa.getCnpj())
+			return (Empresa) em.createQuery("from Empresa e where e.nome =:nome and e.telefone =:telefone and e.cnpj =:cnpj")
 					.setParameter("nome", empresa.getNome())
 					.setParameter("telefone", empresa.getTelefone())
+					.setParameter("cnpj", empresa.getCnpj())
 					.getSingleResult();
 		} catch (Exception eBuscar) {
-			em.getTransaction().rollback();
 			throw eBuscar;
 		}
 	}

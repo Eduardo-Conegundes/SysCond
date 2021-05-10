@@ -178,9 +178,9 @@ public class ApartamentoViewController implements Initializable {
 	 */
 	private void limpaTela() {
 		this.txfId.setText("");
-		this.txfBloco.setText("");
-		this.txfNumero.setText("");
-		this.txfVagas.setText("");
+		this.txfBloco.setText(null);
+		this.txfNumero.setText(null);
+		this.txfVagas.setText(null);
 	}
 
 }

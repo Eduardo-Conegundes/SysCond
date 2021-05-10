@@ -19,11 +19,10 @@
       <Button fx:id="VisitanteMain" layoutX="253.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#switchTelaVisitante" prefHeight="50.0" prefWidth="125.0" text="Visitante" />
       <Button fx:id="MoradorMain" layoutX="253.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#switchTelaMorador" prefHeight="50.0" prefWidth="125.0" text="Morador" textAlignment="CENTER" />
       <Button fx:id="ApartamentoMain" layoutX="253.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" prefHeight="50.0" prefWidth="125.0" text="Apartamento" />
-      <Button fx:id="VeiculoMain1" layoutX="422.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Produto / Serviço" />
       <Button fx:id="UsuarioMain11" layoutX="422.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#switchTelaUsuario" prefHeight="50.0" prefWidth="125.0" text="Usuário" />
       <Button fx:id="FuncionarioMain" layoutX="253.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#switchTelaFuncionario" prefHeight="50.0" prefWidth="125.0" text="Funcionário" />
       <Button fx:id="VeiculoMain11" layoutX="422.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Veículo" />
-      <Button fx:id="VeiculoMain12" layoutX="422.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Empresa" />
-      <Button fx:id="ApartamentoMain1" layoutX="253.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" prefHeight="50.0" prefWidth="125.0" text="Contas" />
+      <Button fx:id="VeiculoMain12" layoutX="422.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#switchTelaEmpresa" prefHeight="50.0" prefWidth="125.0" text="Empresa" />
+      <Button fx:id="ApartamentoMain1" layoutX="423.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#switchTelaApartamento" prefHeight="50.0" prefWidth="125.0" text="Contas" />
    </children>
 </AnchorPane>
