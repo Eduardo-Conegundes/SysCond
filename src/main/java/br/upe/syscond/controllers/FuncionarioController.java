@@ -15,66 +15,39 @@ public class FuncionarioController implements InterfaceFuncionarioController {
 	/**
 	 * @param --> O metodo criar recebe um parametro funcionario-com diversos atributos internalizados- do tipo funcionario para salvar no banco de dados.
 	 * @return--> Caso a operação de criar seja bem sucedida, ela retona um funcionario salvo no banco de dados.
-	 * @throws--> se apoeração  de criar falhar, sera lançada uma Exception.
 	 */ 
-	public Funcionario criar(Funcionario funcionario) throws Exception{
-		try {	 
+	public Funcionario criar(Funcionario funcionario) throws Exception{ 
 			return funcionarioDAO.salvar(funcionario);
-		} catch (Exception eSalvar) {
-			throw eSalvar;
-		}
-
 	}
 	
 	/**
 	 * @return--> Caso a operação de listar seja bem sucedida, ela retona uma lista com todos os funcionario salvos no banco de dados.
-	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public List<Funcionario> listar() throws Exception{
-		try {
 			return funcionarioDAO.listar();
-		} catch (Exception eListar) {
-			throw eListar;
-		}
 	}
 	
 	/**
 	 * @param --> O metodo buscar recebe um parametro funcionario -com todos os atributos de um usuario- do tipo funcionario para realizar uma busca no banco de dados do funcionario solicitado.
 	 * @return--> Caso a operação  de Buscar seja bem sucedida, ela retona o funcionario deseja que esta no Banco de dados. 
-	 * @throws Exception--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public Funcionario buscar(Funcionario funcionario) throws Exception {
-		try {
 			return funcionarioDAO.buscar(funcionario);
-		} catch (Exception eBuscar) {
-			throw eBuscar;
-		}
 	}
 	
 	/**
 	 * @param --> O metodo atualizar recebe um parametro funcionario-com um ou diversos atributos internalizados- do tipo funcionario para atualizar o funcionario antigo no banco de dados.
 	 * @return--> Caso a operação de atualizar seja bem sucedida, ela retona o funcionario antigo com as informações atualizadas no banco de dados.
-	 * @throws--> se apoeração  de salva falhar, sera lançada uma Exception.
 	 */
 	public Funcionario atualizar(Funcionario funcionario) throws Exception{
-		try{
-			return funcionarioDAO.atualizar(funcionario);
-		}catch (Exception eAtualizar) {
-			throw eAtualizar;
-		}
-		
+			return funcionarioDAO.atualizar(funcionario);	
 	}
 	
 	/**
 	 * @param --> O metodo deletar recebe um parametro funcionario-com todos os atibutos atributos internalizados- do tipo funcionario para exclusão do funcionariono solicitado banco de dados.
 	 * @return--> Caso a operação de deletar seja bem sucedida, ela retona o valor boleano TRUE.
-	 * @throws--> se apoeração  de deletar falhar, sera lançada uma Exception.
 	 */
 	public void deletar(Funcionario funcionario) throws Exception{
-		try {
 			funcionarioDAO.deletar(funcionario);
-		} catch (Exception eDeletar) {
-			throw eDeletar;
-		}
 	}
 }

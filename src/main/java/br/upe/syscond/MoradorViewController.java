@@ -91,6 +91,7 @@ public class MoradorViewController implements Initializable{
 	private Button btnExcluir;
 	
 	/**
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
 	 * botão salvar
 	 * quando o usuario aperta, e chamado metodo salvar
 	 * @param event
@@ -104,9 +105,9 @@ public class MoradorViewController implements Initializable{
 		}
 	}
 	/**
+     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a sele��o do Morador que deseja-se editar ao ser cliclar.
 	 * botão editar
 	 * coloca todos os dados da opcao selecionada na tela
-	 * @param event
 	 */
 	@FXML
 	void editarMorador(MouseEvent event) {
@@ -120,7 +121,7 @@ public class MoradorViewController implements Initializable{
 	}
 	/**
 	 * metodo ao clicar no botao deletar
-	 * @param event
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a sele��o do Morador que deseja-se excluir ao ser cliclar.
 	 */
 	@FXML
 	void excluirMorador(MouseEvent event) {
@@ -131,6 +132,7 @@ public class MoradorViewController implements Initializable{
 	}
 
 	/**
+	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
 	 * metodo chamado ao apertar o botão salvar
 	 * @param id
 	 */
@@ -169,7 +171,7 @@ public class MoradorViewController implements Initializable{
 	
 	/**
 	 * encaminha o usuario a tela principal
-	 * @param event
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer fun��o do crude.
 	 */
 	@FXML
 	void switchMain(MouseEvent event) {
@@ -181,7 +183,7 @@ public class MoradorViewController implements Initializable{
 	}
 
 	/**
-	 * metodo que inicia ao chamar a tela
+	 * metodo que inicia ao chamar a tela ou seja inicializar o controlador MoradorViewController  depois que seu elemento raiz foi completamente processado.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		this.pessoaTableMorador.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));

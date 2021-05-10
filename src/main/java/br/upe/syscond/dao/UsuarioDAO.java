@@ -1,8 +1,5 @@
 package br.upe.syscond.dao;
 
-	/**
-	*@import --> Importação das bibliotecas necessárias
-	*/
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -117,7 +114,6 @@ public class UsuarioDAO implements InterfaceUsuario {
 
 	/**
 	 * @param --> O metodo deletar recebe um parametro user-com todos os atibutos internalizados- do tipo Usuario para exclusão do usuario exitente no banco de dados.
-	 * @return--> Caso a operação de deletar seja bem sucedida, ela retona o valor boleano TRUE.
 	 * @throws--> se apoeração  de deletar falhar, sera lançada uma Exception.
 	 */
 	public void deletar(Usuario user) throws Exception {

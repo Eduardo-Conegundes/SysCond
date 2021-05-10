@@ -1,15 +1,17 @@
 package br.upe.syscond.controllers;
 
 import java.util.List;
-
 import br.upe.syscond.dao.EmpresaDAO;
 import br.upe.syscond.dao.InterfaceEmpresa;
 import br.upe.syscond.models.Empresa;
 
 public class EmpresaController implements InterfaceEmpresaController {
-
-	private static InterfaceEmpresa empresaDAO = EmpresaDAO.getInstance();
-
+	
+	/**
+	*@Variavel --> variavel statica global do tipo apartamento, que recebe um apartamentoDAO
+	*/
+	static InterfaceEmpresa empresaDAO = EmpresaDAO.getInstance();
+	
 	/**
 	 * @param Empresa
 	 * @return Empresa

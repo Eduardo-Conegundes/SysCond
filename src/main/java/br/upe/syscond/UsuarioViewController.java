@@ -73,7 +73,10 @@ public class UsuarioViewController implements Initializable{
 
 	@FXML
 	private Button btnExcluir;
-
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Usuario que deseja-se editar ao ser cliclar..
+	 */
 	@FXML
 	void EditarUsuario(MouseEvent event) {
 		this.select = tableUsuario.getSelectionModel().getSelectedItems();
@@ -81,7 +84,11 @@ public class UsuarioViewController implements Initializable{
 		this.txfSenha.setText(select.get(0).getSenha());
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
 	}
-
+	
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Usuario que deseja-se excluir ao ser cliclar..
+	 */
 	@FXML
 	void ExcluirUsuario(MouseEvent event) {
 		this.select = tableUsuario.getSelectionModel().getSelectedItems();
@@ -96,7 +103,11 @@ public class UsuarioViewController implements Initializable{
 		limpaTela();
 		atualizaTabela();
 	}
-
+    
+    /**
+     * 
+     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
+     */
 	@FXML
 	void salvarUsuario(MouseEvent event) {
 		this.select = null;
@@ -104,7 +115,11 @@ public class UsuarioViewController implements Initializable{
 		limpaTela();
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * 
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 */
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -115,14 +130,20 @@ public class UsuarioViewController implements Initializable{
 		}
 
 	}
-
+	
+	/**
+	 * inicializar o controlador UsuarioViewController  depois que seu elemento raiz foi completamente processado.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {	
 		idTableUsuario.setCellValueFactory(new PropertyValueFactory<>("id"));
 		emailTableUsuario.setCellValueFactory(new PropertyValueFactory<>("email"));
 		senhaTableUsuario.setCellValueFactory(new PropertyValueFactory<>("senha"));
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * Metodo que atualiza o a tabela de Usuario na interface.
+	 */
 	private void atualizaTabela() {
 		try {
 			tableUsuario.setItems(FXCollections.observableArrayList(controlaUsuario.listar()));			
@@ -131,13 +152,19 @@ public class UsuarioViewController implements Initializable{
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Metodo que limpa os campos apos serem salvados ou atualizados.
+	 */
 	private void limpaTela() {
 		this.txfEmail.setText(null);
 		this.txfSenha.setText(null);
 		this.txfId.setText("");
 	}
-
+	
+	/**
+	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
+	 */
 	private void salvar() {
 		String email = this.txfEmail.getText();
 		String senha = this.txfSenha.getText();

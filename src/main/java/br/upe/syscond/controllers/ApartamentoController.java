@@ -1,7 +1,7 @@
 package br.upe.syscond.controllers;
 
 	/**
-	*@import --> Importação das bibliotecas necessárias
+	*@import --> Importacao das bibliotecas necessarias
 	*/
 import java.util.List;
 import br.upe.syscond.dao.ApartamentoDAO;
@@ -22,11 +22,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws--> se apoeração  de criar falhar, sera lançada uma Exception.
 	 */
 	public Apartamento criar(Apartamento apartamento) throws Exception{
-		try {
-			return aptDAO.salvar(apartamento);
-		} catch (Exception eSalvar) {
-			throw eSalvar;
-		}	
+			return aptDAO.salvar(apartamento);	
 	}
 	
 	/**
@@ -34,12 +30,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public List<Apartamento> listar() throws Exception{
-		try {
 			return aptDAO.listar();
-		} catch (Exception eListar) {
-			throw eListar;
-		}
-
 	}
 	
 	/**
@@ -48,19 +39,11 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws Exception --> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public List<Apartamento> listarPorBlocos(String bloco) throws Exception {
-		try {
 			return aptDAO.listarPorBloco(bloco);
-		} catch (Exception eListarBloco) {
-			throw eListarBloco;
-		}
 	}
 	
 	public List<Apartamento> listarBlocos() throws Exception {
-        try {
             return aptDAO.listarBlocos();
-        } catch (Exception eListarBloco) {
-            throw eListarBloco;
-        }
     }
 	
 	/**
@@ -69,11 +52,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws Exception--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public Apartamento buscar(Apartamento pesquisar) throws Exception {
-		try {
 			return aptDAO.buscar(pesquisar);
-		} catch (Exception eBuscar) {
-			throw eBuscar;
-		}
 	}
 	
 	/**
@@ -82,11 +61,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws--> se apoeração  de atualizar falhar, sera lançada uma Exception.
 	 */
 	public Apartamento atualizar(Apartamento novo) throws Exception{
-		try {
 			return aptDAO.atualizar(novo);
-		} catch (Exception eAtualizar) {
-			throw eAtualizar;
-		}
 	}
 	
 	/**
@@ -95,11 +70,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws--> se apoeração  de deletar falhar, sera lançada uma Exception.
 	 */
 	public void deletar(Apartamento apartamento) throws Exception {
-		try {
 			aptDAO.deletar(apartamento);
-		} catch (Exception eDeletar) {
-			throw eDeletar;
-		}
 	}
 	
 	/**
@@ -108,11 +79,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws Exception --> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public List<Apartamento> listarPorNumeros(Integer numero) throws Exception {
-		try {
 			return aptDAO.listarPorNumero(numero);
-		} catch (Exception eListarNumero) {
-			throw eListarNumero;
-		}
 	}
 	
 	/**
@@ -120,11 +87,7 @@ public class ApartamentoController implements InterfaceApartamentoController {
 	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */	
 	public List<Apartamento> listarNumeros() throws Exception {
-		try {
 			return aptDAO.listarNumeros();
-		} catch (Exception eListarNumero) {
-			throw eListarNumero;
-		}
 	}
 
 }
