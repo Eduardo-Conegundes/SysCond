@@ -26,7 +26,9 @@ import javafx.scene.input.MouseEvent;
 
 
 public class FuncionarioViewController implements Initializable{
-
+	/**
+	 * Variaveis estaticas globais.
+	 */
 	static InterfaceFuncionarioController controlaFuncionario = new FuncionarioController();
 	static InterfacePessoaController controlaPessoa = new PessoaController();
 	private ObservableList<Funcionario> select;
@@ -111,14 +113,21 @@ public class FuncionarioViewController implements Initializable{
 
     @FXML
     private RadioButton checkExterno;
-
+    
+    /**
+     * 
+     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
+     */
 	@FXML
 	void salvarFuncionario(MouseEvent event) {
 		salvar();
 		limpaTela();
 		atualizaTabela();
 	}
-
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Funcionário que deseja-se editar ao ser cliclar..
+	 */
 	@FXML
 	void EditarFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
@@ -130,7 +139,10 @@ public class FuncionarioViewController implements Initializable{
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
 		this.txfSalario.setText(Float.toString(select.get(0).getSalario()));
 	}
-
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Funcionário que deseja-se excluir ao ser cliclar..
+	 */
 	@FXML
 	void ExcluirFuncionario(MouseEvent event) {
 		this.select = tableFuncionario.getSelectionModel().getSelectedItems();
@@ -140,6 +152,9 @@ public class FuncionarioViewController implements Initializable{
 
 	}
 	
+	/**
+	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um funcionario.
+	 */
 	private void salvar() {
 		Funcionario funcionario = new Funcionario(
 		     new Pessoa(this.txfNome.getText(), 
@@ -174,7 +189,10 @@ public class FuncionarioViewController implements Initializable{
 		limpaTela();
 		atualizaTabela();
 	}
-	
+	/**
+	 * 
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 */
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -183,7 +201,10 @@ public class FuncionarioViewController implements Initializable{
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * inicializar o controlador FuncionarioViewController  depois que seu elemento raiz foi completamente processado.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -193,7 +214,10 @@ public class FuncionarioViewController implements Initializable{
 		salario.setCellValueFactory(new PropertyValueFactory<>("salario"));
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * Metodo que atualiza o funcionario na interface o que foi salvo ou atualizado.
+	 */
 	private void atualizaTabela() {
 		try {
 			this.tableFuncionario.setItems(FXCollections.observableArrayList(controlaFuncionario.listar()));
@@ -201,7 +225,10 @@ public class FuncionarioViewController implements Initializable{
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Metodo que limpa os campos apos serem salvados ou atualizados.
+	 */
 	private void limpaTela() {
 		this.txfCargo.setText(null);
 		this.txfId.setText("");
@@ -211,7 +238,11 @@ public class FuncionarioViewController implements Initializable{
 		this.txfTel.setText(null);
 		this.txfSalario.setText(null);
 	}
-
+	
+	/**
+	 * 
+	 * @return--> metodo que retorna a escolha do usuario sobre o funcionario
+	 */
 	private String intExt() {
 		if(checkInterno.selectedProperty().getValue() == true) {
 			return "Interno";
@@ -220,6 +251,9 @@ public class FuncionarioViewController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Metodo que excluir o funcionario na interface que estava salva.
+	 */
 	private void deletar() {
 		try {
 			if(Alerts.alertaDeletar()) {

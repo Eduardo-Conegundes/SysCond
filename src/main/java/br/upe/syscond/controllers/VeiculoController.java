@@ -11,63 +11,45 @@ public class VeiculoController implements InterfaceVeiculoController {
 	static InterfaceVeiculo veiculoDAO = VeiculoDAO.getInstance();
 
 	/**
-	 * @param Veiculo
-	 * @return Veiculo || null
-	 * @throws Exception 
-	 */
+	 * @param --> O metodo criar recebe um parametro veiculo-com todos atributos internalizados- do tipo veiculo para salvar no banco de dados.
+	 * @return--> Caso a operacao de criar seja bem sucedida, ela retona um veiculo salvo no banco de dados.
+	 * @throws--> se operacaoo  de salva falhar, sera lancada uma Exception.
+	 */ 
 	public Veiculo criar(Veiculo veiculo) throws Exception{
-		try {
 			return veiculoDAO.salvar(veiculo);
-		} catch (Exception eSalvar) {
-			throw eSalvar;
-		}
 	}
+	
 	/**
-	 * @return Veiculo[] || null
-	 * @throws Exception 
+	 * @return--> Caso a operacao de listar seja bem sucedida, ela retona uma lista com todas os veiculo salvos no banco de dados.
+	 * @throws--> se operacao de listar falhar, sera lancada uma Exception.
 	 */
 	public List<Veiculo> listar() throws Exception{
-		try {
 			return veiculoDAO.listar();
-		} catch (Exception eListar) {
-			throw eListar;
-		}
-
 	}
+	
 	/**
-	 * @param Veiculo
-	 * @return Veiculo || null
-	 * @throws Exception 
+	 * @param --> O metodo buscar recebe um parametro veiculo -com todos os atributos de uma pessoa- do tipo veiculo para realizar uma busca no banco de dados do veiculo solicitada.
+	 * @return--> Caso a operacao  de Buscar seja bem sucedida, ela retona o veiculo deseja que esta no Banco de dados. 
+	 * @throws Exception--> se operacao de listar falhar, sera lancada uma Exception.
 	 */
 	public Veiculo buscar(Veiculo veiculo) throws Exception{
-		try {
 			return veiculoDAO.buscar(veiculo);
-		} catch (Exception eBuscar) {
-			throw eBuscar;
-		}
 	}
+	
 	/**
-	 * @param Veiculo novo
-	 * @return Veiculo || null
-	 * @throws Exception 
+	 * @param --> O metodo atualizar recebe um parametro novo-com um ou diversos atributos internalizados- do tipo veiculo para atualizar o veiculo já cadastrado no banco de dados.
+	 * @return--> Caso a operacao de atualizar seja bem sucedida, ela retona o veiculo com as informacoes atualizadas no banco de dados.
+	 * @throws--> se operacao  de salva falhar, sera lancada uma Exception.
 	 */
 	public Veiculo atualizar(Veiculo novo) throws Exception{
-		try {
 			return veiculoDAO.atualizar(novo);
-		} catch (Exception eAtualizar) {
-			throw eAtualizar;
-		}
 	}
 	/**
-	 * @param Veiculo
-	 * @return boolean
-	 * @throws Exception 
+	 * @param --> O metodo deletar recebe um parametro veiculo-com todos os atibutos atributos internalizados- do tipo veiculo para exclusao do veiculo solicitado banco de dados.
+	 * @return--> Caso a operacao de deletar seja bem sucedida, ela retona o valor boleano TRUE.
+	 * @throws--> se operacao  de deletar falhar, sera lancada uma Exception.
 	 */
 	public void deletar(Veiculo veiculo) throws Exception{
-		try {
 			veiculoDAO.deletar(veiculo);
-		} catch (Exception eDeletar) {
-			throw eDeletar;
-		}
 	}
 }

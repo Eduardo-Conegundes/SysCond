@@ -6,10 +6,10 @@ import br.upe.syscond.models.Espaco;
 
 public interface InterfaceLocacao {
     
-    Espaco salvar(Espaco l) throws Exception;
+    Espaco salvar(Espaco locacao) throws Exception;
     List<Espaco> listar() throws Exception;
-    Espaco buscar(int id) throws Exception;
-    Espaco atualizar(Espaco l) throws Exception;
-    void deletar(int id) throws Exception;
+    Espaco buscar(Espaco locacao) throws Exception;
+    Espaco atualizar(Espaco locacao) throws Exception;
+    void deletar(Espaco locacao) throws Exception;
     
 }

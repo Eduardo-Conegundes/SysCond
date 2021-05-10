@@ -11,12 +11,17 @@ import br.upe.syscond.models.Contas;
 
 public class ContasDAO implements InterfaceContas{
 	
-	private static ContasDAO instance;
-    protected EntityManager em;
     /**
      * 
-     * @return instance
-     */   
+     * @variavel --> Variavel gobal instance do tipo ContasDAO e variavel em do tipo EntityManager.
+     */
+	private static ContasDAO instance;
+    protected EntityManager em;
+
+    /**
+     * 
+     * @return instance --> Retorno do estanciamento do ContasDAO.
+     */	  
     public static ContasDAO getInstance() {
     	if(instance == null) {
     		instance = new ContasDAO();
@@ -27,9 +32,10 @@ public class ContasDAO implements InterfaceContas{
     private ContasDAO() {
     	em = getEntityManager();
     }
+	
     /**
      * 
-     * @return EntityManager
+     * @return instance --> Retorno do estanciamento do ContasDAO.
      */   
     private EntityManager getEntityManager() {
     	EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
@@ -38,10 +44,12 @@ public class ContasDAO implements InterfaceContas{
     	}
     	return em;
     }
-    /**
-     * @param Contas
-	 * @return Contas
-	 */  	
+
+	/**
+	 * @param --> O metodo salvar recebe um parametro contas-com todos os atributos internalizados- do tipo contas para salvar no banco de dados.
+	 * @return--> Caso a operacao de salvar seja bem sucedida, ela retona um contas salvo no banco de dados.
+	 * @throws--> se apoeracao  de salvar falhar, sera lancada uma Exception.
+	 */	
     public Contas salvar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -54,10 +62,12 @@ public class ContasDAO implements InterfaceContas{
     		throw eSalvar;
     	}
     }
-    /**
-     * @param Contas
-	 * @return Contas
-	 */    
+
+	/**
+	 * @param --> O metodo atualizar recebe um parametro contas-com um ou diversos atributos internalizados- do tipo contas para atualizar as contas antigo no banco de dados.
+	 * @return--> Caso a operacao de atualizar seja bem sucedida, ela retona as contas antigo com as informacoes atualizadas no banco de dados.
+	 * @throws--> se apoeracao  de atualizar falhar, sera lancada uma Exception.
+	 */     
     public Contas atualizar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -70,10 +80,11 @@ public class ContasDAO implements InterfaceContas{
     		throw eAtualizar;
     	}
     }
-     /**
-     * @param integer
-	 * @return boolean
-	 */   
+
+	/**
+	 * @param --> O metodo deletar recebe um parametro contas-com todos os atibutos atributos internalizados- do tipo contas para exclusao da conta solicitado no banco de dados.
+	 * @throws--> se a operacao  de deletar falhar, sera lancada uma Exception.
+	 */  
     public void deletar(Contas contas) throws Exception{
     	try {
     		em.getTransaction().begin();
@@ -84,10 +95,12 @@ public class ContasDAO implements InterfaceContas{
     		throw eDeletar;
     	}
     }
-    /**
-     * @param integer
-	 * @return Contas
-	 */    
+	
+	/**
+	 * @param --> O metodo buscar recebe um parametro contas -com todos os atributos internalizados- do tipo contas para realizar uma busca no banco de dados da conta solicitado.
+	 * @return--> Caso a operacao de Buscar seja bem sucedida, ela retona a conta deseja que esta no Banco de dados. 
+	 * @throws Exception--> se apoeracao de listar falhar, sera lancada uma Exception.
+	 */     
     public Contas buscar(Contas conta) throws Exception {
     	try {
     		return (Contas) em.createQuery("From Contas c where c.identificador =:identificador and "
@@ -111,7 +124,12 @@ public class ContasDAO implements InterfaceContas{
     		throw eBuscar;
     	}
     }
-    
+	
+	/**
+	 * @param --> O metodo listarPorData recebe um parametro data do tipo LocalDate para realizar uma busca no banco de dados das contas cadastradas na data solicitado.
+	 * @return--> Caso a operacao de listar seja bem sucedida, ela retona uma lista com todas as contas salvas naquela data no banco de dados.
+	 * @throws--> se apoeracaoo de listar falhar, sera lancada uma Exception.
+	 */ 
 	@SuppressWarnings("unchecked")
 	public List<Contas> listarPorData(LocalDate data) throws Exception{
     	try {
@@ -122,10 +140,11 @@ public class ContasDAO implements InterfaceContas{
 			throw e;
 		}
     }
-    
-    /**
-	 * @return Lista de Contas[]
-	 */    
+	
+	/**
+	 * @return--> Caso a operacao de listar seja bem sucedida, ela retona uma lista com todas as contas salvos no banco de dados.
+	 * @throws--> se apoeracaoo de listar falhar, sera lancada uma Exception.
+	 */   
     @SuppressWarnings("unchecked")
 	public List<Contas> listar(){
     	try {

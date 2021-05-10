@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.sun.istack.NotNull;
-
 @Entity
 public class Pessoa {
 

@@ -77,13 +77,21 @@ public class VeiculoViewController implements Initializable {
 
 	@FXML
 	private Button btnExcluir;
-
+	
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Veiculo que deseja-se editar ao ser cliclar..
+	 */
 	@FXML
 	void editarVeiculo(MouseEvent event) {
 		this.select = tableVeiculo.getSelectionModel().getSelectedItems();
 		this.txfPlaca.setText(select.get(0).getPlaca());
 	}
 
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Veiculo que deseja-se excluir ao ser cliclar..
+	 */
 	@FXML
 	void excluirVeiculo(MouseEvent event) {
 		this.select = tableVeiculo.getSelectionModel().getSelectedItems();
@@ -91,14 +99,22 @@ public class VeiculoViewController implements Initializable {
 		limpaTela();
 		atualizaTabela();
 	}
-
+    
+    /**
+     * 
+     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
+     */
 	@FXML
 	void salvarVeiculo(MouseEvent event) {
 		salvar();
 		limpaTela();
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * 
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 */
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -108,14 +124,21 @@ public class VeiculoViewController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * inicializar o controlador VeiculoViewController  depois que seu elemento raiz foi completamente processado.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
 		placaTableVeiculo.setCellValueFactory(new PropertyValueFactory<>("placa"));
 		colunaAp.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * 
+	 * @param metodo que recebe como parametro veiculo do tipo veiculo, para que seja efetuado a exclusão do mesmo
+	 */
 	private void deletar(Veiculo veiculo) {
 		try {
 			controlaVeiculo.deletar(veiculo);
@@ -125,7 +148,10 @@ public class VeiculoViewController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Metodo que limpa os campos apos serem salvados ou atualizados.
+	 */
 	private void limpaTela() {
 		this.txfPlaca.setText("");
 	}
@@ -138,7 +164,10 @@ public class VeiculoViewController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
+	 */
 	void salvar() {
 		Integer id = this.select.get(0).getId();
 		String placa = this.txfPlaca.getText();

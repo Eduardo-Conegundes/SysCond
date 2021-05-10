@@ -6,10 +6,10 @@ import br.upe.syscond.models.Pessoa;
 
 public interface InterfacePessoa {
 
-    Pessoa salvar(Pessoa p) throws Exception;
+    Pessoa salvar(Pessoa pessoa) throws Exception;
     List<Pessoa> listar() throws Exception;
-    Pessoa buscar(int id) throws Exception;
-    Pessoa atualizar(Pessoa p) throws Exception;
-    void deletar(int id) throws Exception;
+    Pessoa buscar(Pessoa Pessoa) throws Exception;
+    Pessoa atualizar(Pessoa pessoa) throws Exception;
+    void deletar(Pessoa Pessoa) throws Exception;
     
 }

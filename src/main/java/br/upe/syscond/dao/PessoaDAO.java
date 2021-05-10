@@ -1,20 +1,23 @@
 package br.upe.syscond.dao;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import br.upe.syscond.models.Pessoa;
 
 public class PessoaDAO implements InterfacePessoa {
 
-    private static PessoaDAO instance;
-    protected EntityManager em;
     /**
      * 
-     * @return instance
+     * @variavel --> Variavel gobal instance do tipo PessoaDAO e variavel em do tipo EntityManager.
+     */
+    private static PessoaDAO instance;
+    protected EntityManager em;
+
+    /**
+     * 
+     * @return instance --> Retorno do estanciamento do PessoaDAO.
      */
     public static PessoaDAO getInstance() {
         if (instance == null) {
@@ -26,9 +29,10 @@ public class PessoaDAO implements InterfacePessoa {
     private PessoaDAO() {
         em = getEntityManager();
     }
+	
     /**
      * 
-     * @return EntityManager
+     * @return instance --> Retorno do estanciamento do PessoaDAO.
      */
     private EntityManager getEntityManager() {
         EntityManagerFactory factory
@@ -42,12 +46,14 @@ public class PessoaDAO implements InterfacePessoa {
      * @param integer
 	 * @return Pessoa
 	 */
-    public Pessoa buscar(int id) throws Exception {
+    public Pessoa buscar(Pessoa pessoa) throws Exception {
     	try {
-    		em.getTransaction().begin();
-    		Pessoa p = em.find(Pessoa.class, id);
-    		em.getTransaction().commit();
-    		return p;
+    		return (Pessoa) em.createQuery("FROM Pessoa a WHERE a.cpf = :cpf and a.nome = :nome and a.telefone = :telefone and a.email = :email")
+				.setParameter("cpf", pessoa.getCpf())
+				.setParameter("nome", pessoa.getNome())
+				.setParameter("telefone", pessoa.getTelefone())
+				.setParameter("email", pessoa.getEmail())
+				.getSingleResult();
     	} catch(Exception eBuscar) {
     		em.getTransaction().rollback();
     		throw eBuscar;
@@ -70,12 +76,13 @@ public class PessoaDAO implements InterfacePessoa {
 	 * param Pessoa
 	 * @return Pessoa
 	 */
-    public Pessoa salvar(Pessoa p) throws Exception {
+    public Pessoa salvar(Pessoa pessoa) throws Exception {
         try {
             em.getTransaction().begin();
-            em.persist(p);
+            em.persist(pessoa);
+            em.flush();
             em.getTransaction().commit();
-            return this.buscar(p.getId());
+            return pessoa;
         } catch (Exception eSalvar) {
             em.getTransaction().rollback();
             throw eSalvar;
@@ -85,13 +92,13 @@ public class PessoaDAO implements InterfacePessoa {
 	 * param Pessoa
 	 * @return Pessoa
 	 */
-    public Pessoa atualizar(Pessoa p) throws Exception {
+    public Pessoa atualizar(Pessoa pessoa) throws Exception {
         try {
             em.getTransaction().begin();
-            em.merge(p);
-            em.getTransaction().commit();
+            em.merge(pessoa);
             em.flush();
-            return p;
+            em.getTransaction().commit();
+            return pessoa;
         } catch (Exception eAtualizar) {
             em.getTransaction().rollback();
             throw eAtualizar;
@@ -101,16 +108,14 @@ public class PessoaDAO implements InterfacePessoa {
      * @param integer
 	 * @return boolean
 	 */   
-    public void deletar(int id) throws Exception {
-        Pessoa p = null;
+    public void deletar(Pessoa pessoa) throws Exception {
     	try {
             em.getTransaction().begin();
-            p = em.find(Pessoa.class, id);
-            em.remove(p);
+            em.remove(pessoa);
             em.getTransaction().commit();
         } catch (Exception eDeletar) {
             em.getTransaction().rollback();
             throw eDeletar;
         }
     }
-}
+} 

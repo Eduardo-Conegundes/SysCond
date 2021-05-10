@@ -71,6 +71,9 @@ public class ApartamentoViewController implements Initializable {
 	@FXML
 	private Button btnEditar;
 	
+	/**
+	 * inicializar o controlador ApartamentoViewController depois que seu elemento raiz foi completamente processado.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		idTableApartamento.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -85,13 +88,19 @@ public class ApartamentoViewController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Apartamento que deseja-se editar ao ser cliclar..
+	 */
 	@FXML
 	void EditarApartamento(MouseEvent event) {
 		this.select = tableApartamento.getSelectionModel().getSelectedItems();
 		setDados();
 	}
-
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Apartamento que deseja-se excluir ao ser cliclar..
+	 */
 	@FXML
 	void ExcluirApartamento(MouseEvent event) {
 		this.select = tableApartamento.getSelectionModel().getSelectedItems();
@@ -106,7 +115,10 @@ public class ApartamentoViewController implements Initializable {
 		limpaTela();
 		initialize(null, null);
 	}
-
+	
+	/**
+	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Apartamento.
+	 */
 	@FXML
 	void salvarApartamento(MouseEvent event) {
 		String id = this.txfId.getText();
@@ -137,7 +149,11 @@ public class ApartamentoViewController implements Initializable {
 			limpaTela();
 			initialize(null,null);
 	}
-
+	
+	/**
+	 * 
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 */
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -147,6 +163,9 @@ public class ApartamentoViewController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Metodo de setar os dados de apartamento na interface
+	 */
 	private void setDados() {
 		this.txfId.setText(Integer.toString(select.get(0).getId()));
 		this.txfBloco.setText(select.get(0).getBloco());
@@ -154,6 +173,9 @@ public class ApartamentoViewController implements Initializable {
 		this.txfVagas.setText(Integer.toString(select.get(0).getVagas()));
 	}
 	
+	/**
+	 * Metodo que limpa os campos apos serem salvados ou atualizados.
+	 */
 	private void limpaTela() {
 		this.txfId.setText("");
 		this.txfBloco.setText("");

@@ -21,11 +21,7 @@ public class UsuarioController implements InterfaceUsuarioController{
 	 * @throws--> se apoeração  de salva falhar, sera lançada uma Exception.
 	 */ 
 	public Usuario criar(Usuario user) throws Exception{
-		try {
 			return userDAO.salvar(user);
-		} catch (Exception eSalvar) {
-			throw eSalvar;
-		}
 	}
 	
 	/**
@@ -33,11 +29,7 @@ public class UsuarioController implements InterfaceUsuarioController{
 	 * @throws--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public List<Usuario> listar() throws Exception{
-		try {
 			return userDAO.listar();
-		} catch (Exception eListar) {
-			throw eListar;
-		}
 	}
 	
 	/**
@@ -46,11 +38,7 @@ public class UsuarioController implements InterfaceUsuarioController{
 	 * @throws Exception--> se apoeração de listar falhar, sera lançada uma Exception.
 	 */
 	public Usuario buscar(Usuario user) throws Exception{
-		try {
 			return userDAO.buscar(user);
-		} catch (Exception eBuscar) {
-			throw eBuscar;
-		}
 	}
 	
 	/**
@@ -59,11 +47,7 @@ public class UsuarioController implements InterfaceUsuarioController{
 	 * @throws--> se apoeração  de salva falhar, sera lançada uma Exception.
 	 */
 	public Usuario atualizar(Usuario novo) throws Exception{
-		try {
 			return userDAO.atualizar(novo);
-		} catch (Exception eBuscar) {
-			throw eBuscar;
-		}
 	}
 	
 	/**
@@ -72,11 +56,7 @@ public class UsuarioController implements InterfaceUsuarioController{
 	 * @throws--> se apoeração  de deletar falhar, sera lançada uma Exception.
 	 */
 	public boolean deletar(Usuario user) throws Exception{
-		try {
 			userDAO.deletar(user);
-			return true;
-		} catch (Exception eDeletar) {
-			throw eDeletar;
-		}
+			return true;	
 	}
 }

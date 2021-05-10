@@ -1,10 +1,8 @@
 package br.upe.syscond.dao;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import br.upe.syscond.models.Morador;
 
 
@@ -98,7 +96,6 @@ public class MoradorDAO implements InterfaceMorador{
 
 	/**
 	 * @param --> O metodo deletar recebe um parametro m-com todos os atibutos atributos internalizados- do tipo morador para exclusão do morador solicitado no banco de dados.
-	 * @return--> Caso a operação de deletar seja bem sucedida, ela retona o valor boleano TRUE.
 	 * @throws--> se a operação  de deletar falhar, sera lançada uma Exception.
 	 */
 	public void deletar(Morador m) throws Exception {

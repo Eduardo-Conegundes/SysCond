@@ -1,8 +1,6 @@
 package br.upe.syscond;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -29,7 +27,10 @@ public class MainViewController {
 
     @FXML
     private Button FuncionarioMain;
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaApartamento(MouseEvent event) {
     	try {
@@ -39,7 +40,10 @@ public class MainViewController {
 			e.printStackTrace();
 		}
     }
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaMorador(MouseEvent event) {
     	try {
@@ -50,7 +54,10 @@ public class MainViewController {
 		}
 
     }
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaVisitante(MouseEvent event) {
     	try {
@@ -61,7 +68,10 @@ public class MainViewController {
 		}
 
     }
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaVeiculo(MouseEvent event) {
     	try {
@@ -72,7 +82,10 @@ public class MainViewController {
 		}
 
     }
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaUsuario(MouseEvent event) {
     	try {
@@ -83,7 +96,10 @@ public class MainViewController {
 		}
 
     }
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaFuncionario(MouseEvent event) {
     	try {
@@ -94,7 +110,10 @@ public class MainViewController {
 		}
 
     }
-    
+    /**
+     * 
+     * @param event
+     */
     @FXML
     void switchTelaLogin(MouseEvent event) {
     	try {

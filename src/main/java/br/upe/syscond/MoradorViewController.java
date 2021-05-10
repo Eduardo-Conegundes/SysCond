@@ -98,14 +98,22 @@ public class MoradorViewController implements Initializable{
 
 	@FXML
 	private Button btnExcluir;
-
+    
+    /**
+     * 
+     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
+     */
 	@FXML
 	void salvarMorador(MouseEvent event) {
 		salvar();
 		limpaTela();
 		atualizaTabela();
 	}
-
+	
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Morador que deseja-se editar ao ser cliclar..
+	 */
 	@FXML
 	void editarMorador(MouseEvent event) {
 		this.select = tableMorador.getSelectionModel().getSelectedItems();
@@ -115,7 +123,11 @@ public class MoradorViewController implements Initializable{
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
 	}
-
+	
+	/**
+	 * 
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Morador que deseja-se excluir ao ser cliclar..
+	 */
 	@FXML
 	void excluirMorador(MouseEvent event) {
 		this.select = tableMorador.getSelectionModel().getSelectedItems();
@@ -123,8 +135,10 @@ public class MoradorViewController implements Initializable{
 		limpaTela();
 		atualizaTabela();
 	}
-
-
+	
+	/**
+	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
+	 */
 	void salvar() {
 		Morador morador = new Morador(
 				new Pessoa(this.txfNome.getText(), 
@@ -158,7 +172,11 @@ public class MoradorViewController implements Initializable{
 		atualizaTabela();
 
 	}
-
+	
+	/**
+	 * 
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 */
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -168,7 +186,10 @@ public class MoradorViewController implements Initializable{
 		}
 
 	}
-
+	
+	/**
+	 * inicializar o controlador MoradorViewController  depois que seu elemento raiz foi completamente processado.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
 		this.idTableMorador.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -176,7 +197,11 @@ public class MoradorViewController implements Initializable{
 		this.ApartamentoTableMorador.setCellValueFactory(new PropertyValueFactory<>("ApartamentoString"));
 		atualizaTabela();
 	}
-
+	
+	
+	/**
+	 * Metodo que deletar o morador.
+	 */
 	private void deletar() {
 		try {
 			controlaMorador.deletar(this.select.get(0));
@@ -185,7 +210,10 @@ public class MoradorViewController implements Initializable{
 			Alerts.alertaErro(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Metodo que limpa os campos apos serem salvados ou atualizados.
+	 */
 	private void limpaTela() {
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
@@ -194,7 +222,10 @@ public class MoradorViewController implements Initializable{
 		this.txfTel.setText(null);
 		this.chcAp.setItems(FXCollections.observableArrayList());
 	}
-
+	
+	/**
+	 * Metodo que atualiza o a tabela de Morador na interface.
+	 */
 	private void atualizaTabela() {
 		try {
 			this.tableMorador.setItems(FXCollections.observableArrayList(controlaMorador.listar()));

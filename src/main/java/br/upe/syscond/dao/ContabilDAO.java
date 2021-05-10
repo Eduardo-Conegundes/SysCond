@@ -1,19 +1,23 @@
 package br.upe.syscond.dao;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import br.upe.syscond.models.Contabil;
 
 public class ContabilDAO implements InterfaceContabil{
+   
+	/**
+     * 
+     * @variavel --> Variavel gobal instance do tipo ContabilDAO e variavel em do tipo EntityManager.
+     */
 	private static ContabilDAO instance;
 	protected EntityManager em;
+
     /**
      * 
-     * @return instance
+     * @return instance --> Retorno do estanciamento do ContabilDAO.
      */
 	public static ContabilDAO getInstance() {
 		if(instance == null) {
@@ -25,9 +29,10 @@ public class ContabilDAO implements InterfaceContabil{
 	private ContabilDAO() {
 		em = getEntityManager();
 	}
+	
     /**
      * 
-     * @return EntityManager
+     * @return instance --> Retorno do estanciamento do ContabilDAO.
      */
 	private EntityManager getEntityManager() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
@@ -36,9 +41,11 @@ public class ContabilDAO implements InterfaceContabil{
 		}
 		return em;
 	}
-    /**
-     * @param Contabil
-	 * @return Contabil
+
+	/**
+	 * @param --> O metodo salvar recebe um parametro contabil-com todos os atributos internalizados- do tipo contabil para salvar no banco de dados.
+	 * @return--> Caso a operacao de salvar seja bem sucedida, ela retona o contabil salvo no banco de dados.
+	 * @throws--> se apoeracao  de salvar falhar, sera lancada uma Exception.
 	 */
 	public Contabil salvar(Contabil contabil) throws Exception{
 		try {
@@ -51,10 +58,12 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eSalvar;
 		}
 	}
-    /**
-     * @param Contabil
-	 * @return Contabil
-	 */
+
+	/**
+	 * @param --> O metodo atualizar recebe um parametro contabil-com um ou diversos atributos internalizados- do tipo contabil para atualizar o contabil no banco de dados.
+	 * @return--> Caso a operacao de atualizar seja bem sucedida, ela retona o contabil com as informacoes atualizadas no banco de dados.
+	 * @throws--> se apoeracao  de atualizar falhar, sera lancada uma Exception.
+	 */ 
 	public Contabil atualizar(Contabil contabil) throws Exception{
 		try {
 			em.getTransaction().begin();
@@ -66,9 +75,10 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eAtualizar;
 		}
 	}
-    /**
-     * @param integer
-	 * @return boolean
+
+	/**
+	 * @param --> O metodo deletar recebe um parametro id do tipo integer para exclusao do contabil solicitado no banco de dados.
+	 * @throws--> se a operacao  de deletar falhar, sera lancada uma Exception.
 	 */
 	public void deletar(int id) throws Exception{
 		Contabil p = null;
@@ -82,8 +92,10 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eDeletar;
 		}
 	}
-    /**
-	 * @return Lista de Contabil[]
+	
+	/**
+	 * @return--> Caso a operacao de listar seja bem sucedida, ela retona o contabil salvo no banco de dados.
+	 * @throws--> se a poeracaoo de listar falhar, sera lancada uma Exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Contabil> listar(){
@@ -94,11 +106,12 @@ public class ContabilDAO implements InterfaceContabil{
 			throw eListar;
 		}
 	}
-
-    /**
-     * @param integer
-	 * @return Contabil
-	 */
+	
+	/**
+	 * @param --> O metodo buscar recebe um parametro id do tipo integer para realizar uma busca no banco de dados do unico contabil existente solicitado.
+	 * @return--> Caso a operacao de Buscar seja bem sucedida, ela retona o contabil solicitado no que esta no Banco de dados. 
+	 * @throws Exception--> se apoeracao de listar falhar, sera lancada uma Exception.
+	 */ 
 	public Contabil buscar(int id) {
 		Contabil p = null;
 		try {
