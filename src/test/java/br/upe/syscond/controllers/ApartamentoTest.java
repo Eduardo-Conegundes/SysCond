@@ -24,7 +24,7 @@ public class ApartamentoTest {
 	static Apartamento apartamento = new Apartamento(bloco, numero, 2);
 
 	@Test
-	public void t1esteCriar() throws Exception {
+	public void t1esteCriar() throws Exception{
 		Apartamento criado = null;		
 		criado = controlador.criar(apartamento);
 		int id = criado.getId();

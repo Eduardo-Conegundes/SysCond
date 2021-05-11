@@ -2,7 +2,6 @@ package br.upe.syscond;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
 import br.upe.syscond.models.Apartamento;
