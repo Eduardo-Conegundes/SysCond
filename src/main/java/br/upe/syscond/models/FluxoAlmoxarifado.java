@@ -9,7 +9,7 @@ public class FluxoAlmoxarifado {
 	//@Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
 	private int id;
 	private int qtd;
-	private String tipoTransacao; //entrada ou saida
+	private String nomeDoProduto; 
 	private Almoxarifado estoque;
 
 	public FluxoAlmoxarifado() {}
@@ -18,12 +18,12 @@ public class FluxoAlmoxarifado {
 	 * 
 	 * @param produto
 	 * @param qtd
-	 * @param tipoTransacao
+	 * @param nomeDoProduto
 	 * @param estoque
 	 */
-	public FluxoAlmoxarifado(int qtd, String tipoTransacao, Almoxarifado estoque){
+	public FluxoAlmoxarifado(int qtd, String nomeDoProduto, Almoxarifado estoque){
 		this.qtd = qtd;
-		this.tipoTransacao = tipoTransacao;
+		this.nomeDoProduto = nomeDoProduto;
 		this.estoque = estoque;
 	}
 	/**
@@ -52,16 +52,16 @@ public class FluxoAlmoxarifado {
 		this.qtd = qtd;
 	}
 	/**
-	 * @return the tipoTransacao
+	 * @return the nomeDoProduto
 	 */
-	public String getTipoTransacao() {
-		return tipoTransacao;
+	public String getNomeDoProduto() {
+		return nomeDoProduto;
 	}
 	/**
-	 * @param tipoTransacao the tipoTransacao to set
+	 * @param nomeDoProduto the nomeDoProduto to set
 	 */
-	public void setTipoTransacao(String tipoTransacao) {
-		this.tipoTransacao = tipoTransacao;
+	public void setNomeDoProduto(String nomeDoProduto) {
+		this.nomeDoProduto = nomeDoProduto;
 	}
 	/**
 	 * @return the estoque

@@ -20,7 +20,7 @@ public class ContabilController implements InterfaceContabilController{
 	 * @return--> Se existir uma contabil ele retornara a sua instancia, caso contrario ele criara a contabil.
 	 * @throws--> se operacaoo  de verificacao ou de salva falhar, sera lancada uma Exception.
 	 */
-	public static ContabilController getInstance()throws Exception{
+	public static ContabilController getInstance() throws Exception{
 		if(instance == null) {
 				instance = new ContabilController();
 		}

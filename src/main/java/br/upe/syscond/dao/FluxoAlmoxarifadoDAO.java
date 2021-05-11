@@ -5,10 +5,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import br.upe.syscond.models.FluxoAlmoxarifado;
+import br.upe.syscond.models.Morador;
 
 
 
-public class FluxoAlmoxarifadoDAO {
+public class FluxoAlmoxarifadoDAO implements InterfaceFluxoAlmoxarifado{
 	
     /**
      * 
@@ -53,8 +54,9 @@ public class FluxoAlmoxarifadoDAO {
 		try {
 			em.getTransaction().begin();
 			em.persist(fluxo);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(fluxo.getId());
+			return fluxo;
 		}catch(Exception eSalvar) {
 			em.getTransaction().rollback();
 			throw eSalvar;
@@ -70,8 +72,9 @@ public class FluxoAlmoxarifadoDAO {
 		try {
 			em.getTransaction().begin();
 			em.merge(fluxo);
+			em.flush();
 			em.getTransaction().commit();
-			return this.buscar(fluxo.getId());
+			return fluxo;
 		}catch(Exception eAtualizar) {
 			em.getTransaction().rollback();
 			throw eAtualizar;
@@ -83,14 +86,12 @@ public class FluxoAlmoxarifadoDAO {
 	 * @return--> Caso a operacao de Buscar seja bem sucedida, ela retona o FluxoAlmoxarifado deseja que esta no Banco de dados. 
 	 * @throws Exception--> se apoeracao de listar falhar, sera lancada uma Exception.
 	 */   
-	public FluxoAlmoxarifado buscar(int id) throws Exception{
+	public FluxoAlmoxarifado buscar(FluxoAlmoxarifado fluxo) throws Exception{
 		try {
-			em.getTransaction().begin();
-			FluxoAlmoxarifado fluxo = em.find(FluxoAlmoxarifado.class, id);
-			em.getTransaction().commit();
-			return fluxo;
-		} catch(Exception eBuscar) {
-			em.getTransaction().rollback();
+			return (FluxoAlmoxarifado) em.createQuery("From FluxoAlmoxarifado m where m.nomeDoProduto = :nomeDoProduto")
+					.setParameter("nomeDoProduto", fluxo.getNomeDoProduto())
+					.getSingleResult();
+		} catch (Exception eBuscar) {
 			throw eBuscar;
 		}
 	}
@@ -99,27 +100,12 @@ public class FluxoAlmoxarifadoDAO {
 	 * @param --> O metodo deletar recebe um parametro id do tipo integer para exclusao do FluxoAlmoxarifado solicitado no banco de dados.
 	 * @throws--> se a operacao  de deletar falhar, sera lancada uma Exception.
 	 */
-	public void deletar(int id) throws Exception {
-		try {
-			FluxoAlmoxarifado fluxo = buscar(id);
-			deletarPorId(fluxo);
-		} catch (Exception eDeletarId) {
-			eDeletarId.printStackTrace();
-			throw eDeletarId;
-		}
-	}
-
-	/**
-	 * @param --> O metodo deletar recebe um parametro fluxo-com todos os atibutos atributos internalizados- do tipo FluxoAlmoxarifado para exclusao do FluxoAlmoxarifado solicitado no banco de dados.
-	 * @throws--> se a operacao  de deletar falhar, sera lancada uma Exception.
-	 */
-	private void deletarPorId(FluxoAlmoxarifado fluxo) throws Exception{
+	public void deletar(FluxoAlmoxarifado fluxo) throws Exception {
 		try {
 			em.getTransaction().begin();
-			FluxoAlmoxarifado fluxorecebido = em.find(FluxoAlmoxarifado.class, fluxo.getId());
-			em.remove(fluxorecebido);
+			em.remove(fluxo);
 			em.getTransaction().commit();
-		} catch(Exception eDeletar) {
+		} catch (Exception eDeletar) {
 			em.getTransaction().rollback();
 			throw eDeletar;
 		}
