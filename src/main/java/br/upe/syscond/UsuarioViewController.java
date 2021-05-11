@@ -83,7 +83,6 @@ public class UsuarioViewController implements Initializable{
 		this.txfEmail.setText(select.get(0).getEmail());
 		this.txfSenha.setText(select.get(0).getSenha());
 //		this.txfId.setText(Integer.toString(select.get(0).getId()));
-		atualizaTabela();
 	}
 	
 	/**
@@ -115,7 +114,6 @@ public class UsuarioViewController implements Initializable{
 			salvar(0);
 		}else {
 			salvar(this.select.get(0).getId());		
-			atualizaTabela();
 		}
 	}
 	

@@ -104,11 +104,14 @@ public class VeiculoViewController implements Initializable {
      * 
      * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
      */
+	
 	@FXML
 	void salvarVeiculo(MouseEvent event) {
-		salvar();
-		limpaTela();
-		atualizaTabela();
+		if(this.select == null) {
+			salvar(0);
+		}else {
+			salvar(this.select.get(0).getId());
+		}
 	}
 	
 	/**
@@ -168,11 +171,11 @@ public class VeiculoViewController implements Initializable {
 	/**
 	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
 	 */
-	void salvar() {
-		Integer id = this.select.get(0).getId();
+	void salvar(int id) {
+	//	Integer id = this.select.get(0).getId();
 		String placa = this.txfPlaca.getText();
 		Veiculo veiculo = new Veiculo(placa, this.chcAp.getSelectionModel().getSelectedItem());
-		if(!id.equals(0)) {
+		if(!(id == 0)) {
 			veiculo.setId(id);
 			try {
 				controlaVeiculo.atualizar(veiculo);

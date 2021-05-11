@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
 import br.upe.syscond.models.Apartamento;
-import br.upe.syscond.models.Morador;
-import br.upe.syscond.models.Pessoa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -118,8 +116,8 @@ public class ApartamentoViewController implements Initializable {
 	/**
 	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Apartamento.
 	 */
-	@FXML
-	 void salvar(int id) {
+	
+	void salvar(int id) {
 		String bloco = this.txfBloco.getText();
 		int numero = Integer.parseInt(this.txfNumero.getText());
 		int vagas = Integer.parseInt(this.txfVagas.getText());
