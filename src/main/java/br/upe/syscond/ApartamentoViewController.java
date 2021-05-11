@@ -135,8 +135,7 @@ public class ApartamentoViewController implements Initializable {
 					
 				} catch (Exception e) {
 					e.printStackTrace();
-					Alerts.alertaErro("Erro ao Atualizar...");
-				
+					Alerts.alertaErro("Erro ao Atualizar...");	
 				}
 			}else {
 				try {
@@ -146,7 +145,6 @@ public class ApartamentoViewController implements Initializable {
 					Alerts.alertaErro("Erro ao salvar...");
 				}
 			}
-		
 			atualizaTabela();
 			limpaTela();
 	}

@@ -82,7 +82,8 @@ public class UsuarioViewController implements Initializable{
 		this.select = tableUsuario.getSelectionModel().getSelectedItems();
 		this.txfEmail.setText(select.get(0).getEmail());
 		this.txfSenha.setText(select.get(0).getSenha());
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
+//		this.txfId.setText(Integer.toString(select.get(0).getId()));
+		atualizaTabela();
 	}
 	
 	/**
@@ -110,10 +111,12 @@ public class UsuarioViewController implements Initializable{
      */
 	@FXML
 	void salvarUsuario(MouseEvent event) {
-		this.select = null;
-		salvar();
-		limpaTela();
-		atualizaTabela();
+		if(this.select == null) {
+			salvar(0);
+		}else {
+			salvar(this.select.get(0).getId());		
+			atualizaTabela();
+		}
 	}
 	
 	/**
@@ -139,6 +142,7 @@ public class UsuarioViewController implements Initializable{
 		emailTableUsuario.setCellValueFactory(new PropertyValueFactory<>("email"));
 		senhaTableUsuario.setCellValueFactory(new PropertyValueFactory<>("senha"));
 		atualizaTabela();
+		this.select = null;
 	}
 	
 	/**
@@ -159,21 +163,21 @@ public class UsuarioViewController implements Initializable{
 	private void limpaTela() {
 		this.txfEmail.setText(null);
 		this.txfSenha.setText(null);
-		this.txfId.setText("");
+	//	this.txfId.setText("");
 	}
 	
 	/**
 	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Morador.
 	 */
-	private void salvar() {
+	private void salvar(int id) {
 		String email = this.txfEmail.getText();
 		String senha = this.txfSenha.getText();
-		String id = this.txfId.getText();
+	//	String id = this.txfId.getText();
 
 		Usuario usuario = new Usuario(email, senha);
 
-		if(!id.equals("")) {
-			usuario.setId(Integer.parseInt(id));
+		if(!(id == 0)){
+			usuario.setId(id);
 			try {
 				controlaUsuario.atualizar(usuario);
 				Alerts.alertaSucesso("Atualizado com sucesso!");
@@ -188,6 +192,9 @@ public class UsuarioViewController implements Initializable{
 			} catch (Exception e) {
 				Alerts.alertaErro("Erro ao salvar");
 			}
-		}
-	}
+		}	
+		atualizaTabela();
+		limpaTela();
+	}	
+
 }
