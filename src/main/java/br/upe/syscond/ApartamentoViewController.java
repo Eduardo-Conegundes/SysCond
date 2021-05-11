@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import br.upe.syscond.controllers.ApartamentoController;
 import br.upe.syscond.controllers.InterfaceApartamentoController;
 import br.upe.syscond.models.Apartamento;
+import br.upe.syscond.models.Morador;
+import br.upe.syscond.models.Pessoa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -80,13 +82,8 @@ public class ApartamentoViewController implements Initializable {
 		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
 		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));
-		
-		try {
-			tableApartamento.setItems(FXCollections.observableArrayList(controlaAp.listar()));
-		} catch (Exception e) {
-			Alerts.alertaErro("Erro ao listar na tabela");
-			e.printStackTrace();
-		}
+		atualizaTabela();
+		this.select = null;
 	}
 	/**
 	 * 
@@ -95,7 +92,9 @@ public class ApartamentoViewController implements Initializable {
 	@FXML
 	void EditarApartamento(MouseEvent event) {
 		this.select = tableApartamento.getSelectionModel().getSelectedItems();
-		setDados();
+		this.txfBloco.setText(select.get(0).getBloco());
+		this.txfNumero.setText(Integer.toString(select.get(0).getNumero()));
+		this.txfVagas.setText(Integer.toString(select.get(0).getVagas()));
 	}
 	/**
 	 * 
@@ -106,36 +105,38 @@ public class ApartamentoViewController implements Initializable {
 		this.select = tableApartamento.getSelectionModel().getSelectedItems();
 		try {
 			if(Alerts.alertaDeletar()) {
-				controlaAp.deletar(this.select.get(0));				
+				controlaAp.deletar(this.select.get(0));
+				Alerts.alertaSucesso("Deletado com Sucesso!");
 			}
 		} catch (Exception e) {
 			Alerts.alertaErro("Erro ao Deletar");
-			e.printStackTrace();
 		}
 		limpaTela();
-		initialize(null, null);
+		atualizaTabela();
 	}
-	
+
 	/**
 	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Apartamento.
 	 */
 	@FXML
-	void salvarApartamento(MouseEvent event) {
-		String id = this.txfId.getText();
+	 void salvar(int id) {
 		String bloco = this.txfBloco.getText();
 		int numero = Integer.parseInt(this.txfNumero.getText());
 		int vagas = Integer.parseInt(this.txfVagas.getText());
+	//	String id = this.txfId.getText();
 		
 		Apartamento ap = new Apartamento(bloco, numero, vagas);
 		
-			if(!id.equals("")) {
+			if(!(id == 0)) {
+				ap.setId(id);
 				try {
-					ap.setId(Integer.parseInt(id));
 					controlaAp.atualizar(ap);
 					Alerts.alertaSucesso("Atualizado com Sucesso!");
+					
 				} catch (Exception e) {
-					Alerts.alertaErro("Erro ao Atualizar...");
 					e.printStackTrace();
+					Alerts.alertaErro("Erro ao Atualizar...");
+				
 				}
 			}else {
 				try {
@@ -143,11 +144,11 @@ public class ApartamentoViewController implements Initializable {
 					Alerts.alertaSucesso("Salvo com Sucesso!");
 				} catch (Exception e) {
 					Alerts.alertaErro("Erro ao salvar...");
-					e.printStackTrace();
 				}
 			}
+		
+			atualizaTabela();
 			limpaTela();
-			initialize(null,null);
 	}
 	
 	/**
@@ -162,25 +163,37 @@ public class ApartamentoViewController implements Initializable {
 			Alerts.alertaErro("Erro ao ir ao Menu principal!");
 		}
 	}
-	
-	/**
-	 * Metodo de setar os dados de apartamento na interface
-	 */
-	private void setDados() {
-		this.txfId.setText(Integer.toString(select.get(0).getId()));
-		this.txfBloco.setText(select.get(0).getBloco());
-		this.txfNumero.setText(Integer.toString(select.get(0).getNumero()));
-		this.txfVagas.setText(Integer.toString(select.get(0).getVagas()));
-	}
+
 	
 	/**
 	 * Metodo que limpa os campos apos serem salvados ou atualizados.
 	 */
 	private void limpaTela() {
-		this.txfId.setText("");
+	//	this.txfId.setText("");
 		this.txfBloco.setText(null);
 		this.txfNumero.setText(null);
 		this.txfVagas.setText(null);
+	}
+	
+	/**
+	 * Metodo que atualiza o a tabela de Usuario na interface.
+	 */
+	private void atualizaTabela() {
+		try {
+			tableApartamento.setItems(FXCollections.observableArrayList(controlaAp.listar()));			
+		} catch (Exception e) {
+			Alerts.alertaErro("Erro ao listar tabela");
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	void salvarApartamento(MouseEvent event) {
+		if(this.select == null) {
+			salvar(0);
+		}else {
+			salvar(this.select.get(0).getId());
+		}
 	}
 
 }

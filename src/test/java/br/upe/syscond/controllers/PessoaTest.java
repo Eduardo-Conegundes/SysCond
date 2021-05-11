@@ -1,44 +1,39 @@
 package br.upe.syscond.controllers;
 
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
 import br.upe.syscond.models.Pessoa;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PessoaTest {
 	static Pessoa pessoa = new Pessoa(RandomStringUtils.randomAlphabetic(8).toUpperCase(), "66666", "666666", "LuizAu@gmail.com");
-	static PessoaController controlador = new PessoaController();
+	static InterfacePessoaController controlador = new PessoaController();
 
 
 	@Test
-	public void t1esteCriarPessoa() {
+	public void t1esteCriarPessoa() throws Exception{
 		Pessoa pessoanova = null;
 		pessoanova = controlador.criar(pessoa);
 		assertNotNull(pessoanova);
 	}
-
-
+	
 	@Test
-	public void t2esteAtualizarPessoa() {
+	public void t2esteAtualizarPessoa() throws Exception{
 		Pessoa pessoamodificada = new Pessoa("Luiz Augusto Alapenha", "66666", "62452346", "LuizAu@gmail.com");
-		pessoamodificada = controlador.atualizar(pessoa, pessoamodificada);
-		
-		assertNotEquals(0, pessoamodificada.getId());
-		pessoa = pessoamodificada;
+		pessoamodificada.setId(pessoa.getId());
+		pessoamodificada = controlador.atualizar(pessoamodificada);
+		assertEquals(pessoamodificada.getNome(), pessoa.getNome());
 	}
 
 	@Test
-	public void t3esteListarPessoas() {
+	public void t3esteListarPessoas() throws Exception{
 		List<Pessoa> listapessoas = null;
 		listapessoas = controlador.listar();
 		assertNotNull(listapessoas);
@@ -46,7 +41,7 @@ public class PessoaTest {
 	}
 
 	@Test
-	public void t4esteDeletarPessoas() {
+	public void t4esteDeletarPessoas() throws Exception{
 		boolean teste = false;
 		teste = controlador.deletar(pessoa);
 		assertTrue(teste);

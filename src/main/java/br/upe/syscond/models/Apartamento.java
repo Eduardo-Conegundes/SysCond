@@ -1,14 +1,17 @@
 package br.upe.syscond.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"numero", "bloco"}))
-public class Apartamento {
+public class Apartamento implements Serializable {
 
 	@Id @GeneratedValue(generator = "idApartamento")
 	private int id;

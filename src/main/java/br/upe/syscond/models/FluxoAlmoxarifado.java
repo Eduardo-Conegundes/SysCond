@@ -1,15 +1,20 @@
 package br.upe.syscond.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-//@Entity
+@Entity
 public class FluxoAlmoxarifado {
-	//@Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
+	@Id @GeneratedValue(generator = "idFluxoAlmoxarifado")
 	private int id;
+	@Column(nullable = false)
 	private int qtd;
+	@Column(nullable = false)
 	private String nomeDoProduto; 
+	@ManyToOne
 	private Almoxarifado estoque;
 
 	public FluxoAlmoxarifado() {}
@@ -75,7 +80,6 @@ public class FluxoAlmoxarifado {
 	public void setEstoque(Almoxarifado estoque) {
 		this.estoque = estoque;
 	}
-
 
 
 }

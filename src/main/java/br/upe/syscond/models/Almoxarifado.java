@@ -1,13 +1,17 @@
 package br.upe.syscond.models;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-//@Entity
+@Entity
 public class Almoxarifado {
 
-	//@Id @GeneratedValue(generator = "idAlmoxarifado")
+	@Id @GeneratedValue(generator = "idAlmoxarifado")
 	private int id;
-	//@OneToMany
+	@OneToMany
 	private List<FluxoAlmoxarifado> fluxoalmoxarifado;
 
 	/**
