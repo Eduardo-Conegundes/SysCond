@@ -25,16 +25,9 @@ public class ContabilViewController implements Initializable{
 	static InterfaceContabilController controlaContas;
 	private ObservableList<Contas> select;
 	boolean statusConta;
-	
-	
-//    @FXML
-//    private Label lblId;
 
     @FXML
     private TextField txfIdentificador;
-
-//    @FXML
-//    private TextField txfId;
 
     @FXML
     private TextField txfPagador;
@@ -113,6 +106,12 @@ public class ContabilViewController implements Initializable{
     
     @FXML
     private CheckBox StatusPaga;
+    
+    @FXML
+    private Label lblSelecioneTipo;
+
+    @FXML
+    private Label lblSelecioneSePaga;
   
     @FXML
     void EditarConta(MouseEvent event) {

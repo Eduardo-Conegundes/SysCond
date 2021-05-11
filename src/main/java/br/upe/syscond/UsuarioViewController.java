@@ -75,7 +75,7 @@ public class UsuarioViewController implements Initializable{
 	private Button btnExcluir;
 	/**
 	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Usuario que deseja-se editar ao ser cliclar..
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleï¿½ï¿½o do Usuario que deseja-se editar ao ser cliclar..
 	 */
 	@FXML
 	void EditarUsuario(MouseEvent event) {
@@ -87,7 +87,7 @@ public class UsuarioViewController implements Initializable{
 	
 	/**
 	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Usuario que deseja-se excluir ao ser cliclar..
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleï¿½ï¿½o do Usuario que deseja-se excluir ao ser cliclar..
 	 */
 	@FXML
 	void ExcluirUsuario(MouseEvent event) {
@@ -119,7 +119,7 @@ public class UsuarioViewController implements Initializable{
 	
 	/**
 	 * 
-	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer funï¿½ï¿½o do crude..
 	 */
 	@FXML
 	void switchMain(MouseEvent event) {
@@ -136,7 +136,6 @@ public class UsuarioViewController implements Initializable{
 	 * inicializar o controlador UsuarioViewController  depois que seu elemento raiz foi completamente processado.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {	
-		idTableUsuario.setCellValueFactory(new PropertyValueFactory<>("id"));
 		emailTableUsuario.setCellValueFactory(new PropertyValueFactory<>("email"));
 		senhaTableUsuario.setCellValueFactory(new PropertyValueFactory<>("senha"));
 		atualizaTabela();

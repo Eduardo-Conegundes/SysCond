@@ -144,8 +144,6 @@ public class MoradorViewController implements Initializable{
 						this.txfEmail.getText()), 
 				this.chcAp.getSelectionModel().getSelectedItem()
 				);
-		
-		//caso atualizar
 		if(!(id == 0)) {
 			morador.setId(id);
 			try {

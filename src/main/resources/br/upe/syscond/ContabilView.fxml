@@ -12,43 +12,92 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ContabilViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.upe.syscond.ContabilViewController">
    <children>
-      <TextField fx:id="txfIdentificador" layoutX="114.0" layoutY="65.0" />
-      <TextField fx:id="txfPagador" layoutX="114.0" layoutY="91.0" />
-      <Label fx:id="lblBeneficiario" layoutX="24.0" layoutY="127.0" text="Beneficiario" />
-      <TextField fx:id="txfBeneficiario" layoutX="114.0" layoutY="123.0" />
-      <Label fx:id="lblPagador" layoutX="27.0" layoutY="95.0" text="Pagador" />
-      <Label fx:id="lblIdentificador" layoutX="21.0" layoutY="69.0" text="Identificador" />
-      <TableView fx:id="tableContabil" layoutX="21.0" layoutY="242.0" prefHeight="136.0" prefWidth="621.0">
+      <TextField fx:id="txfIdentificador" layoutX="159.0" layoutY="117.0" />
+      <TextField fx:id="txfPagador" layoutX="159.0" layoutY="159.0" />
+      <Label fx:id="lblBeneficiario" layoutX="38.0" layoutY="198.0" text="Beneficiário:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="txfBeneficiario" layoutX="159.0" layoutY="199.0" />
+      <Label fx:id="lblPagador" layoutX="38.0" layoutY="158.0" text="Pagador:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="lblIdentificador" layoutX="33.0" layoutY="116.0" text="Identificador:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TableView fx:id="tableContabil" layoutX="31.0" layoutY="330.0" prefHeight="136.0" prefWidth="733.0">
          <columns>
             <TableColumn fx:id="Contabilidentificador" prefWidth="78.0" text="Identificador" />
-            <TableColumn fx:id="ContabilPagador" prefWidth="75.0" text="Pagador" />
-            <TableColumn fx:id="ConabilBeneficiario" prefWidth="75.0" text="Beneficiário" />
-            <TableColumn fx:id="ContabilValor" prefWidth="54.0" text="Valor" />
-            <TableColumn fx:id="ContabilTipo" text="Tipo" />
-            <TableColumn fx:id="ContabilDataEmitir" prefWidth="96.0" text="Data Emissão" />
-            <TableColumn fx:id="ContabilDataVence" prefWidth="104.0" text="Data Vencimento" />
-            <TableColumn fx:id="ContabilStatus" prefWidth="58.0" text="Status" />
+            <TableColumn fx:id="ContabilPagador" prefWidth="83.0" text="Pagador" />
+            <TableColumn fx:id="ConabilBeneficiario" prefWidth="79.0" text="Beneficiário" />
+            <TableColumn fx:id="ContabilValor" prefWidth="62.0" text="Valor" />
+            <TableColumn fx:id="ContabilTipo" prefWidth="82.0" text="Tipo" />
+            <TableColumn fx:id="ContabilDataEmitir" prefWidth="127.0" text="Data Emissão" />
+            <TableColumn fx:id="ContabilDataVence" prefWidth="132.0" text="Data Vencimento" />
+            <TableColumn fx:id="ContabilStatus" prefWidth="89.0" text="Status" />
          </columns>
       </TableView>
-      <Button fx:id="btnSalvar" layoutX="46.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#salvarConta" text="Salvar" />
-      <Button fx:id="btnCancelar" layoutX="537.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar" />
-      <Button fx:id="btnEditar" layoutX="202.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#EditarConta" text="Editar" />
-      <Button fx:id="btnEditar" layoutX="359.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#ExcluirConta" text="Excluir" />
-      <Text layoutX="215.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contábil" textAlignment="CENTER" wrappingWidth="215.0">
+      <Button fx:id="btnSalvar" layoutX="33.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#salvarConta" text="Salvar">
          <font>
-            <Font size="21.0" />
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnCancelar" layoutX="645.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#switchMain" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnEditar" layoutX="132.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#EditarConta" text="Editar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnEditar" layoutX="234.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ExcluirConta" text="Excluir">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Text layoutX="327.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contábil" textAlignment="CENTER" wrappingWidth="149.0">
+         <font>
+            <Font size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="txtValor" layoutX="114.0" layoutY="156.0" />
-      <Label fx:id="lblValor" layoutX="43.0" layoutY="160.0" text="Valor" />
-      <RadioButton fx:id="txtReceber" layoutX="323.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Receber" />
-      <RadioButton fx:id="txtPagar" layoutX="436.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Pagar" />
-      <DatePicker fx:id="textlblDataEmissao" layoutX="401.0" layoutY="106.0" />
-      <DatePicker fx:id="texttxtDataVencimento" layoutX="401.0" layoutY="134.0" />
-      <Label fx:id="lblDataEmissao" layoutX="309.0" layoutY="106.0" text="Data Emissão" />
-      <Label fx:id="txtDataVencimento" layoutX="299.0" layoutY="138.0" text="Data Vencimento" />
-      <CheckBox fx:id="StatusPaga" layoutX="400.0" layoutY="175.0" mnemonicParsing="false" text="Paga" />
+      <TextField fx:id="txtValor" layoutX="159.0" layoutY="241.0" />
+      <Label fx:id="lblValor" layoutX="44.0" layoutY="240.0" text="Valor:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <RadioButton fx:id="txtReceber" layoutX="510.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Receber">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="txtPagar" layoutX="617.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Pagar">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <DatePicker fx:id="textlblDataEmissao" layoutX="558.0" layoutY="159.0" />
+      <DatePicker fx:id="texttxtDataVencimento" layoutX="558.0" layoutY="199.0" />
+      <Label fx:id="lblDataEmissao" layoutX="428.0" layoutY="158.0" text="Data Emissão">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="txtDataVencimento" layoutX="398.0" layoutY="198.0" text="Data Vencimento">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <CheckBox fx:id="StatusPaga" layoutX="558.0" layoutY="273.0" mnemonicParsing="false" text="Paga">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Label fx:id="lblSelecioneTipo" layoutX="401.0" layoutY="114.0" text="Selecione:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSelecioneSePaga" layoutX="434.0" layoutY="251.0" prefHeight="71.0" prefWidth="115.0" text="Selecione caso tenha sido paga" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

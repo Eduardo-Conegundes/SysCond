@@ -76,7 +76,6 @@ public class ApartamentoViewController implements Initializable {
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		idTableApartamento.setCellValueFactory(new PropertyValueFactory<>("id"));
 		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
 		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));
@@ -85,7 +84,7 @@ public class ApartamentoViewController implements Initializable {
 	}
 	/**
 	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Apartamento que deseja-se editar ao ser cliclar..
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleï¿½ï¿½o do Apartamento que deseja-se editar ao ser cliclar..
 	 */
 	@FXML
 	void EditarApartamento(MouseEvent event) {
@@ -96,7 +95,7 @@ public class ApartamentoViewController implements Initializable {
 	}
 	/**
 	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Apartamento que deseja-se excluir ao ser cliclar..
+	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleï¿½ï¿½o do Apartamento que deseja-se excluir ao ser cliclar..
 	 */
 	@FXML
 	void ExcluirApartamento(MouseEvent event) {
@@ -149,7 +148,7 @@ public class ApartamentoViewController implements Initializable {
 	
 	/**
 	 * 
-	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
+	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer funï¿½ï¿½o do crude..
 	 */
 	@FXML
 	void switchMain(MouseEvent event) {
