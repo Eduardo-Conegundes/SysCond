@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -67,11 +68,14 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <RadioButton fx:id="txtReceber" layoutX="510.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Receber">
+      <RadioButton fx:id="txtReceber" layoutX="510.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" selected="true" text="Receber">
          <font>
             <Font size="18.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="txtPagar" layoutX="617.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Pagar">
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="contabil" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="txtPagar" layoutX="617.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#verificaStatus" text="Pagar" toggleGroup="$contabil">
          <font>
             <Font size="18.0" />
          </font></RadioButton>
