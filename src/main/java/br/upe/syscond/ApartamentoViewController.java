@@ -74,7 +74,6 @@ public class ApartamentoViewController implements Initializable {
 	 * inicializar o controlador ApartamentoViewController depois que seu elemento raiz foi completamente processado.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
 		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));

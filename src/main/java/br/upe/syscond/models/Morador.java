@@ -22,7 +22,7 @@ public class Morador implements Serializable {
     	    cascade = CascadeType.ALL)
     private Pessoa pessoa;
     
-    @ManyToOne (optional = false, fetch = FetchType.LAZY)
+    @ManyToOne (optional = false, fetch = FetchType.EAGER)
     private Apartamento apartamento;
 
     public Morador() {}

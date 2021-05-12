@@ -189,7 +189,9 @@ public class Contas {
 			return false;			
 		}
 	}
-	
+	/**
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		return super.toString();

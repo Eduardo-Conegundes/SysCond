@@ -80,7 +80,7 @@ public class VeiculoViewController implements Initializable {
 	
 	/**
 	 * 
-	 * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Veiculo que deseja-se editar ao ser cliclar..
+	 * @param recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do Veiculo que deseja-se editar ao ser cliclar..
 	 */
 	@FXML
 	void editarVeiculo(MouseEvent event) {

@@ -117,7 +117,6 @@ public class MoradorViewController implements Initializable{
 		this.txfEmail.setText(select.get(0).getPessoa().getEmail());
 		this.txfTel.setText(select.get(0).getPessoa().getTelefone());
 		this.chcAp.setValue(this.select.get(0).getApartamento());
-		
 	}
 	/**
 	 * metodo ao clicar no botao deletar
