@@ -54,7 +54,4 @@ public class Almoxarifado {
 		this.fluxoalmoxarifado = fluxoalmoxarifado;
 	}
 
-
-
-
 }

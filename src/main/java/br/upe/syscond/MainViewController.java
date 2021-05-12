@@ -43,7 +43,10 @@ public class MainViewController implements Initializable{
 			 e.printStackTrace();
 		 }
 	 }
-
+	 /**
+	  * 
+	  * @param event
+	  */
 	 @FXML
 	 void switchTelaApartamento(MouseEvent event) {
 		 try {
@@ -136,7 +139,10 @@ public class MainViewController implements Initializable{
 			 e.printStackTrace();
 		 }
 	 }
-
+	 /**
+	  * 
+	  * @param event
+	  */
 	 @FXML
 	 void switchTelaContabil(MouseEvent event) {
 		 try {
