@@ -2,7 +2,6 @@ package br.upe.syscond.controllers;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -28,33 +27,52 @@ public class FuncionarioTest {
 	static InterfaceFuncionarioController controlador = new FuncionarioController();
 	
 	@Test
-	public void t1esteCriarFuncionario() {
-		controladorPessoa.criar(pessoa);
-		funcionario = controlador.criar(funcionario);
+	public void t1esteCriarFuncionario() throws Exception{
+		try {
+			controladorPessoa.criar(pessoa);
+			funcionario = controlador.criar(funcionario);
+			
+			assertNotEquals(0 , funcionario.getId());
+		}catch(Exception e) {
+			assertNotEquals(true, false);
+		}
 		
-		assertNotEquals(0 , funcionario.getId());
 	}
 
 	@Test
-	public void t2esteAtualizarFuncionario() {
-		Funcionario novo = new Funcionario(pessoa, "Externoooo", "supervisor",(float)8000.00);
+	public void t2esteAtualizarFuncionario() throws Exception{
+		try {
+			Funcionario novo = new Funcionario(pessoa, "Externoooo", "supervisor",(float)8000.00);
+			
+			novo = controlador.atualizar(novo);
+			
+			assertNotNull(novo.getId());
+		}catch(Exception e) {
+			assertNotEquals(true, false);
+		}
 		
-		novo = controlador.atualizar(funcionario, novo);
-		
-		assertNotNull(novo.getId());
 	}
 
 	@Test
-	public void t3esteListarFuncionarios() {
-		List<Funcionario> lista = controlador.listar();
-		assertNotEquals(0, lista.size());
+	public void t3esteListarFuncionarios() throws Exception{
+		try {
+			List<Funcionario> lista = controlador.listar();
+			assertNotEquals(0, lista.size());
+		}catch(Exception e) {
+			assertNotEquals(true, false);
+		}
+		
 	}
 
 	@Test
-	public void t4esteDeletarFuncionario() {
-		boolean deletaFuncionario = controlador.deletar(funcionario);
+	public void t4esteDeletarFuncionario() throws Exception{
+		try {
+			controlador.deletar(funcionario);
+		}catch(Exception e) {
+			assertNotEquals(true, false);
+		}
 		
-		assertTrue(deletaFuncionario);
+		
 	}
 
 }
