@@ -74,7 +74,6 @@ public class ApartamentoViewController implements Initializable {
 	 * inicializar o controlador ApartamentoViewController depois que seu elemento raiz foi completamente processado.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		blocoTableApartamento.setCellValueFactory(new PropertyValueFactory<>("bloco"));
 		numeroTableApartamento.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		vagasTableApartamento.setCellValueFactory(new PropertyValueFactory<>("vagas"));
@@ -119,7 +118,6 @@ public class ApartamentoViewController implements Initializable {
 		String bloco = this.txfBloco.getText();
 		int numero = Integer.parseInt(this.txfNumero.getText());
 		int vagas = Integer.parseInt(this.txfVagas.getText());
-	//	String id = this.txfId.getText();
 		
 		Apartamento ap = new Apartamento(bloco, numero, vagas);
 		
@@ -163,7 +161,6 @@ public class ApartamentoViewController implements Initializable {
 	 * Metodo que limpa os campos apos serem salvados ou atualizados.
 	 */
 	private void limpaTela() {
-	//	this.txfId.setText("");
 		this.txfBloco.setText(null);
 		this.txfNumero.setText(null);
 		this.txfVagas.setText(null);

@@ -61,7 +61,10 @@ public class Contabil {
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
 	}
-	
+	/**
+	 * 
+	 * @return contas em string
+	 */
 	public String getContasString() {
 		return this.contas.toString();
 	}

@@ -80,6 +80,14 @@ public class FluxoAlmoxarifado {
 	public void setEstoque(Almoxarifado estoque) {
 		this.estoque = estoque;
 	}
+	
+	public String getProdutoString() {
+		return nomeDoProduto.toString();
+	}
+	
+	public String getQtdString() {
+		return Integer.toString(qtd);
+	}
 
 
 }
