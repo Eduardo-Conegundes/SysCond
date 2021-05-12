@@ -157,7 +157,7 @@ public class MoradorViewController implements Initializable{
 			}
 		}else {
 			try {
-				controlaMorador.criar(morador);
+				controlaFluxo.criar(morador);
 				Alerts.alertaSucesso("Salvo com Sucesso!");
 				limpaTela();
 				initialize(null, null);

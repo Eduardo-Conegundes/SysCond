@@ -1,8 +1,6 @@
 package br.upe.syscond.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
-
 import br.upe.syscond.models.FluxoAlmoxarifado;
 
 public interface InterfaceFluxoAlmoxarifadoController {
