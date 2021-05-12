@@ -24,5 +24,7 @@
       <Button fx:id="VeiculoMain11" layoutX="422.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#switchTelaVeiculo" prefHeight="50.0" prefWidth="125.0" text="Veículo" />
       <Button fx:id="VeiculoMain12" layoutX="422.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#switchTelaEmpresa" prefHeight="50.0" prefWidth="125.0" text="Empresa" />
       <Button fx:id="ContasMain" layoutX="423.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#switchTelaContabil" prefHeight="50.0" prefWidth="125.0" text="Contas" />
+      <Button fx:id="LocacaoMain" layoutX="253.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#switchTelaLocacao" prefHeight="50.0" prefWidth="125.0" text="Locação" />
+      <Button fx:id="AlmoxaMain" layoutX="422.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#switchTelaAlmoxa" prefHeight="50.0" prefWidth="125.0" text="Almoxarifado" />
    </children>
 </AnchorPane>

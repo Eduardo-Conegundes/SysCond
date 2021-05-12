@@ -88,22 +88,14 @@ public class VisitanteViewController implements Initializable {
     @FXML
     private TableColumn<Apartamento, Integer> colunaApNumero;
 	private ObservableList<Visitante> select;
-    
-    /**
-     * 
-     * @param--> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a etapas de salvar, limpar e atualizar a tela da interface ao clicar no botao salvar.
-     */
+
 	@FXML
 	void salvarVisitante(MouseEvent event) {
 		salvar();
 		limpaTela();
 		atualizaTabela();
 	}
-	/**
-	 * 
-	 * @param recebe como paramentro event do tipo MouseEvent, para que seja efetuado a seleção do visitante que deseja-se editar ao ser cliclar..
-	 * 
-	 */
+	
 	@FXML
 	void editarVisitante(MouseEvent event) {
 		this.select = tableVisitante.getSelectionModel().getSelectedItems();
@@ -114,9 +106,6 @@ public class VisitanteViewController implements Initializable {
 		
 	}
 	
-	/**
-	 * Metodo que recebe os valores digitados na interface para salvar ou atualizar um Visitante.
-	 */
 	void salvar() {
 		Visitante visitante = new Visitante(
 				new Pessoa(this.txfNome.getText(), 
@@ -138,10 +127,7 @@ public class VisitanteViewController implements Initializable {
 
 	}
 	
-	/**
-	 * 
-	 * @param --> recebe como paramentro event do tipo MouseEvent, para que seja efetuado a chamada da MainView ao cliclar para operar qualquer função do crude..
-	 */
+	
 	@FXML
 	void switchMain(MouseEvent event) {
 		try {
@@ -153,9 +139,7 @@ public class VisitanteViewController implements Initializable {
 
 	}
 	
-	/**
-	 * inicializar o controlador VisitanteViewController depois que seu elemento raiz foi completamente processado.
-	 */
+	
 	public void initialize(URL location, ResourceBundle resources) {
 		limpaTela();
 		pessoaTableVisita.setCellValueFactory(new PropertyValueFactory<>("PessoaString"));
@@ -164,9 +148,7 @@ public class VisitanteViewController implements Initializable {
 
 	}
 	
-	/**
-	 * Metodo que limpa os campos apos serem salvados ou atualizados.
-	 */
+	
 	private void limpaTela() {
 		this.txfCPF.setText(null);
 		this.txfEmail.setText(null);
@@ -175,9 +157,7 @@ public class VisitanteViewController implements Initializable {
 		this.chcAp.setItems(FXCollections.observableArrayList());
 	}
 	
-	/**
-	 * Metodo que atualiza o a tabela de Visitante na interface.
-	 */
+	
 	private void atualizaTabela() {
 		try {
 			this.tableVisitante.setItems(FXCollections.observableArrayList(controlaVisitante.listar()));

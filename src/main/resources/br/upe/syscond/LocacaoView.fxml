@@ -37,7 +37,7 @@
             <TableColumn fx:id="DataInicial" prefWidth="113.0" text="Data Inicial" />
             <TableColumn fx:id="DataFinal" minWidth="0.0" prefWidth="104.0" text="Data Final" />
             <TableColumn fx:id="Hora" prefWidth="103.0" text="Hora" />
-            <TableColumn fx:id="Espaço" prefWidth="116.0" text="Espaço" />
+            <TableColumn fx:id="Espaco" prefWidth="116.0" text="Espaço" />
             <TableColumn fx:id="Valor" prefWidth="105.0" text="Valor" />
          </columns>
       </TableView>

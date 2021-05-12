@@ -74,8 +74,8 @@ public class AlmoxarifadoViewController implements Initializable {
 	
 	void salvar(int id) {
 		FluxoAlmoxarifado fluxo = new FluxoAlmoxarifado(
-				this.txfProduto.getText(), 
-				this.txtQtd.getText());)
+				Integer.parseInt( this.txtQtd.getText()),
+				this.txfProduto.getText()); 
 		if(!(id == 0)) {
 			fluxo.setId(id);
 			try {

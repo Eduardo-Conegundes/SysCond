@@ -151,6 +151,25 @@ public class MainViewController implements Initializable{
 			 e.printStackTrace();
 		 }
 	 }
+	 
+	 @FXML
+	 void switchTelaLocacao(MouseEvent event) {
+		 try {
+			 App.setRoot("LocacaoView");
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+	    }
+	 
+	 @FXML
+	    void switchTelaAlmoxa(MouseEvent event) {
+		 try {
+			 App.setRoot("AlmoxarifadoView");
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+
+	    }
 
 	 @Override
 	 public void initialize(URL location, ResourceBundle resources) {

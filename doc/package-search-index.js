@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"br.upe.syscond.controllers"},{"l":"br.upe.syscond.dao"},{"l":"br.upe.syscond.models"}];updateSearchResults();

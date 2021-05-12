@@ -1,5 +1,7 @@
 package br.upe.syscond;
 
+import java.io.IOException;
+
 import br.upe.syscond.controllers.InterfaceUsuarioController;
 import br.upe.syscond.controllers.UsuarioController;
 import br.upe.syscond.models.Usuario;
@@ -54,5 +56,16 @@ public class CadastroUsuarioViewController {
 			txtSenha.clear();
 			txtConfirmarSenha.clear();
 		}
+    }
+    
+    @FXML
+    void SwitchTelaLogin(MouseEvent event) {
+    	try {
+			App.setRoot("LoginView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
     }
 }

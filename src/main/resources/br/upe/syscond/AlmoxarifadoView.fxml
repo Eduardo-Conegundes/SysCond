@@ -29,7 +29,7 @@
             <TableColumn fx:id="quantidadeTableFluxo" minWidth="6.0" prefWidth="312.0" text="Quantidade" />
          </columns>
       </TableView>
-      <Button fx:id="btnSalvar" layoutX="76.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#salvarMorador" text="Salvar">
+      <Button fx:id="btnSalvar" layoutX="76.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#salvarFluxoAlmoxarifado" text="Salvar">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -37,11 +37,11 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnEditar" layoutX="207.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#editarMorador" text="Editar">
+      <Button fx:id="btnEditar" layoutX="207.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#editarFluxoAlmoxarifado" text="Editar">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="btnExcluir" layoutX="327.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#excluirMorador" text="Excluir">
+      <Button fx:id="btnExcluir" layoutX="327.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#excluirFluxoAlmoxarifado" text="Excluir">
          <font>
             <Font size="14.0" />
          </font></Button>

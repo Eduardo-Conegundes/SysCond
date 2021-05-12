@@ -26,10 +26,9 @@ public class FluxoAlmoxarifado {
 	 * @param nomeDoProduto
 	 * @param estoque
 	 */
-	public FluxoAlmoxarifado(int qtd, String nomeDoProduto, Almoxarifado estoque){
+	public FluxoAlmoxarifado(int qtd, String nomeDoProduto){
 		this.qtd = qtd;
 		this.nomeDoProduto = nomeDoProduto;
-		this.estoque = estoque;
 	}
 	/**
 	 * @return the id

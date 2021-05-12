@@ -198,7 +198,7 @@ public class LocacaoViewController implements Initializable{
 		DataInicial.setCellValueFactory(new PropertyValueFactory<>("HorarioInicio"));
 		DataFinal.setCellValueFactory(new PropertyValueFactory<>("HorarioFim"));
 		Hora.setCellValueFactory(new PropertyValueFactory<>("Data"));
-		Espaço.setCellValueFactory(new PropertyValueFactory<>("Espaco"));
+		Espaco.setCellValueFactory(new PropertyValueFactory<>("Espaco"));
 		Valor.setCellValueFactory(new PropertyValueFactory<>("Valor"));
 	
 		atualizaTabela();
